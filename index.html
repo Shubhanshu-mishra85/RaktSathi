@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>VitalLoop | Blood Resource Network</title>
+
+  <meta name="description"
+    content="VitalLoop Blood Resource Network helps people discover blood resources, coordinate potential donors and learn blood safety.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      color: #172033;
+      background: #ffffff;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    /* NAVBAR */
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(255,255,255,0.96);
+      border-bottom: 1px solid #e5e7eb;
+      padding: 14px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 21px;
+      font-weight: 800;
+      color: #b91c1c;
+    }
+
+    .logo-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #fee2e2;
+      display: grid;
+      place-items: center;
+      font-size: 20px;
+    }
+
+    nav {
+      display: flex;
+      gap: 20px;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 600;
+      color: #475569;
+    }
+
+    nav a:hover {
+      color: #b91c1c;
+    }
+
+    /* HERO */
+
+    .hero {
+      min-height: 650px;
+      padding: 90px 7%;
+      display: grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 50px;
+      align-items: center;
+
+      background:
+        radial-gradient(circle at 85% 20%, #fee2e2, transparent 30%),
+        linear-gradient(180deg,#fff,#fff7f7);
+    }
+
+    .tag {
+      color: #b91c1c;
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    h1 {
+      font-size: clamp(42px,6vw,76px);
+      line-height: 1.02;
+      margin: 15px 0;
+      letter-spacing: -3px;
+    }
+
+    .hero p {
+      max-width: 650px;
+      color: #64748b;
+      font-size: 18px;
+    }
+
+    .buttons {
+      margin-top: 30px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 14px 20px;
+      border-radius: 12px;
+      font-weight: 800;
+      display: inline-block;
+      transition: .2s;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+    }
+
+    .primary {
+      background: #b91c1c;
+      color: white;
+      box-shadow: 0 10px 25px rgba(185,28,28,.2);
+    }
+
+    .secondary {
+      border: 1px solid #e2e8f0;
+      background: white;
+    }
+
+    /* BLOOD CARD */
+
+    .blood-card {
+      background: white;
+      border: 1px solid #fee2e2;
+      border-radius: 28px;
+      padding: 40px;
+      text-align: center;
+      box-shadow: 0 20px 50px rgba(15,23,42,.1);
+    }
+
+    .blood-drop {
+      width: 100px;
+      height: 100px;
+      margin: 10px auto 25px;
+      border-radius: 50%;
+      background: #fee2e2;
+      color: #b91c1c;
+      display: grid;
+      place-items: center;
+      font-size: 45px;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      50% {
+        transform: scale(1.08);
+        box-shadow: 0 0 0 18px rgba(185,28,28,.05);
+      }
+    }
+
+    .blood-card h2 {
+      margin-bottom: 8px;
+    }
+
+    .blood-card p {
+      color: #64748b;
+    }
+
+    /* SECTIONS */
+
+    section.content {
+      padding: 80px 7%;
+    }
+
+    .section-title {
+      margin-bottom: 35px;
+    }
+
+    .section-title small {
+      color: #b91c1c;
+      font-weight: 800;
+      letter-spacing: 2px;
+    }
+
+    .section-title h2 {
+      font-size: 40px;
+      margin-top: 8px;
+    }
+
+    /* FEATURE CARDS */
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3,1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 28px;
+      border: 1px solid #e2e8f0;
+      border-radius: 18px;
+      background: white;
+      transition: .25s;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 15px 35px rgba(15,23,42,.08);
+    }
+
+    .card-icon {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .card h3 {
+      margin-bottom: 8px;
+    }
+
+    .card p {
+      color: #64748b;
+    }
+
+    /* WORKFLOW */
+
+    .workflow {
+      background: #f8fafc;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4,1fr);
+      gap: 15px;
+    }
+
+    .step {
+      background: white;
+      padding: 25px;
+      border-radius: 15px;
+      border-top: 3px solid #b91c1c;
+    }
+
+    .step-number {
+      color: #b91c1c;
+      font-weight: 900;
+    }
+
+    .step h3 {
+      margin: 8px 0;
+    }
+
+    .step p {
+      color: #64748b;
+      font-size: 14px;
+    }
+
+    /* EMERGENCY */
+
+    .emergency {
+      margin-top: 30px;
+      padding: 25px;
+      border-radius: 18px;
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+    }
+
+    .emergency h3 {
+      color: #991b1b;
+      margin-bottom: 5px;
+    }
+
+    .emergency p {
+      color: #7f1d1d;
+    }
+
+    /* FOOTER */
+
+    footer {
+      padding: 35px 7%;
+      background: #111827;
+      color: #cbd5e1;
+      display: flex;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    footer strong {
+      color: white;
+      font-size: 20px;
+    }
+
+    /* MOBILE */
+
+    @media(max-width:850px) {
+
+      nav {
+        display: none;
+      }
+
+      .hero {
+        grid-template-columns: 1fr;
+        padding: 60px 6%;
+      }
+
+      .cards,
+      .steps {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      section.content {
+        padding: 60px 6%;
+      }
+    }
+
+    @media(max-width:550px) {
+
+      h1 {
+        font-size: 45px;
+      }
+
+      .cards,
+      .steps {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons .btn {
+        width: 100%;
+        text-align: center;
+      }
+
+      footer {
+        display: block;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+
+  <a class="logo" href="index.html">
+    <span class="logo-icon">🩸</span>
+    VitalLoop
+  </a>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="blood-request.html">Need Blood</a>
+    <a href="donor.html">Become a Donor</a>
+    <a href="blood-education.html">Education</a>
+    <a href="camps.html">Camps</a>
+    <a href="about.html">About</a>
+  </nav>
+
+</header>
+
+
+<main>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div>
+
+    <span class="tag">VITALLOOP • BLOOD RESOURCE NETWORK</span>
+
+    <h1>
+      When blood is needed,
+      finding the right resource
+      should be easier.
+    </h1>
+
+    <p>
+      VitalLoop helps families discover relevant blood resources,
+      coordinate potential donors and understand blood-safety
+      information through one connected experience.
+    </p>
+
+    <div class="buttons">
+
+      <a class="btn primary" href="blood-request.html">
+        🩸 Find Blood Resource
+      </a>
+
+      <a class="btn secondary" href="donor.html">
+        Become a Donor
+      </a>
+
+    </div>
+
+  </div>
+
+
+  <div class="blood-card">
+
+    <div class="blood-drop">
+      🩸
+    </div>
+
+    <h2>Blood Exchange Assistance</h2>
+
+    <p>
+      Family unable to arrange a suitable donor?
+      VitalLoop can help discover potential donors
+      and authorized healthcare resources.
+    </p>
+
+    <br>
+
+    <strong>
+      Need → Match → Verify → Coordinate
+    </strong>
+
+    <br><br>
+
+    <small>
+      Final compatibility, testing, availability and issue
+      are determined by authorized blood centres and
+      healthcare professionals.
+    </small>
+
+  </div>
+
+</section>
+
+
+<!-- FEATURES -->
+
+<section class="content">
+
+  <div class="section-title">
+    <small>WHAT VITALLOOP OFFERS</small>
+    <h2>One platform for blood support</h2>
+  </div>
+
+  <div class="cards">
+
+    <a class="card" href="blood-request.html">
+
+      <div class="card-icon">🩸</div>
+
+      <h3>Find Blood Resource</h3>
+
+      <p>
+        Search resources using blood group and location
+        in the prototype dataset.
+      </p>
+
+    </a>
+
+
+    <a class="card" href="blood-request.html">
+
+      <div class="card-icon">🚨</div>
+
+      <h3>Raise Blood Request</h3>
+
+      <p>
+        Create a structured request when a patient
+        needs blood support.
+      </p>
+
+    </a>
+
+
+    <a class="card" href="donor.html">
+
+      <div class="card-icon">🤝</div>
+
+      <h3>Donor Network</h3>
+
+      <p>
+        Register interest as a potential donor for
+        future coordination.
+      </p>
+
+    </a>
+
+
+    <a class="card" href="blood-education.html">
+
+      <div class="card-icon">📚</div>
+
+      <h3>Blood Education</h3>
+
+      <p>
+        Learn how donation, testing and transfusion
+        safety work.
+      </p>
+
+    </a>
+
+
+    <a class="card" href="camps.html">
+
+      <div class="card-icon">🏥</div>
+
+      <h3>Blood Camps</h3>
+
+      <p>
+        Discover upcoming blood donation camp
+        information.
+      </p>
+
+    </a>
+
+
+    <a class="card" href="about.html#charges">
+
+      <div class="card-icon">💰</div>
+
+      <h3>Processing Charges</h3>
+
+      <p>
+        Understand applicable processing charges
+        without treating blood as a commodity.
+      </p>
+
+    </a>
+
+  </div>
+
+</section>
+
+
+<!-- WORKFLOW -->
+
+<section class="content workflow">
+
+  <div class="section-title">
+
+    <small>HOW IT WORKS</small>
+
+    <h2>From need to coordinated support</h2>
+
+  </div>
+
+
+  <div class="steps">
+
+    <div class="step">
+      <span class="step-number">01</span>
+      <h3>Raise Request</h3>
+      <p>
+        Enter blood group, units, healthcare facility
+        and location.
+      </p>
+    </div>
+
+
+    <div class="step">
+      <span class="step-number">02</span>
+      <h3>Find Potential Match</h3>
+      <p>
+        VitalLoop searches available prototype
+        resource and donor information.
+      </p>
+    </div>
+
+
+    <div class="step">
+      <span class="step-number">03</span>
+      <h3>Verify</h3>
+      <p>
+        Authorized blood centres perform screening,
+        testing and compatibility checks.
+      </p>
+    </div>
+
+
+    <div class="step">
+      <span class="step-number">04</span>
+      <h3>Coordinate</h3>
+      <p>
+        Families receive clear next-step information
+        for safe coordination.
+      </p>
+    </div>
+
+  </div>
+
+
+  <div class="emergency">
+
+    <h3>🚨 Important Safety Notice</h3>
+
+    <p>
+      VitalLoop does not collect, test, store, transport,
+      issue or sell blood. Blood donation and transfusion
+      must always be handled by authorized healthcare
+      professionals and blood centres.
+    </p>
+
+  </div>
+
+</section>
+
+
+<!-- EDUCATION -->
+
+<section class="content">
+
+  <div class="section-title">
+
+    <small>LEARN & STAY SAFE</small>
+
+    <h2>Understand blood better</h2>
+
+  </div>
+
+
+  <div class="cards">
+
+    <a class="card" href="blood-education.html">
+
+      <div class="card-icon">🩸</div>
+
+      <h3>How Blood Donation Works</h3>
+
+      <p>
+        Learn about screening, donation and
+        post-donation care.
+      </p>
+
+    </a>
+
+
+    <a class="card" href="blood-education.html#transfusion">
+
+      <div class="card-icon">💉</div>
+
+      <h3>How Transfusion Works</h3>
+
+      <p>
+        Understand identification, compatibility
+        and monitoring.
+      </p>
+
+    </a>
+
+
+    <a class="card" href="blood-education.html#reaction">
+
+      <div class="card-icon">🚨</div>
+
+      <h3>Transfusion Reaction</h3>
+
+      <p>
+        Know when to immediately alert
+        healthcare staff.
+      </p>
+
+    </a>
+
+  </div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+  <div>
+
+    <strong>VitalLoop</strong>
+
+    <p>
+      Your Complete Healthcare Journey
+    </p>
+
+  </div>
+
+  <div>
+    SIH Healthcare Technology Prototype
+  </div>
+
+</footer>
+
+</body>
+</html>
