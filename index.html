@@ -7,9 +7,10 @@
 <title>VitalLoop | Your Complete Healthcare Journey</title>
 
 <meta name="description"
-content="VitalLoop — Your Complete Healthcare Journey. Discover blood resources, raise requests, coordinate donors and access healthcare information.">
+content="VitalLoop Blood Resource Network - Your Complete Healthcare Journey">
 
 <style>
+
 *{
     margin:0;
     padding:0;
@@ -19,13 +20,103 @@ content="VitalLoop — Your Complete Healthcare Journey. Discover blood resource
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#f7fbf9;
-    color:#10251d;
+    background:#f3fbf6;
+    color:#10251c;
 }
 
 a{
     text-decoration:none;
     color:inherit;
+}
+
+/* ================= SPLASH ================= */
+
+#splash{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    background:linear-gradient(135deg,#006b35,#09a84f,#b9f5cd);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    animation:splashOut .8s ease 3.2s forwards;
+}
+
+.splash-box{
+    text-align:center;
+    color:white;
+    animation:splashIn 1.2s ease;
+}
+
+.splash-logo{
+    width:190px;
+    max-width:70vw;
+    height:auto;
+    border-radius:25px;
+    animation:logoFloat 2s ease-in-out infinite;
+}
+
+.splash-name{
+    font-size:32px;
+    font-weight:800;
+    margin-top:18px;
+    letter-spacing:1px;
+}
+
+.splash-tag{
+    margin-top:7px;
+    font-size:14px;
+    opacity:.9;
+}
+
+.loading{
+    width:190px;
+    height:5px;
+    margin:25px auto 0;
+    background:rgba(255,255,255,.3);
+    border-radius:20px;
+    overflow:hidden;
+}
+
+.loading span{
+    display:block;
+    width:0;
+    height:100%;
+    background:white;
+    animation:load 3s ease forwards;
+}
+
+@keyframes splashIn{
+    from{
+        opacity:0;
+        transform:scale(.7);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+@keyframes logoFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-10px);
+    }
+}
+
+@keyframes load{
+    to{
+        width:100%;
+    }
+}
+
+@keyframes splashOut{
+    to{
+        opacity:0;
+        visibility:hidden;
+    }
 }
 
 /* ================= NAVBAR ================= */
@@ -36,12 +127,12 @@ a{
     left:0;
     width:100%;
     z-index:1000;
-    background:rgba(255,255,255,.94);
-    backdrop-filter:blur(15px);
-    border-bottom:1px solid #e2eee8;
+    background:#ffffff;
+    border-bottom:1px solid #dceee3;
+    box-shadow:0 5px 25px rgba(0,80,40,.06);
 }
 
-.nav-inner{
+.nav{
     max-width:1200px;
     margin:auto;
     height:75px;
@@ -57,68 +148,71 @@ a{
     gap:10px;
 }
 
-.logo-mark{
-    width:42px;
-    height:42px;
-    border-radius:13px;
-    background:linear-gradient(135deg,#08a64a,#087b39);
+.logo-icon{
+    width:43px;
+    height:43px;
+    border-radius:14px;
+    background:linear-gradient(135deg,#06a64b,#006d36);
     color:white;
     display:flex;
-    align-items:center;
     justify-content:center;
-    font-size:25px;
+    align-items:center;
     font-weight:bold;
-    box-shadow:0 8px 20px rgba(8,130,65,.2);
+    font-size:24px;
+    box-shadow:0 8px 20px rgba(0,130,60,.2);
 }
 
 .logo-text strong{
     display:block;
-    color:#087c3d;
+    color:#067b3c;
     font-size:21px;
 }
 
 .logo-text small{
-    color:#60736a;
+    display:block;
+    color:#65766d;
     font-size:9px;
 }
 
 .nav-links{
     display:flex;
     align-items:center;
-    gap:27px;
+    gap:25px;
 }
 
 .nav-links a{
-    color:#30473d;
     font-size:14px;
     font-weight:600;
+    color:#30473c;
+    transition:.3s;
 }
 
 .nav-links a:hover{
     color:#079447;
 }
 
-.login{
-    padding:12px 20px;
-    border-radius:10px;
+.request-btn{
+    background:#079447;
     color:white!important;
-    background:linear-gradient(135deg,#0aa84f,#07833d);
-    box-shadow:0 8px 20px rgba(8,140,68,.2);
+    padding:12px 18px;
+    border-radius:10px;
+    box-shadow:0 7px 18px rgba(7,148,71,.2);
 }
 
 .menu{
     display:none;
     font-size:27px;
+    color:#087c3d;
 }
 
 /* ================= HERO ================= */
 
 .hero{
     min-height:100vh;
-    padding:135px 7% 70px;
+    padding:135px 7% 75px;
     background:
-    radial-gradient(circle at 85% 30%,#baf5ce,transparent 32%),
-    linear-gradient(135deg,#effcf4,#ffffff);
+    radial-gradient(circle at 85% 20%,#a9f0c0,transparent 34%),
+    linear-gradient(135deg,#e7faee,#ffffff);
 }
 
 .hero-inner{
@@ -131,10 +225,10 @@ a{
 }
 
 .hero-content{
-    animation:fromLeft 1s ease;
+    animation:leftIn 1s ease;
 }
 
-.eyebrow{
+.hero-label{
     color:#087c3d;
     font-size:13px;
     font-weight:bold;
@@ -144,7 +238,7 @@ a{
 
 .hero h1{
     font-size:58px;
-    line-height:1.02;
+    line-height:1.03;
     margin-bottom:22px;
 }
 
@@ -153,13 +247,13 @@ a{
 }
 
 .hero p{
-    max-width:570px;
-    color:#52675e;
+    color:#53675d;
     font-size:17px;
     line-height:1.75;
+    max-width:570px;
 }
 
-.buttons{
+.hero-buttons{
     display:flex;
     gap:14px;
     margin-top:28px;
@@ -173,25 +267,26 @@ a{
     font-weight:bold;
     cursor:pointer;
     transition:.3s;
+    font-size:14px;
 }
 
-.btn-green{
+.green-btn{
     background:#079447;
     color:white;
-    box-shadow:0 10px 25px rgba(7,148,71,.2);
+    box-shadow:0 10px 25px rgba(7,148,71,.22);
 }
 
-.btn-green:hover{
+.green-btn:hover{
     transform:translateY(-4px);
 }
 
-.btn-white{
+.outline-btn{
     background:white;
-    border:1px solid #93c9aa;
     color:#087c3d;
+    border:1px solid #73bd91;
 }
 
-.btn-white:hover{
+.outline-btn:hover{
     transform:translateY(-4px);
 }
 
@@ -199,53 +294,85 @@ a{
 
 .hero-image{
     position:relative;
-    animation:fromRight 1s ease;
+    animation:rightIn 1s ease;
 }
 
 .hero-image img{
     width:100%;
-    max-height:480px;
+    height:460px;
     object-fit:cover;
     border-radius:30px;
     display:block;
-    box-shadow:0 25px 60px rgba(20,75,48,.16);
+    box-shadow:0 25px 65px rgba(0,80,40,.17);
 }
 
-.image-card{
+.image-badge{
     position:absolute;
     right:-15px;
     bottom:25px;
     background:white;
+    color:#087c3d;
     padding:15px 20px;
     border-radius:15px;
-    box-shadow:0 12px 30px rgba(20,60,40,.14);
-    color:#087c3d;
     font-weight:bold;
-    animation:float 3s ease-in-out infinite;
+    box-shadow:0 12px 30px rgba(0,70,40,.15);
+    animation:badgeFloat 3s infinite;
+}
+
+@keyframes leftIn{
+    from{
+        opacity:0;
+        transform:translateX(-50px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes rightIn{
+    from{
+        opacity:0;
+        transform:translateX(50px);
+    }
+    to{
+        opacity:1;
+        transform:translateX(0);
+    }
+}
+
+@keyframes badgeFloat{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-8px);
+    }
 }
 
 /* ================= STATS ================= */
 
 .stats{
     max-width:1050px;
-    margin:-35px auto 60px;
+    margin:-35px auto 65px;
     padding:0 20px;
     position:relative;
 }
 
 .stats-box{
     background:white;
+    border:1px solid #deeee5;
     border-radius:20px;
     display:grid;
     grid-template-columns:repeat(3,1fr);
-    box-shadow:0 15px 45px rgba(20,70,45,.1);
-    border:1px solid #e2eee8;
+    box-shadow:0 15px 45px rgba(0,70,40,.1);
+    overflow:hidden;
 }
 
 .stat{
-    padding:25px;
     text-align:center;
-    border-right:1px solid #e6eee9;
+    padding:26px;
+    border-right:1px solid #e3eee8;
 }
 
 .stat:last-child{
@@ -258,15 +385,15 @@ a{
 }
 
 .stat p{
-    color:#66776f;
-    margin-top:5px;
+    color:#6b7c73;
     font-size:13px;
+    margin-top:5px;
 }
 
 /* ================= SERVICES ================= */
 
 .services{
-    padding:80px 7%;
+    padding:85px 7%;
     background:white;
 }
 
@@ -278,7 +405,7 @@ a{
 .heading{
     text-align:center;
     max-width:720px;
-    margin:0 auto 45px;
+    margin:0 auto 48px;
 }
 
 .heading small{
@@ -290,6 +417,10 @@ a{
 .heading h2{
     font-size:38px;
     margin:12px 0;
+}
+
+.heading h2 span{
+    color:#079447;
 }
 
 .heading p{
@@ -304,31 +435,31 @@ a{
 }
 
 .service{
-    min-height:210px;
+    min-height:215px;
     padding:25px;
-    border-radius:18px;
-    border:1px solid #e1eee7;
-    background:#f8fcfa;
-    transition:.35s;
+    border-radius:19px;
+    border:1px solid #dfede5;
+    background:#f7fcf9;
     position:relative;
+    transition:.35s;
     overflow:hidden;
 }
 
 .service:hover{
-    transform:translateY(-8px);
-    box-shadow:0 18px 40px rgba(18,80,48,.11);
-    border-color:#8bd4a8;
+    transform:translateY(-9px);
+    box-shadow:0 18px 40px rgba(0,80,45,.12);
+    border-color:#86d0a1;
 }
 
 .service-icon{
-    width:53px;
-    height:53px;
+    width:54px;
+    height:54px;
     border-radius:16px;
+    background:#dcf7e6;
     display:flex;
     align-items:center;
     justify-content:center;
     font-size:25px;
-    background:#dff8e8;
     margin-bottom:20px;
 }
 
@@ -338,7 +469,7 @@ a{
 }
 
 .service p{
-    color:#667970;
+    color:#697970;
     font-size:13px;
     line-height:1.6;
 }
@@ -346,19 +477,20 @@ a{
 .arrow{
     position:absolute;
     right:20px;
-    bottom:18px;
+    bottom:17px;
     color:#079447;
-    font-size:20px;
+    font-size:21px;
+    font-weight:bold;
 }
 
-/* ================= BLOOD SECTION ================= */
+/* ================= BLOOD NETWORK ================= */
 
-.blood{
+.network{
     padding:85px 7%;
-    background:#effaf3;
+    background:#e9faef;
 }
 
-.blood-box{
+.network-box{
     max-width:1100px;
     margin:auto;
     display:grid;
@@ -367,23 +499,22 @@ a{
     align-items:center;
 }
 
-.blood-content h2{
+.network h2{
     font-size:38px;
     margin:12px 0;
 }
 
-.blood-content p{
-    color:#607269;
+.network p{
+    color:#5e7267;
     line-height:1.8;
 }
 
-.blood-list{
-    margin-top:22px;
+.network-list{
+    margin:20px 0;
 }
 
-.blood-list div{
+.network-list div{
     margin:12px 0;
-    color:#30483b;
     font-size:14px;
 }
 
@@ -393,83 +524,49 @@ a{
     margin-right:8px;
 }
 
-.blood-visual{
+.network-card{
     background:white;
-    padding:30px;
     border-radius:25px;
-    box-shadow:0 20px 50px rgba(20,80,50,.1);
+    padding:35px;
     text-align:center;
+    box-shadow:0 20px 50px rgba(0,80,45,.1);
 }
 
-.drop{
-    font-size:90px;
-    animation:dropFloat 2s infinite;
+.blood-drop{
+    font-size:85px;
+    animation:drop 2s infinite;
 }
 
-.blood-visual h3{
+.network-card h3{
     color:#087c3d;
-    margin:15px 0 8px;
+    margin:12px 0;
 }
 
-.blood-visual p{
-    color:#687970;
+.network-card p{
     font-size:13px;
-    line-height:1.6;
 }
 
-/* ================= HOW IT WORKS ================= */
-
-.workflow{
-    padding:85px 7%;
-    background:white;
-}
-
-.steps{
-    display:grid;
-    grid-template-columns:repeat(4,1fr);
-    gap:25px;
-}
-
-.step{
-    text-align:center;
-}
-
-.step-number{
-    width:58px;
-    height:58px;
-    margin:auto;
-    border-radius:50%;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    background:#079447;
-    color:white;
-    font-weight:bold;
-    box-shadow:0 10px 25px rgba(7,148,71,.2);
-}
-
-.step h3{
-    margin:18px 0 8px;
-}
-
-.step p{
-    color:#6a7a72;
-    font-size:13px;
-    line-height:1.6;
+@keyframes drop{
+    0%,100%{
+        transform:translateY(0);
+    }
+    50%{
+        transform:translateY(-12px);
+    }
 }
 
 /* ================= CTA ================= */
 
 .cta{
     padding:75px 7%;
-    background:linear-gradient(135deg,#06783a,#0ba550);
+    background:linear-gradient(135deg,#006c36,#08a64b);
     color:white;
     text-align:center;
 }
 
 .cta h2{
     font-size:38px;
-    margin-bottom:12px;
+    margin-bottom:13px;
 }
 
 .cta p{
@@ -488,7 +585,7 @@ a{
 /* ================= FOOTER ================= */
 
 footer{
-    background:#063d27;
+    background:#053d27;
     color:white;
     padding:50px 7% 25px;
 }
@@ -502,12 +599,12 @@ footer{
 }
 
 .footer-logo{
-    font-size:24px;
+    font-size:25px;
     font-weight:bold;
 }
 
 .footer p{
-    color:#a9c3b6;
+    color:#a9c4b6;
     font-size:13px;
     line-height:1.7;
     margin-top:10px;
@@ -519,7 +616,7 @@ footer{
 
 .footer a{
     display:block;
-    color:#b5cbbf;
+    color:#b2c9bd;
     font-size:13px;
     margin:10px 0;
 }
@@ -532,52 +629,10 @@ footer{
     max-width:1200px;
     margin:35px auto 0;
     padding-top:20px;
-    border-top:1px solid #28634a;
+    border-top:1px solid #286149;
     text-align:center;
-    color:#91ad9f;
+    color:#8fa99c;
     font-size:12px;
-}
-
-/* ================= ANIMATIONS ================= */
-
-@keyframes fromLeft{
-    from{
-        opacity:0;
-        transform:translateX(-50px);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-
-@keyframes fromRight{
-    from{
-        opacity:0;
-        transform:translateX(50px);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
-}
-
-@keyframes float{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-8px);
-    }
-}
-
-@keyframes dropFloat{
-    0%,100%{
-        transform:translateY(0);
-    }
-    50%{
-        transform:translateY(-12px);
-    }
 }
 
 /* ================= MOBILE ================= */
@@ -590,7 +645,6 @@ footer{
 
     .menu{
         display:block;
-        color:#087c3d;
     }
 
     .hero{
@@ -602,18 +656,18 @@ footer{
     }
 
     .hero h1{
-        font-size:43px;
+        font-size:44px;
+    }
+
+    .hero-image img{
+        height:360px;
     }
 
     .service-grid{
         grid-template-columns:1fr 1fr;
     }
 
-    .steps{
-        grid-template-columns:1fr 1fr;
-    }
-
-    .blood-box{
+    .network-box{
         grid-template-columns:1fr;
     }
 
@@ -624,15 +678,6 @@ footer{
 
 @media(max-width:500px){
 
-    .nav-inner{
-        padding:0 17px;
-    }
-
-    .hero{
-        padding-left:5%;
-        padding-right:5%;
-    }
-
     .hero h1{
         font-size:37px;
     }
@@ -642,7 +687,7 @@ footer{
     }
 
     .hero-image img{
-        max-height:330px;
+        height:320px;
     }
 
     .stats-box{
@@ -651,73 +696,113 @@ footer{
 
     .stat{
         border-right:none;
-        border-bottom:1px solid #e6eee9;
+        border-bottom:1px solid #e3eee8;
     }
 
     .stat:last-child{
         border-bottom:none;
     }
 
-    .services,
-    .blood,
-    .workflow{
-        padding-left:5%;
-        padding-right:5%;
+    .service-grid{
+        grid-template-columns:1fr;
     }
 
     .heading h2{
         font-size:30px;
     }
 
-    .service-grid{
-        grid-template-columns:1fr;
-    }
-
-    .steps{
-        grid-template-columns:1fr;
+    .network h2{
+        font-size:30px;
     }
 
     .cta h2{
         font-size:30px;
     }
 }
+
 </style>
 </head>
 
 <body>
 
+
+<!-- ================= SPLASH ================= -->
+
+<div id="splash">
+
+    <div class="splash-box">
+
+        <img
+        src="vitalloop-splash.png"
+        class="splash-logo"
+        alt="VitalLoop">
+
+        <div class="splash-name">
+            VitalLoop
+        </div>
+
+        <div class="splash-tag">
+            Your Complete Healthcare Journey
+        </div>
+
+        <div class="loading">
+            <span></span>
+        </div>
+
+    </div>
+
+</div>
+
+
 <!-- ================= NAVBAR ================= -->
 
 <header class="navbar">
 
-<div class="nav-inner">
+<div class="nav">
 
 <a href="index.html" class="logo">
 
-<div class="logo-mark">
-    V
+<div class="logo-icon">
+V
 </div>
 
 <div class="logo-text">
-    <strong>VitalLoop</strong>
-    <small>Your Complete Healthcare Journey</small>
+
+<strong>VitalLoop</strong>
+
+<small>
+Your Complete Healthcare Journey
+</small>
+
 </div>
 
 </a>
 
+
 <div class="nav-links">
 
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="#services">Services</a>
-<a href="blood-education.html">Education</a>
-<a href="#contact">Contact</a>
+<a href="index.html">
+Home
+</a>
 
-<a href="blood-request.html" class="login">
+<a href="about.html">
+About
+</a>
+
+<a href="#services">
+Services
+</a>
+
+<a href="blood-education.html">
+Education
+</a>
+
+<a href="blood-request.html" class="request-btn">
 Blood Request
 </a>
 
 </div>
+
 
 <div class="menu">
 ☰
@@ -736,7 +821,7 @@ Blood Request
 
 <div class="hero-content">
 
-<div class="eyebrow">
+<div class="hero-label">
 BLOOD RESOURCE NETWORK
 </div>
 
@@ -747,21 +832,22 @@ Small Drop,<br>
 
 <p>
 VitalLoop helps people discover relevant blood resources,
-raise blood requests, coordinate potential donors and learn
-about blood safety — all through one connected healthcare
-experience.
+raise blood requests, coordinate potential donors and
+learn about blood safety — all through one connected
+healthcare experience.
 </p>
 
-<div class="buttons">
+
+<div class="hero-buttons">
 
 <a href="#services">
-<button class="btn btn-green">
+<button class="btn green-btn">
 Get Started →
 </button>
 </a>
 
 <a href="about.html">
-<button class="btn btn-white">
+<button class="btn outline-btn">
 Learn More
 </button>
 </a>
@@ -775,9 +861,9 @@ Learn More
 
 <img
 src="blood-donation.jpg"
-alt="Blood donation awareness">
+alt="Blood Donation">
 
-<div class="image-card">
+<div class="image-badge">
 🩸 Donate Blood • Give Hope
 </div>
 
@@ -795,18 +881,35 @@ alt="Blood donation awareness">
 <div class="stats-box">
 
 <div class="stat">
+
 <h2>24×7</h2>
-<p>Resource Discovery Concept</p>
+
+<p>
+Healthcare Navigation
+</p>
+
 </div>
 
+
 <div class="stat">
+
 <h2>1</h2>
-<p>Connected Platform</p>
+
+<p>
+Connected Platform
+</p>
+
 </div>
 
+
 <div class="stat">
+
 <h2>8+</h2>
-<p>Healthcare Services</p>
+
+<p>
+Healthcare Services
+</p>
+
 </div>
 
 </div>
@@ -822,15 +925,17 @@ alt="Blood donation awareness">
 
 <div class="heading">
 
-<small>OUR SERVICES</small>
+<small>
+OUR SERVICES
+</small>
 
 <h2>
-How Can <span style="color:#079447">We Help You?</span>
+How Can <span>We Help You?</span>
 </h2>
 
 <p>
-Choose a service below to get started. Each important
-service opens on its own page for a better experience.
+Choose a service below. Each service opens on its own
+page so the experience stays simple and organized.
 </p>
 
 </div>
@@ -839,7 +944,9 @@ service opens on its own page for a better experience.
 <div class="service-grid">
 
 
-<a href="blood-request.html">
+<!-- FIND BLOOD -->
+
+<a href="find-blood.html">
 
 <div class="service">
 
@@ -856,12 +963,16 @@ Discover relevant blood resources by blood group,
 component and location.
 </p>
 
-<div class="arrow">→</div>
+<div class="arrow">
+→
+</div>
 
 </div>
 
 </a>
 
+
+<!-- BLOOD REQUEST -->
 
 <a href="blood-request.html">
 
@@ -876,16 +987,20 @@ Raise Blood Request
 </h3>
 
 <p>
-Create a structured request for a required blood
+Create a structured request for the required blood
 group and component.
 </p>
 
-<div class="arrow">→</div>
+<div class="arrow">
+→
+</div>
 
 </div>
 
 </a>
 
+
+<!-- DONOR -->
 
 <a href="donor.html">
 
@@ -900,16 +1015,20 @@ Donor Coordination
 </h3>
 
 <p>
-Help connect potential eligible donors with relevant
-blood donation requests.
+Coordinate potential eligible donors with relevant
+blood requests.
 </p>
 
-<div class="arrow">→</div>
+<div class="arrow">
+→
+</div>
 
 </div>
 
 </a>
 
+
+<!-- CAMPS -->
 
 <a href="camps.html">
 
@@ -928,12 +1047,16 @@ Discover blood donation camps and awareness
 activities.
 </p>
 
-<div class="arrow">→</div>
+<div class="arrow">
+→
+</div>
 
 </div>
 
 </a>
 
+
+<!-- EDUCATION -->
 
 <a href="blood-education.html">
 
@@ -952,12 +1075,16 @@ Learn about blood groups, donation and transfusion
 safety.
 </p>
 
-<div class="arrow">→</div>
+<div class="arrow">
+→
+</div>
 
 </div>
 
 </a>
 
+
+<!-- AI -->
 
 <a href="assistant.html">
 
@@ -972,16 +1099,20 @@ AI Assistant
 </h3>
 
 <p>
-Get general healthcare information with safety-focused
-AI guidance.
+Get general healthcare information through
+safety-focused AI guidance.
 </p>
 
-<div class="arrow">→</div>
+<div class="arrow">
+→
+</div>
 
 </div>
 
 </a>
 
+
+<!-- EMERGENCY -->
 
 <a href="emergency.html">
 
@@ -996,16 +1127,20 @@ Emergency Support
 </h3>
 
 <p>
-Quick access to emergency guidance and healthcare
+Access emergency guidance and important healthcare
 resources.
 </p>
 
-<div class="arrow">→</div>
+<div class="arrow">
+→
+</div>
 
 </div>
 
 </a>
 
+
+<!-- MEDICINE -->
 
 <a href="medicine.html">
 
@@ -1024,7 +1159,9 @@ Explore general medicine information and safety
 guidance.
 </p>
 
-<div class="arrow">→</div>
+<div class="arrow">
+→
+</div>
 
 </div>
 
@@ -1040,11 +1177,11 @@ guidance.
 
 <!-- ================= BLOOD NETWORK ================= -->
 
-<section class="blood">
+<section class="network">
 
-<div class="blood-box">
+<div class="network-box">
 
-<div class="blood-content">
+<div>
 
 <small style="color:#079447;font-weight:bold;letter-spacing:2px;">
 BLOOD RESOURCE NETWORK
@@ -1056,11 +1193,10 @@ Connecting People With Relevant Resources
 
 <p>
 VitalLoop is designed as a discovery and coordination
-layer. It does not itself store, test, transport or release
-blood.
+layer to make healthcare navigation easier.
 </p>
 
-<div class="blood-list">
+<div class="network-list">
 
 <div>
 <span class="check">✓</span>
@@ -1074,7 +1210,7 @@ Raise structured blood requests
 
 <div>
 <span class="check">✓</span>
-Explore potential donor coordination
+Coordinate potential donors
 </div>
 
 <div>
@@ -1084,27 +1220,31 @@ Verify availability with authorized centres
 
 </div>
 
-<a href="blood-request.html">
-<button class="btn btn-green">
+<a href="find-blood.html">
+
+<button class="btn green-btn">
 Open Blood Network →
 </button>
+
 </a>
 
 </div>
 
 
-<div class="blood-visual">
+<div class="network-card">
 
-<div class="drop">🩸</div>
+<div class="blood-drop">
+🩸
+</div>
 
 <h3>
 Every Drop Matters
 </h3>
 
 <p>
-Actual donation, testing, storage, compatibility and
-transfusion remain under authorized healthcare facilities
-and trained professionals.
+Actual blood collection, testing, storage, compatibility
+and transfusion remain under authorized healthcare
+facilities and trained professionals.
 </p>
 
 </div>
@@ -1116,33 +1256,40 @@ and trained professionals.
 
 <!-- ================= WORKFLOW ================= -->
 
-<section class="workflow">
+<section class="services">
 
 <div class="section">
 
 <div class="heading">
 
-<small>HOW IT WORKS</small>
+<small>
+HOW IT WORKS
+</small>
 
 <h2>
 Simple. Connected. Responsible.
 </h2>
 
 <p>
-A straightforward journey from request to verified
-healthcare coordination.
+VitalLoop focuses on helping users navigate from a
+healthcare need to the relevant resource.
 </p>
 
 </div>
 
 
-<div class="steps">
+<div class="service-grid">
 
-<div class="step">
 
-<div class="step-number">01</div>
+<div class="service">
 
-<h3>Raise Request</h3>
+<div class="service-icon">
+01
+</div>
+
+<h3>
+Raise Request
+</h3>
 
 <p>
 Enter the required blood group, component and location.
@@ -1151,11 +1298,15 @@ Enter the required blood group, component and location.
 </div>
 
 
-<div class="step">
+<div class="service">
 
-<div class="step-number">02</div>
+<div class="service-icon">
+02
+</div>
 
-<h3>Discover</h3>
+<h3>
+Discover
+</h3>
 
 <p>
 Explore relevant resources and potential donor
@@ -1165,11 +1316,15 @@ coordination.
 </div>
 
 
-<div class="step">
+<div class="service">
 
-<div class="step-number">03</div>
+<div class="service-icon">
+03
+</div>
 
-<h3>Verify</h3>
+<h3>
+Verify
+</h3>
 
 <p>
 Confirm current availability directly with the
@@ -1179,11 +1334,15 @@ authorized centre.
 </div>
 
 
-<div class="step">
+<div class="service">
 
-<div class="step-number">04</div>
+<div class="service-icon">
+04
+</div>
 
-<h3>Donate Safely</h3>
+<h3>
+Donate Safely
+</h3>
 
 <p>
 Donation and transfusion follow applicable medical
@@ -1191,6 +1350,7 @@ procedures.
 </p>
 
 </div>
+
 
 </div>
 
@@ -1201,7 +1361,7 @@ procedures.
 
 <!-- ================= CTA ================= -->
 
-<section class="cta" id="contact">
+<section class="cta">
 
 <h2>
 Healthier People. Brighter Tomorrow.
@@ -1214,9 +1374,11 @@ and support.
 </p>
 
 <a href="blood-request.html">
+
 <button class="btn">
 Raise a Blood Request →
 </button>
+
 </a>
 
 </section>
@@ -1249,24 +1411,50 @@ healthcare navigation.
 
 <div>
 
-<h4>Quick Links</h4>
+<h4>
+Quick Links
+</h4>
 
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="#services">Services</a>
-<a href="blood-request.html">Blood Request</a>
+<a href="index.html">
+Home
+</a>
+
+<a href="about.html">
+About
+</a>
+
+<a href="#services">
+Services
+</a>
+
+<a href="blood-request.html">
+Blood Request
+</a>
 
 </div>
 
 
 <div>
 
-<h4>Resources</h4>
+<h4>
+Resources
+</h4>
 
-<a href="blood-education.html">Blood Education</a>
-<a href="donor.html">Donor Coordination</a>
-<a href="camps.html">Donation Camps</a>
-<a href="about.html">About VitalLoop</a>
+<a href="find-blood.html">
+Find Blood
+</a>
+
+<a href="donor.html">
+Donor
+</a>
+
+<a href="camps.html">
+Camps
+</a>
+
+<a href="blood-education.html">
+Education
+</a>
 
 </div>
 
@@ -1282,6 +1470,55 @@ Healthier People. Brighter Tomorrow.
 </div>
 
 </footer>
+
+
+<script>
+
+/* SPLASH */
+
+setTimeout(function(){
+
+    const splash =
+    document.getElementById("splash");
+
+    splash.style.display="none";
+
+},4200);
+
+
+/* MOBILE MENU */
+
+const menu =
+document.querySelector(".menu");
+
+const links =
+document.querySelector(".nav-links");
+
+menu.addEventListener("click",function(){
+
+    if(
+        links.style.display === "flex"
+    ){
+
+        links.style.display="none";
+
+    }else{
+
+        links.style.display="flex";
+        links.style.flexDirection="column";
+        links.style.position="absolute";
+        links.style.top="75px";
+        links.style.right="0";
+        links.style.width="100%";
+        links.style.padding="20px";
+        links.style.background="white";
+        links.style.boxShadow="0 15px 30px rgba(0,0,0,.1)";
+
+    }
+
+});
+
+</script>
 
 </body>
 </html>
