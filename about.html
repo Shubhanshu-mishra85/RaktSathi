@@ -1,0 +1,777 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>About VitalLoop | Blood Resource Network</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#fff;
+  color:#172033;
+  line-height:1.65;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.96);
+  border-bottom:1px solid #e5e7eb;
+  padding:15px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  color:#b91c1c;
+  font-size:22px;
+  font-weight:800;
+}
+
+nav{
+  display:flex;
+  gap:20px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#475569;
+  font-size:14px;
+  font-weight:600;
+}
+
+nav a:hover{
+  color:#b91c1c;
+}
+
+.hero{
+  padding:75px 6%;
+  background:
+  radial-gradient(circle at 85% 20%,#fee2e2,transparent 30%),
+  linear-gradient(180deg,#fff7f7,#fff);
+}
+
+.hero-inner{
+  max-width:1050px;
+  margin:auto;
+}
+
+.tag{
+  color:#b91c1c;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+h1{
+  font-size:clamp(40px,6vw,68px);
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin:12px 0 18px;
+}
+
+.hero p{
+  max-width:780px;
+  color:#64748b;
+  font-size:17px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:65px 6%;
+}
+
+.title{
+  margin-bottom:30px;
+}
+
+.title small{
+  color:#b91c1c;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+.title h2{
+  font-size:38px;
+  line-height:1.15;
+  margin-top:8px;
+}
+
+.title p{
+  color:#64748b;
+  margin-top:10px;
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:28px;
+  box-shadow:0 10px 30px rgba(15,23,42,.06);
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 40px rgba(15,23,42,.1);
+}
+
+.icon{
+  width:48px;
+  height:48px;
+  border-radius:14px;
+  background:#fee2e2;
+  display:grid;
+  place-items:center;
+  font-size:23px;
+  margin-bottom:15px;
+}
+
+.card h3{
+  font-size:21px;
+  margin-bottom:9px;
+}
+
+.card p{
+  color:#64748b;
+  font-size:14px;
+}
+
+.flow{
+  display:grid;
+  grid-template-columns:repeat(5,1fr);
+  gap:12px;
+}
+
+.flow-card{
+  padding:22px 16px;
+  background:#f8fafc;
+  border-radius:15px;
+  text-align:center;
+  border-top:3px solid #b91c1c;
+}
+
+.flow-card span{
+  font-size:28px;
+}
+
+.flow-card h3{
+  font-size:15px;
+  margin:8px 0;
+}
+
+.flow-card p{
+  color:#64748b;
+  font-size:12px;
+}
+
+.pricing{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.price-card{
+  padding:25px;
+  border-radius:18px;
+  background:white;
+  border:1px solid #e5e7eb;
+}
+
+.price-card h3{
+  margin-bottom:10px;
+}
+
+.price{
+  font-size:28px;
+  font-weight:900;
+  color:#b91c1c;
+}
+
+.price-card p{
+  margin-top:10px;
+  color:#64748b;
+  font-size:13px;
+}
+
+.highlight{
+  background:#fff7f7;
+  border:1px solid #fecaca;
+}
+
+.assistance{
+  margin-top:20px;
+  padding:20px;
+  border-radius:15px;
+  background:#ecfdf5;
+  border:1px solid #a7f3d0;
+  color:#065f46;
+}
+
+.warning{
+  margin-top:20px;
+  padding:18px;
+  border-radius:14px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#9a3412;
+  font-size:13px;
+}
+
+.safety{
+  background:#111827;
+  color:white;
+  border-radius:20px;
+  padding:30px;
+}
+
+.safety p{
+  color:#cbd5e1;
+  margin-top:10px;
+  font-size:14px;
+}
+
+.safety ul{
+  margin:18px 0 0 20px;
+  color:#cbd5e1;
+}
+
+.safety li{
+  margin:8px 0;
+}
+
+.vision{
+  text-align:center;
+  padding:70px 6%;
+  background:
+  radial-gradient(circle at 50% 50%,#fee2e2,transparent 45%),
+  #fff7f7;
+}
+
+.vision h2{
+  font-size:42px;
+  margin-bottom:12px;
+}
+
+.vision p{
+  max-width:700px;
+  margin:auto;
+  color:#64748b;
+}
+
+footer{
+  background:#111827;
+  color:#cbd5e1;
+  padding:35px 6%;
+  text-align:center;
+}
+
+footer strong{
+  color:white;
+  font-size:20px;
+}
+
+@media(max-width:850px){
+
+  nav{
+    display:none;
+  }
+
+  .flow{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .pricing{
+    grid-template-columns:1fr 1fr;
+  }
+}
+
+@media(max-width:600px){
+
+  .hero{
+    padding:55px 5%;
+  }
+
+  .container{
+    padding:50px 5%;
+  }
+
+  .grid,
+  .pricing,
+  .flow{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:42px;
+  }
+
+  .title h2{
+    font-size:30px;
+  }
+
+  .vision h2{
+    font-size:32px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🩸 VitalLoop
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="blood-request.html">Need Blood</a>
+<a href="donor.html">Become a Donor</a>
+<a href="blood-education.html">Education</a>
+<a href="camps.html">Camps</a>
+<a href="about.html">About</a>
+</nav>
+
+</header>
+
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<span class="tag">
+ABOUT VITALLOOP
+</span>
+
+<h1>
+Making Blood Resource Discovery Simpler.
+</h1>
+
+<p>
+VitalLoop is a free healthcare technology prototype designed
+to help families discover relevant blood resources, raise
+blood requests and coordinate with potential donors and
+authorized healthcare resources through one connected
+experience.
+</p>
+
+</div>
+
+</section>
+
+
+<section class="container">
+
+<div class="title">
+
+<small>THE PROBLEM</small>
+
+<h2>
+When an emergency happens, finding the right resource can be difficult.
+</h2>
+
+<p>
+Families may have to contact multiple people, hospitals or
+blood centres while dealing with an emergency. VitalLoop
+aims to make this discovery and coordination process simpler.
+</p>
+
+</div>
+
+
+<div class="grid">
+
+<div class="card">
+
+<div class="icon">
+🚑
+</div>
+
+<h3>
+Emergency Situation
+</h3>
+
+<p>
+For example, after an accident, a patient's family may
+urgently need a particular blood group and may not know
+where relevant resources or potential donors can be found.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🔎
+</div>
+
+<h3>
+Resource Discovery
+</h3>
+
+<p>
+VitalLoop can organize blood-resource information so that
+users can search using blood group and location.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🤝
+</div>
+
+<h3>
+Potential Donor Coordination
+</h3>
+
+<p>
+If a suitable family donor is not available, the system can
+help identify potential donors based on the information
+available in the prototype.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="icon">
+🏥
+</div>
+
+<h3>
+Authorized Healthcare Role
+</h3>
+
+<p>
+Blood collection, testing, compatibility decisions,
+storage and issue remain the responsibility of authorized
+blood centres and healthcare professionals.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="container">
+
+<div class="title">
+
+<small>HOW IT WORKS</small>
+
+<h2>
+From request to coordination
+</h2>
+
+</div>
+
+
+<div class="flow">
+
+<div class="flow-card">
+
+<span>📝</span>
+
+<h3>
+1. Request
+</h3>
+
+<p>
+Family raises a blood requirement.
+</p>
+
+</div>
+
+
+<div class="flow-card">
+
+<span>🩸</span>
+
+<h3>
+2. Blood Group
+</h3>
+
+<p>
+Required blood group and units are entered.
+</p>
+
+</div>
+
+
+<div class="flow-card">
+
+<span>📍</span>
+
+<h3>
+3. Location
+</h3>
+
+<p>
+Relevant location is provided.
+</p>
+
+</div>
+
+
+<div class="flow-card">
+
+<span>🔎</span>
+
+<h3>
+4. Discovery
+</h3>
+
+<p>
+Potential donors and resources can be identified.
+</p>
+
+</div>
+
+
+<div class="flow-card">
+
+<span>🤝</span>
+
+<h3>
+5. Coordination
+</h3>
+
+<p>
+The family can follow the appropriate healthcare workflow.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section class="container">
+
+<div class="title">
+
+<small>PROCESSING CHARGES</small>
+
+<h2>
+Blood is not treated as a product for sale.
+</h2>
+
+<p>
+Where applicable, authorized blood centres may charge
+regulated processing/service-related charges. The exact
+amount depends on the blood centre, component and
+applicable rules.
+</p>
+
+</div>
+
+
+<div class="pricing">
+
+<div class="price-card">
+
+<h3>
+Government / Public Centre
+</h3>
+
+<div class="price">
+As applicable
+</div>
+
+<p>
+Charges and concessions can vary by centre and patient
+eligibility. Users should confirm the current amount with
+the concerned authorized blood centre.
+</p>
+
+</div>
+
+
+<div class="price-card highlight">
+
+<h3>
+Financial Assistance
+</h3>
+
+<div class="price">
+Proposed
+</div>
+
+<p>
+VitalLoop's SIH concept proposes a financial-assistance
+mechanism for eligible low-income/BPL beneficiaries,
+subject to verification, funding and applicable rules.
+</p>
+
+</div>
+
+
+<div class="price-card">
+
+<h3>
+Private / Other Centre
+</h3>
+
+<div class="price">
+Centre-specific
+</div>
+
+<p>
+Applicable charges can differ by centre and blood
+component. Always verify the current official rate before
+making any payment.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="assistance">
+
+<strong>
+💚 VitalLoop Assistance Concept
+</strong>
+
+<p>
+For the SIH prototype, VitalLoop proposes up to 50%
+assistance for verified eligible BPL/low-income users,
+subject to a future approved funding and verification
+model. This is a project proposal, not a currently
+guaranteed government benefit.
+</p>
+
+</div>
+
+
+<div class="warning">
+
+<strong>
+⚠️ Important:
+</strong>
+
+Do not make a payment to a donor. Any applicable charge
+should be paid only through the authorized blood centre
+or healthcare facility according to its official process.
+
+</div>
+
+</section>
+
+
+<section class="container">
+
+<div class="safety">
+
+<h2>
+🛡️ Safety & Trust
+</h2>
+
+<p>
+VitalLoop is designed as a discovery and coordination
+layer. It does not replace doctors, hospitals or authorized
+blood centres.
+</p>
+
+<ul>
+
+<li>
+No guarantee of blood availability.
+</li>
+
+<li>
+No independent blood collection or storage by VitalLoop.
+</li>
+
+<li>
+No independent compatibility decision.
+</li>
+
+<li>
+Final screening and transfusion decisions remain with
+qualified healthcare professionals.
+</li>
+
+<li>
+Prototype/demo data should never be treated as live
+medical availability.
+</li>
+
+<li>
+Real patient information should only be handled through
+a properly secured production backend.
+</li>
+
+</ul>
+
+</div>
+
+</section>
+
+
+<section class="vision">
+
+<h2>
+Healthier People. Brighter Tomorrow.
+</h2>
+
+<p>
+Our vision is to make healthcare-resource discovery more
+accessible, understandable and connected — especially
+when families need help quickly.
+</p>
+
+</section>
+
+
+<footer>
+
+<strong>
+VitalLoop
+</strong>
+
+<p>
+Your Complete Healthcare Journey
+</p>
+
+<p>
+Free healthcare technology prototype for SIH
+</p>
+
+</footer>
+
+
+</body>
+</html>
