@@ -1,0 +1,319 @@
+{
+  "lastUpdated": "DEMO-DATA",
+  "dataStatus": "prototype",
+  "notice": "This dataset is for demonstration only. It does not represent real-time blood inventory or guaranteed availability.",
+  "resources": [
+    {
+      "id": "VL001",
+      "name": "Demo Authorized Blood Centre - Lucknow",
+      "type": "Blood Centre",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "area": "Gomti Nagar",
+      "bloodGroups": [
+        {
+          "group": "A+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "A-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "B+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "B-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "O+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "O-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "AB+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "AB-",
+          "status": "limited",
+          "units": "Demo"
+        }
+      ],
+      "verification": "Prototype placeholder",
+      "contact": "Use authorized centre contact in production"
+    },
+    {
+      "id": "VL002",
+      "name": "Demo Blood Resource Centre - Kanpur",
+      "type": "Blood Centre",
+      "city": "Kanpur",
+      "state": "Uttar Pradesh",
+      "area": "Swaroop Nagar",
+      "bloodGroups": [
+        {
+          "group": "A+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "A-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "B+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "B-",
+          "status": "unavailable",
+          "units": "Demo"
+        },
+        {
+          "group": "O+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "O-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "AB+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "AB-",
+          "status": "unavailable",
+          "units": "Demo"
+        }
+      ],
+      "verification": "Prototype placeholder",
+      "contact": "Use authorized centre contact in production"
+    },
+    {
+      "id": "VL003",
+      "name": "Demo Blood Resource Centre - Prayagraj",
+      "type": "Blood Centre",
+      "city": "Prayagraj",
+      "state": "Uttar Pradesh",
+      "area": "Civil Lines",
+      "bloodGroups": [
+        {
+          "group": "A+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "A-",
+          "status": "unavailable",
+          "units": "Demo"
+        },
+        {
+          "group": "B+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "B-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "O+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "O-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "AB+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "AB-",
+          "status": "limited",
+          "units": "Demo"
+        }
+      ],
+      "verification": "Prototype placeholder",
+      "contact": "Use authorized centre contact in production"
+    },
+    {
+      "id": "VL004",
+      "name": "Demo Blood Resource Centre - Varanasi",
+      "type": "Blood Centre",
+      "city": "Varanasi",
+      "state": "Uttar Pradesh",
+      "area": "BHU Area",
+      "bloodGroups": [
+        {
+          "group": "A+",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "A-",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "B+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "B-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "O+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "O-",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "AB+",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "AB-",
+          "status": "unavailable",
+          "units": "Demo"
+        }
+      ],
+      "verification": "Prototype placeholder",
+      "contact": "Use authorized centre contact in production"
+    },
+    {
+      "id": "VL005",
+      "name": "Demo Blood Resource Centre - Agra",
+      "type": "Blood Centre",
+      "city": "Agra",
+      "state": "Uttar Pradesh",
+      "area": "Sanjay Place",
+      "bloodGroups": [
+        {
+          "group": "A+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "A-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "B+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "B-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "O+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "O-",
+          "status": "unavailable",
+          "units": "Demo"
+        },
+        {
+          "group": "AB+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "AB-",
+          "status": "limited",
+          "units": "Demo"
+        }
+      ],
+      "verification": "Prototype placeholder",
+      "contact": "Use authorized centre contact in production"
+    },
+    {
+      "id": "VL006",
+      "name": "Demo Blood Resource Centre - Delhi",
+      "type": "Blood Centre",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "area": "Central Delhi",
+      "bloodGroups": [
+        {
+          "group": "A+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "A-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "B+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "B-",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "O+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "O-",
+          "status": "limited",
+          "units": "Demo"
+        },
+        {
+          "group": "AB+",
+          "status": "available",
+          "units": "Demo"
+        },
+        {
+          "group": "AB-",
+          "status": "limited",
+          "units": "Demo"
+        }
+      ],
+      "verification": "Prototype placeholder",
+      "contact": "Use authorized centre contact in production"
+    }
+  ]
+}
