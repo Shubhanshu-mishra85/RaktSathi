@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Need Blood | VitalLoop</title>
+
+<style>
+
+*{
+box-sizing:border-box;
+margin:0;
+padding:0;
+}
+
+body{
+font-family:Arial,sans-serif;
+background:#fff7f7;
+color:#172033;
+line-height:1.6;
+}
+
+header{
+background:white;
+border-bottom:1px solid #eee;
+padding:16px 6%;
+display:flex;
+justify-content:space-between;
+align-items:center;
+position:sticky;
+top:0;
+z-index:10;
+}
+
+.logo{
+font-size:22px;
+font-weight:800;
+color:#b91c1c;
+}
+
+nav{
+display:flex;
+gap:20px;
+}
+
+nav a{
+text-decoration:none;
+color:#475569;
+font-weight:600;
+font-size:14px;
+}
+
+nav a:hover{
+color:#b91c1c;
+}
+
+.container{
+max-width:1100px;
+margin:auto;
+padding:60px 6%;
+}
+
+.tag{
+color:#b91c1c;
+font-size:12px;
+font-weight:800;
+letter-spacing:2px;
+}
+
+h1{
+font-size:48px;
+line-height:1.05;
+margin:12px 0;
+}
+
+.subtitle{
+color:#64748b;
+max-width:700px;
+margin-bottom:35px;
+}
+
+.layout{
+display:grid;
+grid-template-columns:1fr 1fr;
+gap:25px;
+}
+
+.card{
+background:white;
+border:1px solid #e5e7eb;
+border-radius:20px;
+padding:28px;
+box-shadow:0 12px 35px rgba(15,23,42,.07);
+}
+
+.card h2{
+margin-bottom:20px;
+}
+
+label{
+display:block;
+font-size:13px;
+font-weight:700;
+color:#475569;
+margin-top:15px;
+}
+
+input,select{
+width:100%;
+padding:13px;
+margin-top:6px;
+border:1px solid #dbe2ea;
+border-radius:10px;
+font-size:15px;
+background:white;
+}
+
+input:focus,select:focus{
+outline:2px solid #fecaca;
+border-color:#ef4444;
+}
+
+button{
+width:100%;
+margin-top:22px;
+padding:14px;
+border:none;
+border-radius:11px;
+background:#b91c1c;
+color:white;
+font-size:15px;
+font-weight:800;
+cursor:pointer;
+}
+
+button:hover{
+background:#991b1b;
+}
+
+.result{
+margin-top:20px;
+display:none;
+}
+
+.result-box{
+padding:20px;
+border-radius:14px;
+background:#ecfdf5;
+border:1px solid #a7f3d0;
+color:#065f46;
+}
+
+.warning{
+margin-top:20px;
+padding:15px;
+background:#fff7ed;
+border:1px solid #fed7aa;
+border-radius:12px;
+font-size:13px;
+color:#9a3412;
+}
+
+.steps{
+display:grid;
+gap:12px;
+margin-top:20px;
+}
+
+.step{
+display:flex;
+gap:15px;
+align-items:center;
+padding:15px;
+border-radius:12px;
+background:#f8fafc;
+}
+
+.number{
+min-width:35px;
+height:35px;
+border-radius:50%;
+background:#fee2e2;
+color:#b91c1c;
+display:grid;
+place-items:center;
+font-weight:800;
+}
+
+.step p{
+font-size:13px;
+color:#64748b;
+}
+
+.emergency{
+margin-top:25px;
+padding:22px;
+border-radius:16px;
+background:#7f1d1d;
+color:white;
+}
+
+.emergency h3{
+margin-bottom:7px;
+}
+
+.emergency p{
+font-size:14px;
+color:#fee2e2;
+}
+
+footer{
+margin-top:40px;
+padding:30px 6%;
+background:#111827;
+color:#cbd5e1;
+text-align:center;
+}
+
+@media(max-width:750px){
+
+nav{
+display:none;
+}
+
+.layout{
+grid-template-columns:1fr;
+}
+
+h1{
+font-size:40px;
+}
+
+.container{
+padding:45px 5%;
+}
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🩸 VitalLoop
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="blood-request.html">
+Need Blood
+</a>
+
+<a href="donor.html">
+Become a Donor
+</a>
+
+<a href="blood-education.html">
+Education
+</a>
+
+<a href="camps.html">
+Camps
+</a>
+
+<a href="about.html">
+About
+</a>
+
+</nav>
+
+</header>
+
+
+<main>
+
+<div class="container">
+
+<span class="tag">
+EMERGENCY BLOOD SUPPORT
+</span>
+
+<h1>
+Need Blood?
+</h1>
+
+<p class="subtitle">
+
+Raise a blood request and let VitalLoop help discover
+potential donors and authorized blood resources.
+
+</p>
+
+
+<div class="layout">
+
+
+<!-- REQUEST FORM -->
+
+<div class="card">
+
+<h2>
+🩸 Blood Request
+</h2>
+
+<form id="bloodForm">
+
+<label>
+Patient / Requester Name
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Demo Patient"
+required
+>
+
+
+<label>
+Required Blood Group
+</label>
+
+<select id="bloodGroup" required>
+
+<option value="">
+Select Blood Group
+</option>
+
+<option>A+</option>
+<option>A-</option>
+
+<option>B+</option>
+<option>B-</option>
+
+<option>AB+</option>
+<option>AB-</option>
+
+<option>O+</option>
+<option>O-</option>
+
+</select>
+
+
+<label>
+Units Required
+</label>
+
+<input
+type="number"
+id="units"
+min="1"
+max="10"
+placeholder="1"
+required
+>
+
+
+<label>
+Hospital / Healthcare Facility
+</label>
+
+<input
+type="text"
+id="hospital"
+placeholder="Hospital name"
+required
+>
+
+
+<label>
+City
+</label>
+
+<input
+type="text"
+id="city"
+placeholder="Lucknow"
+required
+>
+
+
+<label>
+Urgency
+</label>
+
+<select id="urgency">
+
+<option>Emergency</option>
+
+<option>Required Today</option>
+
+<option>Planned</option>
+
+</select>
+
+
+<label>
+Family Donor Available?
+</label>
+
+<select id="familyDonor">
+
+<option>No</option>
+
+<option>Yes</option>
+
+<option>Not Sure</option>
+
+</select>
+
+
+<button type="submit">
+Find Potential Support
+</button>
+
+</form>
+
+
+<div id="result" class="result">
+
+<div class="result-box">
+
+<strong>✓ Request Created</strong>
+
+<p>
+VitalLoop would now search for potential donors
+and authorized blood resources matching the
+requested blood group and location.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="warning">
+
+⚠️ <strong>Important:</strong>
+
+VitalLoop does not guarantee blood availability
+or compatibility. Final screening, testing,
+compatibility and blood issue are handled by
+authorized blood centres and healthcare professionals.
+
+</div>
+
+</div>
+
+
+<!-- HOW IT WORKS -->
+
+<div class="card">
+
+<h2>
+🔄 How VitalLoop Helps
+</h2>
+
+
+<div class="steps">
+
+
+<div class="step">
+
+<div class="number">
+1
+</div>
+
+<div>
+
+<strong>
+Raise Request
+</strong>
+
+<p>
+Enter the patient's requirement.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">
+2
+</div>
+
+<div>
+
+<strong>
+Find Potential Donor
+</strong>
+
+<p>
+Search the available donor network.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">
+3
+</div>
+
+<div>
+
+<strong>
+Find Blood Resource
+</strong>
+
+<p>
+Discover relevant authorized resources.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">
+4
+</div>
+
+<div>
+
+<strong>
+Medical Verification
+</strong>
+
+<p>
+Blood centre performs required screening
+and compatibility checks.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">
+5
+</div>
+
+<div>
+
+<strong>
+Coordinate
+</strong>
+
+<p>
+Family receives the next safe step
+for coordination.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="emergency">
+
+<h3>
+🚨 Emergency?
+</h3>
+
+<p>
+
+If someone is seriously injured or in immediate
+danger, contact emergency medical services and
+the treating hospital immediately.
+
+Do not wait for an app response.
+
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<footer>
+
+<strong>
+VitalLoop
+</strong>
+
+<p>
+Your Complete Healthcare Journey
+</p>
+
+<p>
+Blood-resource discovery & coordination prototype
+</p>
+
+</footer>
+
+
+<script>
+
+document
+.getElementById("bloodForm")
+.addEventListener("submit",function(event){
+
+event.preventDefault();
+
+const name =
+document.getElementById("name").value;
+
+const bloodGroup =
+document.getElementById("bloodGroup").value;
+
+const units =
+document.getElementById("units").value;
+
+const hospital =
+document.getElementById("hospital").value;
+
+const city =
+document.getElementById("city").value;
+
+localStorage.setItem(
+"vitalloopBloodRequest",
+JSON.stringify({
+
+name:name,
+
+bloodGroup:bloodGroup,
+
+units:units,
+
+hospital:hospital,
+
+city:city,
+
+createdAt:new Date().toISOString()
+
+})
+);
+
+document
+.getElementById("result")
+.style.display="block";
+
+window.scrollTo({
+
+top:
+document.getElementById("result").offsetTop-100,
+
+behavior:"smooth"
+
+});
+
+});
+
+</script>
+
+</body>
+</html>
