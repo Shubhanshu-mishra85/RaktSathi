@@ -1,0 +1,127 @@
+{
+  "dataStatus": "prototype",
+  "notice": "These blood donation camps are demonstration entries only. Please verify event details with the authorized organizer before visiting.",
+  "camps": [
+    {
+      "id": "CAMP001",
+      "title": "VitalLoop Demo Blood Donation Camp",
+      "organizer": "Demo Healthcare Partner",
+      "date": "2026-10-05",
+      "time": "10:00 AM - 04:00 PM",
+      "city": "Lucknow",
+      "state": "Uttar Pradesh",
+      "location": "Gomti Nagar",
+      "bloodGroups": [
+        "A+",
+        "A-",
+        "B+",
+        "B-",
+        "O+",
+        "O-",
+        "AB+",
+        "AB-"
+      ],
+      "status": "Demo",
+      "verification": "Prototype placeholder"
+    },
+    {
+      "id": "CAMP002",
+      "title": "Community Blood Donation Drive",
+      "organizer": "Demo Community Organization",
+      "date": "2026-10-12",
+      "time": "09:00 AM - 03:00 PM",
+      "city": "Kanpur",
+      "state": "Uttar Pradesh",
+      "location": "Swaroop Nagar",
+      "bloodGroups": [
+        "A+",
+        "B+",
+        "O+",
+        "O-"
+      ],
+      "status": "Demo",
+      "verification": "Prototype placeholder"
+    },
+    {
+      "id": "CAMP003",
+      "title": "Voluntary Blood Donation Camp",
+      "organizer": "Demo Blood Centre Partner",
+      "date": "2026-10-18",
+      "time": "10:00 AM - 05:00 PM",
+      "city": "Prayagraj",
+      "state": "Uttar Pradesh",
+      "location": "Civil Lines",
+      "bloodGroups": [
+        "A+",
+        "B+",
+        "B-",
+        "O+",
+        "AB+"
+      ],
+      "status": "Demo",
+      "verification": "Prototype placeholder"
+    },
+    {
+      "id": "CAMP004",
+      "title": "Health & Blood Donation Awareness Camp",
+      "organizer": "Demo Healthcare Organization",
+      "date": "2026-10-24",
+      "time": "09:30 AM - 04:30 PM",
+      "city": "Varanasi",
+      "state": "Uttar Pradesh",
+      "location": "BHU Area",
+      "bloodGroups": [
+        "A+",
+        "A-",
+        "B+",
+        "O+",
+        "O-",
+        "AB+"
+      ],
+      "status": "Demo",
+      "verification": "Prototype placeholder"
+    },
+    {
+      "id": "CAMP005",
+      "title": "Community Blood Donation Drive",
+      "organizer": "Demo Volunteer Network",
+      "date": "2026-11-01",
+      "time": "10:00 AM - 04:00 PM",
+      "city": "Agra",
+      "state": "Uttar Pradesh",
+      "location": "Sanjay Place",
+      "bloodGroups": [
+        "A+",
+        "B+",
+        "B-",
+        "O+",
+        "AB+",
+        "AB-"
+      ],
+      "status": "Demo",
+      "verification": "Prototype placeholder"
+    },
+    {
+      "id": "CAMP006",
+      "title": "Voluntary Blood Donation Awareness Drive",
+      "organizer": "Demo Healthcare Partner",
+      "date": "2026-11-08",
+      "time": "09:00 AM - 03:00 PM",
+      "city": "New Delhi",
+      "state": "Delhi",
+      "location": "Central Delhi",
+      "bloodGroups": [
+        "A+",
+        "A-",
+        "B+",
+        "B-",
+        "O+",
+        "O-",
+        "AB+",
+        "AB-"
+      ],
+      "status": "Demo",
+      "verification": "Prototype placeholder"
+    }
+  ]
+}
