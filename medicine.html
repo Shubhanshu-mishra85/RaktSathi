@@ -1,0 +1,728 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Medicine Information | VitalLoop</title>
+
+<style>
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial,sans-serif;
+}
+
+body{
+    background:#f2fbf6;
+    color:#173b2b;
+}
+
+/* NAVBAR */
+nav{
+    height:70px;
+    background:#fff;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 6%;
+    box-shadow:0 3px 18px rgba(0,80,40,.08);
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    font-size:25px;
+    font-weight:800;
+    color:#08783e;
+}
+
+.logo span{
+    color:#14a85b;
+}
+
+.back{
+    color:#08783e;
+    text-decoration:none;
+    font-weight:700;
+}
+
+/* HERO */
+.hero{
+    text-align:center;
+    padding:60px 20px 45px;
+    background:linear-gradient(135deg,#e4fff0,#f8fffb);
+}
+
+.medicine-icon{
+    width:82px;
+    height:82px;
+    margin:auto;
+    border-radius:50%;
+    background:#08783e;
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:38px;
+    box-shadow:0 12px 30px rgba(8,120,62,.25);
+    animation:pulse 2s infinite;
+}
+
+.hero h1{
+    margin-top:22px;
+    font-size:42px;
+    color:#075f32;
+}
+
+.hero p{
+    max-width:700px;
+    margin:14px auto;
+    color:#60786b;
+    line-height:1.7;
+}
+
+/* CONTAINER */
+.container{
+    max-width:1050px;
+    margin:40px auto;
+    padding:0 20px;
+}
+
+/* SEARCH */
+.search-card{
+    background:#fff;
+    border-radius:24px;
+    padding:30px;
+    box-shadow:0 12px 40px rgba(0,70,35,.08);
+    animation:slideUp .7s ease;
+}
+
+.search-card h2{
+    color:#075f32;
+    margin-bottom:8px;
+}
+
+.subtitle{
+    color:#718178;
+    line-height:1.6;
+    margin-bottom:22px;
+}
+
+.search-box{
+    display:flex;
+    gap:12px;
+}
+
+.search-box input{
+    flex:1;
+    padding:15px;
+    border:1px solid #d5e7dc;
+    border-radius:13px;
+    outline:none;
+    font-size:15px;
+    background:#fbfffc;
+}
+
+.search-box input:focus{
+    border-color:#14a85b;
+    box-shadow:0 0 0 3px rgba(20,168,91,.1);
+}
+
+.search-btn{
+    border:0;
+    border-radius:13px;
+    padding:0 25px;
+    background:linear-gradient(135deg,#08783e,#12a85a);
+    color:white;
+    font-weight:800;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.search-btn:hover{
+    transform:translateY(-2px);
+}
+
+/* RESULT */
+.result{
+    display:none;
+    margin-top:25px;
+    background:#f3fbf6;
+    border:1px solid #dceee3;
+    border-radius:18px;
+    padding:24px;
+    animation:slideUp .5s ease;
+}
+
+.result h3{
+    color:#075f32;
+    font-size:22px;
+}
+
+.badges{
+    display:flex;
+    flex-wrap:wrap;
+    gap:8px;
+    margin:14px 0;
+}
+
+.badge{
+    padding:7px 11px;
+    border-radius:20px;
+    background:#dff5e8;
+    color:#08783e;
+    font-size:12px;
+    font-weight:bold;
+}
+
+.result p{
+    color:#60766a;
+    line-height:1.7;
+    font-size:14px;
+}
+
+/* CARDS */
+.section-title{
+    margin:40px 0 18px;
+    color:#075f32;
+}
+
+.info-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:20px;
+}
+
+.card{
+    background:#fff;
+    border-radius:20px;
+    padding:25px;
+    box-shadow:0 10px 30px rgba(0,70,35,.07);
+    border:1px solid #e2efe7;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card-icon{
+    width:52px;
+    height:52px;
+    border-radius:14px;
+    background:#e7f8ed;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:25px;
+}
+
+.card h3{
+    color:#075f32;
+    margin:15px 0 8px;
+}
+
+.card p{
+    color:#66786d;
+    line-height:1.65;
+    font-size:14px;
+}
+
+/* ALTERNATIVE */
+.alternative{
+    margin-top:30px;
+    background:white;
+    border-radius:22px;
+    padding:30px;
+    box-shadow:0 10px 30px rgba(0,70,35,.07);
+}
+
+.alt-row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:18px;
+    margin-top:20px;
+}
+
+.alt-box{
+    background:#f3fbf6;
+    border:1px solid #dceee3;
+    border-radius:16px;
+    padding:20px;
+}
+
+.alt-box h3{
+    color:#075f32;
+    margin-bottom:8px;
+}
+
+.alt-box p{
+    color:#66786d;
+    font-size:14px;
+    line-height:1.6;
+}
+
+/* SAFETY */
+.safety{
+    margin-top:25px;
+    background:#effaf3;
+    border-left:5px solid #14a85b;
+    padding:19px;
+    border-radius:12px;
+    color:#496657;
+    font-size:14px;
+    line-height:1.7;
+}
+
+/* FOOTER */
+footer{
+    margin-top:55px;
+    padding:30px 20px;
+    text-align:center;
+    background:#063d22;
+    color:#d8f5e4;
+}
+
+footer strong{
+    color:white;
+}
+
+/* ANIMATION */
+@keyframes pulse{
+    0%,100%{
+        transform:scale(1);
+    }
+    50%{
+        transform:scale(1.08);
+    }
+}
+
+@keyframes slideUp{
+    from{
+        opacity:0;
+        transform:translateY(25px);
+    }
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+}
+
+/* MOBILE */
+@media(max-width:700px){
+
+    nav{
+        padding:0 20px;
+    }
+
+    .hero h1{
+        font-size:32px;
+    }
+
+    .search-box{
+        flex-direction:column;
+    }
+
+    .search-btn{
+        padding:14px;
+    }
+
+    .info-grid{
+        grid-template-columns:1fr;
+    }
+
+    .alt-row{
+        grid-template-columns:1fr;
+    }
+
+    .search-card,
+    .alternative{
+        padding:22px 18px;
+    }
+}
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav>
+
+    <div class="logo">
+        Vital<span>Loop</span>
+    </div>
+
+    <a href="index.html" class="back">
+        ← Back to Home
+    </a>
+
+</nav>
+
+
+<!-- HERO -->
+<section class="hero">
+
+    <div class="medicine-icon">
+        💊
+    </div>
+
+    <h1>Medicine Information</h1>
+
+    <p>
+        Explore basic medicine information and understand
+        how verified medicine alternatives can be compared.
+    </p>
+
+</section>
+
+
+<div class="container">
+
+
+<!-- SEARCH -->
+<div class="search-card">
+
+    <h2>🔎 Search Medicine</h2>
+
+    <p class="subtitle">
+        Search the demo medicine database to view basic
+        educational information.
+    </p>
+
+    <div class="search-box">
+
+        <input
+            type="text"
+            id="medicineInput"
+            placeholder="Try: Paracetamol"
+            onkeydown="handleKey(event)"
+        >
+
+        <button
+            class="search-btn"
+            onclick="searchMedicine()"
+        >
+            Search
+        </button>
+
+    </div>
+
+
+    <!-- RESULT -->
+    <div class="result" id="result">
+
+        <h3 id="medicineName">
+            Paracetamol
+        </h3>
+
+        <div class="badges">
+
+            <span class="badge">
+                Verified Demo Data
+            </span>
+
+            <span class="badge" id="strength">
+                500 mg
+            </span>
+
+            <span class="badge" id="form">
+                Tablet
+            </span>
+
+        </div>
+
+        <p id="medicineInfo">
+            Paracetamol is commonly used for relief of
+            pain and reduction of fever. Use should follow
+            professional advice and the product's approved
+            instructions.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- INFORMATION -->
+<h2 class="section-title">
+    Medicine Information
+</h2>
+
+<div class="info-grid">
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            🧪
+        </div>
+
+        <h3>Active Ingredient</h3>
+
+        <p>
+            The active ingredient is the substance responsible
+            for the medicine's intended effect. Always check
+            the active ingredient and strength before comparing
+            medicines.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            📋
+        </div>
+
+        <h3>Medicine Details</h3>
+
+        <p>
+            Medicine information may include dosage form,
+            strength, common uses, warnings and other
+            approved product information.
+        </p>
+
+    </div>
+
+
+    <div class="card">
+
+        <div class="card-icon">
+            👨‍⚕️
+        </div>
+
+        <h3>Professional Guidance</h3>
+
+        <p>
+            A doctor or pharmacist should confirm whether
+            a medicine is appropriate for a particular person,
+            especially when other medicines are being used.
+        </p>
+
+    </div>
+
+</div>
+
+
+<!-- ALTERNATIVE CONCEPT -->
+<div class="alternative">
+
+    <h2 style="color:#075f32">
+        💰 Verified Lower-Cost Alternative Concept
+    </h2>
+
+    <p class="subtitle">
+        VitalLoop can help users understand potentially
+        lower-cost options when the required medicine
+        information matches.
+    </p>
+
+
+    <div class="alt-row">
+
+        <div class="alt-box">
+
+            <h3>Original Medicine</h3>
+
+            <p>
+                Example: Medicine A<br>
+                Active ingredient: Example Ingredient<br>
+                Strength: 500 mg<br>
+                Form: Tablet
+            </p>
+
+        </div>
+
+
+        <div class="alt-box">
+
+            <h3>Possible Alternative</h3>
+
+            <p>
+                Example: Medicine B<br>
+                Same active ingredient and strength should
+                be verified before considering substitution.
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <div class="safety">
+
+        <strong>⚠️ Important:</strong><br>
+
+        A lower price does not automatically mean two
+        medicines are interchangeable. Active ingredient,
+        strength, dosage form, formulation, patient-specific
+        factors and other relevant details must be verified
+        by a qualified doctor or pharmacist before changing
+        a medicine.
+
+    </div>
+
+</div>
+
+
+<!-- GENERAL SAFETY -->
+<div class="safety">
+
+    <strong>🛡️ Medicine Safety Notice</strong><br>
+
+    VitalLoop provides educational and healthcare-navigation
+    information only. It does not prescribe medicines,
+    recommend personal dosages or tell users to stop or
+    change prescribed treatment. For medicine selection,
+    dosage, interactions, allergies or treatment changes,
+    consult a qualified healthcare professional.
+
+</div>
+
+</div>
+
+
+<!-- FOOTER -->
+<footer>
+
+    <strong>VitalLoop</strong><br>
+
+    Your Complete Healthcare Journey
+
+    <div style="margin-top:8px;font-size:13px;opacity:.75">
+        Healthcare Technology Prototype • Smart India Hackathon
+    </div>
+
+</footer>
+
+
+<script>
+
+function searchMedicine(){
+
+    const input =
+        document.getElementById("medicineInput");
+
+    const medicine =
+        input.value.trim();
+
+    if(!medicine){
+
+        alert("Please enter a medicine name.");
+
+        return;
+
+    }
+
+
+    const result =
+        document.getElementById("result");
+
+    const name =
+        document.getElementById("medicineName");
+
+    const strength =
+        document.getElementById("strength");
+
+    const form =
+        document.getElementById("form");
+
+    const info =
+        document.getElementById("medicineInfo");
+
+
+    /*
+      DEMO DATABASE
+    */
+
+    const database = {
+
+        "paracetamol":{
+            name:"Paracetamol",
+            strength:"500 mg",
+            form:"Tablet",
+            info:
+            "Paracetamol is commonly used for relief of pain and reduction of fever. Follow approved product information or advice from a qualified healthcare professional."
+        },
+
+        "cetirizine":{
+            name:"Cetirizine",
+            strength:"10 mg",
+            form:"Tablet",
+            info:
+            "Cetirizine is an antihistamine commonly used for allergy-related symptoms. Consult a healthcare professional regarding suitability and use."
+        },
+
+        "amoxicillin":{
+            name:"Amoxicillin",
+            strength:"Example strength",
+            form:"Capsule / Tablet",
+            info:
+            "Amoxicillin is a prescription antibiotic used for certain bacterial infections. Antibiotics should be used only under appropriate professional guidance."
+        }
+
+    };
+
+
+    const key =
+        medicine.toLowerCase();
+
+    const data =
+        database[key];
+
+
+    if(data){
+
+        name.innerText =
+            data.name;
+
+        strength.innerText =
+            data.strength;
+
+        form.innerText =
+            data.form;
+
+        info.innerText =
+            data.info;
+
+    }else{
+
+        name.innerText =
+            medicine;
+
+        strength.innerText =
+            "Information unavailable";
+
+        form.innerText =
+            "Verify product";
+
+        info.innerText =
+            "This medicine is not available in the demo database. Please verify the exact medicine name, active ingredient and strength with a qualified pharmacist or doctor.";
+
+    }
+
+
+    result.style.display =
+        "block";
+
+}
+
+
+function handleKey(event){
+
+    if(event.key === "Enter"){
+
+        searchMedicine();
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
