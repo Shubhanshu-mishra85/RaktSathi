@@ -1,0 +1,958 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blood Education & Safety | VitalLoop</title>
+
+<style>
+
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#fff;
+  color:#172033;
+  line-height:1.65;
+}
+
+header{
+  position:sticky;
+  top:0;
+  z-index:100;
+  background:rgba(255,255,255,.96);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid #e5e7eb;
+  padding:15px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+
+.logo{
+  color:#b91c1c;
+  font-size:22px;
+  font-weight:800;
+}
+
+nav{
+  display:flex;
+  gap:20px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#475569;
+  font-size:14px;
+  font-weight:600;
+}
+
+nav a:hover{
+  color:#b91c1c;
+}
+
+.hero{
+  padding:75px 6%;
+  background:
+  radial-gradient(circle at 85% 20%,#fee2e2,transparent 30%),
+  linear-gradient(180deg,#fff7f7,#fff);
+}
+
+.hero-inner{
+  max-width:1050px;
+  margin:auto;
+}
+
+.tag{
+  color:#b91c1c;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+h1{
+  font-size:clamp(40px,6vw,68px);
+  line-height:1.05;
+  letter-spacing:-2px;
+  margin:12px 0 18px;
+}
+
+.hero p{
+  max-width:760px;
+  color:#64748b;
+  font-size:17px;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:70px 6%;
+}
+
+.section-title{
+  margin-bottom:30px;
+}
+
+.section-title small{
+  color:#b91c1c;
+  font-weight:800;
+  letter-spacing:2px;
+  font-size:12px;
+}
+
+.section-title h2{
+  font-size:38px;
+  margin-top:7px;
+  line-height:1.15;
+}
+
+.section-title p{
+  color:#64748b;
+  margin-top:10px;
+}
+
+.cards{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:20px;
+}
+
+.card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:28px;
+  box-shadow:0 10px 30px rgba(15,23,42,.06);
+  transition:.25s;
+}
+
+.card:hover{
+  transform:translateY(-5px);
+  box-shadow:0 18px 40px rgba(15,23,42,.09);
+}
+
+.number{
+  display:inline-grid;
+  place-items:center;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+  background:#fee2e2;
+  color:#b91c1c;
+  font-weight:900;
+  margin-bottom:15px;
+}
+
+.card h3{
+  font-size:22px;
+  margin-bottom:10px;
+}
+
+.card p{
+  color:#64748b;
+  font-size:15px;
+}
+
+.process{
+  margin-top:20px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.process span{
+  padding:9px 12px;
+  border-radius:9px;
+  background:#f8fafc;
+  font-size:12px;
+  font-weight:800;
+}
+
+.arrow{
+  color:#b91c1c;
+  font-weight:900;
+}
+
+.soft{
+  background:#f8fafc;
+}
+
+.full-card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:30px;
+  box-shadow:0 10px 30px rgba(15,23,42,.05);
+}
+
+.steps{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:15px;
+  margin-top:25px;
+}
+
+.step{
+  padding:20px;
+  background:#f8fafc;
+  border-radius:15px;
+  border-top:3px solid #b91c1c;
+}
+
+.step strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.step p{
+  font-size:13px;
+  color:#64748b;
+}
+
+.danger{
+  border:1px solid #fecaca;
+  background:#fff7f7;
+}
+
+.alert{
+  margin-top:20px;
+  padding:18px;
+  background:#7f1d1d;
+  color:white;
+  border-radius:14px;
+}
+
+.alert strong{
+  display:block;
+  margin-bottom:5px;
+}
+
+.safe-list{
+  display:grid;
+  gap:12px;
+  margin-top:20px;
+}
+
+.safe-item{
+  padding:15px;
+  border-radius:12px;
+  background:#f8fafc;
+}
+
+.safe-item strong{
+  color:#172033;
+}
+
+.myth-grid{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:18px;
+}
+
+.myth{
+  padding:23px;
+  border:1px solid #e5e7eb;
+  border-radius:17px;
+  background:white;
+}
+
+.myth-label{
+  font-size:11px;
+  font-weight:900;
+  color:#b91c1c;
+  letter-spacing:1px;
+}
+
+.myth h3{
+  margin:8px 0;
+  font-size:18px;
+}
+
+.myth p{
+  color:#64748b;
+  font-size:14px;
+}
+
+.disclaimer{
+  margin-top:25px;
+  padding:18px;
+  border-radius:13px;
+  background:#fff7ed;
+  border:1px solid #fed7aa;
+  color:#9a3412;
+  font-size:13px;
+}
+
+footer{
+  background:#111827;
+  color:#cbd5e1;
+  padding:35px 6%;
+  text-align:center;
+}
+
+footer strong{
+  color:white;
+  font-size:20px;
+}
+
+@media(max-width:800px){
+
+  nav{
+    display:none;
+  }
+
+  .cards{
+    grid-template-columns:1fr;
+  }
+
+  .steps{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .myth-grid{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:520px){
+
+  .hero{
+    padding:55px 5%;
+  }
+
+  .container{
+    padding:50px 5%;
+  }
+
+  h1{
+    font-size:42px;
+  }
+
+  .section-title h2{
+    font-size:30px;
+  }
+
+  .steps{
+    grid-template-columns:1fr;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🩸 VitalLoop
+</div>
+
+<nav>
+
+<a href="index.html">Home</a>
+
+<a href="blood-request.html">
+Need Blood
+</a>
+
+<a href="donor.html">
+Become a Donor
+</a>
+
+<a href="blood-education.html">
+Education
+</a>
+
+<a href="camps.html">
+Camps
+</a>
+
+<a href="about.html">
+About
+</a>
+
+</nav>
+
+</header>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="hero-inner">
+
+<span class="tag">
+BLOOD EDUCATION & SAFETY
+</span>
+
+<h1>
+Understand Blood.<br>
+Donate Safely.
+</h1>
+
+<p>
+A simple educational guide explaining how blood donation
+works, what happens after collection, how transfusion is
+performed and what to do if a possible reaction is noticed.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- DONATION -->
+
+<section class="container">
+
+<div class="section-title">
+
+<small>01 • BLOOD DONATION</small>
+
+<h2>
+How does blood donation happen?
+</h2>
+
+<p>
+Blood donation is performed under the supervision of trained
+healthcare professionals at an authorized blood centre.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+
+<div class="card">
+
+<div class="number">
+1
+</div>
+
+<h3>
+Donor Screening
+</h3>
+
+<p>
+The blood centre checks the donor's health information and
+performs the required screening to determine whether the
+person is eligible to donate.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="number">
+2
+</div>
+
+<h3>
+Blood Collection
+</h3>
+
+<p>
+If the donor is eligible, trained staff collect blood using
+sterile, single-use equipment and follow the centre's
+approved procedures.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="number">
+3
+</div>
+
+<h3>
+Post-Donation Care
+</h3>
+
+<p>
+After donation, the donor is observed and given appropriate
+after-care instructions, including rest and refreshments
+according to the centre's protocol.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="number">
+4
+</div>
+
+<h3>
+Safe Handling
+</h3>
+
+<p>
+The collected blood is identified and handled by the
+authorized blood centre for required testing, processing
+and storage.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="process">
+
+<span>Screening</span>
+
+<b class="arrow">→</b>
+
+<span>Collection</span>
+
+<b class="arrow">→</b>
+
+<span>Testing</span>
+
+<b class="arrow">→</b>
+
+<span>Processing</span>
+
+<b class="arrow">→</b>
+
+<span>Storage</span>
+
+</div>
+
+</section>
+
+
+<!-- WHAT HAPPENS TO BLOOD -->
+
+<section class="soft">
+
+<div class="container">
+
+<div class="section-title">
+
+<small>02 • AFTER DONATION</small>
+
+<h2>
+What happens to donated blood?
+</h2>
+
+<p>
+Blood centres follow controlled procedures before blood or
+blood components can be made available for clinical use.
+</p>
+
+</div>
+
+
+<div class="full-card">
+
+<div class="steps">
+
+<div class="step">
+
+<strong>
+Identification
+</strong>
+
+<p>
+The donation is properly identified and recorded.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<strong>
+Testing
+</strong>
+
+<p>
+Required laboratory testing is performed according
+to applicable procedures.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<strong>
+Processing
+</strong>
+
+<p>
+Blood may be prepared into components such as
+red cells, plasma or platelets.
+</p>
+
+</div>
+
+
+<div class="step">
+
+<strong>
+Storage & Issue
+</strong>
+
+<p>
+Components are stored under controlled conditions
+and issued through authorized clinical processes.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="disclaimer">
+
+<strong>
+Important:
+</strong>
+
+VitalLoop does not collect, test, process, store,
+transport or issue blood. These activities are performed
+by authorized blood centres and healthcare professionals.
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- TRANSFUSION -->
+
+<section class="container" id="transfusion">
+
+<div class="section-title">
+
+<small>03 • BLOOD TRANSFUSION</small>
+
+<h2>
+How does a blood transfusion work?
+</h2>
+
+<p>
+The clinical team follows identification, compatibility and
+monitoring procedures before and during transfusion.
+</p>
+
+</div>
+
+
+<div class="cards">
+
+<div class="card">
+
+<div class="number">
+1
+</div>
+
+<h3>
+Patient Identification
+</h3>
+
+<p>
+Healthcare staff verify the patient's identity and the
+transfusion requirement according to hospital procedures.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="number">
+2
+</div>
+
+<h3>
+Compatibility Checks
+</h3>
+
+<p>
+The healthcare team performs the required blood-group and
+compatibility checks before transfusion.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="number">
+3
+</div>
+
+<h3>
+Transfusion
+</h3>
+
+<p>
+The blood component is administered by trained healthcare
+staff according to the patient's clinical requirement.
+</p>
+
+</div>
+
+
+<div class="card">
+
+<div class="number">
+4
+</div>
+
+<h3>
+Monitoring
+</h3>
+
+<p>
+The patient is monitored during and after transfusion for
+any concerning signs or changes in condition.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- REACTION -->
+
+<section class="soft" id="reaction">
+
+<div class="container">
+
+<div class="section-title">
+
+<small>04 • SAFETY ALERT</small>
+
+<h2>
+What if a possible transfusion reaction occurs?
+</h2>
+
+<p>
+If concerning symptoms appear during or after a transfusion,
+the healthcare team should be informed immediately.
+</p>
+
+</div>
+
+
+<div class="full-card danger">
+
+<div class="safe-list">
+
+<div class="safe-item">
+
+<strong>
+🚨 1. Tell the healthcare staff immediately
+</strong>
+
+<p>
+Inform the nurse, doctor or treating healthcare professional
+about any sudden or concerning change.
+</p>
+
+</div>
+
+
+<div class="safe-item">
+
+<strong>
+⚠️ 2. Do not try to manage it yourself
+</strong>
+
+<p>
+Do not change the blood line, medicines or transfusion
+equipment yourself. Let trained medical staff handle it.
+</p>
+
+</div>
+
+
+<div class="safe-item">
+
+<strong>
+🩺 3. The medical team assesses the patient
+</strong>
+
+<p>
+Healthcare professionals follow their transfusion-reaction
+protocol and decide the appropriate clinical action.
+</p>
+
+</div>
+
+
+<div class="safe-item">
+
+<strong>
+📋 4. Further checks may be required
+</strong>
+
+<p>
+The clinical team may investigate the reaction and coordinate
+with the relevant blood centre as required.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="alert">
+
+<strong>
+🚨 Warning signs can include:
+</strong>
+
+Fever or chills, rash, breathing difficulty, chest discomfort,
+dizziness or a sudden change in the patient's condition.
+
+<br><br>
+
+<strong>
+If this happens during a transfusion, alert healthcare staff
+immediately.
+</strong>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- MYTHS -->
+
+<section class="container">
+
+<div class="section-title">
+
+<small>MYTH VS FACT</small>
+
+<h2>
+Know the difference
+</h2>
+
+</div>
+
+
+<div class="myth-grid">
+
+
+<div class="myth">
+
+<span class="myth-label">
+MYTH
+</span>
+
+<h3>
+Blood can be transferred directly from one person to another.
+</h3>
+
+<p>
+Clinical blood collection, testing, compatibility and
+transfusion must follow authorized medical procedures.
+</p>
+
+</div>
+
+
+<div class="myth">
+
+<span class="myth-label">
+MYTH
+</span>
+
+<h3>
+A matching blood group alone guarantees compatibility.
+</h3>
+
+<p>
+Healthcare professionals perform the required compatibility
+checks before transfusion.
+</p>
+
+</div>
+
+
+<div class="myth">
+
+<span class="myth-label">
+FACT
+</span>
+
+<h3>
+VitalLoop connects people with information and resources.
+</h3>
+
+<p>
+VitalLoop is a discovery and coordination layer and does not
+replace authorized blood centres or medical professionals.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="disclaimer">
+
+<strong>Educational information only:</strong>
+
+This page is for public awareness and the SIH prototype.
+For an actual medical situation, follow the instructions of
+qualified healthcare professionals and the treating hospital.
+
+</div>
+
+</section>
+
+
+<footer>
+
+<strong>
+VitalLoop
+</strong>
+
+<p>
+Your Complete Healthcare Journey
+</p>
+
+<p>
+Healthier People. Brighter Tomorrow.
+</p>
+
+</footer>
+
+
+</body>
+  </html>
