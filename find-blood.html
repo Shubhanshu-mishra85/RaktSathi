@@ -1,12 +1,20 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>Find Blood Resources | VitalLoop</title>
 
+<meta name="description"
+content="Find relevant blood resources by blood group, component and location with VitalLoop.">
+
 <style>
+
+/* =========================
+   RESET
+========================= */
 
 *{
     margin:0;
@@ -14,10 +22,20 @@
     box-sizing:border-box;
 }
 
+html{
+    scroll-behavior:smooth;
+}
+
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#f3faf6;
-    color:#10251d;
+    background:#f4fbf7;
+    color:#10251c;
+}
+
+button,
+input,
+select{
+    font-family:inherit;
 }
 
 a{
@@ -25,19 +43,36 @@ a{
     color:inherit;
 }
 
-/* NAVBAR */
 
-nav{
-    height:72px;
-    background:white;
-    border-bottom:1px solid #e0eee7;
+/* =========================
+   NAVBAR
+========================= */
+
+.navbar{
+    position:sticky;
+    top:0;
+    z-index:1000;
+
+    height:75px;
+
+    background:rgba(255,255,255,.96);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid #dceee4;
+
+    box-shadow:0 5px 25px rgba(0,80,40,.06);
+}
+
+.nav{
+    max-width:1200px;
+    height:100%;
+    margin:auto;
+    padding:0 25px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
-    padding:0 7%;
-    position:sticky;
-    top:0;
-    z-index:100;
 }
 
 .logo{
@@ -47,55 +82,93 @@ nav{
 }
 
 .logo-icon{
-    width:40px;
-    height:40px;
-    background:#079447;
+    width:43px;
+    height:43px;
+
+    border-radius:14px;
+
+    background:linear-gradient(
+        135deg,
+        #09a650,
+        #06783a
+    );
+
     color:white;
-    border-radius:12px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    font-size:23px;
     font-weight:bold;
-    font-size:22px;
+
+    box-shadow:
+    0 8px 20px rgba(7,148,71,.2);
 }
 
-.logo strong{
-    color:#087c3d;
+.logo-text strong{
+    display:block;
+    color:#067c3d;
     font-size:21px;
 }
 
-.logo small{
+.logo-text small{
     display:block;
-    color:#718178;
+    color:#697a71;
     font-size:9px;
 }
 
 .back{
     color:#087c3d;
-    font-weight:bold;
     font-size:14px;
+    font-weight:bold;
+
+    transition:.3s;
 }
 
-/* HERO */
+.back:hover{
+    transform:translateX(-4px);
+}
+
+
+/* =========================
+   HERO
+========================= */
 
 .hero{
-    padding:70px 7% 55px;
+    padding:75px 7% 90px;
+
     text-align:center;
+
     background:
-    radial-gradient(circle at 50% 0%,#c9f7d8,transparent 40%),
-    linear-gradient(135deg,#effbf4,#ffffff);
+    radial-gradient(
+        circle at 50% 0%,
+        #baf3cb,
+        transparent 42%
+    ),
+    linear-gradient(
+        135deg,
+        #eafaf0,
+        #ffffff
+    );
 }
 
-.tag{
+.hero-label{
     color:#079447;
-    font-weight:bold;
-    letter-spacing:2px;
+
     font-size:12px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
 }
 
 .hero h1{
-    font-size:45px;
+    font-size:48px;
+
     margin:15px 0;
+
+    line-height:1.1;
 }
 
 .hero h1 span{
@@ -103,224 +176,562 @@ nav{
 }
 
 .hero p{
-    max-width:650px;
+    max-width:700px;
+
     margin:auto;
-    color:#607269;
-    line-height:1.7;
+
+    color:#60736a;
+
+    line-height:1.75;
+
+    font-size:16px;
 }
 
-/* SEARCH */
 
-.search-area{
-    max-width:1000px;
-    margin:-20px auto 60px;
+/* =========================
+   SEARCH CONTAINER
+========================= */
+
+.search-wrapper{
+    max-width:1050px;
+
+    margin:-35px auto 70px;
+
     padding:0 20px;
+
     position:relative;
+
+    z-index:5;
 }
 
 .search-card{
     background:white;
-    padding:30px;
-    border-radius:22px;
-    box-shadow:0 20px 50px rgba(15,80,45,.12);
-    border:1px solid #e0eee7;
+
+    padding:32px;
+
+    border-radius:24px;
+
+    border:1px solid #deeee5;
+
+    box-shadow:
+    0 20px 55px rgba(0,75,42,.12);
 }
 
-.search-card h2{
-    margin-bottom:20px;
-    color:#163b2b;
+.search-title{
+    display:flex;
+    align-items:center;
+    gap:12px;
+
+    margin-bottom:25px;
 }
+
+.search-icon{
+    width:48px;
+    height:48px;
+
+    border-radius:14px;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    background:#dcf7e6;
+
+    font-size:23px;
+}
+
+.search-title h2{
+    font-size:21px;
+}
+
+.search-title p{
+    color:#718078;
+    font-size:12px;
+    margin-top:4px;
+}
+
+
+/* FORM */
 
 .form-grid{
     display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:15px;
+
+    grid-template-columns:
+    repeat(2,1fr);
+
+    gap:18px;
 }
 
 .field label{
     display:block;
+
+    color:#4d6258;
+
     font-size:12px;
+
     font-weight:bold;
-    color:#52655c;
+
     margin-bottom:7px;
 }
 
 .field input,
 .field select{
+
     width:100%;
+
     padding:14px;
-    border:1px solid #d7e6de;
-    border-radius:10px;
+
+    border-radius:11px;
+
+    border:1px solid #d6e6dd;
+
     outline:none;
+
     background:#fbfdfc;
+
+    color:#263d32;
+
+    transition:.3s;
 }
 
 .field input:focus,
 .field select:focus{
+
     border-color:#079447;
+
+    box-shadow:
+    0 0 0 3px rgba(7,148,71,.08);
+
 }
 
-.search-btn{
+.search-button{
+
     width:100%;
+
     margin-top:20px;
+
     padding:15px;
+
     border:none;
+
     border-radius:11px;
-    background:#079447;
+
     color:white;
-    font-weight:bold;
+
+    background:
+    linear-gradient(
+        135deg,
+        #09a650,
+        #067b3b
+    );
+
     font-size:15px;
+
+    font-weight:bold;
+
     cursor:pointer;
+
+    box-shadow:
+    0 10px 25px rgba(7,148,71,.2);
+
     transition:.3s;
 }
 
-.search-btn:hover{
-    background:#067b3b;
-    transform:translateY(-2px);
+.search-button:hover{
+
+    transform:translateY(-3px);
+
+    box-shadow:
+    0 15px 30px rgba(7,148,71,.3);
+
 }
 
-/* RESULTS */
+
+/* =========================
+   RESULTS
+========================= */
 
 .results{
-    max-width:1000px;
+    max-width:1050px;
+
     margin:auto;
-    padding:0 20px 70px;
+
+    padding:0 20px 80px;
 }
 
-.results-title{
-    margin-bottom:20px;
+.results-heading{
+    margin-bottom:22px;
 }
 
-.results-title h2{
-    font-size:27px;
+.results-heading h2{
+    font-size:28px;
 }
 
-.results-title p{
-    color:#708078;
+.results-heading p{
+    color:#718078;
+
     font-size:13px;
-    margin-top:6px;
+
+    margin-top:7px;
 }
 
 .result-card{
-    background:white;
-    border:1px solid #dfebe5;
-    border-radius:18px;
-    padding:22px;
-    margin-bottom:15px;
+
     display:flex;
-    justify-content:space-between;
+
     align-items:center;
+
+    justify-content:space-between;
+
     gap:20px;
-    transition:.3s;
+
+    background:white;
+
+    padding:22px;
+
+    border-radius:18px;
+
+    border:1px solid #dfede5;
+
+    margin-bottom:15px;
+
+    transition:.35s;
 }
 
 .result-card:hover{
-    transform:translateY(-4px);
-    box-shadow:0 12px 30px rgba(20,70,45,.09);
+
+    transform:translateY(-5px);
+
+    box-shadow:
+    0 15px 35px rgba(0,80,45,.09);
+
 }
 
-.resource{
+.result-left{
+
     display:flex;
-    gap:15px;
+
     align-items:flex-start;
+
+    gap:15px;
 }
 
-.resource-icon{
-    width:48px;
-    height:48px;
-    border-radius:14px;
-    background:#e1f8e9;
+.result-icon{
+
+    width:50px;
+    height:50px;
+
+    flex-shrink:0;
+
+    border-radius:15px;
+
+    background:#e0f8e8;
+
     display:flex;
+
     align-items:center;
     justify-content:center;
+
     font-size:22px;
 }
 
-.resource h3{
+.result-info h3{
+
     font-size:16px;
-    margin-bottom:6px;
+
+    margin-bottom:7px;
 }
 
-.resource p{
-    color:#68786f;
+.result-info p{
+
+    color:#687970;
+
     font-size:13px;
-    line-height:1.6;
+
+    line-height:1.65;
 }
 
 .status{
-    padding:8px 12px;
-    background:#e5f8eb;
-    color:#087c3d;
+
+    padding:8px 13px;
+
     border-radius:20px;
-    font-size:11px;
+
+    background:#e3f8ea;
+
+    color:#087c3d;
+
+    font-size:10px;
+
     font-weight:bold;
+
     white-space:nowrap;
 }
 
-/* INFO */
 
-.info{
-    max-width:1000px;
-    margin:0 auto 70px;
-    padding:0 20px;
-}
+/* =========================
+   EMPTY STATE
+========================= */
 
-.info-box{
-    background:#e9f8ef;
-    border:1px solid #bfe6cc;
+.empty{
+
+    text-align:center;
+
+    padding:35px;
+
+    background:white;
+
     border-radius:18px;
-    padding:25px;
+
+    border:1px solid #dfede5;
+
+    color:#687970;
 }
 
-.info-box h3{
-    color:#087c3d;
+.empty-icon{
+
+    font-size:40px;
+
     margin-bottom:10px;
 }
 
-.info-box p{
-    color:#52685d;
-    font-size:13px;
-    line-height:1.7;
+.empty h3{
+
+    color:#21382d;
+
+    margin-bottom:7px;
 }
 
-/* FOOTER */
+.empty p{
+
+    font-size:13px;
+
+    line-height:1.6;
+}
+
+
+/* =========================
+   SAFETY BOX
+========================= */
+
+.safety{
+
+    max-width:1050px;
+
+    margin:0 auto 80px;
+
+    padding:0 20px;
+}
+
+.safety-box{
+
+    padding:27px;
+
+    border-radius:20px;
+
+    background:#e9f9ef;
+
+    border:1px solid #bfe5cc;
+}
+
+.safety-box h3{
+
+    color:#087c3d;
+
+    font-size:18px;
+
+    margin-bottom:10px;
+}
+
+.safety-box p{
+
+    color:#53695e;
+
+    font-size:13px;
+
+    line-height:1.75;
+}
+
+
+/* =========================
+   CTA
+========================= */
+
+.cta{
+
+    padding:70px 7%;
+
+    text-align:center;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #056c36,
+        #09a650
+    );
+}
+
+.cta h2{
+
+    font-size:34px;
+
+    margin-bottom:12px;
+}
+
+.cta p{
+
+    max-width:650px;
+
+    margin:auto;
+
+    font-size:14px;
+
+    line-height:1.7;
+
+    opacity:.9;
+}
+
+.cta-button{
+
+    display:inline-block;
+
+    margin-top:24px;
+
+    padding:14px 23px;
+
+    border-radius:11px;
+
+    background:white;
+
+    color:#087c3d;
+
+    font-size:14px;
+
+    font-weight:bold;
+
+    transition:.3s;
+}
+
+.cta-button:hover{
+
+    transform:translateY(-4px);
+}
+
+
+/* =========================
+   FOOTER
+========================= */
 
 footer{
-    background:#063d27;
+
+    background:#053d27;
+
     color:white;
+
+    padding:45px 7% 25px;
+
     text-align:center;
-    padding:35px 20px;
 }
 
-footer strong{
-    font-size:22px;
+.footer-logo{
+
+    font-size:25px;
+
+    font-weight:bold;
 }
 
 footer p{
-    color:#a8c1b5;
+
+    color:#a8c3b5;
+
     font-size:12px;
+
     margin-top:8px;
+
+    line-height:1.7;
 }
 
-/* MOBILE */
+.copyright{
+
+    margin-top:25px;
+
+    padding-top:18px;
+
+    border-top:1px solid #286149;
+
+    color:#8fa99c;
+
+    font-size:11px;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
 
 @media(max-width:650px){
 
+    .nav{
+        padding:0 17px;
+    }
+
+    .hero{
+
+        padding:
+        60px 6% 80px;
+
+    }
+
     .hero h1{
-        font-size:34px;
+
+        font-size:37px;
+
+    }
+
+    .hero p{
+
+        font-size:14px;
+
+    }
+
+    .search-wrapper{
+
+        margin-top:-30px;
+
+    }
+
+    .search-card{
+
+        padding:22px;
+
     }
 
     .form-grid{
+
         grid-template-columns:1fr;
+
     }
 
     .result-card{
+
         flex-direction:column;
+
         align-items:flex-start;
+
     }
 
     .status{
-        margin-left:63px;
+
+        margin-left:65px;
+
+    }
+
+    .cta h2{
+
+        font-size:29px;
+
     }
 
 }
@@ -328,11 +739,17 @@ footer p{
 </style>
 </head>
 
+
 <body>
 
-<!-- NAVBAR -->
 
-<nav>
+<!-- =====================================================
+     NAVBAR
+===================================================== -->
+
+<header class="navbar">
+
+<nav class="nav">
 
 <a href="index.html" class="logo">
 
@@ -340,12 +757,20 @@ footer p{
 V
 </div>
 
-<div>
-<strong>VitalLoop</strong>
-<small>Your Complete Healthcare Journey</small>
+<div class="logo-text">
+
+<strong>
+VitalLoop
+</strong>
+
+<small>
+Your Complete Healthcare Journey
+</small>
+
 </div>
 
 </a>
+
 
 <a href="index.html" class="back">
 ← Back to Home
@@ -353,13 +778,18 @@ V
 
 </nav>
 
+</header>
 
-<!-- HERO -->
+
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
-<div class="tag">
-BLOOD RESOURCE NETWORK
+<div class="hero-label">
+VITALLOOP BLOOD RESOURCE NETWORK
 </div>
 
 <h1>
@@ -367,25 +797,48 @@ Find <span>Blood Resources</span>
 </h1>
 
 <p>
-Search for relevant blood resources based on blood group,
-component and location. Current availability must always
-be verified with the concerned authorized centre.
+Search for relevant blood resources using blood group,
+component and location. Current availability should always
+be confirmed directly with the concerned authorized centre.
 </p>
 
 </section>
 
 
-<!-- SEARCH -->
 
-<div class="search-area">
+<!-- =====================================================
+     SEARCH
+===================================================== -->
+
+<div class="search-wrapper">
 
 <div class="search-card">
 
+
+<div class="search-title">
+
+<div class="search-icon">
+🔎
+</div>
+
+<div>
+
 <h2>
-🔎 Search Blood Resources
+Search Blood Resources
 </h2>
 
+<p>
+Enter your requirements to explore the network.
+</p>
+
+</div>
+
+</div>
+
+
+
 <div class="form-grid">
+
 
 <div class="field">
 
@@ -401,16 +854,20 @@ Select Blood Group
 
 <option>A+</option>
 <option>A-</option>
+
 <option>B+</option>
 <option>B-</option>
+
 <option>O+</option>
 <option>O-</option>
+
 <option>AB+</option>
 <option>AB-</option>
 
 </select>
 
 </div>
+
 
 
 <div class="field">
@@ -435,6 +892,7 @@ Select Component
 </div>
 
 
+
 <div class="field">
 
 <label>
@@ -449,6 +907,7 @@ placeholder="Example: Lucknow">
 </div>
 
 
+
 <div class="field">
 
 <label>
@@ -457,102 +916,114 @@ Search Radius
 
 <select id="radius">
 
-<option>5 km</option>
-<option>10 km</option>
-<option>25 km</option>
-<option>50 km</option>
+<option>
+5 km
+</option>
+
+<option>
+10 km
+</option>
+
+<option>
+25 km
+</option>
+
+<option>
+50 km
+</option>
 
 </select>
 
 </div>
 
+
 </div>
 
 
 <button
-class="search-btn"
-onclick="searchResources()">
+class="search-button"
+onclick="searchBlood()">
 
 🔎 Search Blood Resources
 
 </button>
 
-</div>
 
 </div>
 
+</div>
 
-<!-- RESULTS -->
+
+
+<!-- =====================================================
+     RESULTS
+===================================================== -->
 
 <section class="results">
 
-<div class="results-title">
+
+<div class="results-heading">
 
 <h2>
-Available Resources
+Relevant Resources
 </h2>
 
-<p id="resultText">
-Enter your requirements above to begin a search.
+<p id="resultMessage">
+Your search results will appear here.
 </p>
 
 </div>
+
 
 
 <div id="resultsContainer">
 
-<div class="result-card">
 
-<div class="resource">
+<div class="empty">
 
-<div class="resource-icon">
-🏥
+<div class="empty-icon">
+🩸
 </div>
 
-<div>
-
 <h3>
-Authorized Blood Centre
+Start Your Search
 </h3>
 
 <p>
-Search results will appear here after entering
-your blood group and location.
+Select a blood group and enter your location to
+explore relevant resource options.
 </p>
 
 </div>
 
-</div>
-
-<div class="status">
-DEMO
-</div>
-
-</div>
 
 </div>
 
 </section>
 
 
-<!-- SAFETY INFO -->
 
-<section class="info">
+<!-- =====================================================
+     SAFETY
+===================================================== -->
 
-<div class="info-box">
+<section class="safety">
+
+<div class="safety-box">
 
 <h3>
 ⚠️ Important Safety Information
 </h3>
 
 <p>
-VitalLoop is a discovery and coordination technology
-prototype. It does not itself collect, test, store,
-transport, release or distribute blood. Actual blood
-donation, testing, compatibility and transfusion are
-handled by authorized healthcare facilities and trained
-professionals. Current availability should always be
-confirmed directly with the concerned centre.
+VitalLoop is a healthcare technology prototype and
+discovery/coordination layer. It does not itself collect,
+test, store, transport, release or distribute blood.
+Actual donation, testing, compatibility, storage and
+transfusion are handled by authorized healthcare
+facilities and trained professionals. Search results
+shown by this prototype do not represent guaranteed
+real-time blood availability.
 </p>
 
 </div>
@@ -560,11 +1031,43 @@ confirmed directly with the concerned centre.
 </section>
 
 
-<!-- FOOTER -->
+
+<!-- =====================================================
+     CTA
+===================================================== -->
+
+<section class="cta">
+
+<h2>
+Can't Find What You Need?
+</h2>
+
+<p>
+You can raise a structured blood request and explore
+potential donor coordination through VitalLoop.
+</p>
+
+<a
+href="blood-request.html"
+class="cta-button">
+
+Raise Blood Request →
+
+</a>
+
+</section>
+
+
+
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
-<strong>VitalLoop</strong>
+<div class="footer-logo">
+VitalLoop
+</div>
 
 <p>
 Your Complete Healthcare Journey
@@ -574,12 +1077,23 @@ Your Complete Healthcare Journey
 Healthier People. Brighter Tomorrow.
 </p>
 
+<div class="copyright">
+
+© 2026 VitalLoop. Healthcare technology prototype.
+
+</div>
+
 </footer>
 
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script>
 
-function searchResources(){
+function searchBlood(){
 
     const group =
     document.getElementById("bloodGroup").value;
@@ -596,48 +1110,47 @@ function searchResources(){
     const container =
     document.getElementById("resultsContainer");
 
-    const resultText =
-    document.getElementById("resultText");
+    const message =
+    document.getElementById("resultMessage");
 
+
+    /* VALIDATION */
 
     if(!group || !city){
 
         container.innerHTML = `
 
-        <div class="result-card">
+        <div class="empty">
 
-            <div class="resource">
-
-                <div class="resource-icon">
+            <div class="empty-icon">
                 ⚠️
-                </div>
+            </div>
 
-                <div>
-
-                <h3>
+            <h3>
                 Information Required
-                </h3>
+            </h3>
 
-                <p>
+            <p>
                 Please select a blood group and enter
                 your city or location.
-                </p>
-
-                </div>
-
-            </div>
+            </p>
 
         </div>
 
         `;
+
+        message.innerText =
+        "Please complete the required fields.";
 
         return;
 
     }
 
 
-    resultText.innerHTML =
-    "Showing prototype results for "
+    /* RESULT MESSAGE */
+
+    message.innerText =
+    "Prototype results for "
     + group
     + " in "
     + city
@@ -646,111 +1159,151 @@ function searchResources(){
     + ".";
 
 
+    /* RESULTS */
+
     container.innerHTML = `
 
+
+    <!-- RESOURCE 1 -->
+
     <div class="result-card">
 
-        <div class="resource">
+        <div class="result-left">
 
-            <div class="resource-icon">
-            🏥
+            <div class="result-icon">
+                🏥
             </div>
 
-            <div>
+            <div class="result-info">
 
-            <h3>
-            Authorized Blood Centre
-            </h3>
+                <h3>
+                    Authorized Blood Centre
+                </h3>
 
-            <p>
-            📍 ${city}<br>
+                <p>
 
-            🩸 Blood Group: ${group}<br>
+                    📍 ${city}
 
-            ${component
-            ? "🧪 Component: " + component
-            : ""}
+                    <br>
 
-            </p>
+                    🩸 Blood Group:
+                    ${group}
+
+                    ${
+                        component
+                        ?
+                        "<br>🧪 Component: "
+                        + component
+                        :
+                        ""
+                    }
+
+                    <br>
+
+                    📏 Search Radius:
+                    ${radius}
+
+                </p>
 
             </div>
 
         </div>
 
         <div class="status">
-        VERIFY
+            VERIFY
         </div>
 
     </div>
 
 
+
+    <!-- RESOURCE 2 -->
+
     <div class="result-card">
 
-        <div class="resource">
+        <div class="result-left">
 
-            <div class="resource-icon">
-            ❤️
+            <div class="result-icon">
+                ❤️
             </div>
 
-            <div>
+            <div class="result-info">
 
-            <h3>
-            Potential Donor Coordination
-            </h3>
+                <h3>
+                    Potential Donor Coordination
+                </h3>
 
-            <p>
-            Relevant potential donors may be
-            coordinated through the VitalLoop network.
-            Actual donation requires screening at an
-            authorized centre.
-            </p>
+                <p>
+
+                    Potential eligible donors may be
+                    coordinated through the VitalLoop
+                    network.
+
+                    <br>
+
+                    Actual donation requires screening
+                    at an authorized centre.
+
+                </p>
 
             </div>
 
         </div>
 
         <div class="status">
-        COORDINATE
+            COORDINATE
         </div>
 
     </div>
 
 
+
+    <!-- RESOURCE 3 -->
+
     <div class="result-card">
 
-        <div class="resource">
+        <div class="result-left">
 
-            <div class="resource-icon">
-            📍
+            <div class="result-icon">
+                📍
             </div>
 
-            <div>
+            <div class="result-info">
 
-            <h3>
-            Location Matching
-            </h3>
+                <h3>
+                    Location-Based Discovery
+                </h3>
 
-            <p>
-            Location-based discovery can help identify
-            relevant healthcare resources within
-            ${radius}.
-            </p>
+                <p>
+
+                    Relevant healthcare resources can
+                    conceptually be discovered based
+                    on location.
+
+                    <br>
+
+                    Current availability must be
+                    confirmed directly with the centre.
+
+                </p>
 
             </div>
 
         </div>
 
         <div class="status">
-        DEMO
+            DEMO
         </div>
 
     </div>
+
 
     `;
 
 }
 
 </script>
+
 
 </body>
 </html>
