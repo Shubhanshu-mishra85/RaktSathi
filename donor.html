@@ -1,0 +1,696 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Become a Donor | VitalLoop</title>
+
+<style>
+*{
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,sans-serif;
+  background:#fff7f7;
+  color:#172033;
+  line-height:1.6;
+}
+
+header{
+  background:white;
+  border-bottom:1px solid #e5e7eb;
+  padding:15px 6%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:sticky;
+  top:0;
+  z-index:10;
+}
+
+.logo{
+  color:#b91c1c;
+  font-size:22px;
+  font-weight:800;
+}
+
+nav{
+  display:flex;
+  gap:20px;
+}
+
+nav a{
+  text-decoration:none;
+  color:#475569;
+  font-size:14px;
+  font-weight:600;
+}
+
+nav a:hover{
+  color:#b91c1c;
+}
+
+.container{
+  max-width:1100px;
+  margin:auto;
+  padding:65px 6%;
+}
+
+.tag{
+  color:#b91c1c;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:2px;
+}
+
+h1{
+  font-size:50px;
+  line-height:1.05;
+  margin:12px 0;
+}
+
+.subtitle{
+  color:#64748b;
+  max-width:700px;
+  margin-bottom:35px;
+}
+
+.layout{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:25px;
+}
+
+.card{
+  background:white;
+  border:1px solid #e5e7eb;
+  border-radius:20px;
+  padding:28px;
+  box-shadow:0 12px 35px rgba(15,23,42,.07);
+}
+
+.card h2{
+  margin-bottom:20px;
+}
+
+label{
+  display:block;
+  font-size:13px;
+  font-weight:700;
+  color:#475569;
+  margin-top:15px;
+}
+
+input,
+select{
+  width:100%;
+  padding:13px;
+  margin-top:6px;
+  border:1px solid #dbe2ea;
+  border-radius:10px;
+  font-size:15px;
+  background:white;
+}
+
+input:focus,
+select:focus{
+  outline:2px solid #fecaca;
+  border-color:#ef4444;
+}
+
+button{
+  width:100%;
+  margin-top:22px;
+  padding:14px;
+  border:none;
+  border-radius:11px;
+  background:#b91c1c;
+  color:white;
+  font-size:15px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+button:hover{
+  background:#991b1b;
+}
+
+.check{
+  display:flex;
+  gap:10px;
+  align-items:flex-start;
+  margin-top:18px;
+  font-size:13px;
+  color:#475569;
+}
+
+.check input{
+  width:auto;
+  margin-top:4px;
+}
+
+.success{
+  display:none;
+  margin-top:18px;
+  padding:15px;
+  border-radius:12px;
+  background:#ecfdf5;
+  border:1px solid #a7f3d0;
+  color:#065f46;
+}
+
+.info{
+  margin-top:20px;
+  padding:16px;
+  border-radius:12px;
+  background:#eff6ff;
+  border:1px solid #bfdbfe;
+  color:#1e40af;
+  font-size:13px;
+}
+
+.safety{
+  margin-top:20px;
+  padding:20px;
+  background:#111827;
+  color:white;
+  border-radius:16px;
+}
+
+.safety h3{
+  margin-bottom:8px;
+}
+
+.safety p{
+  color:#cbd5e1;
+  font-size:14px;
+}
+
+.steps{
+  display:grid;
+  gap:14px;
+  margin-top:20px;
+}
+
+.step{
+  display:flex;
+  gap:15px;
+  padding:16px;
+  border-radius:13px;
+  background:#f8fafc;
+}
+
+.number{
+  min-width:36px;
+  height:36px;
+  border-radius:50%;
+  background:#fee2e2;
+  color:#b91c1c;
+  display:grid;
+  place-items:center;
+  font-weight:800;
+}
+
+.step p{
+  color:#64748b;
+  font-size:13px;
+}
+
+.match-box{
+  margin-top:25px;
+  padding:22px;
+  border-radius:16px;
+  background:linear-gradient(135deg,#fff1f2,#fff);
+  border:1px solid #fecdd3;
+}
+
+.match-box h3{
+  color:#991b1b;
+  margin-bottom:8px;
+}
+
+.match-box p{
+  color:#64748b;
+  font-size:14px;
+}
+
+footer{
+  margin-top:30px;
+  padding:35px 6%;
+  background:#111827;
+  color:#cbd5e1;
+  text-align:center;
+}
+
+footer strong{
+  color:white;
+  font-size:20px;
+}
+
+@media(max-width:750px){
+
+  nav{
+    display:none;
+  }
+
+  .layout{
+    grid-template-columns:1fr;
+  }
+
+  h1{
+    font-size:40px;
+  }
+
+  .container{
+    padding:45px 5%;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="logo">
+🩸 VitalLoop
+</div>
+
+<nav>
+<a href="index.html">Home</a>
+<a href="blood-request.html">Need Blood</a>
+<a href="donor.html">Become a Donor</a>
+<a href="blood-education.html">Education</a>
+<a href="camps.html">Camps</a>
+<a href="about.html">About</a>
+</nav>
+
+</header>
+
+
+<main>
+
+<div class="container">
+
+<span class="tag">
+DONOR NETWORK
+</span>
+
+<h1>
+Become a Potential Donor
+</h1>
+
+<p class="subtitle">
+Your willingness to donate can help families find potential
+support during difficult situations. Register your interest
+and become part of the VitalLoop donor network.
+</p>
+
+
+<div class="layout">
+
+
+<!-- DONOR FORM -->
+
+<div class="card">
+
+<h2>
+🤝 Donor Registration
+</h2>
+
+<form id="donorForm">
+
+<label>
+Name
+</label>
+
+<input
+type="text"
+id="name"
+placeholder="Demo Donor"
+required
+>
+
+
+<label>
+Blood Group
+</label>
+
+<select id="bloodGroup" required>
+
+<option value="">
+Select Blood Group
+</option>
+
+<option>A+</option>
+<option>A-</option>
+
+<option>B+</option>
+<option>B-</option>
+
+<option>AB+</option>
+<option>AB-</option>
+
+<option>O+</option>
+<option>O-</option>
+
+</select>
+
+
+<label>
+City
+</label>
+
+<input
+type="text"
+id="city"
+placeholder="Lucknow"
+required
+>
+
+
+<label>
+Preferred Contact Method
+</label>
+
+<select id="contact">
+
+<option>Phone</option>
+
+<option>SMS</option>
+
+<option>Email</option>
+
+</select>
+
+
+<label>
+Availability
+</label>
+
+<select id="availability">
+
+<option>
+Available for emergency coordination
+</option>
+
+<option>
+Available for blood donation camps
+</option>
+
+<option>
+Occasional availability
+</option>
+
+</select>
+
+
+<label class="check">
+
+<input
+type="checkbox"
+id="consent"
+required
+>
+
+<span>
+I understand that actual donor eligibility and
+blood donation will be decided by an authorized
+blood centre and qualified healthcare professionals.
+</span>
+
+</label>
+
+
+<button type="submit">
+Register as Potential Donor
+</button>
+
+</form>
+
+
+<div
+class="success"
+id="success"
+>
+
+<strong>✓ Registration Saved</strong>
+
+<p>
+Your demo donor profile has been saved locally.
+In a real system, VitalLoop would securely match
+eligible potential donors with relevant requests.
+</p>
+
+</div>
+
+
+<div class="info">
+
+<strong>Privacy:</strong>
+
+This SIH prototype does not send your information
+to a server. Demo information is stored only in
+your browser.
+
+</div>
+
+</div>
+
+
+<!-- HOW IT WORKS -->
+
+<div class="card">
+
+<h2>
+🔄 How Donor Matching Works
+</h2>
+
+
+<div class="steps">
+
+
+<div class="step">
+
+<div class="number">
+1
+</div>
+
+<div>
+
+<strong>
+Donor Registers
+</strong>
+
+<p>
+Donor provides blood group and location.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">
+2
+</div>
+
+<div>
+
+<strong>
+Blood Request Arrives
+</strong>
+
+<p>
+A family raises a blood requirement.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">
+3
+</div>
+
+<div>
+
+<strong>
+Potential Match
+</strong>
+
+<p>
+System can identify potential donors based
+on available information.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">
+4
+</div>
+
+<div>
+
+<strong>
+Contact & Coordination
+</strong>
+
+<p>
+The potential donor can be contacted through
+an appropriate authorized workflow.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="step">
+
+<div class="number">
+5
+</div>
+
+<div>
+
+<strong>
+Medical Screening
+</strong>
+
+<p>
+The blood centre decides donor eligibility
+and performs the required procedures.
+</p>
+
+</div>
+
+</div>
+
+
+</div>
+
+
+<div class="match-box">
+
+<h3>
+🩸 Important: Matching ≠ Guaranteed Blood
+</h3>
+
+<p>
+A potential donor match does not mean that blood
+is immediately available or medically compatible.
+Donation, testing, compatibility and blood issue
+must be handled by an authorized blood centre.
+</p>
+
+</div>
+
+
+<div class="safety">
+
+<h3>
+🛡️ Safety First
+</h3>
+
+<p>
+VitalLoop does not decide whether someone can donate.
+A qualified healthcare professional performs donor
+screening before donation.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</main>
+
+
+<footer>
+
+<strong>
+VitalLoop
+</strong>
+
+<p>
+Your Complete Healthcare Journey
+</p>
+
+<p>
+Healthier People. Brighter Tomorrow.
+</p>
+
+</footer>
+
+
+<script>
+
+document
+.getElementById("donorForm")
+.addEventListener("submit",function(event){
+
+event.preventDefault();
+
+const donorData={
+
+name:
+document.getElementById("name").value,
+
+bloodGroup:
+document.getElementById("bloodGroup").value,
+
+city:
+document.getElementById("city").value,
+
+contact:
+document.getElementById("contact").value,
+
+availability:
+document.getElementById("availability").value
+
+};
+
+localStorage.setItem(
+"vitalloopDonor",
+JSON.stringify(donorData)
+);
+
+document
+.getElementById("success")
+.style.display="block";
+
+document
+.getElementById("success")
+.scrollIntoView({
+behavior:"smooth",
+block:"center"
+});
+
+});
+
+</script>
+
+</body>
+</html>
