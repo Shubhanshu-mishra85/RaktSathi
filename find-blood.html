@@ -1,0 +1,756 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Find Blood Resources | VitalLoop</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f3faf6;
+    color:#10251d;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+/* NAVBAR */
+
+nav{
+    height:72px;
+    background:white;
+    border-bottom:1px solid #e0eee7;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 7%;
+    position:sticky;
+    top:0;
+    z-index:100;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.logo-icon{
+    width:40px;
+    height:40px;
+    background:#079447;
+    color:white;
+    border-radius:12px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:bold;
+    font-size:22px;
+}
+
+.logo strong{
+    color:#087c3d;
+    font-size:21px;
+}
+
+.logo small{
+    display:block;
+    color:#718178;
+    font-size:9px;
+}
+
+.back{
+    color:#087c3d;
+    font-weight:bold;
+    font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+    padding:70px 7% 55px;
+    text-align:center;
+    background:
+    radial-gradient(circle at 50% 0%,#c9f7d8,transparent 40%),
+    linear-gradient(135deg,#effbf4,#ffffff);
+}
+
+.tag{
+    color:#079447;
+    font-weight:bold;
+    letter-spacing:2px;
+    font-size:12px;
+}
+
+.hero h1{
+    font-size:45px;
+    margin:15px 0;
+}
+
+.hero h1 span{
+    color:#079447;
+}
+
+.hero p{
+    max-width:650px;
+    margin:auto;
+    color:#607269;
+    line-height:1.7;
+}
+
+/* SEARCH */
+
+.search-area{
+    max-width:1000px;
+    margin:-20px auto 60px;
+    padding:0 20px;
+    position:relative;
+}
+
+.search-card{
+    background:white;
+    padding:30px;
+    border-radius:22px;
+    box-shadow:0 20px 50px rgba(15,80,45,.12);
+    border:1px solid #e0eee7;
+}
+
+.search-card h2{
+    margin-bottom:20px;
+    color:#163b2b;
+}
+
+.form-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.field label{
+    display:block;
+    font-size:12px;
+    font-weight:bold;
+    color:#52655c;
+    margin-bottom:7px;
+}
+
+.field input,
+.field select{
+    width:100%;
+    padding:14px;
+    border:1px solid #d7e6de;
+    border-radius:10px;
+    outline:none;
+    background:#fbfdfc;
+}
+
+.field input:focus,
+.field select:focus{
+    border-color:#079447;
+}
+
+.search-btn{
+    width:100%;
+    margin-top:20px;
+    padding:15px;
+    border:none;
+    border-radius:11px;
+    background:#079447;
+    color:white;
+    font-weight:bold;
+    font-size:15px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.search-btn:hover{
+    background:#067b3b;
+    transform:translateY(-2px);
+}
+
+/* RESULTS */
+
+.results{
+    max-width:1000px;
+    margin:auto;
+    padding:0 20px 70px;
+}
+
+.results-title{
+    margin-bottom:20px;
+}
+
+.results-title h2{
+    font-size:27px;
+}
+
+.results-title p{
+    color:#708078;
+    font-size:13px;
+    margin-top:6px;
+}
+
+.result-card{
+    background:white;
+    border:1px solid #dfebe5;
+    border-radius:18px;
+    padding:22px;
+    margin-bottom:15px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    transition:.3s;
+}
+
+.result-card:hover{
+    transform:translateY(-4px);
+    box-shadow:0 12px 30px rgba(20,70,45,.09);
+}
+
+.resource{
+    display:flex;
+    gap:15px;
+    align-items:flex-start;
+}
+
+.resource-icon{
+    width:48px;
+    height:48px;
+    border-radius:14px;
+    background:#e1f8e9;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+}
+
+.resource h3{
+    font-size:16px;
+    margin-bottom:6px;
+}
+
+.resource p{
+    color:#68786f;
+    font-size:13px;
+    line-height:1.6;
+}
+
+.status{
+    padding:8px 12px;
+    background:#e5f8eb;
+    color:#087c3d;
+    border-radius:20px;
+    font-size:11px;
+    font-weight:bold;
+    white-space:nowrap;
+}
+
+/* INFO */
+
+.info{
+    max-width:1000px;
+    margin:0 auto 70px;
+    padding:0 20px;
+}
+
+.info-box{
+    background:#e9f8ef;
+    border:1px solid #bfe6cc;
+    border-radius:18px;
+    padding:25px;
+}
+
+.info-box h3{
+    color:#087c3d;
+    margin-bottom:10px;
+}
+
+.info-box p{
+    color:#52685d;
+    font-size:13px;
+    line-height:1.7;
+}
+
+/* FOOTER */
+
+footer{
+    background:#063d27;
+    color:white;
+    text-align:center;
+    padding:35px 20px;
+}
+
+footer strong{
+    font-size:22px;
+}
+
+footer p{
+    color:#a8c1b5;
+    font-size:12px;
+    margin-top:8px;
+}
+
+/* MOBILE */
+
+@media(max-width:650px){
+
+    .hero h1{
+        font-size:34px;
+    }
+
+    .form-grid{
+        grid-template-columns:1fr;
+    }
+
+    .result-card{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+
+    .status{
+        margin-left:63px;
+    }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+<a href="index.html" class="logo">
+
+<div class="logo-icon">
+V
+</div>
+
+<div>
+<strong>VitalLoop</strong>
+<small>Your Complete Healthcare Journey</small>
+</div>
+
+</a>
+
+<a href="index.html" class="back">
+← Back to Home
+</a>
+
+</nav>
+
+
+<!-- HERO -->
+
+<section class="hero">
+
+<div class="tag">
+BLOOD RESOURCE NETWORK
+</div>
+
+<h1>
+Find <span>Blood Resources</span>
+</h1>
+
+<p>
+Search for relevant blood resources based on blood group,
+component and location. Current availability must always
+be verified with the concerned authorized centre.
+</p>
+
+</section>
+
+
+<!-- SEARCH -->
+
+<div class="search-area">
+
+<div class="search-card">
+
+<h2>
+🔎 Search Blood Resources
+</h2>
+
+<div class="form-grid">
+
+<div class="field">
+
+<label>
+Blood Group
+</label>
+
+<select id="bloodGroup">
+
+<option value="">
+Select Blood Group
+</option>
+
+<option>A+</option>
+<option>A-</option>
+<option>B+</option>
+<option>B-</option>
+<option>O+</option>
+<option>O-</option>
+<option>AB+</option>
+<option>AB-</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+Blood Component
+</label>
+
+<select id="component">
+
+<option value="">
+Select Component
+</option>
+
+<option>Whole Blood</option>
+<option>Red Blood Cells</option>
+<option>Platelets</option>
+<option>Plasma</option>
+
+</select>
+
+</div>
+
+
+<div class="field">
+
+<label>
+City / Location
+</label>
+
+<input
+type="text"
+id="city"
+placeholder="Example: Lucknow">
+
+</div>
+
+
+<div class="field">
+
+<label>
+Search Radius
+</label>
+
+<select id="radius">
+
+<option>5 km</option>
+<option>10 km</option>
+<option>25 km</option>
+<option>50 km</option>
+
+</select>
+
+</div>
+
+</div>
+
+
+<button
+class="search-btn"
+onclick="searchResources()">
+
+🔎 Search Blood Resources
+
+</button>
+
+</div>
+
+</div>
+
+
+<!-- RESULTS -->
+
+<section class="results">
+
+<div class="results-title">
+
+<h2>
+Available Resources
+</h2>
+
+<p id="resultText">
+Enter your requirements above to begin a search.
+</p>
+
+</div>
+
+
+<div id="resultsContainer">
+
+<div class="result-card">
+
+<div class="resource">
+
+<div class="resource-icon">
+🏥
+</div>
+
+<div>
+
+<h3>
+Authorized Blood Centre
+</h3>
+
+<p>
+Search results will appear here after entering
+your blood group and location.
+</p>
+
+</div>
+
+</div>
+
+<div class="status">
+DEMO
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SAFETY INFO -->
+
+<section class="info">
+
+<div class="info-box">
+
+<h3>
+⚠️ Important Safety Information
+</h3>
+
+<p>
+VitalLoop is a discovery and coordination technology
+prototype. It does not itself collect, test, store,
+transport, release or distribute blood. Actual blood
+donation, testing, compatibility and transfusion are
+handled by authorized healthcare facilities and trained
+professionals. Current availability should always be
+confirmed directly with the concerned centre.
+</p>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<footer>
+
+<strong>VitalLoop</strong>
+
+<p>
+Your Complete Healthcare Journey
+</p>
+
+<p>
+Healthier People. Brighter Tomorrow.
+</p>
+
+</footer>
+
+
+<script>
+
+function searchResources(){
+
+    const group =
+    document.getElementById("bloodGroup").value;
+
+    const component =
+    document.getElementById("component").value;
+
+    const city =
+    document.getElementById("city").value.trim();
+
+    const radius =
+    document.getElementById("radius").value;
+
+    const container =
+    document.getElementById("resultsContainer");
+
+    const resultText =
+    document.getElementById("resultText");
+
+
+    if(!group || !city){
+
+        container.innerHTML = `
+
+        <div class="result-card">
+
+            <div class="resource">
+
+                <div class="resource-icon">
+                ⚠️
+                </div>
+
+                <div>
+
+                <h3>
+                Information Required
+                </h3>
+
+                <p>
+                Please select a blood group and enter
+                your city or location.
+                </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        `;
+
+        return;
+
+    }
+
+
+    resultText.innerHTML =
+    "Showing prototype results for "
+    + group
+    + " in "
+    + city
+    + " within "
+    + radius
+    + ".";
+
+
+    container.innerHTML = `
+
+    <div class="result-card">
+
+        <div class="resource">
+
+            <div class="resource-icon">
+            🏥
+            </div>
+
+            <div>
+
+            <h3>
+            Authorized Blood Centre
+            </h3>
+
+            <p>
+            📍 ${city}<br>
+
+            🩸 Blood Group: ${group}<br>
+
+            ${component
+            ? "🧪 Component: " + component
+            : ""}
+
+            </p>
+
+            </div>
+
+        </div>
+
+        <div class="status">
+        VERIFY
+        </div>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <div class="resource">
+
+            <div class="resource-icon">
+            ❤️
+            </div>
+
+            <div>
+
+            <h3>
+            Potential Donor Coordination
+            </h3>
+
+            <p>
+            Relevant potential donors may be
+            coordinated through the VitalLoop network.
+            Actual donation requires screening at an
+            authorized centre.
+            </p>
+
+            </div>
+
+        </div>
+
+        <div class="status">
+        COORDINATE
+        </div>
+
+    </div>
+
+
+    <div class="result-card">
+
+        <div class="resource">
+
+            <div class="resource-icon">
+            📍
+            </div>
+
+            <div>
+
+            <h3>
+            Location Matching
+            </h3>
+
+            <p>
+            Location-based discovery can help identify
+            relevant healthcare resources within
+            ${radius}.
+            </p>
+
+            </div>
+
+        </div>
+
+        <div class="status">
+        DEMO
+        </div>
+
+    </div>
+
+    `;
+
+}
+
+</script>
+
+</body>
+</html>
