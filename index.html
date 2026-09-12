@@ -1,701 +1,2392 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>VitalLoop | Blood Resource Network</title>
+<title>VitalLoop | Blood Resource Network</title>
 
-  <meta name="description"
-    content="VitalLoop Blood Resource Network helps people discover blood resources, coordinate potential donors and learn blood safety.">
+<meta name="description"
+content="VitalLoop Blood Resource Network — a healthcare technology prototype for blood-resource discovery, requests, donor coordination and safety education.">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+<style>
+/* =========================================================
+   VITALLOOP — PROFESSIONAL HEALTHCARE UI
+   ========================================================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:
+        Inter,
+        -apple-system,
+        BlinkMacSystemFont,
+        "Segoe UI",
+        Arial,
+        sans-serif;
+    color:#172033;
+    background:#f6f9fc;
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+button,
+input,
+select{
+    font:inherit;
+}
+
+button{
+    cursor:pointer;
+}
+
+
+/* =========================================================
+   NAVBAR
+   ========================================================= */
+
+header{
+    position:sticky;
+    top:0;
+    z-index:1000;
+    background:rgba(255,255,255,.94);
+    backdrop-filter:blur(18px);
+    border-bottom:1px solid #e6edf4;
+}
+
+.navbar{
+    max-width:1200px;
+    margin:auto;
+    padding:14px 22px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.logo{
+    display:flex;
+    align-items:center;
+    gap:11px;
+    font-weight:800;
+    font-size:21px;
+    color:#b91c1c;
+}
+
+.logo-mark{
+    width:40px;
+    height:40px;
+    border-radius:12px;
+    display:grid;
+    place-items:center;
+    background:#b91c1c;
+    color:white;
+    font-size:21px;
+    box-shadow:0 8px 22px rgba(185,28,28,.22);
+}
+
+.nav-links{
+    display:flex;
+    align-items:center;
+    gap:22px;
+}
+
+.nav-links a{
+    font-size:14px;
+    font-weight:650;
+    color:#536174;
+    transition:.25s;
+}
+
+.nav-links a:hover{
+    color:#b91c1c;
+}
+
+.nav-btn{
+    background:#b91c1c;
+    color:white!important;
+    padding:10px 16px;
+    border-radius:10px;
+}
+
+.menu-btn{
+    display:none;
+    border:0;
+    background:white;
+    font-size:25px;
+}
+
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero{
+    position:relative;
+    overflow:hidden;
+    background:
+        radial-gradient(circle at 85% 15%,rgba(239,68,68,.13),transparent 30%),
+        radial-gradient(circle at 10% 80%,rgba(59,130,246,.10),transparent 30%),
+        linear-gradient(135deg,#ffffff,#f4f8fc);
+}
+
+.hero-inner{
+    max-width:1200px;
+    margin:auto;
+    min-height:650px;
+    padding:80px 22px;
+    display:grid;
+    grid-template-columns:1.08fr .92fr;
+    align-items:center;
+    gap:55px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    padding:8px 13px;
+    border-radius:30px;
+    background:#fff1f2;
+    color:#b91c1c;
+    font-size:13px;
+    font-weight:750;
+    border:1px solid #fecdd3;
+}
+
+.hero h1{
+    margin-top:20px;
+    font-size:clamp(42px,6vw,72px);
+    line-height:1.03;
+    letter-spacing:-2px;
+}
+
+.hero h1 span{
+    color:#b91c1c;
+}
+
+.hero p{
+    margin-top:22px;
+    max-width:650px;
+    color:#607086;
+    font-size:18px;
+}
+
+.hero-actions{
+    display:flex;
+    flex-wrap:wrap;
+    gap:13px;
+    margin-top:30px;
+}
+
+.btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding:13px 20px;
+    border-radius:12px;
+    border:1px solid transparent;
+    font-weight:750;
+    transition:.25s;
+}
+
+.btn-primary{
+    background:#b91c1c;
+    color:white;
+    box-shadow:0 12px 25px rgba(185,28,28,.2);
+}
+
+.btn-primary:hover{
+    transform:translateY(-2px);
+    background:#991b1b;
+}
+
+.btn-secondary{
+    background:white;
+    color:#243044;
+    border-color:#dce4ec;
+}
+
+.btn-secondary:hover{
+    transform:translateY(-2px);
+    border-color:#b91c1c;
+}
+
+.hero-card{
+    position:relative;
+    min-height:420px;
+    border-radius:30px;
+    background:
+        linear-gradient(145deg,#fff,#f8fbff);
+    border:1px solid #e3eaf1;
+    box-shadow:0 30px 80px rgba(29,45,66,.12);
+    padding:28px;
+    overflow:hidden;
+}
+
+.hero-card::before{
+    content:"";
+    position:absolute;
+    width:230px;
+    height:230px;
+    border-radius:50%;
+    background:#fee2e2;
+    right:-80px;
+    top:-70px;
+}
+
+.pulse{
+    position:absolute;
+    width:120px;
+    height:120px;
+    border-radius:50%;
+    background:#b91c1c;
+    color:white;
+    display:grid;
+    place-items:center;
+    font-size:55px;
+    box-shadow:0 0 0 18px rgba(185,28,28,.08);
+    animation:pulse 2.2s infinite;
+}
+
+@keyframes pulse{
+    0%,100%{transform:scale(1)}
+    50%{transform:scale(1.06)}
+}
+
+.dashboard{
+    position:absolute;
+    left:28px;
+    right:28px;
+    bottom:28px;
+    background:white;
+    border:1px solid #e5ebf1;
+    border-radius:20px;
+    padding:20px;
+    box-shadow:0 18px 40px rgba(29,45,66,.10);
+}
+
+.dashboard-title{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-weight:800;
+}
+
+.status{
+    color:#15803d;
+    font-size:12px;
+    font-weight:800;
+}
+
+.dashboard-grid{
+    margin-top:18px;
+    display:grid;
+    grid-template-columns:repeat(2,1fr);
+    gap:12px;
+}
+
+.mini-card{
+    padding:15px;
+    border-radius:14px;
+    background:#f7f9fc;
+    border:1px solid #edf1f5;
+}
+
+.mini-card strong{
+    display:block;
+    font-size:20px;
+}
+
+.mini-card small{
+    color:#6b7788;
+}
+
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+section{
+    padding:85px 22px;
+}
+
+.container{
+    max-width:1200px;
+    margin:auto;
+}
+
+.section-head{
+    max-width:700px;
+    margin-bottom:40px;
+}
+
+.section-head .eyebrow{
+    color:#b91c1c;
+    font-size:13px;
+    font-weight:800;
+    text-transform:uppercase;
+    letter-spacing:1.5px;
+}
+
+.section-head h2{
+    margin-top:8px;
+    font-size:clamp(30px,4vw,46px);
+    line-height:1.1;
+}
+
+.section-head p{
+    margin-top:14px;
+    color:#68778a;
+}
+
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats{
+    margin-top:-35px;
+    position:relative;
+    z-index:5;
+}
+
+.stats-grid{
+    max-width:1050px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:repeat(4,1fr);
+    background:white;
+    border:1px solid #e3eaf1;
+    border-radius:22px;
+    box-shadow:0 18px 45px rgba(25,40,60,.08);
+    overflow:hidden;
+}
+
+.stat{
+    padding:25px;
+    text-align:center;
+    border-right:1px solid #edf1f5;
+}
+
+.stat:last-child{
+    border-right:0;
+}
+
+.stat strong{
+    display:block;
+    font-size:27px;
+    color:#b91c1c;
+}
+
+.stat span{
+    color:#69778a;
+    font-size:13px;
+}
+
+
+/* =========================================================
+   PROBLEM
+   ========================================================= */
+
+.problem{
+    background:white;
+}
+
+.problem-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:35px;
+}
+
+.problem-card{
+    padding:32px;
+    border:1px solid #e4ebf2;
+    border-radius:22px;
+    background:#fff;
+}
+
+.problem-card h3{
+    font-size:22px;
+    margin-bottom:14px;
+}
+
+.problem-card p{
+    color:#657388;
+}
+
+.problem-list{
+    margin-top:22px;
+    display:grid;
+    gap:12px;
+}
+
+.problem-list div{
+    padding:13px 15px;
+    border-radius:12px;
+    background:#f8fafc;
+    border:1px solid #edf1f5;
+}
+
+
+/* =========================================================
+   BLOOD NETWORK
+   ========================================================= */
+
+.network{
+    background:#f6f9fc;
+}
+
+.search-box{
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr auto;
+    gap:12px;
+    background:white;
+    padding:15px;
+    border:1px solid #e2e9f0;
+    border-radius:18px;
+    box-shadow:0 10px 30px rgba(30,50,70,.06);
+}
+
+.search-box input,
+.search-box select{
+    width:100%;
+    padding:13px 14px;
+    border:1px solid #dce4ec;
+    border-radius:10px;
+    outline:none;
+    background:white;
+}
+
+.search-box input:focus,
+.search-box select:focus{
+    border-color:#b91c1c;
+    box-shadow:0 0 0 3px rgba(185,28,28,.08);
+}
+
+.resource-grid{
+    margin-top:30px;
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.resource-card{
+    background:white;
+    padding:22px;
+    border:1px solid #e2e9f0;
+    border-radius:18px;
+    transition:.3s;
+}
+
+.resource-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(30,50,70,.10);
+}
+
+.resource-top{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+}
+
+.resource-card h3{
+    font-size:18px;
+}
+
+.resource-card p{
+    color:#748195;
+    font-size:13px;
+}
+
+.demo-tag{
+    padding:5px 8px;
+    border-radius:7px;
+    background:#fff7ed;
+    color:#c2410c;
+    font-size:10px;
+    font-weight:800;
+    height:max-content;
+}
+
+.resource-meta{
+    margin-top:18px;
+    display:grid;
+    gap:9px;
+}
+
+.resource-meta div{
+    display:flex;
+    justify-content:space-between;
+    gap:10px;
+    font-size:13px;
+}
+
+.resource-meta span{
+    color:#788598;
+}
+
+.blood-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:6px;
+    margin-top:15px;
+}
+
+.blood-tag{
+    padding:5px 9px;
+    border-radius:7px;
+    background:#fef2f2;
+    color:#b91c1c;
+    font-size:12px;
+    font-weight:800;
+}
+
+
+/* =========================================================
+   FEATURES
+   ========================================================= */
+
+.features{
+    background:white;
+}
+
+.feature-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.feature{
+    padding:28px;
+    border:1px solid #e4ebf2;
+    border-radius:20px;
+    background:#fff;
+    transition:.3s;
+}
+
+.feature:hover{
+    transform:translateY(-5px);
+    box-shadow:0 18px 40px rgba(30,50,70,.08);
+}
+
+.icon{
+    width:48px;
+    height:48px;
+    display:grid;
+    place-items:center;
+    border-radius:14px;
+    background:#fff1f2;
+    color:#b91c1c;
+    font-size:22px;
+}
+
+.feature h3{
+    margin-top:18px;
+    font-size:19px;
+}
+
+.feature p{
+    margin-top:8px;
+    color:#6d7a8c;
+    font-size:14px;
+}
+
+
+/* =========================================================
+   WORKFLOW
+   ========================================================= */
+
+.workflow{
+    background:#101827;
+    color:white;
+}
+
+.workflow .section-head p{
+    color:#aeb9c8;
+}
+
+.workflow-grid{
+    display:grid;
+    grid-template-columns:repeat(5,1fr);
+    gap:12px;
+}
+
+.step{
+    padding:22px;
+    border:1px solid rgba(255,255,255,.10);
+    border-radius:18px;
+    background:rgba(255,255,255,.04);
+}
+
+.step-number{
+    color:#fca5a5;
+    font-weight:900;
+    font-size:13px;
+}
+
+.step h3{
+    margin-top:12px;
+}
+
+.step p{
+    margin-top:8px;
+    color:#aeb9c8;
+    font-size:13px;
+}
+
+
+/* =========================================================
+   AI ASSISTANT
+   ========================================================= */
+
+.ai-section{
+    background:#f6f9fc;
+}
+
+.ai-box{
+    max-width:850px;
+    margin:auto;
+    background:white;
+    border:1px solid #e1e8ef;
+    border-radius:24px;
+    overflow:hidden;
+    box-shadow:0 20px 55px rgba(30,50,70,.08);
+}
+
+.ai-header{
+    padding:20px;
+    display:flex;
+    align-items:center;
+    gap:12px;
+    border-bottom:1px solid #edf1f5;
+}
+
+.ai-avatar{
+    width:43px;
+    height:43px;
+    border-radius:50%;
+    display:grid;
+    place-items:center;
+    background:#b91c1c;
+    color:white;
+}
+
+.ai-header strong{
+    display:block;
+}
+
+.ai-header small{
+    color:#15803d;
+}
+
+.chat-area{
+    min-height:280px;
+    max-height:380px;
+    overflow-y:auto;
+    padding:20px;
+}
+
+.chat-message{
+    max-width:78%;
+    padding:12px 15px;
+    border-radius:15px;
+    margin-bottom:12px;
+    font-size:14px;
+}
+
+.chat-message.bot{
+    background:#f2f5f8;
+    color:#334155;
+    border-top-left-radius:5px;
+}
+
+.chat-message.user{
+    margin-left:auto;
+    background:#b91c1c;
+    color:white;
+    border-top-right-radius:5px;
+}
+
+.chat-input{
+    display:flex;
+    gap:10px;
+    padding:15px;
+    border-top:1px solid #edf1f5;
+}
+
+.chat-input input{
+    flex:1;
+    padding:13px 15px;
+    border:1px solid #dce4ec;
+    border-radius:11px;
+    outline:none;
+}
+
+.chat-input button{
+    width:48px;
+    border:0;
+    border-radius:11px;
+    background:#b91c1c;
+    color:white;
+}
+
+
+/* =========================================================
+   SAFETY
+   ========================================================= */
+
+.safety{
+    background:white;
+}
+
+.safety-box{
+    padding:30px;
+    border-radius:22px;
+    border:1px solid #fecaca;
+    background:#fff7f7;
+}
+
+.safety-box h3{
+    color:#991b1b;
+}
+
+.safety-box p{
+    margin-top:10px;
+    color:#64748b;
+}
+
+.safety-list{
+    margin-top:18px;
+    display:grid;
+    gap:9px;
+}
+
+.safety-list div{
+    padding:11px 13px;
+    background:white;
+    border:1px solid #fee2e2;
+    border-radius:10px;
+}
+
+
+/* =========================================================
+   CTA
+   ========================================================= */
+
+.cta{
+    background:
+        radial-gradient(circle at 80% 20%,rgba(255,255,255,.14),transparent 30%),
+        #b91c1c;
+    color:white;
+    text-align:center;
+}
+
+.cta-inner{
+    max-width:800px;
+    margin:auto;
+}
+
+.cta h2{
+    font-size:clamp(30px,4vw,48px);
+    line-height:1.1;
+}
+
+.cta p{
+    margin-top:15px;
+    color:#fee2e2;
+}
+
+.cta-actions{
+    margin-top:25px;
+    display:flex;
+    justify-content:center;
+    flex-wrap:wrap;
+    gap:12px;
+}
+
+.cta .btn-primary{
+    background:white;
+    color:#991b1b;
+}
+
+.cta .btn-secondary{
+    background:transparent;
+    color:white;
+    border-color:rgba(255,255,255,.45);
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+footer{
+    background:#0c1320;
+    color:#cbd5e1;
+    padding:50px 22px 25px;
+}
+
+.footer-grid{
+    max-width:1200px;
+    margin:auto;
+    display:grid;
+    grid-template-columns:1.5fr 1fr 1fr;
+    gap:35px;
+}
+
+.footer-logo{
+    color:white;
+    font-size:21px;
+    font-weight:800;
+}
+
+.footer-grid p{
+    margin-top:12px;
+    color:#8794a7;
+    font-size:13px;
+}
+
+.footer-grid h4{
+    color:white;
+    margin-bottom:12px;
+}
+
+.footer-links{
+    display:grid;
+    gap:8px;
+}
+
+.footer-links a{
+    color:#98a5b7;
+    font-size:13px;
+}
+
+.footer-links a:hover{
+    color:white;
+}
+
+.footer-bottom{
+    max-width:1200px;
+    margin:35px auto 0;
+    padding-top:20px;
+    border-top:1px solid rgba(255,255,255,.08);
+    font-size:12px;
+    color:#718096;
+}
+
+
+/* =========================================================
+   SCROLL REVEAL
+   ========================================================= */
+
+.reveal{
+    opacity:0;
+    transform:translateY(25px);
+    transition:opacity .7s ease,transform .7s ease;
+}
+
+.reveal.visible{
+    opacity:1;
+    transform:translateY(0);
+}
+
+
+/* =========================================================
+   TOAST
+   ========================================================= */
+
+.toast{
+    position:fixed;
+    right:20px;
+    bottom:20px;
+    z-index:2000;
+    max-width:320px;
+    padding:14px 17px;
+    border-radius:12px;
+    background:#101827;
+    color:white;
+    box-shadow:0 15px 35px rgba(0,0,0,.2);
+    transform:translateY(120px);
+    opacity:0;
+    transition:.3s;
+}
+
+.toast.show{
+    transform:translateY(0);
+    opacity:1;
+}
+
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media(max-width:900px){
+
+    .hero-inner{
+        grid-template-columns:1fr;
+        padding-top:60px;
     }
 
-    html {
-      scroll-behavior: smooth;
+    .stats-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    body {
-      font-family: Arial, sans-serif;
-      color: #172033;
-      background: #ffffff;
-      line-height: 1.6;
+    .stat:nth-child(2){
+        border-right:0;
     }
 
-    a {
-      text-decoration: none;
-      color: inherit;
+    .problem-grid{
+        grid-template-columns:1fr;
     }
 
-    /* NAVBAR */
-
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(255,255,255,0.96);
-      border-bottom: 1px solid #e5e7eb;
-      padding: 14px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+    .resource-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 21px;
-      font-weight: 800;
-      color: #b91c1c;
+    .feature-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    .logo-icon {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
-      background: #fee2e2;
-      display: grid;
-      place-items: center;
-      font-size: 20px;
+    .workflow-grid{
+        grid-template-columns:repeat(2,1fr);
     }
 
-    nav {
-      display: flex;
-      gap: 20px;
+    .search-box{
+        grid-template-columns:1fr 1fr;
     }
 
-    nav a {
-      font-size: 14px;
-      font-weight: 600;
-      color: #475569;
+    .footer-grid{
+        grid-template-columns:1fr 1fr;
+    }
+}
+
+@media(max-width:650px){
+
+    .nav-links{
+        display:none;
+        position:absolute;
+        left:15px;
+        right:15px;
+        top:70px;
+        padding:18px;
+        background:white;
+        border:1px solid #e4ebf2;
+        border-radius:16px;
+        box-shadow:0 20px 40px rgba(30,50,70,.12);
+        flex-direction:column;
+        align-items:stretch;
     }
 
-    nav a:hover {
-      color: #b91c1c;
+    .nav-links.open{
+        display:flex;
     }
 
-    /* HERO */
-
-    .hero {
-      min-height: 650px;
-      padding: 90px 7%;
-      display: grid;
-      grid-template-columns: 1.2fr .8fr;
-      gap: 50px;
-      align-items: center;
-
-      background:
-        radial-gradient(circle at 85% 20%, #fee2e2, transparent 30%),
-        linear-gradient(180deg,#fff,#fff7f7);
+    .nav-links a{
+        padding:10px;
     }
 
-    .tag {
-      color: #b91c1c;
-      font-size: 12px;
-      font-weight: 800;
-      letter-spacing: 2px;
+    .menu-btn{
+        display:block;
     }
 
-    h1 {
-      font-size: clamp(42px,6vw,76px);
-      line-height: 1.02;
-      margin: 15px 0;
-      letter-spacing: -3px;
+    .hero-inner{
+        min-height:auto;
     }
 
-    .hero p {
-      max-width: 650px;
-      color: #64748b;
-      font-size: 18px;
+    .hero h1{
+        letter-spacing:-1px;
     }
 
-    .buttons {
-      margin-top: 30px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
+    .hero-card{
+        min-height:360px;
     }
 
-    .btn {
-      padding: 14px 20px;
-      border-radius: 12px;
-      font-weight: 800;
-      display: inline-block;
-      transition: .2s;
+    .stats-grid{
+        grid-template-columns:1fr 1fr;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
+    .stat{
+        border-bottom:1px solid #edf1f5;
     }
 
-    .primary {
-      background: #b91c1c;
-      color: white;
-      box-shadow: 0 10px 25px rgba(185,28,28,.2);
+    .resource-grid,
+    .feature-grid,
+    .workflow-grid{
+        grid-template-columns:1fr;
     }
 
-    .secondary {
-      border: 1px solid #e2e8f0;
-      background: white;
+    .search-box{
+        grid-template-columns:1fr;
     }
 
-    /* BLOOD CARD */
-
-    .blood-card {
-      background: white;
-      border: 1px solid #fee2e2;
-      border-radius: 28px;
-      padding: 40px;
-      text-align: center;
-      box-shadow: 0 20px 50px rgba(15,23,42,.1);
+    .footer-grid{
+        grid-template-columns:1fr;
     }
 
-    .blood-drop {
-      width: 100px;
-      height: 100px;
-      margin: 10px auto 25px;
-      border-radius: 50%;
-      background: #fee2e2;
-      color: #b91c1c;
-      display: grid;
-      place-items: center;
-      font-size: 45px;
-      animation: pulse 2s infinite;
+    .chat-message{
+        max-width:90%;
     }
-
-    @keyframes pulse {
-      50% {
-        transform: scale(1.08);
-        box-shadow: 0 0 0 18px rgba(185,28,28,.05);
-      }
-    }
-
-    .blood-card h2 {
-      margin-bottom: 8px;
-    }
-
-    .blood-card p {
-      color: #64748b;
-    }
-
-    /* SECTIONS */
-
-    section.content {
-      padding: 80px 7%;
-    }
-
-    .section-title {
-      margin-bottom: 35px;
-    }
-
-    .section-title small {
-      color: #b91c1c;
-      font-weight: 800;
-      letter-spacing: 2px;
-    }
-
-    .section-title h2 {
-      font-size: 40px;
-      margin-top: 8px;
-    }
-
-    /* FEATURE CARDS */
-
-    .cards {
-      display: grid;
-      grid-template-columns: repeat(3,1fr);
-      gap: 18px;
-    }
-
-    .card {
-      padding: 28px;
-      border: 1px solid #e2e8f0;
-      border-radius: 18px;
-      background: white;
-      transition: .25s;
-    }
-
-    .card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 15px 35px rgba(15,23,42,.08);
-    }
-
-    .card-icon {
-      font-size: 30px;
-      margin-bottom: 12px;
-    }
-
-    .card h3 {
-      margin-bottom: 8px;
-    }
-
-    .card p {
-      color: #64748b;
-    }
-
-    /* WORKFLOW */
-
-    .workflow {
-      background: #f8fafc;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      gap: 15px;
-    }
-
-    .step {
-      background: white;
-      padding: 25px;
-      border-radius: 15px;
-      border-top: 3px solid #b91c1c;
-    }
-
-    .step-number {
-      color: #b91c1c;
-      font-weight: 900;
-    }
-
-    .step h3 {
-      margin: 8px 0;
-    }
-
-    .step p {
-      color: #64748b;
-      font-size: 14px;
-    }
-
-    /* EMERGENCY */
-
-    .emergency {
-      margin-top: 30px;
-      padding: 25px;
-      border-radius: 18px;
-      background: #fff1f2;
-      border: 1px solid #fecdd3;
-    }
-
-    .emergency h3 {
-      color: #991b1b;
-      margin-bottom: 5px;
-    }
-
-    .emergency p {
-      color: #7f1d1d;
-    }
-
-    /* FOOTER */
-
-    footer {
-      padding: 35px 7%;
-      background: #111827;
-      color: #cbd5e1;
-      display: flex;
-      justify-content: space-between;
-      gap: 20px;
-    }
-
-    footer strong {
-      color: white;
-      font-size: 20px;
-    }
-
-    /* MOBILE */
-
-    @media(max-width:850px) {
-
-      nav {
-        display: none;
-      }
-
-      .hero {
-        grid-template-columns: 1fr;
-        padding: 60px 6%;
-      }
-
-      .cards,
-      .steps {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      section.content {
-        padding: 60px 6%;
-      }
-    }
-
-    @media(max-width:550px) {
-
-      h1 {
-        font-size: 45px;
-      }
-
-      .cards,
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      .buttons .btn {
-        width: 100%;
-        text-align: center;
-      }
-
-      footer {
-        display: block;
-      }
-    }
-  </style>
+}
+</style>
 </head>
+
 
 <body>
 
+<!-- =======================================================
+     NAVIGATION
+     ======================================================= -->
+
 <header>
+    <div class="navbar">
 
-  <a class="logo" href="index.html">
-    <span class="logo-icon">🩸</span>
-    VitalLoop
-  </a>
+        <a href="#home" class="logo">
+            <span class="logo-mark">✚</span>
+            <span>VitalLoop</span>
+        </a>
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="blood-request.html">Need Blood</a>
-    <a href="donor.html">Become a Donor</a>
-    <a href="blood-education.html">Education</a>
-    <a href="camps.html">Camps</a>
-    <a href="about.html">About</a>
-  </nav>
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">
+            ☰
+        </button>
 
+        <nav class="nav-links" id="navLinks">
+            <a href="#home">Home</a>
+            <a href="#network">Blood Network</a>
+            <a href="#features">Features</a>
+            <a href="#assistant">AI Assistant</a>
+            <a href="blood-request.html">Request Blood</a>
+            <a href="donor.html" class="nav-btn">Become a Donor</a>
+        </nav>
+
+    </div>
 </header>
 
 
-<main>
+<!-- =======================================================
+     HERO
+     ======================================================= -->
 
-<!-- HERO -->
+<main id="home">
 
 <section class="hero">
 
-  <div>
+    <div class="hero-inner">
 
-    <span class="tag">VITALLOOP • BLOOD RESOURCE NETWORK</span>
+        <div class="reveal">
 
-    <h1>
-      When blood is needed,
-      finding the right resource
-      should be easier.
-    </h1>
+            <span class="badge">
+                🩸 Blood Resource Network
+            </span>
 
-    <p>
-      VitalLoop helps families discover relevant blood resources,
-      coordinate potential donors and understand blood-safety
-      information through one connected experience.
-    </p>
+            <h1>
+                Healthcare
+                <span>shouldn't</span>
+                be hard to navigate.
+            </h1>
 
-    <div class="buttons">
+            <p>
+                VitalLoop is a healthcare technology prototype
+                designed to help people discover relevant blood
+                resources, raise requests and coordinate with
+                potential donors through one connected experience.
+            </p>
 
-      <a class="btn primary" href="blood-request.html">
-        🩸 Find Blood Resource
-      </a>
+            <div class="hero-actions">
 
-      <a class="btn secondary" href="donor.html">
-        Become a Donor
-      </a>
+                <a href="blood-request.html"
+                   class="btn btn-primary">
+                    🩸 Request Blood
+                </a>
+
+                <a href="donor.html"
+                   class="btn btn-secondary">
+                    Become a Donor
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="hero-card reveal">
+
+            <div class="pulse">
+                +
+            </div>
+
+            <div class="dashboard">
+
+                <div class="dashboard-title">
+                    <span>VitalLoop Network</span>
+                    <span class="status">
+                        ● Prototype
+                    </span>
+                </div>
+
+                <div class="dashboard-grid">
+
+                    <div class="mini-card">
+                        <strong>24/7</strong>
+                        <small>Resource discovery</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>4+</strong>
+                        <small>Core workflows</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>AI</strong>
+                        <small>Health guidance</small>
+                    </div>
+
+                    <div class="mini-card">
+                        <strong>Free</strong>
+                        <small>Prototype access</small>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
-
-  </div>
-
-
-  <div class="blood-card">
-
-    <div class="blood-drop">
-      🩸
-    </div>
-
-    <h2>Blood Exchange Assistance</h2>
-
-    <p>
-      Family unable to arrange a suitable donor?
-      VitalLoop can help discover potential donors
-      and authorized healthcare resources.
-    </p>
-
-    <br>
-
-    <strong>
-      Need → Match → Verify → Coordinate
-    </strong>
-
-    <br><br>
-
-    <small>
-      Final compatibility, testing, availability and issue
-      are determined by authorized blood centres and
-      healthcare professionals.
-    </small>
-
-  </div>
 
 </section>
 
 
-<!-- FEATURES -->
+<!-- =======================================================
+     STATS
+     ======================================================= -->
 
-<section class="content">
+<section class="stats">
 
-  <div class="section-title">
-    <small>WHAT VITALLOOP OFFERS</small>
-    <h2>One platform for blood support</h2>
-  </div>
+    <div class="stats-grid reveal">
 
-  <div class="cards">
+        <div class="stat">
+            <strong>01</strong>
+            <span>Connected Platform</span>
+        </div>
 
-    <a class="card" href="blood-request.html">
+        <div class="stat">
+            <strong>24/7</strong>
+            <span>Digital Discovery</span>
+        </div>
 
-      <div class="card-icon">🩸</div>
+        <div class="stat">
+            <strong>AI</strong>
+            <span>Guided Information</span>
+        </div>
 
-      <h3>Find Blood Resource</h3>
+        <div class="stat">
+            <strong>∞</strong>
+            <span>Possibilities to Scale</span>
+        </div>
 
-      <p>
-        Search resources using blood group and location
-        in the prototype dataset.
-      </p>
-
-    </a>
-
-
-    <a class="card" href="blood-request.html">
-
-      <div class="card-icon">🚨</div>
-
-      <h3>Raise Blood Request</h3>
-
-      <p>
-        Create a structured request when a patient
-        needs blood support.
-      </p>
-
-    </a>
-
-
-    <a class="card" href="donor.html">
-
-      <div class="card-icon">🤝</div>
-
-      <h3>Donor Network</h3>
-
-      <p>
-        Register interest as a potential donor for
-        future coordination.
-      </p>
-
-    </a>
-
-
-    <a class="card" href="blood-education.html">
-
-      <div class="card-icon">📚</div>
-
-      <h3>Blood Education</h3>
-
-      <p>
-        Learn how donation, testing and transfusion
-        safety work.
-      </p>
-
-    </a>
-
-
-    <a class="card" href="camps.html">
-
-      <div class="card-icon">🏥</div>
-
-      <h3>Blood Camps</h3>
-
-      <p>
-        Discover upcoming blood donation camp
-        information.
-      </p>
-
-    </a>
-
-
-    <a class="card" href="about.html#charges">
-
-      <div class="card-icon">💰</div>
-
-      <h3>Processing Charges</h3>
-
-      <p>
-        Understand applicable processing charges
-        without treating blood as a commodity.
-      </p>
-
-    </a>
-
-  </div>
+    </div>
 
 </section>
 
 
-<!-- WORKFLOW -->
+<!-- =======================================================
+     PROBLEM
+     ======================================================= -->
 
-<section class="content workflow">
+<section class="problem">
 
-  <div class="section-title">
+    <div class="container">
 
-    <small>HOW IT WORKS</small>
+        <div class="section-head reveal">
 
-    <h2>From need to coordinated support</h2>
+            <div class="eyebrow">
+                The Problem
+            </div>
 
-  </div>
+            <h2>
+                Finding the right blood resource
+                can become a race against time.
+            </h2>
+
+            <p>
+                Families may need to contact multiple places,
+                search different sources and coordinate donors
+                while dealing with an already stressful situation.
+            </p>
+
+        </div>
 
 
-  <div class="steps">
+        <div class="problem-grid">
 
-    <div class="step">
-      <span class="step-number">01</span>
-      <h3>Raise Request</h3>
-      <p>
-        Enter blood group, units, healthcare facility
-        and location.
-      </p>
+            <div class="problem-card reveal">
+
+                <h3>
+                    Traditional journey
+                </h3>
+
+                <p>
+                    Information can be fragmented across hospitals,
+                    blood centres, phone calls and personal contacts.
+                </p>
+
+                <div class="problem-list">
+
+                    <div>🔎 Search multiple sources</div>
+                    <div>📞 Make repeated calls</div>
+                    <div>📍 Check different locations</div>
+                    <div>🩸 Coordinate potential donors</div>
+
+                </div>
+
+            </div>
+
+
+            <div class="problem-card reveal">
+
+                <h3>
+                    VitalLoop approach
+                </h3>
+
+                <p>
+                    Bring discovery and coordination into one
+                    simple digital workflow.
+                </p>
+
+                <div class="problem-list">
+
+                    <div>1️⃣ Raise a blood request</div>
+                    <div>2️⃣ Select blood group and location</div>
+                    <div>3️⃣ Discover relevant resources</div>
+                    <div>4️⃣ Coordinate through authorized centres</div>
+
+                </div>
+
+            </div>
+
+        </div>
+
     </div>
-
-
-    <div class="step">
-      <span class="step-number">02</span>
-      <h3>Find Potential Match</h3>
-      <p>
-        VitalLoop searches available prototype
-        resource and donor information.
-      </p>
-    </div>
-
-
-    <div class="step">
-      <span class="step-number">03</span>
-      <h3>Verify</h3>
-      <p>
-        Authorized blood centres perform screening,
-        testing and compatibility checks.
-      </p>
-    </div>
-
-
-    <div class="step">
-      <span class="step-number">04</span>
-      <h3>Coordinate</h3>
-      <p>
-        Families receive clear next-step information
-        for safe coordination.
-      </p>
-    </div>
-
-  </div>
-
-
-  <div class="emergency">
-
-    <h3>🚨 Important Safety Notice</h3>
-
-    <p>
-      VitalLoop does not collect, test, store, transport,
-      issue or sell blood. Blood donation and transfusion
-      must always be handled by authorized healthcare
-      professionals and blood centres.
-    </p>
-
-  </div>
 
 </section>
 
 
-<!-- EDUCATION -->
+<!-- =======================================================
+     BLOOD NETWORK
+     ======================================================= -->
 
-<section class="content">
+<section class="network" id="network">
 
-  <div class="section-title">
+    <div class="container">
 
-    <small>LEARN & STAY SAFE</small>
+        <div class="section-head reveal">
 
-    <h2>Understand blood better</h2>
+            <div class="eyebrow">
+                Blood Resource Network
+            </div>
 
-  </div>
+            <h2>
+                Discover relevant blood resources.
+            </h2>
 
+            <p>
+                Search the prototype dataset by blood group,
+                city or resource name.
+            </p>
 
-  <div class="cards">
-
-    <a class="card" href="blood-education.html">
-
-      <div class="card-icon">🩸</div>
-
-      <h3>How Blood Donation Works</h3>
-
-      <p>
-        Learn about screening, donation and
-        post-donation care.
-      </p>
-
-    </a>
+        </div>
 
 
-    <a class="card" href="blood-education.html#transfusion">
+        <div class="search-box reveal">
 
-      <div class="card-icon">💉</div>
+            <input
+                type="search"
+                id="resourceSearch"
+                placeholder="Search resource or city..."
+                aria-label="Search blood resources"
+            >
 
-      <h3>How Transfusion Works</h3>
+            <select id="bloodFilter">
+                <option value="">All blood groups</option>
+                <option value="A+">A+</option>
+                <option value="A-">A-</option>
+                <option value="B+">B+</option>
+                <option value="B-">B-</option>
+                <option value="AB+">AB+</option>
+                <option value="AB-">AB-</option>
+                <option value="O+">O+</option>
+                <option value="O-">O-</option>
+            </select>
 
-      <p>
-        Understand identification, compatibility
-        and monitoring.
-      </p>
+            <select id="cityFilter">
+                <option value="">All cities</option>
+                <option value="Lucknow">Lucknow</option>
+                <option value="Kanpur">Kanpur</option>
+                <option value="Delhi">Delhi</option>
+            </select>
 
-    </a>
+            <button
+                class="btn btn-primary"
+                id="searchBtn">
+                Search
+            </button>
+
+        </div>
 
 
-    <a class="card" href="blood-education.html#reaction">
+        <div class="resource-grid" id="resourceList">
 
-      <div class="card-icon">🚨</div>
+            <article class="resource-card reveal">
 
-      <h3>Transfusion Reaction</h3>
+                <div class="resource-top">
 
-      <p>
-        Know when to immediately alert
-        healthcare staff.
-      </p>
+                    <div>
+                        <h3>
+                            Demo Blood Centre
+                        </h3>
 
-    </a>
+                        <p>
+                            Authorized-resource prototype
+                        </p>
+                    </div>
 
-  </div>
+                    <span class="demo-tag">
+                        DEMO
+                    </span>
+
+                </div>
+
+                <div class="resource-meta">
+
+                    <div>
+                        <span>City</span>
+                        <strong>Lucknow</strong>
+                    </div>
+
+                    <div>
+                        <span>Area</span>
+                        <strong>Central Area</strong>
+                    </div>
+
+                </div>
+
+                <div class="blood-tags">
+                    <span class="blood-tag">A+</span>
+                    <span class="blood-tag">B+</span>
+                    <span class="blood-tag">O+</span>
+                    <span class="blood-tag">AB+</span>
+                </div>
+
+            </article>
+
+
+            <article class="resource-card reveal">
+
+                <div class="resource-top">
+
+                    <div>
+                        <h3>
+                            Demo Blood Resource
+                        </h3>
+
+                        <p>
+                            Healthcare-resource prototype
+                        </p>
+                    </div>
+
+                    <span class="demo-tag">
+                        DEMO
+                    </span>
+
+                </div>
+
+                <div class="resource-meta">
+
+                    <div>
+                        <span>City</span>
+                        <strong>Kanpur</strong>
+                    </div>
+
+                    <div>
+                        <span>Area</span>
+                        <strong>Medical District</strong>
+                    </div>
+
+                </div>
+
+                <div class="blood-tags">
+                    <span class="blood-tag">A-</span>
+                    <span class="blood-tag">B-</span>
+                    <span class="blood-tag">O-</span>
+                    <span class="blood-tag">AB-</span>
+                </div>
+
+            </article>
+
+
+            <article class="resource-card reveal">
+
+                <div class="resource-top">
+
+                    <div>
+                        <h3>
+                            Demo Resource Centre
+                        </h3>
+
+                        <p>
+                            Blood-resource prototype
+                        </p>
+                    </div>
+
+                    <span class="demo-tag">
+                        DEMO
+                    </span>
+
+                </div>
+
+                <div class="resource-meta">
+
+                    <div>
+                        <span>City</span>
+                        <strong>Delhi</strong>
+                    </div>
+
+                    <div>
+                        <span>Area</span>
+                        <strong>Central Delhi</strong>
+                    </div>
+
+                </div>
+
+                <div class="blood-tags">
+                    <span class="blood-tag">A+</span>
+                    <span class="blood-tag">O+</span>
+                    <span class="blood-tag">O-</span>
+                    <span class="blood-tag">B+</span>
+                </div>
+
+            </article>
+
+        </div>
+
+
+        <div style="
+            margin-top:20px;
+            padding:16px;
+            background:#fff7ed;
+            border:1px solid #fed7aa;
+            border-radius:13px;
+            color:#9a3412;
+            font-size:13px;
+        ">
+
+            ⚠️ <strong>Prototype notice:</strong>
+            The displayed resources are demonstration data.
+            Availability is not live or guaranteed.
+            Final blood availability, compatibility and issue
+            are determined by authorized blood centres and
+            qualified healthcare professionals.
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     FEATURES
+     ======================================================= -->
+
+<section class="features" id="features">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+
+            <div class="eyebrow">
+                One Connected Experience
+            </div>
+
+            <h2>
+                Built around real healthcare navigation needs.
+            </h2>
+
+            <p>
+                VitalLoop brings multiple useful workflows
+                together without pretending to replace healthcare
+                professionals.
+            </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+            <div class="feature reveal">
+                <div class="icon">🩸</div>
+                <h3>Blood Resource Discovery</h3>
+                <p>
+                    Search relevant blood resources by group,
+                    location and prototype availability data.
+                </p>
+            </div>
+
+
+            <div class="feature reveal">
+                <div class="icon">🚨</div>
+                <h3>Emergency Support</h3>
+                <p>
+                    Provide quick access to emergency guidance
+                    and relevant healthcare navigation options.
+                </p>
+            </div>
+
+
+            <div class="feature reveal">
+                <div class="icon">🤖</div>
+                <h3>AI Health Assistant</h3>
+                <p>
+                    Offer general educational information with
+                    safety boundaries and professional escalation.
+                </p>
+            </div>
+
+
+            <div class="feature reveal">
+                <div class="icon">👥</div>
+                <h3>Donor Coordination</h3>
+                <p>
+                    Help users register potential donors and
+                    coordinate through authorized healthcare channels.
+                </p>
+            </div>
+
+
+            <div class="feature reveal">
+                <div class="icon">📚</div>
+                <h3>Blood Education</h3>
+                <p>
+                    Learn about donation, testing, compatibility
+                    and transfusion safety.
+                </p>
+            </div>
+
+
+            <div class="feature reveal">
+                <div class="icon">🏥</div>
+                <h3>Healthcare Resources</h3>
+                <p>
+                    Connect users with information about relevant
+                    healthcare facilities and services.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     WORKFLOW
+     ======================================================= -->
+
+<section class="workflow">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+
+            <div class="eyebrow">
+                How It Works
+            </div>
+
+            <h2>
+                From request to coordinated discovery.
+            </h2>
+
+            <p>
+                A simple workflow designed to reduce information
+                searching during stressful situations.
+            </p>
+
+        </div>
+
+
+        <div class="workflow-grid">
+
+            <div class="step reveal">
+                <div class="step-number">STEP 01</div>
+                <h3>Request</h3>
+                <p>
+                    Create a blood-resource request with basic
+                    information.
+                </p>
+            </div>
+
+            <div class="step reveal">
+                <div class="step-number">STEP 02</div>
+                <h3>Match</h3>
+                <p>
+                    Select blood group and preferred location.
+                </p>
+            </div>
+
+            <div class="step reveal">
+                <div class="step-number">STEP 03</div>
+                <h3>Discover</h3>
+                <p>
+                    View potentially relevant resources in the
+                    prototype network.
+                </p>
+            </div>
+
+            <div class="step reveal">
+                <div class="step-number">STEP 04</div>
+                <h3>Coordinate</h3>
+                <p>
+                    Coordinate with an authorized blood centre
+                    or healthcare facility.
+                </p>
+            </div>
+
+            <div class="step reveal">
+                <div class="step-number">STEP 05</div>
+                <h3>Verify</h3>
+                <p>
+                    Healthcare professionals make final decisions
+                    on compatibility and blood issue.
+                </p>
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     AI ASSISTANT
+     ======================================================= -->
+
+<section class="ai-section" id="assistant">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+
+            <div class="eyebrow">
+                VitalLoop Assistant
+            </div>
+
+            <h2>
+                Ask. Understand. Navigate.
+            </h2>
+
+            <p>
+                A controlled AI-style prototype for general
+                healthcare education and VitalLoop navigation.
+            </p>
+
+        </div>
+
+
+        <div class="ai-box reveal">
+
+            <div class="ai-header">
+
+                <div class="ai-avatar">
+                    🤖
+                </div>
+
+                <div>
+                    <strong>
+                        VitalLoop Assistant
+                    </strong>
+
+                    <small>
+                        ● Prototype assistant
+                    </small>
+                </div>
+
+            </div>
+
+
+            <div class="chat-area" id="chatArea">
+
+                <div class="chat-message bot">
+                    Hello! I'm the VitalLoop Assistant.
+                    I can help with general healthcare information,
+                    blood-resource navigation and donation education.
+                </div>
+
+            </div>
+
+
+            <div class="chat-input">
+
+                <input
+                    id="chatInput"
+                    type="text"
+                    placeholder="Ask a healthcare question..."
+                    autocomplete="off"
+                >
+
+                <button
+                    id="sendChat"
+                    aria-label="Send message">
+                    ➤
+                </button>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     SAFETY
+     ======================================================= -->
+
+<section class="safety">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+
+            <div class="eyebrow">
+                Safety & Trust
+            </div>
+
+            <h2>
+                Technology should support healthcare,
+                not replace it.
+            </h2>
+
+        </div>
+
+
+        <div class="safety-box reveal">
+
+            <h3>
+                Important prototype boundaries
+            </h3>
+
+            <p>
+                VitalLoop is designed as a discovery, matching
+                and coordination layer. It does not independently
+                perform medical decisions.
+            </p>
+
+
+            <div class="safety-list">
+
+                <div>
+                    ✓ VitalLoop does not collect or test blood.
+                </div>
+
+                <div>
+                    ✓ VitalLoop does not store, transport or issue blood.
+                </div>
+
+                <div>
+                    ✓ Blood compatibility decisions remain with qualified professionals.
+                </div>
+
+                <div>
+                    ✓ Demo resource availability is not guaranteed or real-time.
+                </div>
+
+                <div>
+                    ✓ The AI assistant provides educational information, not diagnosis.
+                </div>
+
+                <div>
+                    ✓ Urgent medical situations require professional emergency care.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =======================================================
+     CTA
+     ======================================================= -->
+
+<section class="cta">
+
+    <div class="cta-inner reveal">
+
+        <h2>
+            Healthier People.
+            Brighter Tomorrow.
+        </h2>
+
+        <p>
+            Your Complete Healthcare Journey — connected
+            through a simpler digital experience.
+        </p>
+
+        <div class="cta-actions">
+
+            <a href="blood-request.html"
+               class="btn btn-primary">
+                Create Blood Request
+            </a>
+
+            <a href="donor.html"
+               class="btn btn-secondary">
+                Register as Donor
+            </a>
+
+        </div>
+
+    </div>
 
 </section>
 
 </main>
 
 
+<!-- =======================================================
+     FOOTER
+     ======================================================= -->
+
 <footer>
 
-  <div>
+    <div class="footer-grid">
 
-    <strong>VitalLoop</strong>
+        <div>
 
-    <p>
-      Your Complete Healthcare Journey
-    </p>
+            <div class="footer-logo">
+                ✚ VitalLoop
+            </div>
 
-  </div>
+            <p>
+                Your Complete Healthcare Journey.
+                A healthcare technology prototype focused
+                on discovery, coordination and accessibility.
+            </p>
 
-  <div>
-    SIH Healthcare Technology Prototype
-  </div>
+        </div>
+
+
+        <div>
+
+            <h4>Explore</h4>
+
+            <div class="footer-links">
+
+                <a href="about.html">About VitalLoop</a>
+                <a href="blood-request.html">Blood Request</a>
+                <a href="donor.html">Become a Donor</a>
+                <a href="blood-education.html">Blood Education</a>
+
+            </div>
+
+        </div>
+
+
+        <div>
+
+            <h4>Resources</h4>
+
+            <div class="footer-links">
+
+                <a href="camps.html">Donation Camps</a>
+                <a href="#network">Blood Network</a>
+                <a href="#assistant">AI Assistant</a>
+                <a href="README.md">Project Documentation</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <div class="footer-bottom">
+
+        © 2026 VitalLoop Blood Resource Network.
+        SIH healthcare technology prototype.
+        Demo data only.
+
+    </div>
 
 </footer>
+
+
+<div class="toast" id="toast"></div>
+
+
+<!-- =======================================================
+     JAVASCRIPT
+     ======================================================= -->
+
+<script>
+
+/* ---------------------------------------------------------
+   MOBILE MENU
+   --------------------------------------------------------- */
+
+const menuBtn =
+    document.getElementById("menuBtn");
+
+const navLinks =
+    document.getElementById("navLinks");
+
+menuBtn.addEventListener("click", () => {
+
+    navLinks.classList.toggle("open");
+
+});
+
+
+document.querySelectorAll(".nav-links a")
+.forEach(link => {
+
+    link.addEventListener("click", () => {
+
+        navLinks.classList.remove("open");
+
+    });
+
+});
+
+
+/* ---------------------------------------------------------
+   SCROLL REVEAL
+   --------------------------------------------------------- */
+
+const revealItems =
+    document.querySelectorAll(".reveal");
+
+
+const revealObserver =
+    new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if(entry.isIntersecting){
+
+                    entry.target.classList.add("visible");
+
+                    revealObserver.unobserve(
+                        entry.target
+                    );
+
+                }
+
+            });
+
+        },
+        {
+            threshold:.12
+        }
+    );
+
+
+revealItems.forEach(item => {
+
+    revealObserver.observe(item);
+
+});
+
+
+/* ---------------------------------------------------------
+   TOAST
+   --------------------------------------------------------- */
+
+function showToast(message){
+
+    const toast =
+        document.getElementById("toast");
+
+    toast.textContent = message;
+
+    toast.classList.add("show");
+
+    setTimeout(() => {
+
+        toast.classList.remove("show");
+
+    },3000);
+
+}
+
+
+/* ---------------------------------------------------------
+   RESOURCE SEARCH
+   --------------------------------------------------------- */
+
+const searchInput =
+    document.getElementById("resourceSearch");
+
+const bloodFilter =
+    document.getElementById("bloodFilter");
+
+const cityFilter =
+    document.getElementById("cityFilter");
+
+const searchBtn =
+    document.getElementById("searchBtn");
+
+const resourceList =
+    document.getElementById("resourceList");
+
+
+function searchResources(){
+
+    const query =
+        searchInput.value
+        .trim()
+        .toLowerCase();
+
+    const blood =
+        bloodFilter.value
+        .toLowerCase();
+
+    const city =
+        cityFilter.value
+        .toLowerCase();
+
+
+    const cards =
+        resourceList.querySelectorAll(
+            ".resource-card"
+        );
+
+
+    let found = 0;
+
+
+    cards.forEach(card => {
+
+        const text =
+            card.textContent.toLowerCase();
+
+
+        const matchesQuery =
+            !query ||
+            text.includes(query);
+
+
+        const matchesBlood =
+            !blood ||
+            text.includes(blood);
+
+
+        const matchesCity =
+            !city ||
+            text.includes(city);
+
+
+        if(
+            matchesQuery &&
+            matchesBlood &&
+            matchesCity
+        ){
+
+            card.style.display = "";
+
+            found++;
+
+        }else{
+
+            card.style.display = "none";
+
+        }
+
+    });
+
+
+    if(found === 0){
+
+        showToast(
+            "No matching demo resources found."
+        );
+
+    }else{
+
+        showToast(
+            found + " demo resource(s) found."
+        );
+
+    }
+
+}
+
+
+searchBtn.addEventListener(
+    "click",
+    searchResources
+);
+
+
+searchInput.addEventListener(
+    "keydown",
+    event => {
+
+        if(event.key === "Enter"){
+
+            searchResources();
+
+        }
+
+    }
+);
+
+
+/* ---------------------------------------------------------
+   AI ASSISTANT
+   --------------------------------------------------------- */
+
+const chatArea =
+    document.getElementById("chatArea");
+
+const chatInput =
+    document.getElementById("chatInput");
+
+const sendChat =
+    document.getElementById("sendChat");
+
+
+function addChatMessage(
+    message,
+    type
+){
+
+    const div =
+        document.createElement("div");
+
+    div.className =
+        "chat-message " + type;
+
+    div.textContent = message;
+
+    chatArea.appendChild(div);
+
+    chatArea.scrollTop =
+        chatArea.scrollHeight;
+
+}
+
+
+function assistantReply(message){
+
+    const text =
+        message
+        .toLowerCase();
+
+
+    if(
+        text.includes("emergency") ||
+        text.includes("accident") ||
+        text.includes("unconscious") ||
+        text.includes("not breathing") ||
+        text.includes("severe bleeding")
+    ){
+
+        return (
+            "This may require urgent medical attention. " +
+            "Please contact local emergency services or " +
+            "go to the nearest emergency department immediately. " +
+            "VitalLoop cannot diagnose or manage an emergency."
+        );
+
+    }
+
+
+    if(
+        text.includes("blood") ||
+        text.includes("donor") ||
+        text.includes("blood group")
+    ){
+
+        return (
+            "VitalLoop helps users discover and coordinate " +
+            "with relevant blood resources. Actual blood collection, " +
+            "testing, storage, compatibility decisions and issue " +
+            "are handled by authorized blood centres and qualified " +
+            "healthcare professionals."
+        );
+
+    }
+
+
+    if(
+        text.includes("donate") ||
+        text.includes("donation")
+    ){
+
+        return (
+            "Blood donation should take place through an authorized " +
+            "blood centre or approved donation camp. Eligibility " +
+            "is determined by trained healthcare staff."
+        );
+
+    }
+
+
+    if(
+        text.includes("medicine") ||
+        text.includes("tablet") ||
+        text.includes("dose") ||
+        text.includes("दवा")
+    ){
+
+        return (
+            "VitalLoop can provide general medicine information, " +
+            "but it does not replace a doctor or pharmacist. " +
+            "Do not start, stop or change medicines based only " +
+            "on an AI response."
+        );
+
+    }
+
+
+    if(
+        text.includes("fever") ||
+        text.includes("pain") ||
+        text.includes("cough") ||
+        text.includes("headache")
+    ){
+
+        return (
+            "Symptoms can have many possible causes. " +
+            "For persistent, worsening or concerning symptoms, " +
+            "please consult a qualified healthcare professional."
+        );
+
+    }
+
+
+    if(
+        text.includes("hello") ||
+        text.includes("hi") ||
+        text.includes("hey") ||
+        text.includes("namaste")
+    ){
+
+        return (
+            "Hello! I'm the VitalLoop Assistant. " +
+            "I can help with general healthcare information, " +
+            "blood-resource navigation and donation education."
+        );
+
+    }
+
+
+    return (
+        "I can help with general healthcare information, " +
+        "blood-resource navigation and VitalLoop features. " +
+        "I cannot diagnose conditions or replace a healthcare professional."
+    );
+
+}
+
+
+function sendMessage(){
+
+    const message =
+        chatInput.value.trim();
+
+
+    if(!message) return;
+
+
+    addChatMessage(
+        message,
+        "user"
+    );
+
+
+    chatInput.value = "";
+
+
+    const typing =
+        document.createElement("div");
+
+    typing.className =
+        "chat-message bot";
+
+    typing.textContent =
+        "VitalLoop Assistant is typing...";
+
+    chatArea.appendChild(typing);
+
+
+    chatArea.scrollTop =
+        chatArea.scrollHeight;
+
+
+    setTimeout(() => {
+
+        typing.remove();
+
+        addChatMessage(
+            assistantReply(message),
+            "bot"
+        );
+
+    },650);
+
+}
+
+
+sendChat.addEventListener(
+    "click",
+    sendMessage
+);
+
+
+chatInput.addEventListener(
+    "keydown",
+    event => {
+
+        if(
+            event.key === "Enter"
+        ){
+
+            sendMessage();
+
+        }
+
+    }
+);
+
+</script>
+
+
+<!-- Existing repository JavaScript -->
+<script src="js/app.js"></script>
 
 </body>
 </html>
