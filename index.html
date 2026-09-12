@@ -7,9 +7,13 @@
 <title>VitalLoop | Your Complete Healthcare Journey</title>
 
 <meta name="description"
-content="VitalLoop Blood Resource Network - Your Complete Healthcare Journey">
+content="VitalLoop - Your Complete Healthcare Journey. Blood resource discovery, blood requests, donor coordination and healthcare information.">
 
 <style>
+
+/* =========================================================
+   RESET
+========================================================= */
 
 *{
     margin:0;
@@ -20,7 +24,7 @@ content="VitalLoop Blood Resource Network - Your Complete Healthcare Journey">
 
 body{
     font-family:Arial,Helvetica,sans-serif;
-    background:#f3fbf6;
+    background:#f4fbf7;
     color:#10251c;
 }
 
@@ -29,114 +33,141 @@ a{
     color:inherit;
 }
 
-/* ================= SPLASH ================= */
+
+/* =========================================================
+   SPLASH SCREEN
+========================================================= */
 
 #splash{
     position:fixed;
     inset:0;
     z-index:99999;
-    background:linear-gradient(135deg,#006b35,#09a84f,#b9f5cd);
+
     display:flex;
-    align-items:center;
     justify-content:center;
-    animation:splashOut .8s ease 3.2s forwards;
+    align-items:center;
+
+    background:
+    radial-gradient(circle at 50% 40%,#18b75d 0%,#087c3d 45%,#034c28 100%);
+
+    animation:splashHide 1s ease 3.5s forwards;
 }
 
-.splash-box{
+.splash-content{
     text-align:center;
     color:white;
-    animation:splashIn 1.2s ease;
+    animation:splashIn 1.1s ease;
 }
 
 .splash-logo{
-    width:190px;
-    max-width:70vw;
+    width:180px;
+    max-width:65vw;
     height:auto;
-    border-radius:25px;
-    animation:logoFloat 2s ease-in-out infinite;
+
+    border-radius:24px;
+
+    animation:splashLogo 2s ease-in-out infinite;
 }
 
-.splash-name{
+.splash-title{
+    margin-top:18px;
     font-size:32px;
     font-weight:800;
-    margin-top:18px;
     letter-spacing:1px;
 }
 
-.splash-tag{
+.splash-subtitle{
     margin-top:7px;
     font-size:14px;
     opacity:.9;
 }
 
-.loading{
+.loader{
     width:190px;
     height:5px;
+
     margin:25px auto 0;
+
     background:rgba(255,255,255,.3);
     border-radius:20px;
+
     overflow:hidden;
 }
 
-.loading span{
+.loader span{
     display:block;
     width:0;
     height:100%;
     background:white;
-    animation:load 3s ease forwards;
+
+    animation:loader 3.2s ease forwards;
 }
 
 @keyframes splashIn{
     from{
         opacity:0;
-        transform:scale(.7);
+        transform:scale(.65);
     }
+
     to{
         opacity:1;
         transform:scale(1);
     }
 }
 
-@keyframes logoFloat{
+@keyframes splashLogo{
     0%,100%{
         transform:translateY(0);
     }
+
     50%{
         transform:translateY(-10px);
     }
 }
 
-@keyframes load{
+@keyframes loader{
     to{
         width:100%;
     }
 }
 
-@keyframes splashOut{
+@keyframes splashHide{
     to{
         opacity:0;
         visibility:hidden;
     }
 }
 
-/* ================= NAVBAR ================= */
+
+/* =========================================================
+   NAVBAR
+========================================================= */
 
 .navbar{
     position:fixed;
     top:0;
     left:0;
     width:100%;
+
     z-index:1000;
-    background:#ffffff;
-    border-bottom:1px solid #dceee3;
-    box-shadow:0 5px 25px rgba(0,80,40,.06);
+
+    background:rgba(255,255,255,.94);
+
+    backdrop-filter:blur(15px);
+
+    border-bottom:1px solid #dceee4;
+
+    box-shadow:
+    0 5px 25px rgba(0,80,40,.06);
 }
 
 .nav{
     max-width:1200px;
+    height:76px;
+
     margin:auto;
-    height:75px;
     padding:0 25px;
+
     display:flex;
     align-items:center;
     justify-content:space-between;
@@ -149,28 +180,36 @@ a{
 }
 
 .logo-icon{
-    width:43px;
-    height:43px;
+    width:44px;
+    height:44px;
+
     border-radius:14px;
-    background:linear-gradient(135deg,#06a64b,#006d36);
+
+    background:
+    linear-gradient(135deg,#0aaa50,#067638);
+
     color:white;
+
     display:flex;
-    justify-content:center;
     align-items:center;
+    justify-content:center;
+
+    font-size:25px;
     font-weight:bold;
-    font-size:24px;
-    box-shadow:0 8px 20px rgba(0,130,60,.2);
+
+    box-shadow:
+    0 9px 22px rgba(0,130,60,.2);
 }
 
 .logo-text strong{
     display:block;
-    color:#067b3c;
+    color:#067c3d;
     font-size:21px;
 }
 
 .logo-text small{
     display:block;
-    color:#65766d;
+    color:#68786f;
     font-size:9px;
 }
 
@@ -181,9 +220,10 @@ a{
 }
 
 .nav-links a{
+    color:#30473d;
     font-size:14px;
     font-weight:600;
-    color:#30473c;
+
     transition:.3s;
 }
 
@@ -191,55 +231,128 @@ a{
     color:#079447;
 }
 
-.request-btn{
-    background:#079447;
-    color:white!important;
+.request-button{
     padding:12px 18px;
+
+    color:white!important;
+
+    background:#079447;
+
     border-radius:10px;
-    box-shadow:0 7px 18px rgba(7,148,71,.2);
+
+    box-shadow:
+    0 8px 20px rgba(7,148,71,.22);
 }
 
 .menu{
     display:none;
-    font-size:27px;
+
     color:#087c3d;
+
+    font-size:28px;
 }
 
-/* ================= HERO ================= */
+
+/* =========================================================
+   HERO
+========================================================= */
 
 .hero{
     min-height:100vh;
-    padding:135px 7% 75px;
+
+    padding:120px 7% 75px;
+
+    position:relative;
+
+    overflow:hidden;
+
+    display:flex;
+    align-items:center;
+
+    /*
+       Blood donation image is used as background.
+       Text stays above the image.
+    */
+
+    background-image:
+    linear-gradient(
+        90deg,
+        rgba(235,251,241,.98) 0%,
+        rgba(235,251,241,.94) 32%,
+        rgba(235,251,241,.70) 58%,
+        rgba(235,251,241,.28) 82%,
+        rgba(235,251,241,.48) 100%
+    ),
+    url("blood-donation.jpg");
+
+    background-size:cover;
+
+    background-position:center;
+
+    background-repeat:no-repeat;
+}
+
+.hero::after{
+    content:"";
+
+    position:absolute;
+    inset:0;
+
     background:
-    radial-gradient(circle at 85% 20%,#a9f0c0,transparent 34%),
-    linear-gradient(135deg,#e7faee,#ffffff);
+    radial-gradient(
+        circle at 80% 45%,
+        rgba(255,255,255,.12),
+        transparent 32%
+    );
+
+    pointer-events:none;
 }
 
 .hero-inner{
+    width:100%;
     max-width:1200px;
+
+    min-height:650px;
+
     margin:auto;
-    display:grid;
-    grid-template-columns:1fr 1fr;
+
+    display:flex;
     align-items:center;
-    gap:55px;
+
+    position:relative;
+
+    z-index:2;
 }
 
 .hero-content{
-    animation:leftIn 1s ease;
+    width:65%;
+
+    animation:heroLeft 1.1s ease;
 }
 
 .hero-label{
     color:#087c3d;
+
     font-size:13px;
-    font-weight:bold;
-    letter-spacing:2px;
+
+    font-weight:800;
+
+    letter-spacing:3px;
+
     margin-bottom:18px;
 }
 
 .hero h1{
-    font-size:58px;
-    line-height:1.03;
-    margin-bottom:22px;
+    font-size:62px;
+
+    line-height:1.02;
+
+    margin-bottom:25px;
+
+    color:#09271c;
+
+    text-shadow:
+    0 2px 12px rgba(255,255,255,.85);
 }
 
 .hero h1 span{
@@ -247,132 +360,170 @@ a{
 }
 
 .hero p{
-    color:#53675d;
-    font-size:17px;
+    max-width:650px;
+
+    color:#4d665a;
+
+    font-size:18px;
+
     line-height:1.75;
-    max-width:570px;
+
+    text-shadow:
+    0 1px 8px rgba(255,255,255,.8);
 }
 
 .hero-buttons{
     display:flex;
+
     gap:14px;
-    margin-top:28px;
+
+    margin-top:30px;
+
     flex-wrap:wrap;
 }
 
 .btn{
     border:none;
-    padding:14px 23px;
-    border-radius:11px;
-    font-weight:bold;
-    cursor:pointer;
-    transition:.3s;
+
+    padding:15px 25px;
+
+    border-radius:12px;
+
     font-size:14px;
+
+    font-weight:bold;
+
+    cursor:pointer;
+
+    transition:.3s;
 }
 
 .green-btn{
-    background:#079447;
     color:white;
-    box-shadow:0 10px 25px rgba(7,148,71,.22);
+
+    background:
+    linear-gradient(135deg,#08a54d,#067c3b);
+
+    box-shadow:
+    0 12px 30px rgba(7,148,71,.25);
 }
 
 .green-btn:hover{
     transform:translateY(-4px);
+
+    box-shadow:
+    0 18px 35px rgba(7,148,71,.35);
 }
 
 .outline-btn{
-    background:white;
     color:#087c3d;
+
+    background:rgba(255,255,255,.88);
+
     border:1px solid #73bd91;
+
+    backdrop-filter:blur(10px);
 }
 
 .outline-btn:hover{
     transform:translateY(-4px);
 }
 
-/* HERO IMAGE */
 
-.hero-image{
-    position:relative;
-    animation:rightIn 1s ease;
-}
+/* HERO FLOATING BADGE */
 
-.hero-image img{
-    width:100%;
-    height:460px;
-    object-fit:cover;
-    border-radius:30px;
-    display:block;
-    box-shadow:0 25px 65px rgba(0,80,40,.17);
-}
-
-.image-badge{
+.hero-badge{
     position:absolute;
-    right:-15px;
-    bottom:25px;
-    background:white;
+
+    right:3%;
+    bottom:90px;
+
+    padding:17px 23px;
+
+    border-radius:18px;
+
+    background:rgba(255,255,255,.94);
+
+    backdrop-filter:blur(15px);
+
     color:#087c3d;
-    padding:15px 20px;
-    border-radius:15px;
+
+    font-size:15px;
+
     font-weight:bold;
-    box-shadow:0 12px 30px rgba(0,70,40,.15);
-    animation:badgeFloat 3s infinite;
+
+    box-shadow:
+    0 15px 40px rgba(0,70,40,.18);
+
+    animation:badgeFloat 3s ease-in-out infinite;
 }
 
-@keyframes leftIn{
+@keyframes heroLeft{
+
     from{
         opacity:0;
-        transform:translateX(-50px);
+        transform:translateX(-60px);
     }
+
     to{
         opacity:1;
         transform:translateX(0);
     }
-}
 
-@keyframes rightIn{
-    from{
-        opacity:0;
-        transform:translateX(50px);
-    }
-    to{
-        opacity:1;
-        transform:translateX(0);
-    }
 }
 
 @keyframes badgeFloat{
+
     0%,100%{
         transform:translateY(0);
     }
+
     50%{
-        transform:translateY(-8px);
+        transform:translateY(-10px);
     }
+
 }
 
-/* ================= STATS ================= */
+
+/* =========================================================
+   STATS
+========================================================= */
 
 .stats{
     max-width:1050px;
-    margin:-35px auto 65px;
+
+    margin:-35px auto 70px;
+
     padding:0 20px;
+
     position:relative;
+
+    z-index:5;
 }
 
 .stats-box{
-    background:white;
-    border:1px solid #deeee5;
-    border-radius:20px;
     display:grid;
+
     grid-template-columns:repeat(3,1fr);
-    box-shadow:0 15px 45px rgba(0,70,40,.1);
+
     overflow:hidden;
+
+    background:white;
+
+    border:1px solid #deeee5;
+
+    border-radius:21px;
+
+    box-shadow:
+    0 18px 50px rgba(0,70,40,.11);
 }
 
 .stat{
     text-align:center;
-    padding:26px;
-    border-right:1px solid #e3eee8;
+
+    padding:27px;
+
+    border-right:1px solid #e4eee8;
 }
 
 .stat:last-child{
@@ -381,42 +532,55 @@ a{
 
 .stat h2{
     color:#079447;
-    font-size:28px;
+
+    font-size:29px;
 }
 
 .stat p{
-    color:#6b7c73;
+    color:#6b7b73;
+
     font-size:13px;
-    margin-top:5px;
+
+    margin-top:6px;
 }
 
-/* ================= SERVICES ================= */
+
+/* =========================================================
+   SERVICES
+========================================================= */
 
 .services{
-    padding:85px 7%;
+    padding:90px 7%;
+
     background:white;
 }
 
 .section{
     max-width:1200px;
+
     margin:auto;
 }
 
 .heading{
+    max-width:730px;
+
     text-align:center;
-    max-width:720px;
-    margin:0 auto 48px;
+
+    margin:0 auto 50px;
 }
 
 .heading small{
     color:#079447;
+
     font-weight:bold;
+
     letter-spacing:2px;
 }
 
 .heading h2{
-    font-size:38px;
-    margin:12px 0;
+    font-size:39px;
+
+    margin:13px 0;
 }
 
 .heading h2 span{
@@ -425,200 +589,391 @@ a{
 
 .heading p{
     color:#687970;
+
     line-height:1.7;
 }
 
 .service-grid{
     display:grid;
+
     grid-template-columns:repeat(4,1fr);
+
     gap:20px;
 }
 
 .service{
     min-height:215px;
+
     padding:25px;
-    border-radius:19px;
-    border:1px solid #dfede5;
-    background:#f7fcf9;
+
     position:relative;
-    transition:.35s;
+
     overflow:hidden;
+
+    background:#f7fcf9;
+
+    border:1px solid #dfede5;
+
+    border-radius:19px;
+
+    transition:.35s;
+}
+
+.service::before{
+    content:"";
+
+    position:absolute;
+
+    width:100px;
+    height:100px;
+
+    border-radius:50%;
+
+    background:#dff8e8;
+
+    right:-45px;
+    top:-45px;
+
+    opacity:.6;
 }
 
 .service:hover{
     transform:translateY(-9px);
-    box-shadow:0 18px 40px rgba(0,80,45,.12);
-    border-color:#86d0a1;
+
+    border-color:#83d09f;
+
+    box-shadow:
+    0 20px 42px rgba(0,80,45,.12);
 }
 
 .service-icon{
-    width:54px;
-    height:54px;
-    border-radius:16px;
-    background:#dcf7e6;
+    width:55px;
+    height:55px;
+
+    margin-bottom:20px;
+
     display:flex;
     align-items:center;
     justify-content:center;
+
+    border-radius:16px;
+
+    background:#dcf7e6;
+
     font-size:25px;
-    margin-bottom:20px;
+
+    position:relative;
+    z-index:2;
 }
 
 .service h3{
     font-size:17px;
+
     margin-bottom:9px;
+
+    position:relative;
+    z-index:2;
 }
 
 .service p{
     color:#697970;
+
     font-size:13px;
-    line-height:1.6;
+
+    line-height:1.65;
+
+    position:relative;
+    z-index:2;
 }
 
 .arrow{
     position:absolute;
+
     right:20px;
     bottom:17px;
+
     color:#079447;
+
     font-size:21px;
+
     font-weight:bold;
 }
 
-/* ================= BLOOD NETWORK ================= */
+
+/* =========================================================
+   BLOOD NETWORK
+========================================================= */
 
 .network{
-    padding:85px 7%;
+    padding:90px 7%;
+
     background:#e9faef;
 }
 
 .network-box{
     max-width:1100px;
+
     margin:auto;
+
     display:grid;
+
     grid-template-columns:1fr 1fr;
-    gap:45px;
+
+    gap:50px;
+
     align-items:center;
 }
 
+.network-label{
+    color:#079447;
+
+    font-size:12px;
+
+    font-weight:bold;
+
+    letter-spacing:2px;
+}
+
 .network h2{
-    font-size:38px;
-    margin:12px 0;
+    font-size:39px;
+
+    margin:14px 0 17px;
 }
 
 .network p{
-    color:#5e7267;
+    color:#5d7167;
+
     line-height:1.8;
 }
 
 .network-list{
-    margin:20px 0;
+    margin:22px 0;
 }
 
 .network-list div{
-    margin:12px 0;
+    margin:13px 0;
+
+    color:#30483b;
+
     font-size:14px;
 }
 
 .check{
     color:#079447;
+
     font-weight:bold;
+
     margin-right:8px;
 }
 
 .network-card{
-    background:white;
-    border-radius:25px;
-    padding:35px;
+    padding:38px;
+
     text-align:center;
-    box-shadow:0 20px 50px rgba(0,80,45,.1);
+
+    background:white;
+
+    border-radius:26px;
+
+    box-shadow:
+    0 22px 55px rgba(0,80,45,.1);
 }
 
 .blood-drop{
-    font-size:85px;
-    animation:drop 2s infinite;
+    font-size:88px;
+
+    animation:bloodFloat 2.3s ease-in-out infinite;
 }
 
 .network-card h3{
     color:#087c3d;
-    margin:12px 0;
+
+    margin:13px 0 10px;
 }
 
 .network-card p{
     font-size:13px;
+
+    line-height:1.7;
 }
 
-@keyframes drop{
+@keyframes bloodFloat{
+
     0%,100%{
         transform:translateY(0);
     }
+
     50%{
         transform:translateY(-12px);
     }
+
 }
 
-/* ================= CTA ================= */
+
+/* =========================================================
+   WORKFLOW
+========================================================= */
+
+.workflow{
+    padding:90px 7%;
+
+    background:#fff;
+}
+
+.workflow-grid{
+    max-width:1100px;
+
+    margin:auto;
+
+    display:grid;
+
+    grid-template-columns:repeat(4,1fr);
+
+    gap:25px;
+}
+
+.workflow-card{
+    text-align:center;
+
+    padding:20px;
+}
+
+.workflow-number{
+    width:60px;
+    height:60px;
+
+    margin:auto;
+
+    border-radius:50%;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    color:white;
+
+    background:
+    linear-gradient(135deg,#09a650,#06783a);
+
+    font-weight:bold;
+
+    box-shadow:
+    0 10px 25px rgba(7,148,71,.2);
+}
+
+.workflow-card h3{
+    margin:18px 0 8px;
+
+    font-size:17px;
+}
+
+.workflow-card p{
+    color:#6b7b73;
+
+    font-size:13px;
+
+    line-height:1.65;
+}
+
+
+/* =========================================================
+   CTA
+========================================================= */
 
 .cta{
-    padding:75px 7%;
-    background:linear-gradient(135deg,#006c36,#08a64b);
-    color:white;
+    padding:80px 7%;
+
     text-align:center;
+
+    color:white;
+
+    background:
+    linear-gradient(
+        135deg,
+        #056d37,
+        #09a64e
+    );
 }
 
 .cta h2{
-    font-size:38px;
+    font-size:39px;
+
     margin-bottom:13px;
 }
 
 .cta p{
-    max-width:650px;
+    max-width:680px;
+
     margin:auto;
+
     line-height:1.7;
-    opacity:.9;
+
+    opacity:.92;
 }
 
 .cta .btn{
-    margin-top:25px;
-    background:white;
+    margin-top:26px;
+
     color:#087c3d;
+
+    background:white;
 }
 
-/* ================= FOOTER ================= */
+
+/* =========================================================
+   FOOTER
+========================================================= */
 
 footer{
-    background:#053d27;
+    padding:55px 7% 25px;
+
     color:white;
-    padding:50px 7% 25px;
+
+    background:#053d27;
 }
 
 .footer{
     max-width:1200px;
+
     margin:auto;
+
     display:grid;
+
     grid-template-columns:2fr 1fr 1fr;
+
     gap:45px;
 }
 
 .footer-logo{
-    font-size:25px;
+    font-size:26px;
+
     font-weight:bold;
 }
 
 .footer p{
     color:#a9c4b6;
+
     font-size:13px;
+
     line-height:1.7;
+
     margin-top:10px;
 }
 
 .footer h4{
-    margin-bottom:15px;
+    margin-bottom:16px;
 }
 
 .footer a{
     display:block;
-    color:#b2c9bd;
+
+    color:#b4cabe;
+
     font-size:13px;
+
     margin:10px 0;
+
+    transition:.3s;
 }
 
 .footer a:hover{
@@ -627,17 +982,26 @@ footer{
 
 .copyright{
     max-width:1200px;
+
     margin:35px auto 0;
+
     padding-top:20px;
+
     border-top:1px solid #286149;
+
     text-align:center;
+
     color:#8fa99c;
+
     font-size:12px;
 }
 
-/* ================= MOBILE ================= */
 
-@media(max-width:850px){
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media(max-width:900px){
 
     .nav-links{
         display:none;
@@ -648,19 +1012,44 @@ footer{
     }
 
     .hero{
-        padding-top:120px;
+        padding:115px 7% 70px;
+
+        background-image:
+        linear-gradient(
+            180deg,
+            rgba(235,251,241,.97) 0%,
+            rgba(235,251,241,.88) 42%,
+            rgba(235,251,241,.58) 72%,
+            rgba(235,251,241,.45) 100%
+        ),
+        url("blood-donation.jpg");
+
+        background-position:center;
     }
 
     .hero-inner{
-        grid-template-columns:1fr;
+        min-height:720px;
+
+        display:block;
+    }
+
+    .hero-content{
+        width:100%;
+
+        padding-top:35px;
     }
 
     .hero h1{
-        font-size:44px;
+        font-size:49px;
     }
 
-    .hero-image img{
-        height:360px;
+    .hero p{
+        font-size:16px;
+    }
+
+    .hero-badge{
+        right:7%;
+        bottom:40px;
     }
 
     .service-grid{
@@ -671,23 +1060,85 @@ footer{
         grid-template-columns:1fr;
     }
 
+    .workflow-grid{
+        grid-template-columns:1fr 1fr;
+    }
+
     .footer{
         grid-template-columns:1fr;
     }
+
 }
 
-@media(max-width:500px){
+
+/* SMALL MOBILE */
+
+@media(max-width:520px){
+
+    .nav{
+        padding:0 17px;
+    }
+
+    .logo-icon{
+        width:41px;
+        height:41px;
+    }
+
+    .logo-text strong{
+        font-size:19px;
+    }
+
+    .hero{
+        min-height:850px;
+
+        padding-left:6%;
+        padding-right:6%;
+    }
+
+    .hero-inner{
+        min-height:780px;
+    }
+
+    .hero-content{
+        padding-top:25px;
+    }
+
+    .hero-label{
+        font-size:10px;
+
+        letter-spacing:2px;
+    }
 
     .hero h1{
-        font-size:37px;
+        font-size:43px;
     }
 
     .hero p{
         font-size:15px;
+
+        line-height:1.7;
     }
 
-    .hero-image img{
-        height:320px;
+    .hero-buttons{
+        gap:10px;
+    }
+
+    .btn{
+        padding:14px 19px;
+    }
+
+    .hero-badge{
+        left:6%;
+        right:6%;
+        bottom:35px;
+
+        text-align:center;
+
+        font-size:13px;
+    }
+
+    .stats{
+        margin-top:-25px;
     }
 
     .stats-box{
@@ -696,56 +1147,72 @@ footer{
 
     .stat{
         border-right:none;
-        border-bottom:1px solid #e3eee8;
+
+        border-bottom:1px solid #e4eee8;
     }
 
     .stat:last-child{
         border-bottom:none;
     }
 
+    .services,
+    .network,
+    .workflow{
+        padding-left:6%;
+        padding-right:6%;
+    }
+
+    .heading h2{
+        font-size:31px;
+    }
+
     .service-grid{
         grid-template-columns:1fr;
     }
 
-    .heading h2{
-        font-size:30px;
+    .network h2{
+        font-size:31px;
     }
 
-    .network h2{
-        font-size:30px;
+    .workflow-grid{
+        grid-template-columns:1fr;
     }
 
     .cta h2{
-        font-size:30px;
+        font-size:31px;
     }
+
 }
 
 </style>
 </head>
 
+
 <body>
 
 
-<!-- ================= SPLASH ================= -->
+<!-- =======================================================
+     SPLASH
+======================================================= -->
 
 <div id="splash">
 
-    <div class="splash-box">
+    <div class="splash-content">
 
         <img
         src="vitalloop-splash.png"
         class="splash-logo"
         alt="VitalLoop">
 
-        <div class="splash-name">
+        <div class="splash-title">
             VitalLoop
         </div>
 
-        <div class="splash-tag">
+        <div class="splash-subtitle">
             Your Complete Healthcare Journey
         </div>
 
-        <div class="loading">
+        <div class="loader">
             <span></span>
         </div>
 
@@ -754,191 +1221,229 @@ footer{
 </div>
 
 
-<!-- ================= NAVBAR ================= -->
+
+<!-- =======================================================
+     NAVBAR
+======================================================= -->
 
 <header class="navbar">
 
-<div class="nav">
+<nav class="nav">
 
 <a href="index.html" class="logo">
 
-<div class="logo-icon">
-V
-</div>
+    <div class="logo-icon">
+        V
+    </div>
 
-<div class="logo-text">
+    <div class="logo-text">
 
-<strong>VitalLoop</strong>
+        <strong>
+            VitalLoop
+        </strong>
 
-<small>
-Your Complete Healthcare Journey
-</small>
+        <small>
+            Your Complete Healthcare Journey
+        </small>
 
-</div>
+    </div>
 
 </a>
 
 
 <div class="nav-links">
 
-<a href="index.html">
-Home
-</a>
+    <a href="index.html">
+        Home
+    </a>
 
-<a href="about.html">
-About
-</a>
+    <a href="about.html">
+        About
+    </a>
 
-<a href="#services">
-Services
-</a>
+    <a href="#services">
+        Services
+    </a>
 
-<a href="blood-education.html">
-Education
-</a>
+    <a href="blood-education.html">
+        Education
+    </a>
 
-<a href="blood-request.html" class="request-btn">
-Blood Request
-</a>
+    <a href="blood-request.html"
+       class="request-button">
+
+        Blood Request
+
+    </a>
 
 </div>
 
 
 <div class="menu">
-☰
+    ☰
 </div>
 
-</div>
+</nav>
 
 </header>
 
 
-<!-- ================= HERO ================= -->
+
+<!-- =======================================================
+     HERO
+======================================================= -->
 
 <section class="hero">
 
 <div class="hero-inner">
 
+
 <div class="hero-content">
 
-<div class="hero-label">
-BLOOD RESOURCE NETWORK
+    <div class="hero-label">
+        BLOOD RESOURCE NETWORK
+    </div>
+
+
+    <h1>
+
+        Small Drop,<br>
+
+        <span>
+            Big Impact.
+        </span>
+
+    </h1>
+
+
+    <p>
+
+        VitalLoop helps people discover relevant blood
+        resources, raise blood requests, coordinate potential
+        donors and learn about blood safety — all through
+        one connected healthcare experience.
+
+    </p>
+
+
+    <div class="hero-buttons">
+
+        <a href="#services">
+
+            <button class="btn green-btn">
+                Get Started →
+            </button>
+
+        </a>
+
+
+        <a href="about.html">
+
+            <button class="btn outline-btn">
+                Learn More
+            </button>
+
+        </a>
+
+    </div>
+
 </div>
 
-<h1>
-Small Drop,<br>
-<span>Big Impact.</span>
-</h1>
 
-<p>
-VitalLoop helps people discover relevant blood resources,
-raise blood requests, coordinate potential donors and
-learn about blood safety — all through one connected
-healthcare experience.
-</p>
+<div class="hero-badge">
 
-
-<div class="hero-buttons">
-
-<a href="#services">
-<button class="btn green-btn">
-Get Started →
-</button>
-</a>
-
-<a href="about.html">
-<button class="btn outline-btn">
-Learn More
-</button>
-</a>
+    🩸 Donate Blood • Give Hope
 
 </div>
 
-</div>
-
-
-<div class="hero-image">
-
-<img
-src="blood-donation.jpg"
-alt="Blood Donation">
-
-<div class="image-badge">
-🩸 Donate Blood • Give Hope
-</div>
-
-</div>
 
 </div>
 
 </section>
 
 
-<!-- ================= STATS ================= -->
 
-<div class="stats">
+<!-- =======================================================
+     STATS
+======================================================= -->
+
+<section class="stats">
 
 <div class="stats-box">
 
-<div class="stat">
-
-<h2>24×7</h2>
-
-<p>
-Healthcare Navigation
-</p>
-
-</div>
-
 
 <div class="stat">
 
-<h2>1</h2>
+    <h2>
+        24×7
+    </h2>
 
-<p>
-Connected Platform
-</p>
+    <p>
+        Healthcare Navigation
+    </p>
 
 </div>
 
 
 <div class="stat">
 
-<h2>8+</h2>
+    <h2>
+        1
+    </h2>
 
-<p>
-Healthcare Services
-</p>
-
-</div>
-
-</div>
+    <p>
+        Connected Platform
+    </p>
 
 </div>
 
 
-<!-- ================= SERVICES ================= -->
+<div class="stat">
+
+    <h2>
+        8+
+    </h2>
+
+    <p>
+        Healthcare Services
+    </p>
+
+</div>
+
+
+</div>
+
+</section>
+
+
+
+<!-- =======================================================
+     SERVICES
+======================================================= -->
 
 <section class="services" id="services">
 
 <div class="section">
 
+
 <div class="heading">
 
-<small>
-OUR SERVICES
-</small>
+    <small>
+        OUR SERVICES
+    </small>
 
-<h2>
-How Can <span>We Help You?</span>
-</h2>
+    <h2>
+        How Can <span>We Help You?</span>
+    </h2>
 
-<p>
-Choose a service below. Each service opens on its own
-page so the experience stays simple and organized.
-</p>
+    <p>
+        Choose a service below. Each important service
+        opens on its own page for a simple and organized
+        experience.
+    </p>
 
 </div>
+
 
 
 <div class="service-grid">
@@ -950,26 +1455,27 @@ page so the experience stays simple and organized.
 
 <div class="service">
 
-<div class="service-icon">
-🩸
-</div>
+    <div class="service-icon">
+        🩸
+    </div>
 
-<h3>
-Find Blood Resources
-</h3>
+    <h3>
+        Find Blood Resources
+    </h3>
 
-<p>
-Discover relevant blood resources by blood group,
-component and location.
-</p>
+    <p>
+        Discover relevant blood resources by blood group,
+        component and location.
+    </p>
 
-<div class="arrow">
-→
-</div>
+    <div class="arrow">
+        →
+    </div>
 
 </div>
 
 </a>
+
 
 
 <!-- BLOOD REQUEST -->
@@ -978,26 +1484,27 @@ component and location.
 
 <div class="service">
 
-<div class="service-icon">
-📋
-</div>
+    <div class="service-icon">
+        📋
+    </div>
 
-<h3>
-Raise Blood Request
-</h3>
+    <h3>
+        Raise Blood Request
+    </h3>
 
-<p>
-Create a structured request for the required blood
-group and component.
-</p>
+    <p>
+        Create a structured request for the required blood
+        group and component.
+    </p>
 
-<div class="arrow">
-→
-</div>
+    <div class="arrow">
+        →
+    </div>
 
 </div>
 
 </a>
+
 
 
 <!-- DONOR -->
@@ -1006,26 +1513,27 @@ group and component.
 
 <div class="service">
 
-<div class="service-icon">
-👥
-</div>
+    <div class="service-icon">
+        👥
+    </div>
 
-<h3>
-Donor Coordination
-</h3>
+    <h3>
+        Donor Coordination
+    </h3>
 
-<p>
-Coordinate potential eligible donors with relevant
-blood requests.
-</p>
+    <p>
+        Coordinate potential eligible donors with relevant
+        blood requests.
+    </p>
 
-<div class="arrow">
-→
-</div>
+    <div class="arrow">
+        →
+    </div>
 
 </div>
 
 </a>
+
 
 
 <!-- CAMPS -->
@@ -1034,26 +1542,27 @@ blood requests.
 
 <div class="service">
 
-<div class="service-icon">
-📅
-</div>
+    <div class="service-icon">
+        📅
+    </div>
 
-<h3>
-Donation Camps
-</h3>
+    <h3>
+        Donation Camps
+    </h3>
 
-<p>
-Discover blood donation camps and awareness
-activities.
-</p>
+    <p>
+        Discover blood donation camps and awareness
+        activities.
+    </p>
 
-<div class="arrow">
-→
-</div>
+    <div class="arrow">
+        →
+    </div>
 
 </div>
 
 </a>
+
 
 
 <!-- EDUCATION -->
@@ -1062,54 +1571,56 @@ activities.
 
 <div class="service">
 
-<div class="service-icon">
-📖
-</div>
+    <div class="service-icon">
+        📖
+    </div>
 
-<h3>
-Blood Education
-</h3>
+    <h3>
+        Blood Education
+    </h3>
 
-<p>
-Learn about blood groups, donation and transfusion
-safety.
-</p>
+    <p>
+        Learn about blood groups, donation and transfusion
+        safety.
+    </p>
 
-<div class="arrow">
-→
-</div>
+    <div class="arrow">
+        →
+    </div>
 
 </div>
 
 </a>
 
 
-<!-- AI -->
+
+<!-- AI ASSISTANT -->
 
 <a href="assistant.html">
 
 <div class="service">
 
-<div class="service-icon">
-🤖
-</div>
+    <div class="service-icon">
+        🤖
+    </div>
 
-<h3>
-AI Assistant
-</h3>
+    <h3>
+        AI Assistant
+    </h3>
 
-<p>
-Get general healthcare information through
-safety-focused AI guidance.
-</p>
+    <p>
+        Get general healthcare information through
+        safety-focused AI guidance.
+    </p>
 
-<div class="arrow">
-→
-</div>
+    <div class="arrow">
+        →
+    </div>
 
 </div>
 
 </a>
+
 
 
 <!-- EMERGENCY -->
@@ -1118,26 +1629,27 @@ safety-focused AI guidance.
 
 <div class="service">
 
-<div class="service-icon">
-🚑
-</div>
+    <div class="service-icon">
+        🚑
+    </div>
 
-<h3>
-Emergency Support
-</h3>
+    <h3>
+        Emergency Support
+    </h3>
 
-<p>
-Access emergency guidance and important healthcare
-resources.
-</p>
+    <p>
+        Access emergency guidance and important
+        healthcare resources.
+    </p>
 
-<div class="arrow">
-→
-</div>
+    <div class="arrow">
+        →
+    </div>
 
 </div>
 
 </a>
+
 
 
 <!-- MEDICINE -->
@@ -1146,22 +1658,22 @@ resources.
 
 <div class="service">
 
-<div class="service-icon">
-💊
-</div>
+    <div class="service-icon">
+        💊
+    </div>
 
-<h3>
-Medicine Information
-</h3>
+    <h3>
+        Medicine Information
+    </h3>
 
-<p>
-Explore general medicine information and safety
-guidance.
-</p>
+    <p>
+        Explore general medicine information and safety
+        guidance.
+    </p>
 
-<div class="arrow">
-→
-</div>
+    <div class="arrow">
+        →
+    </div>
 
 </div>
 
@@ -1175,179 +1687,201 @@ guidance.
 </section>
 
 
-<!-- ================= BLOOD NETWORK ================= -->
+
+<!-- =======================================================
+     BLOOD NETWORK
+======================================================= -->
 
 <section class="network">
 
 <div class="network-box">
 
-<div>
-
-<small style="color:#079447;font-weight:bold;letter-spacing:2px;">
-BLOOD RESOURCE NETWORK
-</small>
-
-<h2>
-Connecting People With Relevant Resources
-</h2>
-
-<p>
-VitalLoop is designed as a discovery and coordination
-layer to make healthcare navigation easier.
-</p>
-
-<div class="network-list">
 
 <div>
-<span class="check">✓</span>
-Search by blood group and location
+
+    <div class="network-label">
+        BLOOD RESOURCE NETWORK
+    </div>
+
+
+    <h2>
+        Connecting People With Relevant Resources
+    </h2>
+
+
+    <p>
+        VitalLoop is designed as a discovery and coordination
+        layer to make healthcare navigation easier when people
+        need relevant blood resources.
+    </p>
+
+
+    <div class="network-list">
+
+        <div>
+            <span class="check">✓</span>
+            Search by blood group and location
+        </div>
+
+        <div>
+            <span class="check">✓</span>
+            Raise structured blood requests
+        </div>
+
+        <div>
+            <span class="check">✓</span>
+            Coordinate potential donors
+        </div>
+
+        <div>
+            <span class="check">✓</span>
+            Verify availability with authorized centres
+        </div>
+
+    </div>
+
+
+    <a href="find-blood.html">
+
+        <button class="btn green-btn">
+            Open Blood Network →
+        </button>
+
+    </a>
+
 </div>
 
-<div>
-<span class="check">✓</span>
-Raise structured blood requests
-</div>
-
-<div>
-<span class="check">✓</span>
-Coordinate potential donors
-</div>
-
-<div>
-<span class="check">✓</span>
-Verify availability with authorized centres
-</div>
-
-</div>
-
-<a href="find-blood.html">
-
-<button class="btn green-btn">
-Open Blood Network →
-</button>
-
-</a>
-
-</div>
 
 
 <div class="network-card">
 
-<div class="blood-drop">
-🩸
+    <div class="blood-drop">
+        🩸
+    </div>
+
+    <h3>
+        Every Drop Matters
+    </h3>
+
+    <p>
+        VitalLoop does not itself collect, test, store,
+        transport, release or distribute blood. Actual
+        donation, testing, compatibility and transfusion
+        remain under authorized healthcare facilities and
+        trained professionals.
+    </p>
+
 </div>
 
-<h3>
-Every Drop Matters
-</h3>
-
-<p>
-Actual blood collection, testing, storage, compatibility
-and transfusion remain under authorized healthcare
-facilities and trained professionals.
-</p>
-
-</div>
 
 </div>
 
 </section>
 
 
-<!-- ================= WORKFLOW ================= -->
 
-<section class="services">
+<!-- =======================================================
+     WORKFLOW
+======================================================= -->
+
+<section class="workflow">
 
 <div class="section">
 
+
 <div class="heading">
 
-<small>
-HOW IT WORKS
-</small>
+    <small>
+        HOW IT WORKS
+    </small>
 
-<h2>
-Simple. Connected. Responsible.
-</h2>
+    <h2>
+        Simple. Connected. Responsible.
+    </h2>
 
-<p>
-VitalLoop focuses on helping users navigate from a
-healthcare need to the relevant resource.
-</p>
-
-</div>
-
-
-<div class="service-grid">
-
-
-<div class="service">
-
-<div class="service-icon">
-01
-</div>
-
-<h3>
-Raise Request
-</h3>
-
-<p>
-Enter the required blood group, component and location.
-</p>
+    <p>
+        VitalLoop focuses on helping users navigate from
+        a healthcare need to a relevant resource.
+    </p>
 
 </div>
 
 
-<div class="service">
 
-<div class="service-icon">
-02
-</div>
-
-<h3>
-Discover
-</h3>
-
-<p>
-Explore relevant resources and potential donor
-coordination.
-</p>
-
-</div>
+<div class="workflow-grid">
 
 
-<div class="service">
+<div class="workflow-card">
 
-<div class="service-icon">
-03
-</div>
+    <div class="workflow-number">
+        01
+    </div>
 
-<h3>
-Verify
-</h3>
+    <h3>
+        Raise Request
+    </h3>
 
-<p>
-Confirm current availability directly with the
-authorized centre.
-</p>
+    <p>
+        Enter the required blood group, component
+        and location.
+    </p>
 
 </div>
 
 
-<div class="service">
 
-<div class="service-icon">
-04
+<div class="workflow-card">
+
+    <div class="workflow-number">
+        02
+    </div>
+
+    <h3>
+        Discover
+    </h3>
+
+    <p>
+        Explore relevant resources and potential
+        donor coordination.
+    </p>
+
 </div>
 
-<h3>
-Donate Safely
-</h3>
 
-<p>
-Donation and transfusion follow applicable medical
-procedures.
-</p>
+
+<div class="workflow-card">
+
+    <div class="workflow-number">
+        03
+    </div>
+
+    <h3>
+        Verify
+    </h3>
+
+    <p>
+        Confirm current availability directly with
+        the authorized centre.
+    </p>
+
+</div>
+
+
+
+<div class="workflow-card">
+
+    <div class="workflow-number">
+        04
+    </div>
+
+    <h3>
+        Donate Safely
+    </h3>
+
+    <p>
+        Donation and transfusion follow applicable
+        medical procedures.
+    </p>
 
 </div>
 
@@ -1359,166 +1893,202 @@ procedures.
 </section>
 
 
-<!-- ================= CTA ================= -->
+
+<!-- =======================================================
+     CTA
+======================================================= -->
 
 <section class="cta">
 
 <h2>
-Healthier People. Brighter Tomorrow.
+    Healthier People. Brighter Tomorrow.
 </h2>
 
 <p>
-VitalLoop aims to make healthcare easier to navigate by
-connecting people with relevant information, resources
-and support.
+    VitalLoop aims to make healthcare easier to navigate
+    by connecting people with relevant information,
+    resources and support.
 </p>
+
 
 <a href="blood-request.html">
 
-<button class="btn">
-Raise a Blood Request →
-</button>
+    <button class="btn">
+        Raise a Blood Request →
+    </button>
 
 </a>
 
 </section>
 
 
-<!-- ================= FOOTER ================= -->
+
+<!-- =======================================================
+     FOOTER
+======================================================= -->
 
 <footer>
 
 <div class="footer">
 
-<div>
-
-<div class="footer-logo">
-VitalLoop
-</div>
-
-<p>
-Your Complete Healthcare Journey
-</p>
-
-<p>
-A healthcare technology prototype focused on blood
-resource discovery, coordination, education and
-healthcare navigation.
-</p>
-
-</div>
-
 
 <div>
 
-<h4>
-Quick Links
-</h4>
+    <div class="footer-logo">
+        VitalLoop
+    </div>
 
-<a href="index.html">
-Home
-</a>
+    <p>
+        Your Complete Healthcare Journey
+    </p>
 
-<a href="about.html">
-About
-</a>
-
-<a href="#services">
-Services
-</a>
-
-<a href="blood-request.html">
-Blood Request
-</a>
+    <p>
+        A healthcare technology prototype focused on
+        blood resource discovery, coordination,
+        education and healthcare navigation.
+    </p>
 
 </div>
+
 
 
 <div>
 
-<h4>
-Resources
-</h4>
+    <h4>
+        Quick Links
+    </h4>
 
-<a href="find-blood.html">
-Find Blood
-</a>
+    <a href="index.html">
+        Home
+    </a>
 
-<a href="donor.html">
-Donor
-</a>
+    <a href="about.html">
+        About
+    </a>
 
-<a href="camps.html">
-Camps
-</a>
+    <a href="#services">
+        Services
+    </a>
 
-<a href="blood-education.html">
-Education
-</a>
+    <a href="blood-request.html">
+        Blood Request
+    </a>
 
 </div>
+
+
+
+<div>
+
+    <h4>
+        Resources
+    </h4>
+
+    <a href="find-blood.html">
+        Find Blood
+    </a>
+
+    <a href="donor.html">
+        Donor Coordination
+    </a>
+
+    <a href="camps.html">
+        Donation Camps
+    </a>
+
+    <a href="blood-education.html">
+        Blood Education
+    </a>
+
+</div>
+
 
 </div>
 
 
 <div class="copyright">
 
-© 2026 VitalLoop. Healthcare technology prototype.
-<br><br>
-Healthier People. Brighter Tomorrow.
+    © 2026 VitalLoop. Healthcare technology prototype.
+
+    <br><br>
+
+    Healthier People. Brighter Tomorrow.
 
 </div>
 
 </footer>
 
 
+
+<!-- =======================================================
+     JAVASCRIPT
+======================================================= -->
+
 <script>
 
-/* SPLASH */
+/* Hide splash after loading */
 
-setTimeout(function(){
+window.addEventListener("load", function(){
 
-    const splash =
-    document.getElementById("splash");
+    setTimeout(function(){
 
-    splash.style.display="none";
+        const splash =
+        document.getElementById("splash");
 
-},4200);
+        if(splash){
+            splash.style.display = "none";
+        }
+
+    },4200);
+
+});
 
 
-/* MOBILE MENU */
+/* Mobile menu */
 
 const menu =
 document.querySelector(".menu");
 
-const links =
+const navLinks =
 document.querySelector(".nav-links");
 
-menu.addEventListener("click",function(){
+if(menu){
 
-    if(
-        links.style.display === "flex"
-    ){
+    menu.addEventListener("click",function(){
 
-        links.style.display="none";
+        if(navLinks.style.display === "flex"){
 
-    }else{
+            navLinks.style.display = "none";
 
-        links.style.display="flex";
-        links.style.flexDirection="column";
-        links.style.position="absolute";
-        links.style.top="75px";
-        links.style.right="0";
-        links.style.width="100%";
-        links.style.padding="20px";
-        links.style.background="white";
-        links.style.boxShadow="0 15px 30px rgba(0,0,0,.1)";
+        }else{
 
-    }
+            navLinks.style.display = "flex";
 
-});
+            navLinks.style.flexDirection = "column";
+
+            navLinks.style.position = "absolute";
+
+            navLinks.style.top = "76px";
+
+            navLinks.style.left = "0";
+
+            navLinks.style.width = "100%";
+
+            navLinks.style.padding = "20px";
+
+            navLinks.style.background = "white";
+
+            navLinks.style.boxShadow =
+            "0 15px 30px rgba(0,0,0,.10)";
+
+        }
+
+    });
+
+}
 
 </script>
+
 
 </body>
 </html>
