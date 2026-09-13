@@ -1,38 +1,71 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
+
 <head>
+
   <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <meta name="theme-color" content="#8B0000">
+  <meta
+    name="theme-color"
+    content="#8B0000"
+  >
 
-  <meta name="description"
-        content="RaktSathi Smart Healthcare Assistant for blood-resource discovery and emergency coordination.">
+  <meta
+    name="description"
+    content="RaktSathi Smart Healthcare Assistant"
+  >
 
-  <title>Smart Assistant | RaktSathi</title>
+  <title>
+    RaktSathi | Smart Healthcare Assistant
+  </title>
 
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="raktsathi-logo.png">
+  <link
+    rel="icon"
+    type="image/png"
+    href="raktsathi-new-logo.png"
+  >
 
-  <link rel="stylesheet" href="css/style.css">
+  <link
+    rel="manifest"
+    href="manifest.json"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
+
 </head>
+
 
 <body>
 
-  <!-- ================= HEADER ================= -->
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
 
   <header class="site-header">
 
     <div class="container nav-container">
 
-      <a href="index.html" class="brand">
+      <a
+        href="index.html"
+        class="brand"
+        aria-label="RaktSathi Home"
+      >
 
         <img
-          src="raktsathi-logo.png"
+          src="raktsathi-new-logo.png"
           alt="RaktSathi Logo"
           class="brand-logo"
+          width="48"
+          height="48"
         >
 
         <span class="brand-text">
@@ -41,10 +74,18 @@
 
       </a>
 
-      <nav class="main-nav" aria-label="Main navigation">
+
+      <nav
+        class="main-nav"
+        aria-label="Main navigation"
+      >
 
         <a href="index.html">
           Home
+        </a>
+
+        <a href="about.html">
+          About
         </a>
 
         <a href="find-blood.html">
@@ -63,7 +104,10 @@
           Camps
         </a>
 
-        <a href="assistant.html" class="active">
+        <a
+          href="assistant.html"
+          class="active"
+        >
           Assistant
         </a>
 
@@ -74,45 +118,82 @@
   </header>
 
 
-  <!-- ================= HERO ================= -->
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
 
   <main>
 
-    <section class="hero hero-dark">
 
-      <div class="container hero-content">
+    <!-- ===================================================
+         HERO
+         =================================================== -->
 
-        <span class="eyebrow">
-          RAKTSATHI • SMART HEALTHCARE ASSISTANT
-        </span>
+    <section class="hero">
 
-        <h1>
-          Ask. Discover.
-          <span>Coordinate.</span>
-        </h1>
+      <div class="container">
 
-        <p class="hero-text">
-          A simple digital assistant that helps users
-          navigate RaktSathi's blood-resource discovery,
-          emergency requests, donor network and healthcare
-          support modules.
-        </p>
+        <div class="hero-content">
 
-        <div class="hero-actions">
 
-          <a
-            href="#assistant"
-            class="btn btn-primary"
-          >
-            Start Assistant
-          </a>
+          <div class="hero-badge">
 
-          <a
-            href="emergency.html"
-            class="btn btn-secondary"
-          >
-            Emergency Request
-          </a>
+            RAKTSATHI • SMART HEALTHCARE ASSISTANT
+
+          </div>
+
+
+          <h1>
+
+            Ask.
+            <span>Discover.</span>
+            <span>Coordinate.</span>
+
+          </h1>
+
+
+          <p>
+
+            A simple digital assistant that helps
+            users navigate RaktSathi's blood-resource
+            discovery, emergency requests, donor
+            network and healthcare support modules.
+
+          </p>
+
+
+          <div class="hero-actions">
+
+
+            <a
+              href="#assistant"
+              class="btn btn-primary"
+            >
+
+              🤖
+              <span>
+                Start Assistant
+              </span>
+
+            </a>
+
+
+            <a
+              href="emergency.html"
+              class="btn btn-secondary"
+            >
+
+              🚨
+              <span>
+                Emergency Request
+              </span>
+
+            </a>
+
+
+          </div>
+
 
         </div>
 
@@ -121,18 +202,22 @@
     </section>
 
 
-    <!-- ================= ASSISTANT ================= -->
+
+    <!-- ===================================================
+         ASSISTANT
+         =================================================== -->
 
     <section
-      class="section section-alt"
+      class="section"
       id="assistant"
     >
 
       <div class="container">
 
-        <div class="section-heading reveal">
 
-          <span class="eyebrow">
+        <div class="section-heading">
+
+          <span class="section-kicker">
             DIGITAL ASSISTANCE
           </span>
 
@@ -141,40 +226,41 @@
           </h2>
 
           <p>
-            Choose a quick action or type your requirement
-            below to navigate the platform.
+            Choose a quick action or type your
+            requirement below to navigate the platform.
           </p>
 
         </div>
 
 
-        <div class="assistant-card card reveal">
+        <div class="card assistant-card">
 
-          <!-- ================= MESSAGES ================= -->
+
+          <!-- Assistant Messages -->
 
           <div
             id="assistantMessages"
             class="assistant-messages"
             aria-live="polite"
-            aria-label="Assistant conversation"
           >
 
-            <div class="assistant-message assistant-bot">
+            <div class="assistant-message">
 
               <div class="assistant-avatar">
                 RS
               </div>
 
-              <div class="assistant-bubble">
+              <div>
 
                 <strong>
                   RaktSathi Assistant
                 </strong>
 
                 <p>
-                  Hello! I can help you navigate blood-resource
-                  discovery, emergency requests, donor network,
-                  camps and blood-group information.
+                  Hello! I can help you navigate
+                  blood-resource discovery, emergency
+                  requests, donor network, camps and
+                  blood-group information.
                 </p>
 
               </div>
@@ -184,94 +270,143 @@
           </div>
 
 
-          <!-- ================= QUICK ACTIONS ================= -->
+
+          <!-- Quick Actions -->
 
           <div class="assistant-quick-actions">
 
-            <button
-              type="button"
-              class="btn btn-secondary"
-              data-assistant-query="I need blood urgently"
-            >
-              🚨 Emergency Blood
-            </button>
 
             <button
               type="button"
-              class="btn btn-secondary"
-              data-assistant-query="How can I find blood?"
+              class="assistant-chip"
+              data-assistant-query="emergency"
             >
-              🩸 Find Blood
+
+              🚨
+              <span>
+                Emergency Blood
+              </span>
+
             </button>
+
 
             <button
               type="button"
-              class="btn btn-secondary"
-              data-assistant-query="I want to join the donor network"
+              class="assistant-chip"
+              data-assistant-query="find blood"
             >
-              ❤️ Donor Network
+
+              🩸
+              <span>
+                Find Blood
+              </span>
+
             </button>
+
 
             <button
               type="button"
-              class="btn btn-secondary"
-              data-assistant-query="Show me blood donation camps"
+              class="assistant-chip"
+              data-assistant-query="donor"
             >
-              📍 Blood Camps
+
+              ❤️
+              <span>
+                Donor Network
+              </span>
+
             </button>
+
 
             <button
               type="button"
-              class="btn btn-secondary"
-              data-assistant-query="Tell me about blood groups"
+              class="assistant-chip"
+              data-assistant-query="camps"
             >
-              🔬 Blood Groups
+
+              🩸
+              <span>
+                Blood Camps
+              </span>
+
             </button>
+
 
             <button
               type="button"
-              class="btn btn-secondary"
-              data-assistant-query="What is RaktSathi?"
+              class="assistant-chip"
+              data-assistant-query="blood groups"
             >
-              ℹ️ About RaktSathi
+
+              🧬
+              <span>
+                Blood Groups
+              </span>
+
             </button>
+
+
+            <button
+              type="button"
+              class="assistant-chip"
+              data-assistant-query="about"
+            >
+
+              ℹ️
+              <span>
+                About RaktSathi
+              </span>
+
+            </button>
+
 
           </div>
 
 
-          <!-- ================= INPUT ================= -->
 
-          <form id="assistantForm"
-                class="assistant-form">
+          <!-- Assistant Form -->
 
-            <div class="assistant-input-row">
+          <form
+            id="assistantForm"
+            class="assistant-form"
+          >
 
-              <label
-                for="assistantInput"
-                class="sr-only"
-              >
-                Ask RaktSathi Assistant
-              </label>
+            <label
+              for="assistantInput"
+              class="sr-only"
+            >
+              Ask RaktSathi Assistant
+            </label>
 
-              <input
-                type="text"
-                id="assistantInput"
-                name="assistantInput"
-                placeholder="Type your requirement..."
-                autocomplete="off"
-                required
-              >
 
-              <button
-                type="submit"
-                class="btn btn-primary"
-              >
+            <span class="assistant-label">
+              Ask RaktSathi Assistant
+            </span>
+
+
+            <input
+              type="text"
+              id="assistantInput"
+              name="assistantInput"
+              placeholder="Type your requirement..."
+              autocomplete="off"
+            >
+
+
+            <button
+              type="submit"
+              class="btn btn-primary assistant-send"
+            >
+
+              💬
+              <span>
                 Send
-              </button>
+              </span>
 
-            </div>
+            </button>
 
           </form>
+
 
         </div>
 
@@ -280,15 +415,19 @@
     </section>
 
 
-    <!-- ================= CAPABILITIES ================= -->
 
-    <section class="section">
+    <!-- ===================================================
+         CAPABILITIES
+         =================================================== -->
+
+    <section class="section section-light">
 
       <div class="container">
 
-        <div class="section-heading reveal">
 
-          <span class="eyebrow">
+        <div class="section-heading">
+
+          <span class="section-kicker">
             ASSISTANT CAPABILITIES
           </span>
 
@@ -297,17 +436,19 @@
           </h2>
 
           <p>
-            The assistant acts as a navigation layer across
-            the RaktSathi ecosystem.
+            The assistant acts as a navigation
+            layer across the RaktSathi ecosystem.
           </p>
 
         </div>
 
 
-        <div class="feature-grid">
+        <div class="grid grid-3">
 
 
-          <article class="card reveal">
+          <!-- Emergency Support -->
+
+          <article class="card">
 
             <div class="card-icon">
               🚨
@@ -318,13 +459,14 @@
             </h3>
 
             <p>
-              Guides users toward the emergency request
-              workflow when urgent blood support is required.
+              Guides users toward the emergency
+              request workflow when urgent blood
+              support is required.
             </p>
 
             <a
               href="emergency.html"
-              class="text-link"
+              class="about-link"
             >
               Start Request →
             </a>
@@ -332,7 +474,10 @@
           </article>
 
 
-          <article class="card reveal">
+
+          <!-- Blood Discovery -->
+
+          <article class="card">
 
             <div class="card-icon">
               🩸
@@ -343,13 +488,13 @@
             </h3>
 
             <p>
-              Helps users navigate to the blood-resource
-              discovery module.
+              Helps users navigate to the
+              blood-resource discovery module.
             </p>
 
             <a
               href="find-blood.html"
-              class="text-link"
+              class="about-link"
             >
               Find Resources →
             </a>
@@ -357,7 +502,10 @@
           </article>
 
 
-          <article class="card reveal">
+
+          <!-- Donor Network -->
+
+          <article class="card">
 
             <div class="card-icon">
               ❤️
@@ -368,71 +516,80 @@
             </h3>
 
             <p>
-              Provides access to the structured donor
-              coordination module.
+              Provides navigation toward the
+              potential donor coordination module.
             </p>
 
             <a
               href="donor.html"
-              class="text-link"
+              class="about-link"
             >
-              Open Donor Network →
+              Donor Network →
             </a>
 
           </article>
 
 
-          <article class="card reveal">
+
+          <!-- Camps -->
+
+          <article class="card">
 
             <div class="card-icon">
-              📍
+              🏥
             </div>
 
             <h3>
-              Camp Discovery
+              Blood Camps
             </h3>
 
             <p>
-              Helps users discover blood donation and
-              awareness camp information.
+              Helps users discover camp information
+              and verification guidance.
             </p>
 
             <a
               href="camps.html"
-              class="text-link"
+              class="about-link"
             >
-              Explore Camps →
+              Discover Camps →
             </a>
 
           </article>
 
 
-          <article class="card reveal">
+
+          <!-- Blood Groups -->
+
+          <article class="card">
 
             <div class="card-icon">
-              🔬
+              🧬
             </div>
 
             <h3>
-              Blood Intelligence
+              Blood Groups
             </h3>
 
             <p>
-              Provides easy access to general educational
-              information about blood groups and components.
+              Provides general educational information
+              about blood groups and components.
             </p>
 
             <a
               href="blood-education.html"
-              class="text-link"
+              class="about-link"
             >
-              Learn More →
+              Learn Blood Basics →
             </a>
 
           </article>
 
 
-          <article class="card reveal">
+
+          <!-- Request Tracking -->
+
+          <article class="card">
 
             <div class="card-icon">
               📋
@@ -443,105 +600,153 @@
             </h3>
 
             <p>
-              Guides users to the request-tracking module
-              for previously created prototype requests.
+              Navigate to the request tracking
+              workflow for better visibility.
             </p>
 
             <a
               href="blood-request.html"
-              class="text-link"
+              class="about-link"
             >
               Track Request →
             </a>
 
           </article>
 
-        </div>
-
-      </div>
-
-    </section>
 
 
-    <!-- ================= INTELLIGENCE LAYER ================= -->
+          <!-- Healthcare Support -->
 
-    <section class="section section-dark">
-
-      <div class="container">
-
-        <div class="section-heading reveal">
-
-          <span class="eyebrow">
-            FUTURE AI LAYER
-          </span>
-
-          <h2>
-            Ready for Intelligent Healthcare Workflows
-          </h2>
-
-          <p>
-            The current prototype uses rule-based assistance.
-            A future backend can connect secure AI services,
-            verified datasets and real-time healthcare workflows.
-          </p>
-
-        </div>
-
-
-        <div class="feature-grid">
-
-
-          <article class="card card-dark reveal">
+          <article class="card">
 
             <div class="card-icon">
-              AI
+              🏥
             </div>
 
             <h3>
-              Natural Language
+              Healthcare Support
             </h3>
 
             <p>
-              Users could describe their requirement in
-              everyday language instead of navigating
-              multiple screens.
+              Helps users navigate toward
+              appropriate professional healthcare
+              support pathways.
             </p>
+
+            <a
+              href="medicine.html"
+              class="about-link"
+            >
+              Explore Support →
+            </a>
 
           </article>
 
 
-          <article class="card card-dark reveal">
+
+          <!-- About -->
+
+          <article class="card">
 
             <div class="card-icon">
-              ⚡
+              ℹ️
             </div>
 
             <h3>
-              Smart Routing
+              About RaktSathi
             </h3>
 
             <p>
-              The assistant can route a request toward
-              the most relevant RaktSathi module.
+              Learn about the project's problem,
+              solution, innovation and vision.
             </p>
+
+            <a
+              href="about.html"
+              class="about-link"
+            >
+              About RaktSathi →
+            </a>
 
           </article>
 
 
-          <article class="card card-dark reveal">
+
+          <!-- Verification -->
+
+          <article class="card">
 
             <div class="card-icon">
               ✓
             </div>
 
             <h3>
-              Verified Information
+              Verification Guidance
             </h3>
 
             <p>
-              Future versions can integrate verified,
-              authorized healthcare data sources while
-              maintaining clear verification boundaries.
+              Potential resource information should
+              always be confirmed with an authorized
+              healthcare facility.
+            </p>
+
+            <a
+              href="find-blood.html"
+              class="about-link"
+            >
+              Verify Resources →
+            </a>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         RESPONSIBLE USE
+         =================================================== -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="grid grid-2">
+
+
+          <article class="card">
+
+            <h3>
+              Responsible Assistant
+            </h3>
+
+            <p>
+              This prototype assistant provides
+              navigation and general information.
+              It is not a medical diagnostic system
+              and does not replace professional
+              healthcare advice.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <h3>
+              Prototype Status
+            </h3>
+
+            <p>
+              The current assistant uses
+              rule-based responses. Future versions
+              can integrate secure AI services and
+              verified healthcare data sources.
             </p>
 
           </article>
@@ -554,136 +759,120 @@
     </section>
 
 
-    <!-- ================= LIMITATIONS ================= -->
-
-    <section class="section">
-
-      <div class="container">
-
-        <div class="notice notice-warning reveal">
-
-          <h3>
-            Important Assistant Limitation
-          </h3>
-
-          <p>
-            This prototype assistant is not a doctor and does
-            not provide diagnosis, prescriptions, medical
-            compatibility decisions or guaranteed blood
-            availability. For medical decisions, consult a
-            qualified healthcare professional or authorized
-            healthcare facility.
-          </p>
-
-        </div>
-
-      </div>
-
-    </section>
-
-
-    <!-- ================= EMERGENCY CTA ================= -->
-
-    <section class="emergency-cta">
-
-      <div class="container">
-
-        <div class="cta-content reveal">
-
-          <span class="eyebrow">
-            WHEN EVERY MINUTE MATTERS
-          </span>
-
-          <h2>
-            Need Blood Support?
-          </h2>
-
-          <p>
-            Start a structured emergency request and let
-            RaktSathi guide the coordination workflow.
-          </p>
-
-          <a
-            href="emergency.html"
-            class="btn btn-primary"
-          >
-            Start Emergency Request
-          </a>
-
-        </div>
-
-      </div>
-
-    </section>
-
   </main>
 
 
-  <!-- ================= FOOTER ================= -->
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
 
   <footer class="site-footer">
 
-    <div class="container footer-content">
+    <div class="container">
 
-      <div>
+      <div class="footer-grid">
 
-        <h3>
-          RaktSathi
-        </h3>
 
-        <p>
-          Intelligent Blood Emergency Coordination Network
-        </p>
+        <div class="footer-brand-section">
+
+
+          <div class="footer-brand">
+
+            <img
+              src="raktsathi-new-logo.png"
+              alt="RaktSathi Logo"
+              width="42"
+              height="42"
+            >
+
+            <span>
+              RaktSathi
+            </span>
+
+          </div>
+
+
+          <p>
+            Intelligent Blood Emergency
+            Coordination Network
+          </p>
+
+
+          <p>
+            Connecting People. Supporting Care.
+          </p>
+
+
+        </div>
+
+
+
+        <nav
+          class="footer-links"
+          aria-label="Footer navigation"
+        >
+
+          <a href="index.html">
+            Home
+          </a>
+
+          <a href="about.html">
+            About
+          </a>
+
+          <a href="find-blood.html">
+            Find Blood
+          </a>
+
+          <a href="emergency.html">
+            Emergency
+          </a>
+
+          <a href="donor.html">
+            Donor Network
+          </a>
+
+          <a href="camps.html">
+            Camps
+          </a>
+
+          <a href="assistant.html">
+            Assistant
+          </a>
+
+        </nav>
+
+
+
+        <div class="footer-bottom">
+
+          © 2026 RaktSathi.
+          Prototype for Smart India Hackathon.
+
+        </div>
+
 
       </div>
-
-
-      <div class="footer-links">
-
-        <a href="about.html">
-          About
-        </a>
-
-        <a href="blood-education.html">
-          Blood Intelligence
-        </a>
-
-        <a href="donor.html">
-          Donor Network
-        </a>
-
-        <a href="camps.html">
-          Camps
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="container footer-bottom">
-
-      <p>
-        © 2026 RaktSathi. Prototype for Smart India Hackathon.
-      </p>
-
-      <p>
-        Connecting People. Supporting Care.
-      </p>
 
     </div>
 
   </footer>
 
 
-  <!-- ================= SCRIPTS ================= -->
+
+  <!-- =====================================================
+       SCRIPTS
+       ===================================================== -->
 
   <script src="js/animations.js"></script>
+
   <script src="js/app.js"></script>
+
   <script src="js/assistant.js"></script>
 
+  <script src="js/loader.js"></script>
 
-  <!-- ================= SERVICE WORKER ================= -->
 
   <script>
 
@@ -698,7 +887,7 @@
             .catch(function (error) {
 
               console.log(
-                "Service worker registration failed:",
+                "Service Worker registration failed:",
                 error
               );
 
@@ -711,5 +900,7 @@
 
   </script>
 
+
 </body>
+
 </html>
