@@ -1,16 +1,81 @@
-/* =========================================================
-   RAKTSATHI LOADING ANIMATION
-   Blood Drop Loader
-   ========================================================= */
-
 (function () {
-
   "use strict";
 
+  function createLoader() {
+    if (document.getElementById("raktsathi-loader")) return;
 
-  /* =======================================================
-     HIDE LOADER
-     ======================================================= */
+    const loader = document.createElement("div");
+
+    loader.id = "raktsathi-loader";
+
+    loader.innerHTML = `
+      <div class="rs-loader-scene">
+
+        <!-- Falling Blood Drop -->
+        <div class="rs-drop-wrapper">
+          <div class="rs-drop">
+            <span class="rs-drop-shine"></span>
+          </div>
+        </div>
+
+        <!-- Impact Shadow -->
+        <div class="rs-impact-shadow"></div>
+
+        <!-- Blood Splash -->
+        <div class="rs-splash">
+
+          <span class="splash-drop splash-1"></span>
+          <span class="splash-drop splash-2"></span>
+          <span class="splash-drop splash-3"></span>
+          <span class="splash-drop splash-4"></span>
+          <span class="splash-drop splash-5"></span>
+          <span class="splash-drop splash-6"></span>
+
+          <div class="rs-splash-crown">
+            <span></span>
+          </div>
+
+        </div>
+
+        <!-- Ripple -->
+        <div class="rs-ripple ripple-1"></div>
+        <div class="rs-ripple ripple-2"></div>
+        <div class="rs-ripple ripple-3"></div>
+
+        <!-- Logo Reveal -->
+        <div class="rs-loader-brand">
+
+          <div class="rs-logo-circle">
+
+            <img
+              src="raktsathi-new-logo.png"
+              alt="RaktSathi"
+            >
+
+          </div>
+
+          <div class="rs-brand-name">
+            <span>Rakt</span>Sathi
+          </div>
+
+          <div class="rs-loader-tagline">
+            Connecting People. Supporting Care.
+          </div>
+
+          <div class="rs-loader-dots">
+            <i></i>
+            <i></i>
+            <i></i>
+          </div>
+
+        </div>
+
+      </div>
+    `;
+
+    document.body.prepend(loader);
+  }
+
 
   function hideLoader() {
 
@@ -19,167 +84,79 @@
 
     if (!loader) return;
 
-    loader.classList.add("loader-hidden");
-
+    loader.classList.add("rs-loader-exit");
 
     setTimeout(function () {
 
-      if (loader && loader.parentNode) {
-
-        loader.parentNode.removeChild(loader);
-
+      if (loader) {
+        loader.remove();
       }
 
-    }, 650);
-
+    }, 900);
   }
 
 
-  /* =======================================================
-     CREATE LOADER
-     ======================================================= */
+  function startLoader() {
 
-  function createLoader() {
+    createLoader();
 
-    /* Prevent duplicate loader */
+    /*
+      Minimum animation duration.
+      Isse drop animation properly complete hogi.
+    */
 
-    if (
-      document.getElementById("raktsathi-loader")
-    ) {
-      return;
-    }
+    setTimeout(function () {
 
+      if (document.readyState === "complete") {
+        hideLoader();
+      }
 
-    const loader =
-      document.createElement("div");
-
-
-    loader.id =
-      "raktsathi-loader";
-
-
-    loader.setAttribute(
-      "aria-label",
-      "RaktSathi loading"
-    );
-
-
-    loader.setAttribute(
-      "role",
-      "status"
-    );
-
-
-    loader.innerHTML = `
-
-      <div class="loader-content">
-
-        <!-- Blood Drop -->
-
-        <div class="blood-drop-loader">
-
-          <div class="blood-drop"></div>
-
-        </div>
-
-
-        <!-- Brand -->
-
-        <div class="loader-brand">
-
-          <span>Rakt</span>Sathi
-
-        </div>
-
-
-        <!-- Loading Text -->
-
-        <p class="loader-text">
-
-          Connecting People. Supporting Care.
-
-        </p>
-
-
-        <!-- Loading Dots -->
-
-        <div
-          class="loader-dots"
-          aria-hidden="true"
-        >
-
-          <span></span>
-
-          <span></span>
-
-          <span></span>
-
-        </div>
-
-      </div>
-
-    `;
-
-
-    document.body.prepend(loader);
-
+    }, 3600);
   }
 
 
-  /* =======================================================
-     START LOADER
-     ======================================================= */
+  /*
+    Start as early as possible
+  */
 
   if (document.body) {
 
-    createLoader();
+    startLoader();
 
   } else {
 
     document.addEventListener(
       "DOMContentLoaded",
-      createLoader
+      startLoader
     );
 
   }
 
 
-  /* =======================================================
-     PAGE FULLY LOADED
-     ======================================================= */
-
-  window.addEventListener(
-    "load",
-    function () {
-
-      /*
-       Small delay so the animation
-       looks smooth instead of disappearing instantly.
-      */
-
-      setTimeout(
-        hideLoader,
-        650
-      );
-
-    }
-  );
-
-
-  /* =======================================================
-     SAFETY FALLBACK
-     ======================================================= */
-
   /*
-    If something takes too long to load,
-    loader automatically disappears
-    after 5 seconds.
+    Website fully loaded hone ke baad
+    animation ko complete hone dete hain.
   */
 
-  setTimeout(
-    hideLoader,
-    5000
-  );
+  window.addEventListener("load", function () {
 
+    setTimeout(function () {
+
+      hideLoader();
+
+    }, 3600);
+
+  });
+
+
+  /*
+    Safety fallback
+    */
+
+  setTimeout(function () {
+
+    hideLoader();
+
+  }, 7000);
 
 })();
