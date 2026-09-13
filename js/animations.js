@@ -2,56 +2,42 @@
   "use strict";
 
   function createLoader() {
+    if (!document.body) return;
     if (document.getElementById("raktsathi-loader")) return;
 
     const loader = document.createElement("div");
-
     loader.id = "raktsathi-loader";
 
     loader.innerHTML = `
       <div class="rs-loader-scene">
 
-        <!-- Falling Blood Drop -->
         <div class="rs-drop-wrapper">
           <div class="rs-drop">
             <span class="rs-drop-shine"></span>
           </div>
         </div>
 
-        <!-- Impact Shadow -->
         <div class="rs-impact-shadow"></div>
 
-        <!-- Blood Splash -->
         <div class="rs-splash">
-
           <span class="splash-drop splash-1"></span>
           <span class="splash-drop splash-2"></span>
           <span class="splash-drop splash-3"></span>
           <span class="splash-drop splash-4"></span>
           <span class="splash-drop splash-5"></span>
           <span class="splash-drop splash-6"></span>
-
           <div class="rs-splash-crown">
             <span></span>
           </div>
-
         </div>
 
-        <!-- Ripple -->
         <div class="rs-ripple ripple-1"></div>
         <div class="rs-ripple ripple-2"></div>
         <div class="rs-ripple ripple-3"></div>
 
-        <!-- Logo Reveal -->
         <div class="rs-loader-brand">
-
           <div class="rs-logo-circle">
-
-            <img
-              src="raktsathi-new-logo.png"
-              alt="RaktSathi"
-            >
-
+            <img src="raktsathi-new-logo.png" alt="RaktSathi">
           </div>
 
           <div class="rs-brand-name">
@@ -67,7 +53,6 @@
             <i></i>
             <i></i>
           </div>
-
         </div>
 
       </div>
@@ -76,87 +61,61 @@
     document.body.prepend(loader);
   }
 
-
   function hideLoader() {
+    const loader = document.getElementById("raktsathi-loader");
 
-    const loader =
-      document.getElementById("raktsathi-loader");
-
-    if (!loader) return;
+    if (!loader) {
+      document.documentElement.classList.remove("rs-loading");
+      document.body.classList.remove("rs-loading");
+      return;
+    }
 
     loader.classList.add("rs-loader-exit");
 
-    setTimeout(function () {
+    document.documentElement.classList.remove("rs-loading");
+    document.body.classList.remove("rs-loading");
 
-      if (loader) {
-        loader.remove();
+    setTimeout(function () {
+      if (loader && loader.parentNode) {
+        loader.parentNode.removeChild(loader);
       }
 
+      document.documentElement.classList.remove("rs-loading");
+      document.body.classList.remove("rs-loading");
     }, 900);
   }
 
-
   function startLoader() {
-
     createLoader();
 
     /*
-      Minimum animation duration.
-      Isse drop animation properly complete hogi.
+      Maximum 4.5 seconds.
+      Iske baad loader forcefully remove ho jayega.
     */
-
-    setTimeout(function () {
-
-      if (document.readyState === "complete") {
-        hideLoader();
-      }
-
-    }, 3600);
+    setTimeout(hideLoader, 4500);
   }
 
-
-  /*
-    Start as early as possible
-  */
-
-  if (document.body) {
-
-    startLoader();
-
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", startLoader, {
+      once: true
+    });
   } else {
-
-    document.addEventListener(
-      "DOMContentLoaded",
-      startLoader
-    );
-
+    startLoader();
   }
-
-
-  /*
-    Website fully loaded hone ke baad
-    animation ko complete hone dete hain.
-  */
 
   window.addEventListener("load", function () {
-
-    setTimeout(function () {
-
-      hideLoader();
-
-    }, 3600);
-
+    setTimeout(hideLoader, 1000);
+  }, {
+    once: true
   });
 
-
   /*
-    Safety fallback
-    */
-
+    Emergency fallback:
+    Agar kisi bhi reason se JS/CSS animation stuck ho,
+    6 seconds ke baad loader definitely remove hoga.
+  */
   setTimeout(function () {
-
     hideLoader();
-
-  }, 7000);
+  }, 6000);
 
 })();
