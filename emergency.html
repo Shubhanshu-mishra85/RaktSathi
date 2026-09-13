@@ -1,569 +1,993 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Emergency Support | VitalLoop</title>
+  <title>Emergency Blood Coordination | RaktSathi</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+  <meta name="description"
+        content="Create an emergency blood-support coordination request with RaktSathi.">
 
-body{
-    background:#f2fbf6;
-    color:#173b2b;
-}
-
-/* NAVBAR */
-nav{
-    height:70px;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    box-shadow:0 3px 18px rgba(0,80,40,.08);
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.logo{
-    font-size:25px;
-    font-weight:800;
-    color:#08783e;
-}
-
-.logo span{
-    color:#14a85b;
-}
-
-.back{
-    text-decoration:none;
-    color:#08783e;
-    font-weight:700;
-}
-
-/* HERO */
-.hero{
-    text-align:center;
-    padding:60px 20px 45px;
-    background:linear-gradient(135deg,#e4fff0,#f8fffb);
-}
-
-.emergency-icon{
-    width:85px;
-    height:85px;
-    margin:auto;
-    border-radius:50%;
-    background:#b42318;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:40px;
-    box-shadow:0 12px 30px rgba(180,35,24,.22);
-    animation:emergencyPulse 1.6s infinite;
-}
-
-.hero h1{
-    margin-top:22px;
-    font-size:42px;
-    color:#075f32;
-}
-
-.hero p{
-    max-width:700px;
-    margin:14px auto;
-    color:#60786b;
-    line-height:1.7;
-}
-
-/* CONTAINER */
-.container{
-    max-width:1050px;
-    margin:40px auto;
-    padding:0 20px;
-}
-
-/* ALERT */
-.alert{
-    background:#fff3f1;
-    border:1px solid #ffd2cd;
-    border-left:6px solid #b42318;
-    padding:20px;
-    border-radius:16px;
-    margin-bottom:25px;
-    line-height:1.6;
-}
-
-.alert strong{
-    color:#9d2117;
-}
-
-/* EMERGENCY GRID */
-.emergency-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-/* CARD */
-.card{
-    background:white;
-    border-radius:22px;
-    padding:28px;
-    box-shadow:0 12px 35px rgba(0,70,35,.08);
-    animation:slideUp .7s ease;
-}
-
-.card h2{
-    color:#075f32;
-    margin-bottom:9px;
-}
-
-.card p{
-    color:#66786d;
-    line-height:1.6;
-    font-size:14px;
-}
-
-/* EMERGENCY BUTTON */
-.call-card{
-    border-top:5px solid #b42318;
-}
-
-.call-btn{
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    gap:10px;
-    margin-top:20px;
-    padding:16px;
-    border-radius:13px;
-    background:#b42318;
-    color:white;
-    text-decoration:none;
-    font-weight:800;
-    font-size:17px;
-    transition:.3s;
-}
-
-.call-btn:hover{
-    transform:translateY(-2px);
-    box-shadow:0 10px 25px rgba(180,35,24,.2);
-}
-
-/* RESOURCE BUTTONS */
-.resource{
-    display:flex;
-    gap:12px;
-    align-items:center;
-    padding:15px;
-    margin-top:13px;
-    background:#f3fbf6;
-    border:1px solid #deeee5;
-    border-radius:14px;
-}
-
-.resource-icon{
-    width:45px;
-    height:45px;
-    border-radius:12px;
-    background:#e4f7eb;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-    flex-shrink:0;
-}
-
-.resource-text{
-    flex:1;
-}
-
-.resource-text strong{
-    display:block;
-    color:#075f32;
-    margin-bottom:3px;
-}
-
-.resource-text span{
-    font-size:12px;
-    color:#728278;
-}
-
-/* BLOOD */
-.blood-card{
-    margin-top:20px;
-    background:linear-gradient(135deg,#eafff1,#f9fffb);
-    border:1px solid #d9eee1;
-}
-
-.blood-btn{
-    display:inline-block;
-    margin-top:18px;
-    padding:13px 20px;
-    background:#08783e;
-    color:white;
-    border-radius:11px;
-    text-decoration:none;
-    font-weight:bold;
-}
-
-/* STEPS */
-.steps-card{
-    margin-top:25px;
-}
-
-.steps{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-    margin-top:22px;
-}
-
-.step{
-    background:#f3fbf6;
-    padding:20px;
-    border-radius:16px;
-}
-
-.step-number{
-    width:38px;
-    height:38px;
-    border-radius:50%;
-    background:#08783e;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:bold;
-}
-
-.step h3{
-    color:#075f32;
-    margin:12px 0 7px;
-}
-
-.step p{
-    font-size:13px;
-}
-
-/* SAFETY */
-.safety{
-    margin-top:25px;
-    background:#effaf3;
-    border-left:5px solid #14a85b;
-    padding:18px;
-    border-radius:12px;
-    color:#496657;
-    font-size:14px;
-    line-height:1.7;
-}
-
-/* FOOTER */
-footer{
-    margin-top:55px;
-    padding:30px 20px;
-    text-align:center;
-    background:#063d22;
-    color:#d8f5e4;
-}
-
-footer strong{
-    color:white;
-}
-
-/* ANIMATION */
-@keyframes emergencyPulse{
-    0%,100%{
-        transform:scale(1);
-        box-shadow:0 12px 30px rgba(180,35,24,.22);
-    }
-    50%{
-        transform:scale(1.08);
-        box-shadow:0 12px 40px rgba(180,35,24,.38);
-    }
-}
-
-@keyframes slideUp{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-/* MOBILE */
-@media(max-width:750px){
-
-    nav{
-        padding:0 20px;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .hero h1{
-        font-size:32px;
+    body {
+      background: #f4fbf7;
+      color: #17372c;
+      line-height: 1.6;
     }
 
-    .emergency-grid{
-        grid-template-columns:1fr;
+    /* NAVBAR */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      padding: 15px 6%;
+
+      background: #022c22;
+      box-shadow: 0 5px 20px rgba(0,0,0,.12);
     }
 
-    .steps{
-        grid-template-columns:1fr;
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+
+      color: white;
+      text-decoration: none;
+
+      font-size: 25px;
+      font-weight: 900;
     }
 
-    .card{
-        padding:22px 18px;
+    .brand-mark {
+      width: 38px;
+      height: 38px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 11px;
+
+      background: #dc2626;
+      color: white;
+
+      font-weight: 900;
     }
-}
-</style>
+
+    .brand span {
+      color: #f87171;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: #86efac;
+    }
+
+    /* HERO */
+
+    .hero {
+      background:
+        radial-gradient(circle at 15% 20%, rgba(16,185,129,.18), transparent 30%),
+        linear-gradient(135deg, #7f1d1d, #b91c1c);
+
+      color: white;
+      padding: 65px 6%;
+    }
+
+    .hero-content {
+      max-width: 1050px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .emergency-badge {
+      display: inline-block;
+
+      padding: 7px 14px;
+      margin-bottom: 15px;
+
+      border: 1px solid rgba(255,255,255,.25);
+      border-radius: 30px;
+
+      background: rgba(255,255,255,.10);
+
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .6px;
+    }
+
+    .hero h1 {
+      font-size: clamp(35px, 6vw, 58px);
+      line-height: 1.1;
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      max-width: 750px;
+      margin: auto;
+
+      color: #fee2e2;
+      font-size: 17px;
+    }
+
+    /* CONTAINER */
+
+    .container {
+      width: 92%;
+      max-width: 1050px;
+      margin: 45px auto;
+    }
+
+    /* MAIN GRID */
+
+    .main-grid {
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 28px;
+      align-items: start;
+    }
+
+    /* FORM */
+
+    .form-card {
+      background: white;
+      padding: 30px;
+      border-radius: 22px;
+
+      box-shadow: 0 12px 35px rgba(6,78,59,.10);
+    }
+
+    .form-card h2 {
+      color: #064e3b;
+      margin-bottom: 5px;
+    }
+
+    .form-intro {
+      color: #687b73;
+      font-size: 14px;
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+
+      color: #24483b;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border: 1px solid #cce5d9;
+      border-radius: 11px;
+
+      background: #fbfffd;
+
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+    }
+
+    textarea {
+      min-height: 105px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    .urgent-select {
+      border-color: #fca5a5;
+    }
+
+    .submit-btn {
+      width: 100%;
+
+      margin-top: 22px;
+      padding: 15px;
+
+      border: none;
+      border-radius: 12px;
+
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+
+      color: white;
+
+      font-size: 16px;
+      font-weight: 900;
+
+      cursor: pointer;
+    }
+
+    .submit-btn:hover {
+      background: #991b1b;
+      transform: translateY(-1px);
+    }
+
+    /* SIDEBAR */
+
+    .side-card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+
+      box-shadow: 0 10px 30px rgba(6,78,59,.09);
+    }
+
+    .side-card h2 {
+      color: #064e3b;
+      margin-bottom: 17px;
+    }
+
+    .side-step {
+      display: flex;
+      gap: 13px;
+
+      margin-bottom: 15px;
+      padding: 14px;
+
+      background: #f0fdf4;
+      border-radius: 13px;
+    }
+
+    .side-number {
+      min-width: 32px;
+      height: 32px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #dcfce7;
+      color: #047857;
+
+      font-size: 13px;
+      font-weight: 900;
+    }
+
+    .side-step strong {
+      display: block;
+      color: #064e3b;
+      margin-bottom: 2px;
+    }
+
+    .side-step span {
+      color: #63766e;
+      font-size: 13px;
+    }
+
+    /* STATUS */
+
+    .status-card {
+      margin-top: 20px;
+
+      padding: 20px;
+
+      background: #ecfdf5;
+      border: 1px solid #bbf7d0;
+
+      border-radius: 15px;
+    }
+
+    .status-card h3 {
+      color: #065f46;
+      margin-bottom: 5px;
+    }
+
+    .status-card p {
+      color: #527067;
+      font-size: 13px;
+    }
+
+    /* SUCCESS */
+
+    .success {
+      display: none;
+
+      margin-top: 20px;
+      padding: 18px;
+
+      background: #ecfdf5;
+      border: 1px solid #86efac;
+
+      border-radius: 13px;
+
+      color: #166534;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .request-id {
+      display: block;
+      margin-top: 7px;
+
+      font-size: 18px;
+      color: #065f46;
+    }
+
+    /* NOTICE */
+
+    .notice {
+      margin-top: 30px;
+
+      padding: 20px;
+
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+
+      border-radius: 12px;
+
+      color: #7c2d12;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+
+    footer {
+      margin-top: 60px;
+
+      background: #011c16;
+      color: #a7cfc0;
+
+      text-align: center;
+
+      padding: 32px 6%;
+
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+      font-size: 18px;
+    }
+
+    /* MOBILE */
+
+    @media (max-width: 800px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      .main-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .hero {
+        padding: 50px 6%;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav>
+  <!-- NAVBAR -->
 
-    <div class="logo">
-        Vital<span>Loop</span>
-    </div>
+  <nav>
 
-    <a href="index.html" class="back">
-        ← Back to Home
+    <a href="index.html" class="brand">
+
+      <div class="brand-mark">S</div>
+
+      Rakt<span>Sathi</span>
+
     </a>
 
-</nav>
+    <div class="nav-links">
 
+      <a href="index.html">Home</a>
 
-<!-- HERO -->
-<section class="hero">
+      <a href="find-blood.html">Find Resources</a>
 
-    <div class="emergency-icon">
-        🚨
+      <a href="donor.html">Donor</a>
+
+      <a href="assistant.html">Assistant</a>
+
     </div>
 
-    <h1>Emergency Support</h1>
-
-    <p>
-        Quick access to emergency guidance and healthcare
-        navigation when every moment matters.
-    </p>
-
-</section>
+  </nav>
 
 
-<div class="container">
+  <!-- HERO -->
 
-<!-- IMPORTANT ALERT -->
-<div class="alert">
+  <section class="hero">
 
-    <strong>🚨 Medical Emergency?</strong><br>
+    <div class="hero-content">
 
-    If someone has a serious or life-threatening condition,
-    contact your local emergency service and seek immediate
-    professional medical care. Do not rely on VitalLoop or
-    an AI assistant for emergency diagnosis or treatment.
+      <div class="emergency-badge">
+        🚨 EMERGENCY COORDINATION
+      </div>
 
-</div>
+      <h1>
+        Create an Emergency<br>
+        Blood Request
+      </h1>
+
+      <p>
+        Submit essential requirement details so RaktSathi can organise
+        the information needed for blood-resource coordination.
+      </p>
+
+    </div>
+
+  </section>
 
 
-<!-- EMERGENCY OPTIONS -->
-<div class="emergency-grid">
+  <main class="container">
+
+    <div class="main-grid">
 
 
-    <!-- CALL CARD -->
-    <div class="card call-card">
+      <!-- REQUEST FORM -->
 
-        <h2>📞 Emergency Services</h2>
+      <section class="form-card">
 
-        <p>
-            In India, <strong>112</strong> is the unified
-            emergency number for urgent assistance.
+        <h2>Emergency Request</h2>
+
+        <p class="form-intro">
+          Enter accurate information. This request does not guarantee
+          blood availability or donation.
         </p>
 
-        <a
-            href="tel:112"
-            class="call-btn"
+
+        <form id="emergencyForm">
+
+
+          <div class="row">
+
+            <div>
+
+              <label for="patientName">
+                Patient / Requester Name
+              </label>
+
+              <input
+                type="text"
+                id="patientName"
+                placeholder="Enter name"
+                required
+              >
+
+            </div>
+
+
+            <div>
+
+              <label for="phone">
+                Contact Number
+              </label>
+
+              <input
+                type="tel"
+                id="phone"
+                maxlength="10"
+                placeholder="10-digit mobile number"
+                required
+              >
+
+            </div>
+
+          </div>
+
+
+          <div class="row">
+
+            <div>
+
+              <label for="bloodGroup">
+                Required Blood Group
+              </label>
+
+              <select id="bloodGroup" required>
+
+                <option value="">
+                  Select blood group
+                </option>
+
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label for="component">
+                Required Component
+              </label>
+
+              <select id="component" required>
+
+                <option value="">
+                  Select component
+                </option>
+
+                <option>Whole Blood</option>
+                <option>Red Blood Cells</option>
+                <option>Platelets</option>
+                <option>Plasma</option>
+                <option>Cryoprecipitate</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <div class="row">
+
+            <div>
+
+              <label for="units">
+                Required Units
+              </label>
+
+              <select id="units" required>
+
+                <option value="">
+                  Select units
+                </option>
+
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5+</option>
+
+              </select>
+
+            </div>
+
+
+            <div>
+
+              <label for="urgency">
+                Urgency Level
+              </label>
+
+              <select id="urgency" class="urgent-select" required>
+
+                <option value="">
+                  Select urgency
+                </option>
+
+                <option>Critical — Immediate coordination</option>
+                <option>Urgent — Needed soon</option>
+                <option>Planned — Future requirement</option>
+
+              </select>
+
+            </div>
+
+          </div>
+
+
+          <label for="district">
+            District / City
+          </label>
+
+          <input
+            type="text"
+            id="district"
+            placeholder="e.g. Lucknow"
+            required
+          >
+
+
+          <label for="facility">
+            Hospital / Healthcare Facility
+          </label>
+
+          <input
+            type="text"
+            id="facility"
+            placeholder="Enter authorised facility name"
+            required
+          >
+
+
+          <label for="requiredDate">
+            Required Date
+          </label>
+
+          <input
+            type="date"
+            id="requiredDate"
+            required
+          >
+
+
+          <label for="details">
+            Additional Information
+          </label>
+
+          <textarea
+            id="details"
+            placeholder="Add any relevant request information..."
+          ></textarea>
+
+
+          <button
+            type="submit"
+            class="submit-btn"
+          >
+            🚨 Create Emergency Request
+          </button>
+
+
+        </form>
+
+
+        <!-- SUCCESS -->
+
+        <div
+          class="success"
+          id="successMessage"
         >
-            📞 Call 112
-        </a>
 
-    </div>
+          ✅ Emergency request created successfully.
 
+          <span
+            class="request-id"
+            id="requestId"
+          ></span>
 
-    <!-- HOSPITAL -->
-    <div class="card">
+          <br>
 
-        <h2>🏥 Healthcare Support</h2>
-
-        <p>
-            Use VitalLoop to navigate towards relevant
-            healthcare resources.
-        </p>
-
-        <div class="resource">
-
-            <div class="resource-icon">🏥</div>
-
-            <div class="resource-text">
-
-                <strong>Find Blood Resources</strong>
-
-                <span>
-                    Search blood-resource listings
-                </span>
-
-            </div>
+          Keep this request ID for prototype tracking.
 
         </div>
 
+      </section>
 
-        <div class="resource">
 
-            <div class="resource-icon">🩺</div>
+      <!-- SIDE PANEL -->
 
-            <div class="resource-text">
+      <aside>
 
-                <strong>Healthcare Facility</strong>
 
-                <span>
-                    Contact an appropriate healthcare facility
-                </span>
+        <div class="side-card">
+
+          <h2>How Coordination Works</h2>
+
+
+          <div class="side-step">
+
+            <div class="side-number">
+              1
+            </div>
+
+            <div>
+
+              <strong>Request Created</strong>
+
+              <span>
+                Your requirement is structured digitally.
+              </span>
 
             </div>
 
-        </div>
-
-    </div>
-
-</div>
+          </div>
 
 
-<!-- BLOOD SUPPORT -->
-<div class="card blood-card">
+          <div class="side-step">
 
-    <h2>🩸 Need Blood Resources?</h2>
-
-    <p>
-        If a patient requires blood, use the VitalLoop
-        blood-resource network to discover relevant
-        authorized resources and raise a request.
-    </p>
-
-    <a
-        href="find-blood.html"
-        class="blood-btn"
-    >
-        Find Blood Resources →
-    </a>
-
-    <a
-        href="blood-request.html"
-        class="blood-btn"
-        style="margin-left:8px;background:#075f32;"
-    >
-        Raise Blood Request →
-    </a>
-
-</div>
-
-
-<!-- WHAT TO DO -->
-<div class="card steps-card">
-
-    <h2>What to Do During an Emergency</h2>
-
-    <div class="steps">
-
-        <div class="step">
-
-            <div class="step-number">
-                1
+            <div class="side-number">
+              2
             </div>
 
-            <h3>Call for Help</h3>
+            <div>
+
+              <strong>Resource Discovery</strong>
+
+              <span>
+                Relevant blood-resource information can be explored.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="side-step">
+
+            <div class="side-number">
+              3
+            </div>
+
+            <div>
+
+              <strong>Potential Matching</strong>
+
+              <span>
+                Potential donor or centre connections may be identified.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="side-step">
+
+            <div class="side-number">
+              4
+            </div>
+
+            <div>
+
+              <strong>Facility Verification</strong>
+
+              <span>
+                Availability must be confirmed with an authorised facility.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="side-step">
+
+            <div class="side-number">
+              5
+            </div>
+
+            <div>
+
+              <strong>Request Update</strong>
+
+              <span>
+                The request can be updated or closed.
+              </span>
+
+            </div>
+
+          </div>
+
+
+          <div class="status-card">
+
+            <h3>
+              🔄 Coordination Status
+            </h3>
 
             <p>
-                Contact emergency services or get immediate
-                professional medical assistance.
+              New requests start with the status
+              <strong>Created</strong>.
             </p>
+
+          </div>
 
         </div>
 
 
-        <div class="step">
-
-            <div class="step-number">
-                2
-            </div>
-
-            <h3>Stay With the Person</h3>
-
-            <p>
-                Keep the person in a safe situation and
-                follow instructions from emergency personnel.
-            </p>
-
-        </div>
-
-
-        <div class="step">
-
-            <div class="step-number">
-                3
-            </div>
-
-            <h3>Follow Professionals</h3>
-
-            <p>
-                Follow instructions provided by qualified
-                healthcare and emergency professionals.
-            </p>
-
-        </div>
+      </aside>
 
     </div>
 
-</div>
 
+    <!-- SAFETY -->
 
-<!-- SAFETY -->
-<div class="safety">
+    <div class="notice">
 
-    <strong>🛡️ VitalLoop Safety Notice</strong><br>
+      <strong>Important Safety Notice:</strong><br>
 
-    VitalLoop is a healthcare technology prototype for
-    information, discovery and coordination. It does not
-    replace emergency services, doctors, hospitals or
-    other qualified healthcare professionals.
+      RaktSathi is a technology prototype for discovery and
+      coordination. Creating a request does not guarantee donor
+      availability, blood availability or fulfilment.
 
-</div>
+      RaktSathi does not collect, test, store, transport, release
+      or distribute blood. Blood collection, testing, compatibility,
+      storage and transfusion are handled by authorised blood centres
+      and qualified healthcare professionals.
 
-</div>
+      In a genuine medical emergency, contact the treating healthcare
+      facility and appropriate emergency services immediately.
 
-
-<!-- FOOTER -->
-<footer>
-
-    <strong>VitalLoop</strong><br>
-
-    Your Complete Healthcare Journey
-
-    <div style="margin-top:8px;font-size:13px;opacity:.75">
-        Healthcare Technology Prototype • Smart India Hackathon
     </div>
 
-</footer>
+  </main>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <strong>RaktSathi</strong>
+
+    <br><br>
+
+    Emergency Blood Coordination & Patient Support Network
+
+    <br>
+
+    Connecting People. Coordinating Resources. Supporting Care.
+
+    <br><br>
+
+    © 2026 RaktSathi — SIH Project Prototype
+
+  </footer>
+
+
+  <script>
+
+    const form =
+      document.getElementById("emergencyForm");
+
+    const success =
+      document.getElementById("successMessage");
+
+    const requestId =
+      document.getElementById("requestId");
+
+
+    form.addEventListener(
+      "submit",
+      function(event) {
+
+        event.preventDefault();
+
+
+        const phone =
+          document.getElementById("phone")
+          .value
+          .trim();
+
+
+        /* PHONE VALIDATION */
+
+        if (!/^[6-9][0-9]{9}$/.test(phone)) {
+
+          alert(
+            "Please enter a valid 10-digit Indian mobile number."
+          );
+
+          return;
+
+        }
+
+
+        /* GENERATE PROTOTYPE REQUEST ID */
+
+        const id =
+          "RS-" +
+          new Date().getTime()
+          .toString()
+          .slice(-8);
+
+
+        /* REQUEST DATA */
+
+        const requestData = {
+
+          requestId: id,
+
+          patientName:
+            document.getElementById("patientName").value.trim(),
+
+          phone: phone,
+
+          bloodGroup:
+            document.getElementById("bloodGroup").value,
+
+          component:
+            document.getElementById("component").value,
+
+          units:
+            document.getElementById("units").value,
+
+          urgency:
+            document.getElementById("urgency").value,
+
+          district:
+            document.getElementById("district").value.trim(),
+
+          facility:
+            document.getElementById("facility").value.trim(),
+
+          requiredDate:
+            document.getElementById("requiredDate").value,
+
+          details:
+            document.getElementById("details").value.trim(),
+
+          status: "Created",
+
+          createdAt:
+            new Date().toISOString()
+
+        };
+
+
+        /* LOCAL PROTOTYPE STORAGE */
+
+        localStorage.setItem(
+          "raktSathiEmergencyRequest",
+          JSON.stringify(requestData)
+        );
+
+
+        /* SHOW SUCCESS */
+
+        requestId.textContent =
+          "Request ID: " + id;
+
+        success.style.display =
+          "block";
+
+
+        form.reset();
+
+
+        success.scrollIntoView({
+          behavior: "smooth",
+          block: "center"
+        });
+
+      }
+    );
+
+  </script>
 
 </body>
 </html>
