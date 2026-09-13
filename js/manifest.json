@@ -7,7 +7,7 @@
   "display": "standalone",
   "orientation": "portrait-primary",
   "theme_color": "#8B0000",
-  "background_color": "#0B0F14",
+  "background_color": "#FFF5F5",
   "lang": "en-IN",
   "dir": "ltr",
   "categories": [
@@ -17,7 +17,7 @@
   ],
   "icons": [
     {
-      "src": "raktsathi-logo.png",
+      "src": "raktsathi-new-logo.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
