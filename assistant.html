@@ -1,740 +1,587 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>VitalLoop AI Assistant</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+  <title>RaktSathi Assistant</title>
 
-body{
-    background:#f1fbf5;
-    color:#173b2b;
-}
+  <meta name="description"
+        content="RaktSathi Smart Healthcare Assistant for blood-resource guidance and navigation.">
 
-/* NAVBAR */
-nav{
-    height:70px;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    box-shadow:0 3px 18px rgba(0,80,40,.08);
-    position:sticky;
-    top:0;
-    z-index:10;
-}
-
-.logo{
-    font-size:25px;
-    font-weight:800;
-    color:#08783e;
-}
-
-.logo span{
-    color:#14a85b;
-}
-
-.back{
-    color:#08783e;
-    text-decoration:none;
-    font-weight:700;
-}
-
-/* HERO */
-.hero{
-    text-align:center;
-    padding:55px 20px 35px;
-    background:linear-gradient(135deg,#e4fff0,#f8fffb);
-}
-
-.ai-icon{
-    width:78px;
-    height:78px;
-    margin:auto;
-    border-radius:50%;
-    background:#08783e;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:37px;
-    box-shadow:0 12px 30px rgba(8,120,62,.25);
-    animation:pulse 2s infinite;
-}
-
-.hero h1{
-    margin-top:20px;
-    font-size:40px;
-    color:#075f32;
-}
-
-.hero p{
-    max-width:700px;
-    margin:12px auto;
-    line-height:1.7;
-    color:#60786b;
-}
-
-/* CHAT */
-.container{
-    max-width:850px;
-    margin:35px auto;
-    padding:0 20px;
-}
-
-.chat-card{
-    background:#fff;
-    border-radius:25px;
-    overflow:hidden;
-    box-shadow:0 12px 40px rgba(0,70,35,.09);
-    animation:slideUp .7s ease;
-}
-
-.chat-header{
-    background:#08783e;
-    color:white;
-    padding:20px 24px;
-    display:flex;
-    align-items:center;
-    gap:13px;
-}
-
-.bot{
-    width:45px;
-    height:45px;
-    border-radius:50%;
-    background:white;
-    color:#08783e;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:22px;
-}
-
-.chat-header h3{
-    font-size:18px;
-}
-
-.online{
-    font-size:12px;
-    opacity:.8;
-    margin-top:4px;
-}
-
-.chat-box{
-    height:420px;
-    padding:22px;
-    overflow-y:auto;
-    background:#f9fdfb;
-}
-
-.message{
-    max-width:78%;
-    padding:13px 16px;
-    border-radius:16px;
-    margin-bottom:14px;
-    line-height:1.55;
-    font-size:14px;
-    animation:messageIn .35s ease;
-}
-
-.bot-msg{
-    background:#e8f7ee;
-    color:#28533e;
-    border-bottom-left-radius:5px;
-}
-
-.user-msg{
-    background:#08783e;
-    color:white;
-    margin-left:auto;
-    border-bottom-right-radius:5px;
-}
-
-/* QUICK QUESTIONS */
-.quick{
-    padding:15px 20px 5px;
-    background:white;
-}
-
-.quick-title{
-    font-size:13px;
-    font-weight:bold;
-    color:#60766a;
-    margin-bottom:10px;
-}
-
-.quick-buttons{
-    display:flex;
-    flex-wrap:wrap;
-    gap:8px;
-}
-
-.quick button{
-    border:1px solid #cfe4d7;
-    background:#f5fbf7;
-    color:#08783e;
-    border-radius:20px;
-    padding:9px 13px;
-    cursor:pointer;
-    font-size:12px;
-    font-weight:600;
-}
-
-.quick button:hover{
-    background:#e5f7ec;
-}
-
-/* INPUT */
-.input-area{
-    display:flex;
-    gap:10px;
-    padding:18px;
-    background:white;
-    border-top:1px solid #e3eee7;
-}
-
-#userInput{
-    flex:1;
-    padding:14px;
-    border:1px solid #d4e7dc;
-    border-radius:13px;
-    outline:none;
-    font-size:14px;
-}
-
-#userInput:focus{
-    border-color:#14a85b;
-}
-
-.send{
-    border:0;
-    width:52px;
-    border-radius:13px;
-    background:#08783e;
-    color:white;
-    font-size:20px;
-    cursor:pointer;
-}
-
-/* TYPING */
-.typing{
-    display:none;
-    background:#e8f7ee;
-    width:max-content;
-    padding:11px 15px;
-    border-radius:15px;
-    margin-bottom:14px;
-}
-
-.dot{
-    display:inline-block;
-    width:6px;
-    height:6px;
-    margin:0 2px;
-    background:#08783e;
-    border-radius:50%;
-    animation:typing 1s infinite;
-}
-
-.dot:nth-child(2){
-    animation-delay:.15s;
-}
-
-.dot:nth-child(3){
-    animation-delay:.3s;
-}
-
-/* SAFETY */
-.safety{
-    margin-top:22px;
-    padding:18px;
-    background:#effaf3;
-    border-left:5px solid #14a85b;
-    border-radius:12px;
-    color:#496657;
-    font-size:13px;
-    line-height:1.7;
-}
-
-/* FOOTER */
-footer{
-    margin-top:50px;
-    background:#063d22;
-    color:#d8f5e4;
-    text-align:center;
-    padding:30px 20px;
-}
-
-footer strong{
-    color:white;
-}
-
-/* ANIMATIONS */
-@keyframes pulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.08)}
-}
-
-@keyframes slideUp{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes messageIn{
-    from{
-        opacity:0;
-        transform:translateY(8px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes typing{
-    0%,100%{transform:translateY(0)}
-    50%{transform:translateY(-4px)}
-}
-
-/* MOBILE */
-@media(max-width:600px){
-
-    .hero h1{
-        font-size:31px;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .chat-box{
-        height:400px;
+    body {
+      background: #f4fbf7;
+      color: #16352a;
+      min-height: 100vh;
     }
 
-    .message{
-        max-width:88%;
+    /* NAVBAR */
+    nav {
+      background: #064e3b;
+      color: white;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,.12);
     }
 
-    .quick-buttons{
-        overflow-x:auto;
-        flex-wrap:nowrap;
-        padding-bottom:8px;
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
     }
-}
-</style>
+
+    .logo span {
+      color: #ef4444;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    nav a:hover {
+      color: #86efac;
+    }
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #064e3b, #047857);
+      color: white;
+      text-align: center;
+      padding: 55px 6%;
+    }
+
+    .hero h1 {
+      font-size: clamp(32px, 6vw, 52px);
+      margin-bottom: 10px;
+    }
+
+    .hero h1 span {
+      color: #fca5a5;
+    }
+
+    .hero p {
+      max-width: 700px;
+      margin: auto;
+      opacity: .95;
+    }
+
+    /* CHAT AREA */
+    .container {
+      width: 92%;
+      max-width: 900px;
+      margin: 35px auto;
+    }
+
+    .assistant-card {
+      background: white;
+      border-radius: 22px;
+      overflow: hidden;
+      box-shadow: 0 15px 40px rgba(6,78,59,.12);
+    }
+
+    .assistant-header {
+      padding: 22px 25px;
+      background: #ecfdf5;
+      border-bottom: 1px solid #d1fae5;
+    }
+
+    .assistant-header h2 {
+      color: #065f46;
+    }
+
+    .assistant-header p {
+      color: #5b7168;
+      font-size: 14px;
+      margin-top: 4px;
+    }
+
+    /* MESSAGES */
+    #chatBox {
+      height: 430px;
+      overflow-y: auto;
+      padding: 25px;
+      background: #fbfffd;
+    }
+
+    .message {
+      max-width: 78%;
+      padding: 13px 16px;
+      margin-bottom: 15px;
+      border-radius: 16px;
+      font-size: 15px;
+      white-space: pre-line;
+    }
+
+    .bot {
+      background: #ecfdf5;
+      color: #164e3b;
+      border-bottom-left-radius: 5px;
+    }
+
+    .user {
+      background: #047857;
+      color: white;
+      margin-left: auto;
+      border-bottom-right-radius: 5px;
+    }
+
+    /* QUICK BUTTONS */
+    .quick-actions {
+      padding: 15px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 9px;
+      border-top: 1px solid #e5eee9;
+    }
+
+    .quick-actions button {
+      border: 1px solid #a7d9c5;
+      background: white;
+      color: #065f46;
+      padding: 9px 13px;
+      border-radius: 20px;
+      cursor: pointer;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .quick-actions button:hover {
+      background: #ecfdf5;
+    }
+
+    /* INPUT */
+    .input-area {
+      display: flex;
+      gap: 10px;
+      padding: 18px;
+      border-top: 1px solid #e5eee9;
+    }
+
+    #userInput {
+      flex: 1;
+      padding: 14px;
+      border: 1px solid #cce5d9;
+      border-radius: 12px;
+      outline: none;
+      font-size: 15px;
+    }
+
+    #userInput:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+    }
+
+    #sendBtn {
+      width: auto;
+      min-width: 100px;
+      margin: 0;
+      border: none;
+      border-radius: 12px;
+      background: #dc2626;
+      color: white;
+      padding: 0 20px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    #sendBtn:hover {
+      background: #b91c1c;
+    }
+
+    /* NOTICE */
+    .notice {
+      margin-top: 25px;
+      padding: 18px;
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 12px;
+      color: #7c2d12;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 55px;
+      background: #022c22;
+      color: #d1fae5;
+      text-align: center;
+      padding: 30px 6%;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 650px) {
+
+      nav div:last-child {
+        display: none;
+      }
+
+      #chatBox {
+        height: 400px;
+      }
+
+      .message {
+        max-width: 88%;
+      }
+
+      .input-area {
+        padding: 12px;
+      }
+
+      #sendBtn {
+        min-width: 75px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<nav>
+  <!-- NAVBAR -->
+  <nav>
 
     <div class="logo">
-        Vital<span>Loop</span>
+      Rakt<span>Sathi</span>
     </div>
 
-    <a href="index.html" class="back">
-        ← Back to Home
-    </a>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="find-blood.html">Find Blood</a>
+      <a href="blood-request.html">Request Blood</a>
+    </div>
 
-</nav>
+  </nav>
 
 
-<section class="hero">
+  <!-- HERO -->
+  <section class="hero">
 
-    <div class="ai-icon">🤖</div>
-
-    <h1>VitalLoop AI Assistant</h1>
+    <h1>
+      RaktSathi <span>Assistant</span>
+    </h1>
 
     <p>
-        Get simple, educational healthcare information and
-        guidance for navigating VitalLoop services.
+      Get quick guidance for navigating blood-resource services,
+      donation information and RaktSathi features.
     </p>
 
-</section>
+  </section>
 
 
-<div class="container">
+  <main class="container">
 
-<div class="chat-card">
+    <section class="assistant-card">
 
-    <!-- CHAT HEADER -->
-    <div class="chat-header">
+      <div class="assistant-header">
 
-        <div class="bot">🤖</div>
+        <h2>🤖 Smart Healthcare Assistant</h2>
 
-        <div>
-            <h3>VitalLoop Assistant</h3>
-            <div class="online">● Available for demo</div>
+        <p>
+          Ask about blood groups, donation basics or how to use RaktSathi.
+        </p>
+
+      </div>
+
+
+      <!-- CHAT -->
+      <div id="chatBox">
+
+        <div class="message bot">
+          Namaste! 👋
+          
+          Main RaktSathi Assistant hoon.
+
+          Aap mujhse blood groups, blood donation basics,
+          RaktSathi features ya blood-resource search ke baare mein
+          pooch sakte hain.
         </div>
 
-    </div>
+      </div>
 
 
-    <!-- CHAT BOX -->
-    <div class="chat-box" id="chatBox">
+      <!-- QUICK ACTIONS -->
+      <div class="quick-actions">
 
-        <div class="message bot-msg">
-
-            👋 Hello! I'm the VitalLoop AI Assistant.
-
-            <br><br>
-
-            I can provide general healthcare information,
-            explain blood donation concepts and help you
-            navigate VitalLoop services.
-
-            <br><br>
-
-            I am not a doctor and I do not diagnose medical
-            conditions.
-
-        </div>
-
-    </div>
-
-
-    <!-- TYPING -->
-    <div
-        class="typing"
-        id="typing"
-    >
-        <span class="dot"></span>
-        <span class="dot"></span>
-        <span class="dot"></span>
-    </div>
-
-
-    <!-- QUICK QUESTIONS -->
-    <div class="quick">
-
-        <div class="quick-title">
-            Quick questions
-        </div>
-
-        <div class="quick-buttons">
-
-            <button onclick="quickQuestion('How can I find blood?')">
-                🩸 Find Blood
-            </button>
-
-            <button onclick="quickQuestion('How does blood donation work?')">
-                🩸 Blood Donation
-            </button>
-
-            <button onclick="quickQuestion('What is a blood group?')">
-                🧪 Blood Groups
-            </button>
-
-            <button onclick="quickQuestion('What should I do in an emergency?')">
-                🚨 Emergency
-            </button>
-
-        </div>
-
-    </div>
-
-
-    <!-- INPUT -->
-    <div class="input-area">
-
-        <input
-            type="text"
-            id="userInput"
-            placeholder="Ask a healthcare question..."
-            onkeydown="handleKey(event)"
-        >
-
-        <button
-            class="send"
-            onclick="sendMessage()"
-        >
-            ➤
+        <button onclick="quickQuestion('How can I find blood?')">
+          🩸 Find Blood
         </button>
 
+        <button onclick="quickQuestion('How can I become a donor?')">
+          ❤️ Become Donor
+        </button>
+
+        <button onclick="quickQuestion('What are blood groups?')">
+          🧬 Blood Groups
+        </button>
+
+        <button onclick="quickQuestion('What is RaktSathi?')">
+          ℹ️ About RaktSathi
+        </button>
+
+      </div>
+
+
+      <!-- INPUT -->
+      <div class="input-area">
+
+        <input
+          type="text"
+          id="userInput"
+          placeholder="Type your question..."
+          autocomplete="off"
+        >
+
+        <button id="sendBtn" onclick="sendMessage()">
+          Send
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- SAFETY -->
+    <div class="notice">
+
+      <strong>Important Safety Notice:</strong><br>
+
+      RaktSathi Assistant provides general informational guidance.
+      It is not a doctor and does not diagnose medical conditions,
+      prescribe medicines or replace professional medical advice.
+
+      For urgent medical situations, contact an appropriate
+      healthcare professional or emergency service.
+
     </div>
 
-</div>
+  </main>
 
 
-<!-- SAFETY -->
-<div class="safety">
+  <!-- FOOTER -->
+  <footer>
 
-    <strong>🛡️ AI Safety Notice</strong><br>
-
-    This assistant is a prototype for educational and
-    healthcare-navigation purposes. It does not provide
-    a diagnosis, prescribe medicines or replace doctors,
-    hospitals or emergency services. For urgent or serious
-    symptoms, seek immediate professional medical care.
-
-</div>
-
-</div>
-
-
-<footer>
-
-    <strong>VitalLoop</strong><br>
-
-    Your Complete Healthcare Journey
-
-    <div style="margin-top:8px;font-size:13px;opacity:.75">
-        Healthcare Technology Prototype • Smart India Hackathon
-    </div>
-
-</footer>
-
-
-<script>
-
-const chatBox =
-    document.getElementById("chatBox");
-
-const typing =
-    document.getElementById("typing");
-
-
-function addMessage(text,type){
-
-    const message =
-        document.createElement("div");
-
-    message.className =
-        "message " +
-        (type === "user"
-        ? "user-msg"
-        : "bot-msg");
-
-    message.innerHTML =
-        text;
-
-    chatBox.appendChild(message);
-
-    chatBox.scrollTop =
-        chatBox.scrollHeight;
-}
-
-
-function sendMessage(){
-
-    const input =
-        document.getElementById("userInput");
-
-    const text =
-        input.value.trim();
-
-    if(!text) return;
-
-    addMessage(text,"user");
-
-    input.value = "";
-
-    showTyping();
-
-    setTimeout(function(){
-
-        hideTyping();
-
-        addMessage(
-            getResponse(text),
-            "bot"
-        );
-
-    },900);
-
-}
-
-
-function quickQuestion(text){
-
-    document.getElementById("userInput").value =
-        text;
-
-    sendMessage();
-
-}
-
-
-function handleKey(event){
-
-    if(event.key === "Enter"){
-        sendMessage();
-    }
-
-}
-
-
-function showTyping(){
-
-    typing.style.display =
-        "block";
-
-    chatBox.scrollTop =
-        chatBox.scrollHeight;
-
-}
-
-
-function hideTyping(){
-
-    typing.style.display =
-        "none";
-
-}
-
-
-function getResponse(question){
-
-    const q =
-        question.toLowerCase();
-
-
-    /* BLOOD SEARCH */
-
-    if(
-        q.includes("find blood") ||
-        q.includes("blood available") ||
-        q.includes("blood resource")
-    ){
-
-        return `
-        🩸 You can use the <b>Find Blood</b> section
-        to search the VitalLoop prototype by blood group,
-        component and location.
-
-        <br><br>
-
-        Actual availability must always be verified
-        with an authorized blood centre or healthcare
-        facility.
-        `;
-
-    }
-
-
-    /* DONATION */
-
-    if(
-        q.includes("donation") ||
-        q.includes("donate blood")
-    ){
-
-        return `
-        🩸 Blood donation is performed at authorized
-        blood centres or approved donation camps.
-
-        <br><br>
-
-        Donors are screened before donation and collected
-        blood undergoes required testing according to
-        applicable medical procedures.
-
-        <br><br>
-
-        Eligibility should be confirmed by healthcare
-        professionals.
-        `;
-
-    }
-
-
-    /* BLOOD GROUP */
-
-    if(
-        q.includes("blood group") ||
-        q.includes("blood type")
-    ){
-
-        return `
-        🧪 Common blood-group systems include the ABO
-        system and Rh factor.
-
-        <br><br>
-
-        The main ABO groups are A, B, AB and O, with
-        positive or negative Rh status.
-
-        <br><br>
-
-        Blood compatibility is determined by healthcare
-        professionals before transfusion.
-        `;
-
-    }
-
-
-    /* EMERGENCY */
-
-    if(
-        q.includes("emergency") ||
-        q.includes("accident") ||
-        q.includes("serious")
-    ){
-
-        return `
-        🚨 If someone may have a serious or
-        life-threatening medical problem, contact local
-        emergency services and seek immediate medical
-        care.
-
-        <br><br>
-
-        Do not rely on an AI assistant for emergency
-        diagnosis or treatment.
-        `;
-
-    }
-
-
-    /* MEDICINE */
-
-    if(
-        q.includes("medicine") ||
-        q.includes("tablet") ||
-        q.includes("drug")
-    ){
-
-        return `
-        💊 I can provide general information about
-        medicines, but I cannot prescribe or change
-        medication for you.
-
-        <br><br>
-
-        For medicine selection, dosage or interactions,
-        consult a qualified healthcare professional.
-        `;
-
-    }
-
-
-    /* DEFAULT */
-
-    return `
-    💚 I can help with general healthcare information,
-    blood donation concepts and VitalLoop navigation.
+    <strong>RaktSathi</strong> — Connecting People. Saving Lives.
 
     <br><br>
 
-    Try asking about <b>finding blood</b>,
-    <b>blood donation</b>, <b>blood groups</b> or
-    <b>emergency support</b>.
-    `;
+    A smart blood-resource coordination platform.
 
-}
+  </footer>
 
-</script>
+
+  <script>
+
+    const chatBox = document.getElementById("chatBox");
+    const userInput = document.getElementById("userInput");
+
+
+    function addMessage(text, type) {
+
+      const message = document.createElement("div");
+
+      message.className = "message " + type;
+
+      message.textContent = text;
+
+      chatBox.appendChild(message);
+
+      chatBox.scrollTop = chatBox.scrollHeight;
+
+    }
+
+
+    function sendMessage() {
+
+      const text = userInput.value.trim();
+
+      if (!text) return;
+
+      addMessage(text, "user");
+
+      userInput.value = "";
+
+      setTimeout(() => {
+
+        const reply = getReply(text);
+
+        addMessage(reply, "bot");
+
+      }, 400);
+
+    }
+
+
+    function quickQuestion(question) {
+
+      userInput.value = question;
+
+      sendMessage();
+
+    }
+
+
+    function getReply(input) {
+
+      const text = input.toLowerCase();
+
+
+      /* FIND BLOOD */
+
+      if (
+        text.includes("find blood") ||
+        text.includes("blood chahiye") ||
+        text.includes("blood kaha") ||
+        text.includes("blood kaise")
+      ) {
+
+        return `Aap RaktSathi ke "Find Blood" page se nearby blood-resource information explore kar sakte hain.
+
+Find Blood page open karein:
+find-blood.html
+
+Availability ko actual authorised blood centre se verify zaroor karein.`;
+
+      }
+
+
+      /* DONOR */
+
+      if (
+        text.includes("donor") ||
+        text.includes("donate") ||
+        text.includes("blood donate")
+      ) {
+
+        return `Agar aap blood donate karna chahte hain, RaktSathi ke "Become a Donor" page par potential donor registration kar sakte hain.
+
+Actual eligibility aur donation decision authorised blood-centre staff determine karte hain.`;
+
+      }
+
+
+      /* BLOOD GROUP */
+
+      if (
+        text.includes("blood group") ||
+        text.includes("blood groups") ||
+        text.includes("a+") ||
+        text.includes("b+") ||
+        text.includes("o+") ||
+        text.includes("ab+")
+      ) {
+
+        return `Common ABO blood groups A, B, AB aur O hote hain. Inke saath Rh factor positive ya negative ho sakta hai.
+
+Blood compatibility ka final decision qualified healthcare professionals karte hain.`;
+
+      }
+
+
+      /* RAKTSATHI */
+
+      if (
+        text.includes("raktSathi") ||
+        text.includes("rakt sathi") ||
+        text.includes("what is rakt")
+      ) {
+
+        return `RaktSathi ek smart blood-resource discovery aur coordination platform hai.
+
+Iska goal people, potential donors, blood centres aur healthcare resources ko digital coordination layer ke through connect karna hai.`;
+
+      }
+
+
+      /* REQUEST */
+
+      if (
+        text.includes("request") ||
+        text.includes("patient")
+      ) {
+
+        return `Agar blood support ki requirement hai, RaktSathi ke "Request Blood" page par request information submit ki ja sakti hai.
+
+Actual blood availability aur fulfilment authorised healthcare facility/blood centre se verify hota hai.`;
+
+      }
+
+
+      /* CAMP */
+
+      if (
+        text.includes("camp") ||
+        text.includes("donation camp")
+      ) {
+
+        return `RaktSathi ke "Blood Donation Camps" page par available camp information explore kar sakte hain.
+
+Visit karne se pehle date, location aur eligibility organiser se verify karein.`;
+
+      }
+
+
+      /* HELP */
+
+      if (
+        text.includes("help") ||
+        text.includes("hello") ||
+        text.includes("hi") ||
+        text.includes("namaste")
+      ) {
+
+        return `Main aapki RaktSathi website navigation mein help kar sakta hoon.
+
+Aap pooch sakte hain:
+• Blood kaise find karein?
+• Donor kaise register karein?
+• Blood groups kya hote hain?
+• Blood request kaise submit karein?
+• Donation camp kaise dekhein?`;
+
+      }
+
+
+      /* DEFAULT */
+
+      return `Main is question ka reliable medical answer provide nahi kar sakta.
+
+Aap RaktSathi ke Find Blood, Request Blood, Become a Donor ya Blood Education sections use kar sakte hain.
+
+Medical decision ke liye qualified healthcare professional se consult karein.`;
+
+    }
+
+
+    /* ENTER KEY */
+
+    userInput.addEventListener("keydown", function(event) {
+
+      if (event.key === "Enter") {
+        sendMessage();
+      }
+
+    });
+
+  </script>
 
 </body>
 </html>
