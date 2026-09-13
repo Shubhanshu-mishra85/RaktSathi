@@ -1,37 +1,65 @@
 /* =========================================================
-   RaktSathi - Service Worker
-   Intelligent Blood Emergency Coordination Network
+   RAKTSATHI SERVICE WORKER
+   Version: 1.2.0
    ========================================================= */
 
-const CACHE_NAME = "raktsathi-v1.1.0";
+const CACHE_NAME = "raktsathi-v1.2.0";
 
-const CORE_FILES = [
+
+const CORE_ASSETS = [
+
   "./",
+
   "./index.html",
+
   "./about.html",
-  "./emergency.html",
+
   "./find-blood.html",
+
   "./blood-request.html",
+
+  "./emergency.html",
+
   "./donor.html",
+
   "./camps.html",
+
   "./blood-education.html",
+
   "./assistant.html",
+
   "./medicine.html",
 
   "./manifest.json",
-  "./raktsathi-logo.png",
+
+  "./raktsathi-new-logo.png",
+
+  "./raktsathi-header-bg.png",
 
   "./css/style.css",
 
   "./js/app.js",
+
   "./js/animations.js",
+
   "./js/assistant.js",
+
+  "./js/donor.js",
+
   "./js/map.js",
+
+  "./js/nearby-centres.js",
+
   "./js/request.js",
+
   "./js/search.js",
 
+  "./js/loader.js",
+
   "./data/blood-centres.json",
+
   "./camps.json"
+
 ];
 
 
@@ -39,164 +67,186 @@ const CORE_FILES = [
    INSTALL
    ========================================================= */
 
-self.addEventListener("install", event => {
+self.addEventListener(
+  "install",
+  function (event) {
 
-  event.waitUntil(
-    caches.open(CACHE_NAME)
-      .then(cache => cache.addAll(CORE_FILES))
-      .then(() => self.skipWaiting())
-      .catch(error => {
-        console.error(
-          "RaktSathi cache installation failed:",
-          error
-        );
-      })
-  );
+    event.waitUntil(
 
-});
+      caches.open(CACHE_NAME)
+
+        .then(function (cache) {
+
+          return cache.addAll(CORE_ASSETS);
+
+        })
+
+        .then(function () {
+
+          return self.skipWaiting();
+
+        })
+
+    );
+
+  }
+);
 
 
 /* =========================================================
    ACTIVATE
    ========================================================= */
 
-self.addEventListener("activate", event => {
+self.addEventListener(
+  "activate",
+  function (event) {
 
-  event.waitUntil(
+    event.waitUntil(
 
-    caches.keys()
-      .then(cacheNames => {
+      caches.keys()
 
-        return Promise.all(
+        .then(function (cacheNames) {
 
-          cacheNames
-            .filter(
-              name => name !== CACHE_NAME
-            )
-            .map(
-              name => caches.delete(name)
-            )
+          return Promise.all(
 
-        );
+            cacheNames
 
-      })
-      .then(() => self.clients.claim())
+              .filter(function (cacheName) {
 
-  );
+                return (
+                  cacheName.startsWith("raktsathi-") &&
+                  cacheName !== CACHE_NAME
+                );
 
-});
+              })
+
+              .map(function (cacheName) {
+
+                return caches.delete(cacheName);
+
+              })
+
+          );
+
+        })
+
+        .then(function () {
+
+          return self.clients.claim();
+
+        })
+
+    );
+
+  }
+);
 
 
 /* =========================================================
    FETCH
    ========================================================= */
 
-self.addEventListener("fetch", event => {
+self.addEventListener(
+  "fetch",
+  function (event) {
 
-  const request = event.request;
+    const request =
+      event.request;
 
-  if (request.method !== "GET") {
-    return;
-  }
 
-  /*
-   * Navigation requests:
-   * Network first, cached page as fallback.
-   */
+    /*
+      HTML navigation:
+      Network first → Cache fallback
+    */
 
-  if (request.mode === "navigate") {
+    if (
+      request.mode === "navigate" ||
+      request.destination === "document"
+    ) {
+
+      event.respondWith(
+
+        fetch(request)
+
+          .then(function (response) {
+
+            return response;
+
+          })
+
+          .catch(function () {
+
+            return caches.match(
+              "./index.html"
+            );
+
+          })
+
+      );
+
+      return;
+
+    }
+
+
+    /*
+      Static files:
+      Cache first → Network fallback
+    */
 
     event.respondWith(
 
-      fetch(request)
-        .then(response => {
+      caches.match(request)
 
-          const copy =
-            response.clone();
+        .then(function (cachedResponse) {
 
-          caches.open(CACHE_NAME)
-            .then(cache => {
-              cache.put(
-                request,
-                copy
-              );
+          if (cachedResponse) {
+
+            return cachedResponse;
+
+          }
+
+
+          return fetch(request)
+
+            .then(function (networkResponse) {
+
+              /*
+                Cache only successful
+                same-origin responses.
+              */
+
+              if (
+                networkResponse &&
+                networkResponse.status === 200 &&
+                networkResponse.type === "basic"
+              ) {
+
+                const responseClone =
+                  networkResponse.clone();
+
+
+                caches.open(CACHE_NAME)
+
+                  .then(function (cache) {
+
+                    cache.put(
+                      request,
+                      responseClone
+                    );
+
+                  });
+
+              }
+
+
+              return networkResponse;
+
             });
-
-          return response;
-
-        })
-        .catch(() => {
-
-          return caches.match(
-            "./index.html"
-          );
 
         })
 
     );
 
-    return;
   }
-
-
-  /*
-   * Static resources:
-   * Cache first, then network.
-   */
-
-  event.respondWith(
-
-    caches.match(request)
-      .then(cachedResponse => {
-
-        if (cachedResponse) {
-          return cachedResponse;
-        }
-
-        return fetch(request)
-          .then(response => {
-
-            if (
-              response &&
-              response.status === 200 &&
-              response.type === "basic"
-            ) {
-
-              const copy =
-                response.clone();
-
-              caches.open(CACHE_NAME)
-                .then(cache => {
-
-                  cache.put(
-                    request,
-                    copy
-                  );
-
-                });
-
-            }
-
-            return response;
-
-          });
-
-      })
-      .catch(() => {
-
-        return new Response(
-          "RaktSathi is currently offline.",
-          {
-            status: 503,
-            headers: {
-              "Content-Type":
-                "text/plain; charset=utf-8"
-            }
-          }
-        );
-
-      })
-
-  );
-
-});
+);
