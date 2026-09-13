@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
+
 <head>
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
+
+  <meta
+    name="theme-color"
+    content="#8B0000"
+  >
 
   <meta
     name="description"
-    content="RaktSathi Smart Blood Resource Discovery and Verification"
+    content="RaktSathi - Find potential blood resources"
   >
 
-  <meta name="theme-color" content="#8B0000">
-
   <title>
-    Find Blood Resources | RaktSathi
+    RaktSathi | Find Blood
   </title>
 
   <link
     rel="icon"
     type="image/png"
-    href="raktsathi-logo.png"
+    href="raktsathi-new-logo.png"
   >
 
   <link
@@ -36,51 +43,58 @@
 
 <body>
 
+
   <!-- =====================================================
        HEADER
        ===================================================== -->
 
   <header class="site-header">
 
-    <div class="container">
+    <div class="container nav-container">
 
       <a
         href="index.html"
-        class="logo"
+        class="brand"
         aria-label="RaktSathi Home"
       >
 
         <img
-          src="raktsathi-logo.png"
+          src="raktsathi-new-logo.png"
           alt="RaktSathi Logo"
+          class="brand-logo"
+          width="48"
+          height="48"
         >
 
-        <span>RaktSathi</span>
+        <span class="brand-text">
+          RaktSathi
+        </span>
 
       </a>
 
 
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Open navigation menu"
+      <nav
+        class="main-nav"
+        aria-label="Main navigation"
       >
-        ☰
-      </button>
-
-
-      <nav>
 
         <a href="index.html">
           Home
         </a>
 
-        <a href="emergency.html">
-          Emergency
+        <a href="about.html">
+          About
         </a>
 
-        <a href="find-blood.html">
+        <a
+          href="find-blood.html"
+          class="active"
+        >
           Find Blood
+        </a>
+
+        <a href="emergency.html">
+          Emergency
         </a>
 
         <a href="donor.html">
@@ -89,10 +103,6 @@
 
         <a href="camps.html">
           Camps
-        </a>
-
-        <a href="blood-request.html">
-          Track Request
         </a>
 
         <a href="assistant.html">
@@ -113,7 +123,10 @@
 
   <main>
 
-    <!-- HERO -->
+
+    <!-- ===================================================
+         HERO
+         =================================================== -->
 
     <section class="hero">
 
@@ -121,21 +134,26 @@
 
         <div class="hero-content">
 
+
           <div class="hero-badge">
-            SMART RESOURCE DISCOVERY
+            RAKTSATHI • SMART RESOURCE DISCOVERY
           </div>
 
+
           <h1>
-            Find Blood
-            <span>Resources.</span>
+            Find Potential
+            <span>Blood Resources.</span>
           </h1>
 
+
           <p>
-            Search potential blood-centre resources by
-            blood group, component and location, then
-            verify the information with the authorized
-            facility.
+            Discover potential blood-centre resources
+            using blood group, component and location
+            filters. Availability shown by the prototype
+            must always be verified with the authorized
+            blood centre.
           </p>
+
 
           <div class="hero-actions">
 
@@ -143,10 +161,25 @@
               href="emergency.html"
               class="btn btn-primary"
             >
-              🚨 Emergency Request
+              🚨
+              <span>
+                Emergency Request
+              </span>
+            </a>
+
+
+            <a
+              href="#blood-search"
+              class="btn btn-secondary"
+            >
+              🩸
+              <span>
+                Search Resources
+              </span>
             </a>
 
           </div>
+
 
         </div>
 
@@ -160,212 +193,226 @@
          SEARCH
          =================================================== -->
 
-    <section>
+    <section
+      class="section"
+      id="blood-search"
+    >
 
       <div class="container">
 
+
         <div class="section-heading">
 
+          <span class="section-kicker">
+            BLOOD RESOURCE DISCOVERY
+          </span>
+
           <h2>
-            Resource Discovery
+            Search Blood Resources
           </h2>
 
           <p>
-            Select your requirements to discover potential
-            blood resources.
+            Select the required blood group,
+            component and location to identify
+            potential resources.
           </p>
 
         </div>
 
 
+
         <div class="card">
+
 
           <form
             id="bloodSearchForm"
+            class="form-grid"
           >
 
-            <div class="form-grid">
 
+            <!-- Blood Group -->
 
-              <!-- Blood Group -->
+            <div class="form-group">
 
-              <div class="form-group">
+              <label for="bloodGroup">
+                Blood Group
+              </label>
 
-                <label for="bloodGroup">
-                  Blood Group
-                </label>
+              <select
+                id="bloodGroup"
+                name="bloodGroup"
+              >
 
-                <select
-                  id="bloodGroup"
-                  name="bloodGroup"
-                >
+                <option value="">
+                  Any Blood Group
+                </option>
 
-                  <option value="">
-                    All Blood Groups
-                  </option>
+                <option value="A+">
+                  A+
+                </option>
 
-                  <option value="A+">
-                    A+
-                  </option>
+                <option value="A-">
+                  A-
+                </option>
 
-                  <option value="A-">
-                    A-
-                  </option>
+                <option value="B+">
+                  B+
+                </option>
 
-                  <option value="B+">
-                    B+
-                  </option>
+                <option value="B-">
+                  B-
+                </option>
 
-                  <option value="B-">
-                    B-
-                  </option>
+                <option value="AB+">
+                  AB+
+                </option>
 
-                  <option value="AB+">
-                    AB+
-                  </option>
+                <option value="AB-">
+                  AB-
+                </option>
 
-                  <option value="AB-">
-                    AB-
-                  </option>
+                <option value="O+">
+                  O+
+                </option>
 
-                  <option value="O+">
-                    O+
-                  </option>
+                <option value="O-">
+                  O-
+                </option>
 
-                  <option value="O-">
-                    O-
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <!-- Component -->
-
-              <div class="form-group">
-
-                <label for="component">
-                  Blood Component
-                </label>
-
-                <select
-                  id="component"
-                  name="component"
-                >
-
-                  <option value="">
-                    All Components
-                  </option>
-
-                  <option value="Whole Blood">
-                    Whole Blood
-                  </option>
-
-                  <option value="Packed Red Cells">
-                    Packed Red Cells
-                  </option>
-
-                  <option value="Fresh Frozen Plasma">
-                    Fresh Frozen Plasma
-                  </option>
-
-                  <option value="Platelets">
-                    Platelets
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <!-- District -->
-
-              <div class="form-group">
-
-                <label for="district">
-                  District / City
-                </label>
-
-                <input
-                  type="text"
-                  id="district"
-                  name="district"
-                  placeholder="e.g. Lucknow"
-                >
-
-              </div>
-
-
-              <!-- Centre -->
-
-              <div class="form-group">
-
-                <label for="centre">
-                  Blood Centre
-                </label>
-
-                <select
-                  id="centre"
-                  name="centre"
-                >
-
-                  <option value="">
-                    All Blood Centres
-                  </option>
-
-                </select>
-
-              </div>
-
-
-              <!-- Buttons -->
-
-              <div class="form-group full">
-
-                <div class="form-actions">
-
-                  <button
-                    type="submit"
-                    class="btn btn-primary"
-                  >
-                    Search Resources
-                  </button>
-
-
-                  <button
-                    type="button"
-                    id="useLocation"
-                    class="btn"
-                    style="
-                      background:#111820;
-                      color:#ffffff;
-                    "
-                  >
-                    📍 Use My Location
-                  </button>
-
-                </div>
-
-              </div>
+              </select>
 
             </div>
+
+
+
+            <!-- Component -->
+
+            <div class="form-group">
+
+              <label for="component">
+                Blood Component
+              </label>
+
+              <select
+                id="component"
+                name="component"
+              >
+
+                <option value="">
+                  Any Component
+                </option>
+
+                <option value="Whole Blood">
+                  Whole Blood
+                </option>
+
+                <option value="Packed Red Cells">
+                  Packed Red Cells
+                </option>
+
+                <option value="Fresh Frozen Plasma">
+                  Fresh Frozen Plasma
+                </option>
+
+                <option value="Platelets">
+                  Platelets
+                </option>
+
+              </select>
+
+            </div>
+
+
+
+            <!-- District -->
+
+            <div class="form-group">
+
+              <label for="district">
+                District / City
+              </label>
+
+              <input
+                type="text"
+                id="district"
+                name="district"
+                placeholder="Enter district or city"
+                autocomplete="address-level2"
+              >
+
+            </div>
+
+
+
+            <!-- Centre -->
+
+            <div class="form-group">
+
+              <label for="centre">
+                Blood Centre
+              </label>
+
+              <input
+                type="text"
+                id="centre"
+                name="centre"
+                placeholder="Search centre name"
+                autocomplete="off"
+              >
+
+            </div>
+
+
+
+            <!-- Search Button -->
+
+            <div class="form-actions">
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                🔎
+                <span>
+                  Find Resources
+                </span>
+              </button>
+
+
+              <button
+                type="button"
+                id="useLocation"
+                class="btn btn-secondary"
+              >
+                📍
+                <span>
+                  Use My Location
+                </span>
+              </button>
+
+            </div>
+
 
           </form>
 
 
+          <!-- Search Message -->
+
           <div
             id="searchMessage"
-            class="search-message"
+            class="message"
             aria-live="polite"
           ></div>
 
+
+          <!-- Location Message -->
 
           <div
             id="locationMessage"
-            class="location-message"
+            class="message"
             aria-live="polite"
           ></div>
+
 
         </div>
 
@@ -379,20 +426,26 @@
          RESULTS
          =================================================== -->
 
-    <section>
+    <section class="section section-light">
 
       <div class="container">
 
+
         <div class="section-heading">
 
+          <span class="section-kicker">
+            POTENTIAL RESOURCES
+          </span>
+
           <h2>
-            Potential Blood Resources
+            Available Resource Pathways
           </h2>
 
           <p>
-            Results are discovery information only.
-            Current availability must be verified directly
-            with the relevant authorized facility.
+            Results are potential matches based on
+            the prototype dataset and filters.
+            Current availability must be confirmed
+            directly with the blood centre.
           </p>
 
         </div>
@@ -400,21 +453,27 @@
 
         <div
           id="bloodResults"
-          class="grid grid-2"
+          class="grid grid-3"
         >
+
 
           <div class="empty-state">
 
+            <div class="empty-state-icon">
+              🩸
+            </div>
+
             <h3>
-              Loading resources...
+              Start Your Search
             </h3>
 
             <p>
-              Please wait while RaktSathi loads
-              blood-centre information.
+              Select your requirements above to
+              discover potential blood resources.
             </p>
 
           </div>
+
 
         </div>
 
@@ -425,113 +484,151 @@
 
 
     <!-- ===================================================
-         WORKFLOW
+         HOW IT WORKS
          =================================================== -->
 
-    <section class="dark-section">
+    <section class="section">
 
       <div class="container">
 
+
         <div class="section-heading">
 
+          <span class="section-kicker">
+            DISCOVERY WORKFLOW
+          </span>
+
           <h2>
-            Discovery → Verification → Coordination
+            Discover → Verify → Coordinate
           </h2>
 
           <p>
-            RaktSathi does not treat search results as
-            guaranteed availability.
+            Finding a potential resource is only
+            the first step of the emergency journey.
           </p>
 
         </div>
 
 
-        <div class="workflow">
+        <div class="grid grid-3">
 
 
-          <div class="workflow-step">
+          <article class="card">
 
-            <div class="step-number">
-              1
+            <div class="card-icon">
+              🔎
             </div>
 
-            <strong>
-              Search
-            </strong>
+            <h3>
+              01. Discover
+            </h3>
 
             <p>
-              Enter blood and location requirements.
+              Search potential resources using
+              blood group, component and location.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="workflow-step">
+          <article class="card">
 
-            <div class="step-number">
-              2
+            <div class="card-icon">
+              ✓
             </div>
 
-            <strong>
-              Discover
-            </strong>
+            <h3>
+              02. Verify
+            </h3>
 
             <p>
-              Identify potential resources.
+              Confirm current availability and
+              relevant details with an authorized
+              blood centre.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="workflow-step">
+          <article class="card">
 
-            <div class="step-number">
-              3
+            <div class="card-icon">
+              🤝
             </div>
 
-            <strong>
-              Verify
-            </strong>
+            <h3>
+              03. Coordinate
+            </h3>
 
             <p>
-              Confirm current information with the facility.
+              Continue the emergency coordination
+              journey through the appropriate
+              healthcare pathway.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="workflow-step">
+        </div>
 
-            <div class="step-number">
-              4
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         IMPORTANT INFORMATION
+         =================================================== -->
+
+    <section class="section section-light">
+
+      <div class="container">
+
+
+        <div class="grid grid-2">
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              ⚠️
             </div>
 
-            <strong>
-              Coordinate
-            </strong>
+            <h3>
+              Availability Verification
+            </h3>
 
             <p>
-              Start the appropriate coordination workflow.
+              RaktSathi prototype results do not
+              guarantee that blood or a particular
+              component is currently available.
+              Please verify directly with the
+              relevant authorized blood centre.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="workflow-step">
+          <article class="card">
 
-            <div class="step-number">
-              5
+            <div class="card-icon">
+              🏥
             </div>
 
-            <strong>
-              Resolve
-            </strong>
+            <h3>
+              Healthcare Facility Confirmation
+            </h3>
 
             <p>
-              Continue toward request resolution.
+              Actual blood collection, testing,
+              storage, release and transfusion
+              remain the responsibility of authorized
+              healthcare facilities and blood centres.
             </p>
 
-          </div>
+          </article>
+
 
         </div>
 
@@ -545,33 +642,64 @@
          EMERGENCY CTA
          =================================================== -->
 
-    <section>
+    <section class="section emergency-section">
 
       <div class="container">
 
         <div class="emergency-cta">
 
+
+          <span class="section-kicker">
+            WHEN EVERY MINUTE MATTERS
+          </span>
+
+
           <h2>
-            Can't Find the Required Resource?
+            Need Blood Support?
           </h2>
 
+
           <p>
-            Create an emergency request and begin the
-            structured RaktSathi coordination workflow.
+            Start a structured emergency request
+            and move through the RaktSathi
+            coordination workflow.
           </p>
 
-          <a
-            href="emergency.html"
-            class="btn btn-secondary"
-          >
-            Create Emergency Request →
-          </a>
+
+          <div class="hero-actions">
+
+
+            <a
+              href="emergency.html"
+              class="btn btn-primary"
+            >
+              🚨
+              <span>
+                Start Emergency Request
+              </span>
+            </a>
+
+
+            <a
+              href="assistant.html"
+              class="btn btn-secondary"
+            >
+              🤖
+              <span>
+                Open Smart Assistant
+              </span>
+            </a>
+
+
+          </div>
+
 
         </div>
 
       </div>
 
     </section>
+
 
   </main>
 
@@ -581,20 +709,23 @@
        FOOTER
        ===================================================== -->
 
-  <footer>
+  <footer class="site-footer">
 
     <div class="container">
 
       <div class="footer-grid">
 
 
-        <div>
+        <div class="footer-brand-section">
 
-          <div class="brand">
+
+          <div class="footer-brand">
 
             <img
-              src="raktsathi-logo.png"
+              src="raktsathi-new-logo.png"
               alt="RaktSathi Logo"
+              width="42"
+              height="42"
             >
 
             <span>
@@ -603,86 +734,66 @@
 
           </div>
 
-          <br>
 
           <p>
-            Intelligent Blood Emergency Coordination
-            Network — connecting emergency requirements
-            with potential resources and verification
-            workflows.
+            Intelligent Blood Emergency
+            Coordination Network
           </p>
 
-        </div>
 
+          <p>
+            Connecting People. Supporting Care.
+          </p>
 
-        <div>
-
-          <h4>
-            Platform
-          </h4>
-
-          <div class="footer-links">
-
-            <a href="emergency.html">
-              Emergency Request
-            </a>
-
-            <a href="find-blood.html">
-              Find Blood
-            </a>
-
-            <a href="donor.html">
-              Donor Network
-            </a>
-
-            <a href="camps.html">
-              Blood Camps
-            </a>
-
-          </div>
 
         </div>
 
 
-        <div>
 
-          <h4>
-            Support
-          </h4>
+        <nav
+          class="footer-links"
+          aria-label="Footer navigation"
+        >
 
-          <div class="footer-links">
+          <a href="index.html">
+            Home
+          </a>
 
-            <a href="blood-request.html">
-              Track Request
-            </a>
+          <a href="about.html">
+            About
+          </a>
 
-            <a href="assistant.html">
-              Smart Assistant
-            </a>
+          <a href="find-blood.html">
+            Find Blood
+          </a>
 
-            <a href="about.html">
-              About
-            </a>
+          <a href="emergency.html">
+            Emergency
+          </a>
 
-          </div>
+          <a href="donor.html">
+            Donor Network
+          </a>
+
+          <a href="camps.html">
+            Camps
+          </a>
+
+          <a href="assistant.html">
+            Assistant
+          </a>
+
+        </nav>
+
+
+
+        <div class="footer-bottom">
+
+          © 2026 RaktSathi.
+          Prototype for Smart India Hackathon.
 
         </div>
 
-      </div>
-
-
-      <div class="footer-bottom">
-
-        <p>
-          © 2026 RaktSathi · Team Kryptonite ·
-          Smart India Hackathon Project
-        </p>
-
-        <p>
-          Prototype only. Blood availability and other
-          critical information must be verified with
-          authorized facilities.
-        </p>
 
       </div>
 
@@ -704,8 +815,8 @@
 
   <script src="js/map.js"></script>
 
+  <script src="js/loader.js"></script>
 
-  <!-- Service Worker -->
 
   <script>
 
@@ -713,20 +824,13 @@
 
       window.addEventListener(
         "load",
-        () => {
+        function () {
 
           navigator.serviceWorker
             .register("sw.js")
-            .then(() => {
+            .catch(function (error) {
 
               console.log(
-                "RaktSathi Service Worker registered."
-              );
-
-            })
-            .catch(error => {
-
-              console.error(
                 "Service Worker registration failed:",
                 error
               );
@@ -740,5 +844,7 @@
 
   </script>
 
+
 </body>
+
 </html>
