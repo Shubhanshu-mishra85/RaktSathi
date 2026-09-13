@@ -1,757 +1,533 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Donor Network | VitalLoop</title>
+  <title>Become a Donor | RaktSathi</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+  <meta name="description"
+        content="Register as a blood donor with RaktSathi and help connect patients with potential blood donors.">
 
-body{
-    background:#f2fbf6;
-    color:#173b2b;
-}
-
-/* NAVBAR */
-nav{
-    height:70px;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    box-shadow:0 3px 18px rgba(0,80,40,.08);
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.logo{
-    font-size:25px;
-    font-weight:800;
-    color:#08783e;
-}
-
-.logo span{
-    color:#14a85b;
-}
-
-.back{
-    text-decoration:none;
-    color:#08783e;
-    font-weight:600;
-}
-
-/* HERO */
-.hero{
-    text-align:center;
-    padding:65px 20px 45px;
-    background:linear-gradient(135deg,#e5fff0,#f8fffb);
-}
-
-.hero-icon{
-    width:78px;
-    height:78px;
-    margin:auto;
-    border-radius:50%;
-    background:#08783e;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:38px;
-    animation:pulse 2s infinite;
-    box-shadow:0 12px 30px rgba(8,120,62,.25);
-}
-
-.hero h1{
-    margin-top:20px;
-    font-size:42px;
-    color:#075f32;
-}
-
-.hero p{
-    max-width:680px;
-    margin:15px auto 0;
-    line-height:1.7;
-    color:#60786b;
-}
-
-/* CONTAINER */
-.container{
-    max-width:1050px;
-    margin:45px auto;
-    padding:0 20px;
-}
-
-/* CARDS */
-.card{
-    background:white;
-    border-radius:24px;
-    padding:32px;
-    margin-bottom:25px;
-    box-shadow:0 12px 40px rgba(0,70,35,.08);
-    animation:slideUp .7s ease;
-}
-
-.card h2{
-    color:#075f32;
-    margin-bottom:8px;
-}
-
-.subtitle{
-    color:#718178;
-    margin-bottom:25px;
-    line-height:1.6;
-}
-
-/* FORM */
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.field{
-    display:flex;
-    flex-direction:column;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-label{
-    font-weight:700;
-    margin-bottom:8px;
-    color:#28533e;
-}
-
-input,
-select{
-    padding:14px;
-    border:1px solid #d5e7dc;
-    border-radius:12px;
-    outline:none;
-    background:#fbfffc;
-    font-size:15px;
-}
-
-input:focus,
-select:focus{
-    border-color:#14a85b;
-    box-shadow:0 0 0 3px rgba(20,168,91,.1);
-}
-
-/* AVAILABILITY */
-.availability{
-    display:flex;
-    gap:12px;
-}
-
-.availability input{
-    display:none;
-}
-
-.availability label{
-    flex:1;
-    text-align:center;
-    padding:14px;
-    border:1px solid #d5e7dc;
-    border-radius:12px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.availability input:checked + label{
-    background:#08783e;
-    color:white;
-    border-color:#08783e;
-}
-
-/* BUTTON */
-.btn{
-    width:100%;
-    border:0;
-    padding:16px;
-    margin-top:25px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#08783e,#12a85a);
-    color:white;
-    font-size:17px;
-    font-weight:800;
-    cursor:pointer;
-    box-shadow:0 10px 25px rgba(8,120,62,.22);
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:translateY(-2px);
-}
-
-/* SUCCESS */
-.success{
-    display:none;
-    text-align:center;
-    padding:25px;
-}
-
-.check{
-    width:75px;
-    height:75px;
-    margin:auto;
-    border-radius:50%;
-    background:#08783e;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:38px;
-    animation:pop .5s ease;
-}
-
-.success h2{
-    margin-top:18px;
-    color:#075f32;
-}
-
-.donor-id{
-    display:inline-block;
-    margin-top:15px;
-    background:#e8f8ee;
-    color:#08783e;
-    padding:10px 18px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-/* INFO GRID */
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.info{
-    padding:22px;
-    border-radius:17px;
-    background:#f3fbf6;
-    border:1px solid #dfefe5;
-}
-
-.info-icon{
-    font-size:30px;
-}
-
-.info h3{
-    margin:12px 0 7px;
-    color:#075f32;
-}
-
-.info p{
-    font-size:14px;
-    color:#66786d;
-    line-height:1.6;
-}
-
-/* SAFETY */
-.safety{
-    background:#effaf3;
-    border-left:5px solid #14a85b;
-    padding:18px;
-    border-radius:12px;
-    color:#496657;
-    font-size:14px;
-    line-height:1.7;
-}
-
-/* FOOTER */
-footer{
-    background:#063d22;
-    color:#d8f5e4;
-    text-align:center;
-    padding:30px 20px;
-    margin-top:55px;
-}
-
-footer strong{
-    color:white;
-}
-
-/* ANIMATIONS */
-@keyframes pulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.08)}
-}
-
-@keyframes slideUp{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes pop{
-    from{
-        opacity:0;
-        transform:scale(.4);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-/* MOBILE */
-@media(max-width:700px){
-
-    nav{
-        padding:0 20px;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .hero h1{
-        font-size:32px;
+    body {
+      background: #f4fbf7;
+      color: #16352a;
+      line-height: 1.6;
     }
 
-    .form-grid{
-        grid-template-columns:1fr;
+    /* NAVBAR */
+    nav {
+      width: 100%;
+      background: #064e3b;
+      color: white;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
     }
 
-    .full{
-        grid-column:auto;
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+      letter-spacing: .5px;
     }
 
-    .card{
-        padding:22px 18px;
+    .logo span {
+      color: #ef4444;
     }
 
-    .info-grid{
-        grid-template-columns:1fr;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 22px;
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    .availability{
-        flex-direction:column;
+    nav a:hover {
+      color: #86efac;
     }
-}
-</style>
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #064e3b, #047857);
+      color: white;
+      padding: 70px 6%;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 6vw, 58px);
+      margin-bottom: 14px;
+    }
+
+    .hero h1 span {
+      color: #fca5a5;
+    }
+
+    .hero p {
+      max-width: 750px;
+      margin: auto;
+      font-size: 17px;
+      opacity: .95;
+    }
+
+    /* MAIN */
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 45px auto;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 30px;
+      align-items: start;
+    }
+
+    /* INFO CARD */
+    .info {
+      background: white;
+      padding: 30px;
+      border-radius: 22px;
+      box-shadow: 0 12px 35px rgba(6,78,59,.10);
+    }
+
+    .info h2 {
+      color: #065f46;
+      margin-bottom: 18px;
+    }
+
+    .info p {
+      margin-bottom: 18px;
+      color: #496158;
+    }
+
+    .benefit {
+      display: flex;
+      gap: 14px;
+      margin: 18px 0;
+      padding: 15px;
+      background: #f0fdf4;
+      border-radius: 14px;
+    }
+
+    .icon {
+      font-size: 25px;
+    }
+
+    .benefit strong {
+      display: block;
+      color: #064e3b;
+      margin-bottom: 3px;
+    }
+
+    /* FORM */
+    .form-card {
+      background: white;
+      padding: 30px;
+      border-radius: 22px;
+      box-shadow: 0 12px 35px rgba(6,78,59,.10);
+    }
+
+    .form-card h2 {
+      color: #065f46;
+      margin-bottom: 22px;
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 7px;
+      font-weight: 700;
+      font-size: 14px;
+      color: #24483b;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #cce5d9;
+      border-radius: 11px;
+      outline: none;
+      font-size: 15px;
+      background: #fbfffd;
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+    }
+
+    textarea {
+      min-height: 100px;
+      resize: vertical;
+    }
+
+    .row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 15px;
+    }
+
+    button {
+      width: 100%;
+      margin-top: 22px;
+      padding: 15px;
+      border: none;
+      border-radius: 12px;
+      background: linear-gradient(135deg, #dc2626, #b91c1c);
+      color: white;
+      font-size: 16px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(185,28,28,.25);
+    }
+
+    /* SUCCESS */
+    .success {
+      display: none;
+      margin-top: 20px;
+      padding: 16px;
+      border-radius: 12px;
+      background: #ecfdf5;
+      border: 1px solid #86efac;
+      color: #166534;
+      font-weight: 600;
+    }
+
+    /* SAFETY */
+    .notice {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 12px;
+      color: #7c2d12;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 60px;
+      background: #022c22;
+      color: #d1fae5;
+      text-align: center;
+      padding: 30px 6%;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* MOBILE */
+    @media (max-width: 800px) {
+      nav {
+        padding: 14px 5%;
+      }
+
+      nav div:last-child {
+        display: none;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      .row {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .hero {
+        padding: 55px 6%;
+      }
+
+      .container {
+        margin: 30px auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav>
-    <div class="logo">Vital<span>Loop</span></div>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      Rakt<span>Sathi</span>
+    </div>
 
-    <a href="index.html" class="back">
-        ← Back to Home
-    </a>
-</nav>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="find-blood.html">Find Blood</a>
+      <a href="blood-request.html">Request Blood</a>
+    </div>
+  </nav>
 
 
-<!-- HERO -->
-<section class="hero">
-
-    <div class="hero-icon">🩸</div>
-
-    <h1>Become a Blood Donor</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Become a <span>Blood Donor</span></h1>
 
     <p>
-        Join the VitalLoop donor network and help make relevant
-        blood-resource discovery easier for people who need it.
+      Your decision to donate can help connect patients with potential
+      blood donors when they need support.
     </p>
+  </section>
 
-</section>
+
+  <!-- CONTENT -->
+  <main class="container">
+
+    <div class="grid">
+
+      <!-- INFORMATION -->
+      <section class="info">
+
+        <h2>Why Become a Donor?</h2>
+
+        <p>
+          RaktSathi helps create a digital coordination layer between
+          people seeking blood and potential donors.
+        </p>
+
+        <div class="benefit">
+          <div class="icon">🩸</div>
+          <div>
+            <strong>Support Patients</strong>
+            Help patients find potential donor support faster.
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="icon">🤝</div>
+          <div>
+            <strong>Build a Donor Network</strong>
+            Become part of a community focused on blood-resource coordination.
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="icon">📍</div>
+          <div>
+            <strong>Location-Based Discovery</strong>
+            Your district can help identify relevant donor connections.
+          </div>
+        </div>
+
+        <div class="benefit">
+          <div class="icon">⚡</div>
+          <div>
+            <strong>Faster Coordination</strong>
+            Reduce the time needed to identify possible donor support.
+          </div>
+        </div>
+
+      </section>
 
 
-<div class="container">
-
-<!-- REGISTRATION CARD -->
-<div class="card">
-
-    <div id="donorForm">
+      <!-- DONOR FORM -->
+      <section class="form-card">
 
         <h2>Donor Registration</h2>
 
-        <p class="subtitle">
-            Enter your basic details to create a donor profile
-            for this prototype.
-        </p>
+        <form id="donorForm">
 
-        <form onsubmit="registerDonor(event)">
+          <div class="row">
 
-            <div class="form-grid">
-
-                <!-- NAME -->
-                <div class="field">
-
-                    <label>Full Name *</label>
-
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter your full name"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- BLOOD GROUP -->
-                <div class="field">
-
-                    <label>Blood Group *</label>
-
-                    <select id="bloodGroup" required>
-
-                        <option value="">
-                            Select blood group
-                        </option>
-
-                        <option>A+</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B-</option>
-                        <option>AB+</option>
-                        <option>AB-</option>
-                        <option>O+</option>
-                        <option>O-</option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- CITY -->
-                <div class="field">
-
-                    <label>City *</label>
-
-                    <input
-                        type="text"
-                        id="city"
-                        placeholder="e.g. Lucknow"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- PHONE -->
-                <div class="field">
-
-                    <label>Contact Number *</label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        placeholder="10-digit mobile number"
-                        maxlength="10"
-                        pattern="[0-9]{10}"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- LAST DONATION -->
-                <div class="field">
-
-                    <label>Last Donation Date</label>
-
-                    <input
-                        type="date"
-                        id="lastDonation"
-                    >
-
-                </div>
-
-
-                <!-- PREFERRED RADIUS -->
-                <div class="field">
-
-                    <label>Preferred Search Radius</label>
-
-                    <select id="radius">
-
-                        <option>5 km</option>
-                        <option>10 km</option>
-                        <option>25 km</option>
-                        <option>50 km</option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- AVAILABILITY -->
-                <div class="field full">
-
-                    <label>Current Availability *</label>
-
-                    <div class="availability">
-
-                        <div style="flex:1">
-
-                            <input
-                                type="radio"
-                                id="available"
-                                name="availability"
-                                value="Available"
-                                required
-                            >
-
-                            <label for="available">
-                                ✓ Available
-                            </label>
-
-                        </div>
-
-                        <div style="flex:1">
-
-                            <input
-                                type="radio"
-                                id="unavailable"
-                                name="availability"
-                                value="Unavailable"
-                            >
-
-                            <label for="unavailable">
-                                Not Available
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
+            <div>
+              <label for="name">Full Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter your name"
+                required
+              >
             </div>
 
+            <div>
+              <label for="phone">Phone Number</label>
+              <input
+                type="tel"
+                id="phone"
+                placeholder="10-digit mobile number"
+                maxlength="10"
+                required
+              >
+            </div>
 
-            <button class="btn" type="submit">
-                🩸 Join Donor Network
-            </button>
+          </div>
+
+
+          <div class="row">
+
+            <div>
+              <label for="bloodGroup">Blood Group</label>
+
+              <select id="bloodGroup" required>
+                <option value="">Select blood group</option>
+                <option>A+</option>
+                <option>A-</option>
+                <option>B+</option>
+                <option>B-</option>
+                <option>AB+</option>
+                <option>AB-</option>
+                <option>O+</option>
+                <option>O-</option>
+              </select>
+            </div>
+
+            <div>
+              <label for="district">District</label>
+
+              <input
+                type="text"
+                id="district"
+                placeholder="e.g. Lucknow"
+                required
+              >
+            </div>
+
+          </div>
+
+
+          <label for="availability">Availability</label>
+
+          <select id="availability" required>
+            <option value="">Select availability</option>
+            <option>Available for emergency requests</option>
+            <option>Available with prior coordination</option>
+            <option>Currently unavailable</option>
+          </select>
+
+
+          <label for="lastDonation">
+            Last Donation Date
+          </label>
+
+          <input
+            type="date"
+            id="lastDonation"
+          >
+
+
+          <label for="message">
+            Additional Information
+          </label>
+
+          <textarea
+            id="message"
+            placeholder="Optional information..."
+          ></textarea>
+
+
+          <button type="submit">
+            Register as Donor
+          </button>
 
         </form>
 
-    </div>
 
-
-    <!-- SUCCESS -->
-    <div class="success" id="success">
-
-        <div class="check">✓</div>
-
-        <h2>Donor Profile Created</h2>
-
-        <p style="margin-top:12px;color:#65776d;line-height:1.6">
-
-            Your donor profile has been created successfully
-            in this VitalLoop prototype.
-
-        </p>
-
-        <div class="donor-id" id="donorId">
-            VL-D000000
+        <div class="success" id="successMessage">
+          ✅ Donor information saved successfully for this prototype.
+          RaktSathi does not guarantee donor availability.
         </div>
 
-        <p style="margin-top:20px;color:#65776d;font-size:14px">
-
-            Actual blood donation is performed only through
-            authorized blood centres or healthcare facilities
-            after required medical screening and procedures.
-
-        </p>
-
-        <a
-            href="find-blood.html"
-            style="
-            display:inline-block;
-            margin-top:22px;
-            padding:13px 22px;
-            border-radius:12px;
-            background:#08783e;
-            color:white;
-            text-decoration:none;
-            font-weight:bold;
-            "
-        >
-            Find Blood Resources →
-        </a>
+      </section>
 
     </div>
 
-</div>
 
+    <!-- SAFETY NOTICE -->
+    <div class="notice">
 
-<!-- HOW IT WORKS -->
-<div class="card">
+      <strong>Important Safety Notice:</strong><br>
 
-    <h2>How Donor Coordination Works</h2>
-
-    <p class="subtitle">
-        VitalLoop acts as a discovery and coordination layer.
-    </p>
-
-    <div class="info-grid">
-
-        <div class="info">
-
-            <div class="info-icon">👤</div>
-
-            <h3>1. Create Profile</h3>
-
-            <p>
-                Add your blood group, city and availability
-                to create a donor profile.
-            </p>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-icon">🔎</div>
-
-            <h3>2. Discover Requests</h3>
-
-            <p>
-                Relevant blood requests can be matched using
-                blood group and location information.
-            </p>
-
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-icon">🏥</div>
-
-            <h3>3. Authorized Donation</h3>
-
-            <p>
-                If coordination proceeds, donation takes place
-                at an authorized healthcare facility or blood centre.
-            </p>
-
-        </div>
+      RaktSathi is a discovery and coordination prototype.
+      Donor registration does not guarantee donation or blood availability.
+      Actual donor eligibility, screening, blood collection, testing,
+      compatibility, storage and transfusion are handled by authorized
+      blood centres and healthcare professionals.
 
     </div>
 
-</div>
+  </main>
 
 
-<!-- SAFETY -->
-<div class="card">
-
-    <div class="safety">
-
-        <strong>🛡️ Blood Safety First</strong><br>
-
-        VitalLoop does not collect, test, store, transport or
-        release blood. Donor eligibility, medical screening,
-        infection testing, compatibility and actual blood
-        donation are handled by authorized healthcare
-        professionals and blood centres.
-
-    </div>
-
-</div>
-
-</div>
+  <!-- FOOTER -->
+  <footer>
+    <strong>RaktSathi</strong> — Connecting People. Saving Lives.<br><br>
+    A smart blood-resource coordination platform.
+  </footer>
 
 
-<!-- FOOTER -->
-<footer>
+  <script>
+    const donorForm = document.getElementById("donorForm");
+    const successMessage = document.getElementById("successMessage");
 
-    <strong>VitalLoop</strong><br>
+    donorForm.addEventListener("submit", function(event) {
 
-    Your Complete Healthcare Journey
+      event.preventDefault();
 
-    <div style="margin-top:8px;font-size:13px;opacity:.75">
-        Healthcare Technology Prototype • Smart India Hackathon
-    </div>
+      const phone = document.getElementById("phone").value.trim();
 
-</footer>
+      // Phone validation
+      if (!/^[6-9][0-9]{9}$/.test(phone)) {
+        alert("Please enter a valid 10-digit Indian mobile number.");
+        return;
+      }
 
+      const donorData = {
+        name: document.getElementById("name").value.trim(),
+        phone: phone,
+        bloodGroup: document.getElementById("bloodGroup").value,
+        district: document.getElementById("district").value.trim(),
+        availability: document.getElementById("availability").value,
+        lastDonation: document.getElementById("lastDonation").value,
+        message: document.getElementById("message").value.trim(),
+        registeredAt: new Date().toISOString()
+      };
 
-<script>
+      // Prototype storage
+      localStorage.setItem(
+        "raktSathiDonor",
+        JSON.stringify(donorData)
+      );
 
-function registerDonor(event){
+      successMessage.style.display = "block";
 
-    event.preventDefault();
+      donorForm.reset();
 
-    const name =
-        document.getElementById("name").value;
+      window.scrollTo({
+        top: successMessage.offsetTop - 100,
+        behavior: "smooth"
+      });
 
-    const bloodGroup =
-        document.getElementById("bloodGroup").value;
-
-    const city =
-        document.getElementById("city").value;
-
-    const phone =
-        document.getElementById("phone").value;
-
-    const lastDonation =
-        document.getElementById("lastDonation").value;
-
-    const radius =
-        document.getElementById("radius").value;
-
-    const availability =
-        document.querySelector(
-            'input[name="availability"]:checked'
-        ).value;
-
-
-    /* DEMO DONOR ID */
-
-    const number =
-        Math.floor(100000 + Math.random() * 900000);
-
-    document.getElementById("donorId").innerText =
-        "VL-D" + number;
-
-
-    /* PROTOTYPE DATA */
-
-    console.log({
-        name,
-        bloodGroup,
-        city,
-        phone,
-        lastDonation,
-        radius,
-        availability
     });
-
-
-    document.getElementById("donorForm").style.display =
-        "none";
-
-    document.getElementById("success").style.display =
-        "block";
-
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
-
-}
-
-</script>
+  </script>
 
 </body>
 </html>
