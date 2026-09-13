@@ -1,38 +1,69 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
+
 <head>
   <meta charset="UTF-8">
 
-  <meta name="viewport"
-        content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <meta name="theme-color" content="#8B0000">
+  <meta
+    name="theme-color"
+    content="#8B0000"
+  >
 
-  <meta name="description"
-        content="RaktSathi verified blood donation camp discovery and coordination.">
+  <meta
+    name="description"
+    content="RaktSathi Blood Donation Camp Discovery"
+  >
 
-  <title>Blood Camps | RaktSathi</title>
+  <title>
+    RaktSathi | Blood Camps
+  </title>
 
-  <link rel="manifest" href="manifest.json">
-  <link rel="icon" href="raktsathi-logo.png">
+  <link
+    rel="icon"
+    type="image/png"
+    href="raktsathi-new-logo.png"
+  >
 
-  <link rel="stylesheet" href="css/style.css">
+  <link
+    rel="manifest"
+    href="manifest.json"
+  >
+
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
 </head>
+
 
 <body>
 
-  <!-- ================= HEADER ================= -->
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
 
   <header class="site-header">
 
     <div class="container nav-container">
 
-      <a href="index.html" class="brand">
+      <a
+        href="index.html"
+        class="brand"
+        aria-label="RaktSathi Home"
+      >
 
         <img
-          src="raktsathi-logo.png"
+          src="raktsathi-new-logo.png"
           alt="RaktSathi Logo"
           class="brand-logo"
+          width="48"
+          height="48"
         >
 
         <span class="brand-text">
@@ -41,10 +72,18 @@
 
       </a>
 
-      <nav class="main-nav" aria-label="Main navigation">
+
+      <nav
+        class="main-nav"
+        aria-label="Main navigation"
+      >
 
         <a href="index.html">
           Home
+        </a>
+
+        <a href="about.html">
+          About
         </a>
 
         <a href="find-blood.html">
@@ -59,7 +98,10 @@
           Donor Network
         </a>
 
-        <a href="camps.html" class="active">
+        <a
+          href="camps.html"
+          class="active"
+        >
           Camps
         </a>
 
@@ -74,44 +116,72 @@
   </header>
 
 
-  <!-- ================= HERO ================= -->
+
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
 
   <main>
 
-    <section class="hero hero-dark">
 
-      <div class="container hero-content">
+    <!-- ===================================================
+         HERO
+         =================================================== -->
 
-        <span class="eyebrow">
-          RAKTSATHI • VERIFIED CAMP DISCOVERY
-        </span>
+    <section class="hero">
 
-        <h1>
-          Discover Blood Donation
-          <span>Camps Near You.</span>
-        </h1>
+      <div class="container">
 
-        <p class="hero-text">
-          Find blood donation and awareness camps through a
-          structured discovery interface designed to make
-          important camp information easier to access and verify.
-        </p>
+        <div class="hero-content">
 
-        <div class="hero-actions">
 
-          <a
-            href="#camp-search"
-            class="btn btn-primary"
-          >
-            Explore Camps
-          </a>
+          <div class="hero-badge">
+            🩸 RAKTSATHI • VERIFIED CAMP DISCOVERY
+          </div>
 
-          <a
-            href="donor.html"
-            class="btn btn-secondary"
-          >
-            Donor Network
-          </a>
+
+          <h1>
+            Discover Blood
+            <span>Donation Camps.</span>
+          </h1>
+
+
+          <p>
+            Explore blood donation and awareness
+            camp information through a structured
+            discovery interface. Always verify the
+            date, venue, organizer and eligibility
+            details before participation.
+          </p>
+
+
+          <div class="hero-actions">
+
+
+            <a
+              href="#camp-search"
+              class="btn btn-primary"
+            >
+              🔎
+              <span>
+                Find Camps
+              </span>
+            </a>
+
+
+            <a
+              href="emergency.html"
+              class="btn btn-secondary"
+            >
+              🚨
+              <span>
+                Emergency Request
+              </span>
+            </a>
+
+
+          </div>
+
 
         </div>
 
@@ -120,129 +190,205 @@
     </section>
 
 
-    <!-- ================= SEARCH ================= -->
+
+    <!-- ===================================================
+         CAMP SEARCH
+         =================================================== -->
 
     <section
-      class="section section-alt"
+      class="section"
       id="camp-search"
     >
 
       <div class="container">
 
-        <div class="section-heading reveal">
 
-          <span class="eyebrow">
+        <div class="section-heading">
+
+          <span class="section-kicker">
             CAMP DISCOVERY
           </span>
 
           <h2>
-            Find a Suitable Camp
+            Find a Blood Donation Camp
           </h2>
 
           <p>
-            Search the prototype camp dataset by name,
-            location or district.
+            Search demonstration camp information
+            by name, organizer, district or location.
           </p>
 
         </div>
 
 
-        <div class="form-card reveal">
-
-          <form id="campSearchForm">
-
-            <div class="form-grid">
-
-              <div class="form-group">
-
-                <label for="campSearch">
-                  Search Camp
-                </label>
-
-                <input
-                  type="search"
-                  id="campSearch"
-                  placeholder="Search by camp or organiser"
-                >
-
-              </div>
+        <div class="card">
 
 
-              <div class="form-group">
+          <form
+            id="campSearchForm"
+            class="form-grid"
+          >
 
-                <label for="campDistrict">
-                  District
-                </label>
 
-                <input
-                  type="text"
-                  id="campDistrict"
-                  placeholder="e.g. Lucknow"
-                >
+            <!-- Search -->
 
-              </div>
+            <div class="form-group">
+
+              <label for="campSearch">
+                Search Camp
+              </label>
+
+              <input
+                type="search"
+                id="campSearch"
+                name="campSearch"
+                placeholder="Camp name or organizer"
+                autocomplete="off"
+              >
 
             </div>
 
 
-            <button
-              type="submit"
-              class="btn btn-primary"
-            >
-              Search Camps
-            </button>
 
-            <button
-              type="button"
-              id="clearCampSearch"
-              class="btn btn-secondary"
-            >
-              Clear
-            </button>
+            <!-- District -->
+
+            <div class="form-group">
+
+              <label for="campDistrict">
+                District / City
+              </label>
+
+              <input
+                type="text"
+                id="campDistrict"
+                name="campDistrict"
+                placeholder="Enter district or city"
+                autocomplete="address-level2"
+              >
+
+            </div>
+
+
+
+            <!-- Search Button -->
+
+            <div class="form-actions">
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+
+                🔎
+                <span>
+                  Search Camps
+                </span>
+
+              </button>
+
+            </div>
+
 
           </form>
 
+
+          <div
+            id="campMessage"
+            class="message"
+            aria-live="polite"
+          ></div>
+
+
         </div>
-
-
-        <div
-          id="campMessage"
-          class="message"
-          role="status"
-          aria-live="polite"
-        ></div>
-
-
-        <div
-          id="campResults"
-          class="card-grid"
-        ></div>
 
       </div>
 
     </section>
 
 
-    <!-- ================= WORKFLOW ================= -->
+
+    <!-- ===================================================
+         CAMP RESULTS
+         =================================================== -->
+
+    <section class="section section-light">
+
+      <div class="container">
+
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            CAMP INFORMATION
+          </span>
+
+          <h2>
+            Upcoming Camp Resources
+          </h2>
+
+          <p>
+            The information below is demonstration
+            data for the prototype and requires
+            verification.
+          </p>
+
+        </div>
+
+
+        <div
+          id="campResults"
+          class="grid grid-3"
+        >
+
+
+          <div class="empty-state">
+
+            <div class="empty-state-icon">
+              🩸
+            </div>
+
+            <h3>
+              Loading Camp Information
+            </h3>
+
+            <p>
+              Please wait while the camp resources
+              are loaded.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         CAMP WORKFLOW
+         =================================================== -->
 
     <section class="section">
 
       <div class="container">
 
-        <div class="section-heading reveal">
 
-          <span class="eyebrow">
-            SAFE CAMP WORKFLOW
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            RESPONSIBLE DISCOVERY
           </span>
 
           <h2>
-            Discover → Verify → Coordinate
+            Discover → Check Details → Verify → Coordinate
           </h2>
 
           <p>
-            RaktSathi keeps camp discovery separate from
-            verification so users can confirm the latest
-            information before taking action.
+            Camp discovery should always be followed
+            by confirmation of the relevant details.
           </p>
 
         </div>
@@ -250,91 +396,76 @@
 
         <div class="workflow">
 
-          <div class="workflow-step reveal">
 
-            <span class="workflow-number">
+          <div class="workflow-step">
+
+            <div class="workflow-number">
               01
-            </span>
+            </div>
 
             <h3>
               Discover
             </h3>
 
             <p>
-              Search available camp information using
-              location and camp details.
+              Search available camp information.
             </p>
 
           </div>
 
 
-          <div class="workflow-arrow">
-            →
-          </div>
+          <div class="workflow-step">
 
-
-          <div class="workflow-step reveal">
-
-            <span class="workflow-number">
+            <div class="workflow-number">
               02
-            </span>
+            </div>
 
             <h3>
               Check Details
             </h3>
 
             <p>
-              Review date, time, organiser and venue
-              information.
+              Review date, time, venue and organizer.
             </p>
 
           </div>
 
 
-          <div class="workflow-arrow">
-            →
-          </div>
+          <div class="workflow-step">
 
-
-          <div class="workflow-step reveal">
-
-            <span class="workflow-number">
+            <div class="workflow-number">
               03
-            </span>
+            </div>
 
             <h3>
               Verify
             </h3>
 
             <p>
-              Confirm the latest information with the
-              organiser or authorized healthcare facility.
+              Confirm the camp directly with the
+              organizer or authorized facility.
             </p>
 
           </div>
 
 
-          <div class="workflow-arrow">
-            →
-          </div>
+          <div class="workflow-step">
 
-
-          <div class="workflow-step reveal">
-
-            <span class="workflow-number">
+            <div class="workflow-number">
               04
-            </span>
+            </div>
 
             <h3>
               Coordinate
             </h3>
 
             <p>
-              Use the verified information to coordinate
-              the next appropriate step.
+              Follow the organizer's instructions
+              for the relevant activity.
             </p>
 
           </div>
+
 
         </div>
 
@@ -343,85 +474,139 @@
     </section>
 
 
-    <!-- ================= CAMP BENEFITS ================= -->
 
-    <section class="section section-dark">
+    <!-- ===================================================
+         CAMP FEATURES
+         =================================================== -->
+
+    <section class="section section-light">
 
       <div class="container">
 
-        <div class="section-heading reveal">
 
-          <span class="eyebrow">
-            WHY THIS MODULE?
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            CAMP DISCOVERY FEATURES
           </span>
 
           <h2>
-            Beyond a Simple Camp List
+            What You Can Check
           </h2>
-
-          <p>
-            The camp module is designed as one part of the
-            larger RaktSathi emergency coordination ecosystem.
-          </p>
 
         </div>
 
 
-        <div class="feature-grid">
-
-          <article class="card card-dark reveal">
-
-            <div class="card-icon">
-              📍
-            </div>
-
-            <h3>
-              Location Discovery
-            </h3>
-
-            <p>
-              Make camp locations easier to discover through
-              structured district and location information.
-            </p>
-
-          </article>
+        <div class="grid grid-3">
 
 
-          <article class="card card-dark reveal">
+          <article class="card">
 
             <div class="card-icon">
               📅
             </div>
 
             <h3>
-              Event Information
+              Date & Time
             </h3>
 
             <p>
-              Display important details such as date,
-              time, organiser and venue.
+              Review the scheduled date and time
+              before relying on camp information.
             </p>
 
           </article>
 
 
-          <article class="card card-dark reveal">
+          <article class="card">
+
+            <div class="card-icon">
+              📍
+            </div>
+
+            <h3>
+              Location
+            </h3>
+
+            <p>
+              Check the venue and location information
+              provided for the camp.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              🏥
+            </div>
+
+            <h3>
+              Organizer
+            </h3>
+
+            <p>
+              Review the organizer or healthcare
+              partner associated with the camp.
+            </p>
+
+          </article>
+
+
+          <article class="card">
 
             <div class="card-icon">
               ✓
             </div>
 
             <h3>
-              Verification Layer
+              Verification
             </h3>
 
             <p>
-              Camp information is clearly marked for
-              verification rather than being presented
-              as guaranteed current information.
+              Confirm the information before
+              participating or relying on it.
             </p>
 
           </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              🗺️
+            </div>
+
+            <h3>
+              Map Navigation
+            </h3>
+
+            <p>
+              Open the location in a map service
+              when a map link is available.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              🤝
+            </div>
+
+            <h3>
+              Coordination
+            </h3>
+
+            <p>
+              Use relevant healthcare pathways
+              for further coordination.
+            </p>
+
+          </article>
+
 
         </div>
 
@@ -430,26 +615,59 @@
     </section>
 
 
-    <!-- ================= CAMP RESULTS NOTE ================= -->
+
+    <!-- ===================================================
+         IMPORTANT NOTICE
+         =================================================== -->
 
     <section class="section">
 
       <div class="container">
 
-        <div class="notice notice-warning reveal">
 
-          <h3>
-            Important Verification Notice
-          </h3>
+        <div class="grid grid-2">
 
-          <p>
-            The camps displayed by this prototype are
-            demonstration records. Date, time, venue,
-            organiser and participation details must be
-            independently confirmed with the relevant
-            organiser or authorized healthcare facility
-            before relying on the information.
-          </p>
+
+          <article class="card">
+
+            <div class="card-icon">
+              ⚠️
+            </div>
+
+            <h3>
+              Verification Required
+            </h3>
+
+            <p>
+              Camp information shown in the
+              prototype may be demonstration data.
+              Verify the organizer, date, time,
+              venue and relevant requirements
+              before participation.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              🛡️
+            </div>
+
+            <h3>
+              Responsible Participation
+            </h3>
+
+            <p>
+              Participation and eligibility decisions
+              should follow the instructions and
+              screening requirements of the authorized
+              healthcare facility or camp organizer.
+            </p>
+
+          </article>
+
 
         </div>
 
@@ -458,33 +676,65 @@
     </section>
 
 
-    <!-- ================= EMERGENCY CTA ================= -->
 
-    <section class="emergency-cta">
+    <!-- ===================================================
+         FINAL CTA
+         =================================================== -->
+
+    <section class="section emergency-section">
 
       <div class="container">
 
-        <div class="cta-content reveal">
+        <div class="emergency-cta">
 
-          <span class="eyebrow">
-            EMERGENCY BLOOD REQUIREMENT
+
+          <span class="section-kicker">
+            RAKTSATHI COORDINATION
           </span>
+
 
           <h2>
             Need Blood Support?
           </h2>
 
+
           <p>
-            Start a structured emergency request and
-            begin the RaktSathi coordination workflow.
+            Start an emergency request or search
+            potential blood resources.
           </p>
 
-          <a
-            href="emergency.html"
-            class="btn btn-primary"
-          >
-            Create Emergency Request
-          </a>
+
+          <div class="hero-actions">
+
+
+            <a
+              href="emergency.html"
+              class="btn btn-primary"
+            >
+
+              🚨
+              <span>
+                Emergency Request
+              </span>
+
+            </a>
+
+
+            <a
+              href="find-blood.html"
+              class="btn btn-secondary"
+            >
+
+              🩸
+              <span>
+                Find Blood
+              </span>
+
+            </a>
+
+
+          </div>
+
 
         </div>
 
@@ -492,155 +742,336 @@
 
     </section>
 
+
   </main>
 
 
-  <!-- ================= FOOTER ================= -->
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
 
   <footer class="site-footer">
 
-    <div class="container footer-content">
+    <div class="container">
 
-      <div>
+      <div class="footer-grid">
 
-        <h3>
-          RaktSathi
-        </h3>
 
-        <p>
-          Intelligent Blood Emergency Coordination Network
-        </p>
+        <div class="footer-brand-section">
+
+
+          <div class="footer-brand">
+
+            <img
+              src="raktsathi-new-logo.png"
+              alt="RaktSathi Logo"
+              width="42"
+              height="42"
+            >
+
+            <span>
+              RaktSathi
+            </span>
+
+          </div>
+
+
+          <p>
+            Intelligent Blood Emergency
+            Coordination Network
+          </p>
+
+
+          <p>
+            Connecting People. Supporting Care.
+          </p>
+
+
+        </div>
+
+
+
+        <nav
+          class="footer-links"
+          aria-label="Footer navigation"
+        >
+
+          <a href="index.html">
+            Home
+          </a>
+
+          <a href="about.html">
+            About
+          </a>
+
+          <a href="find-blood.html">
+            Find Blood
+          </a>
+
+          <a href="emergency.html">
+            Emergency
+          </a>
+
+          <a href="donor.html">
+            Donor Network
+          </a>
+
+          <a href="camps.html">
+            Camps
+          </a>
+
+          <a href="assistant.html">
+            Assistant
+          </a>
+
+        </nav>
+
+
+
+        <div class="footer-bottom">
+
+          © 2026 RaktSathi.
+          Prototype for Smart India Hackathon.
+
+        </div>
+
 
       </div>
-
-
-      <div class="footer-links">
-
-        <a href="about.html">
-          About
-        </a>
-
-        <a href="blood-education.html">
-          Blood Intelligence
-        </a>
-
-        <a href="assistant.html">
-          Smart Assistant
-        </a>
-
-        <a href="emergency.html">
-          Emergency
-        </a>
-
-      </div>
-
-    </div>
-
-
-    <div class="container footer-bottom">
-
-      <p>
-        © 2026 RaktSathi. Prototype for Smart India Hackathon.
-      </p>
-
-      <p>
-        Connecting People. Supporting Care.
-      </p>
 
     </div>
 
   </footer>
 
 
-  <!-- ================= SCRIPTS ================= -->
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
 
   <script src="js/animations.js"></script>
+
   <script src="js/app.js"></script>
 
+  <script src="js/loader.js"></script>
 
-  <!-- ================= CAMP SCRIPT ================= -->
 
   <script>
 
-    document.addEventListener("DOMContentLoaded", function () {
+    const campSearchForm =
+      document.getElementById("campSearchForm");
 
-      const form =
-        document.getElementById("campSearchForm");
+    const campResults =
+      document.getElementById("campResults");
 
-      const searchInput =
-        document.getElementById("campSearch");
-
-      const districtInput =
-        document.getElementById("campDistrict");
-
-      const results =
-        document.getElementById("campResults");
-
-      const message =
-        document.getElementById("campMessage");
-
-      const clearButton =
-        document.getElementById("clearCampSearch");
+    const campMessage =
+      document.getElementById("campMessage");
 
 
-      let camps = [];
+    async function loadCamps() {
+
+      try {
+
+        const response =
+          await fetch("camps.json");
+
+        if (!response.ok) {
+          throw new Error("Unable to load camps");
+        }
 
 
-      /* ================= LOAD DATA ================= */
+        const data =
+          await response.json();
 
-      fetch("camps.json")
-
-        .then(function (response) {
-
-          if (!response.ok) {
-            throw new Error("Unable to load camp data.");
-          }
-
-          return response.json();
-
-        })
-
-        .then(function (data) {
-
-          camps =
-            Array.isArray(data)
-              ? data
-              : (data.camps || []);
-
-          renderCamps(camps);
-
-        })
-
-        .catch(function (error) {
-
-          console.error(error);
-
-          message.className =
-            "message message-error";
-
-          message.textContent =
-            "Camp information could not be loaded.";
-
-        });
+        const camps =
+          Array.isArray(data)
+            ? data
+            : (data.camps || []);
 
 
-      /* ================= SEARCH ================= */
+        window.raktSathiCamps = camps;
 
-      form.addEventListener(
+
+        displayCamps(camps);
+
+
+      } catch (error) {
+
+        campResults.innerHTML = `
+
+          <div class="empty-state">
+
+            <div class="empty-state-icon">
+              ⚠️
+            </div>
+
+            <h3>
+              Camp Data Unavailable
+            </h3>
+
+            <p>
+              Camp information could not be
+              loaded. Please try again later.
+            </p>
+
+          </div>
+
+        `;
+
+        console.error(error);
+
+      }
+
+    }
+
+
+    function displayCamps(camps) {
+
+      if (!camps.length) {
+
+        campResults.innerHTML = `
+
+          <div class="empty-state">
+
+            <div class="empty-state-icon">
+              🔎
+            </div>
+
+            <h3>
+              No Camps Found
+            </h3>
+
+            <p>
+              No matching camp information was found.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      campResults.innerHTML =
+        camps.map(function (camp) {
+
+          const mapQuery =
+            encodeURIComponent(
+              camp.map_query ||
+              camp.address ||
+              camp.location ||
+              ""
+            );
+
+
+          return `
+
+            <article class="card camp-card">
+
+              <div class="card-icon">
+                🩸
+              </div>
+
+
+              <span class="status-badge">
+                ${camp.status || "Verification Required"}
+              </span>
+
+
+              <h3>
+                ${camp.name || "Blood Donation Camp"}
+              </h3>
+
+
+              <p>
+                <strong>
+                  Organizer:
+                </strong>
+                ${camp.organizer || "Not specified"}
+              </p>
+
+
+              <p>
+                <strong>
+                  📅 Date:
+                </strong>
+                ${camp.date || "Not specified"}
+              </p>
+
+
+              <p>
+                <strong>
+                  🕐 Time:
+                </strong>
+                ${camp.time || "Not specified"}
+              </p>
+
+
+              <p>
+                <strong>
+                  📍 Location:
+                </strong>
+                ${camp.address || camp.location || "Not specified"}
+              </p>
+
+
+              <div class="card-actions">
+
+                <a
+                  href="https://www.google.com/maps/search/?api=1&query=${mapQuery}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="btn btn-secondary"
+                >
+
+                  📍
+                  <span>
+                    Open Map
+                  </span>
+
+                </a>
+
+              </div>
+
+
+            </article>
+
+          `;
+
+        }).join("");
+
+    }
+
+
+    if (campSearchForm) {
+
+      campSearchForm.addEventListener(
         "submit",
         function (event) {
 
           event.preventDefault();
 
+
           const search =
-            searchInput.value
+            document
+              .getElementById("campSearch")
+              .value
               .trim()
               .toLowerCase();
 
+
           const district =
-            districtInput.value
+            document
+              .getElementById("campDistrict")
+              .value
               .trim()
               .toLowerCase();
+
+
+          const camps =
+            window.raktSathiCamps || [];
 
 
           const filtered =
@@ -654,7 +1085,9 @@
                 " " +
                 (camp.location || "") +
                 " " +
-                (camp.district || "")
+                (camp.district || "") +
+                " " +
+                (camp.state || "")
 
               ).toLowerCase();
 
@@ -668,6 +1101,9 @@
                 !district ||
                 (camp.district || "")
                   .toLowerCase()
+                  .includes(district) ||
+                (camp.location || "")
+                  .toLowerCase()
                   .includes(district);
 
 
@@ -679,220 +1115,27 @@
             });
 
 
-          renderCamps(filtered);
+          displayCamps(filtered);
+
+
+          if (campMessage) {
+
+            campMessage.textContent =
+              filtered.length +
+              " camp resource(s) found.";
+
+          }
 
         }
       );
 
+    }
 
-      /* ================= CLEAR ================= */
 
-      clearButton.addEventListener(
-        "click",
-        function () {
+    loadCamps();
 
-          searchInput.value = "";
-          districtInput.value = "";
 
-          message.className =
-            "message";
-
-          message.textContent = "";
-
-          renderCamps(camps);
-
-        }
-      );
-
-
-      /* ================= RENDER ================= */
-
-      function renderCamps(data) {
-
-        results.innerHTML = "";
-
-
-        if (!data.length) {
-
-          results.innerHTML = `
-
-            <div class="empty-state">
-
-              <h3>
-                No camps found
-              </h3>
-
-              <p>
-                Try another camp name or district.
-              </p>
-
-            </div>
-
-          `;
-
-          return;
-
-        }
-
-
-        data.forEach(function (camp) {
-
-          const card =
-            document.createElement("article");
-
-          card.className =
-            "card blood-centre-card reveal";
-
-
-          const mapQuery =
-            camp.map_query ||
-            camp.address ||
-            (
-              (camp.location || "") +
-              " " +
-              (camp.state || "")
-            );
-
-
-          const mapUrl =
-            "https://www.google.com/maps/search/?api=1&query=" +
-            encodeURIComponent(mapQuery);
-
-
-          card.innerHTML = `
-
-            <div class="card-top">
-
-              <span class="status-badge">
-                ${camp.status || "Verification Required"}
-              </span>
-
-            </div>
-
-
-            <h3>
-              ${escapeHTML(camp.name || "Blood Camp")}
-            </h3>
-
-
-            <p>
-              <strong>Organizer:</strong>
-              ${escapeHTML(
-                camp.organizer || "Not specified"
-              )}
-            </p>
-
-
-            <p>
-              <strong>Date:</strong>
-              ${escapeHTML(
-                camp.date || "Not specified"
-              )}
-            </p>
-
-
-            <p>
-              <strong>Time:</strong>
-              ${escapeHTML(
-                camp.time || "Not specified"
-              )}
-            </p>
-
-
-            <p>
-              <strong>Location:</strong>
-              ${escapeHTML(
-                camp.location || "Not specified"
-              )}
-            </p>
-
-
-            <p>
-              <strong>District:</strong>
-              ${escapeHTML(
-                camp.district || "Not specified"
-              )}
-            </p>
-
-
-            <p>
-              <strong>Address:</strong>
-              ${escapeHTML(
-                camp.address || "Not specified"
-              )}
-            </p>
-
-
-            <div class="card-actions">
-
-              <a
-                href="${mapUrl}"
-                target="_blank"
-                rel="noopener noreferrer"
-                class="btn btn-secondary"
-              >
-                View on Maps
-              </a>
-
-            </div>
-
-
-            <div class="notice notice-warning">
-
-              <strong>
-                Verify before relying on this information.
-              </strong>
-
-              <br>
-
-              Confirm camp details with the organiser
-              or authorized healthcare facility.
-
-            </div>
-
-          `;
-
-
-          results.appendChild(card);
-
-        });
-
-
-        if (
-          window.RaktSathi &&
-          typeof window.RaktSathi.initRevealAnimations ===
-          "function"
-        ) {
-
-          window.RaktSathi.initRevealAnimations();
-
-        }
-
-      }
-
-
-      /* ================= SECURITY ================= */
-
-      function escapeHTML(value) {
-
-        return String(value)
-
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;")
-          .replace(/'/g, "&#039;");
-
-      }
-
-    });
-
-  </script>
-
-
-  <!-- ================= SERVICE WORKER ================= -->
-
-  <script>
+    /* Service Worker */
 
     if ("serviceWorker" in navigator) {
 
@@ -905,7 +1148,7 @@
             .catch(function (error) {
 
               console.log(
-                "Service worker registration failed:",
+                "Service Worker registration failed:",
                 error
               );
 
@@ -918,5 +1161,7 @@
 
   </script>
 
+
 </body>
+
 </html>
