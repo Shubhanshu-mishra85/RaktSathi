@@ -2,822 +2,714 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <meta name="theme-color" content="#8B0000">
+
+  <meta name="description"
+        content="RaktSathi Smart Healthcare Assistant for blood-resource discovery and emergency coordination.">
 
   <title>Smart Assistant | RaktSathi</title>
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="raktsathi-logo.png">
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5faf7;
-      color: #17352a;
-      line-height: 1.6;
-    }
-
-    header {
-      background: #063b2c;
-      color: white;
-      padding: 16px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 23px;
-      font-weight: bold;
-    }
-
-    .logo-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: #d71920;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      color: #ffb3b3;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #063b2c, #08744f);
-      color: white;
-      text-align: center;
-      padding: 65px 6%;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 15px;
-      border: 1px solid rgba(255,255,255,.4);
-      border-radius: 30px;
-      font-size: 12px;
-      letter-spacing: 1px;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(32px, 5vw, 52px);
-      margin-bottom: 12px;
-    }
-
-    .hero p {
-      max-width: 760px;
-      margin: auto;
-      color: #d9f4e9;
-      font-size: 17px;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1050px;
-      margin: 45px auto;
-    }
-
-    .assistant-card {
-      background: white;
-      border-radius: 22px;
-      box-shadow: 0 10px 35px rgba(0,0,0,.08);
-      overflow: hidden;
-    }
-
-    .chat-header {
-      background: #063b2c;
-      color: white;
-      padding: 20px 25px;
-      display: flex;
-      align-items: center;
-      gap: 14px;
-    }
-
-    .bot-icon {
-      width: 45px;
-      height: 45px;
-      border-radius: 50%;
-      background: #d71920;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-    }
-
-    .chat-header h2 {
-      font-size: 20px;
-    }
-
-    .chat-header p {
-      color: #c9e9dc;
-      font-size: 12px;
-    }
-
-    #chat {
-      height: 420px;
-      overflow-y: auto;
-      padding: 25px;
-      background: #f8fcfa;
-    }
-
-    .message {
-      max-width: 78%;
-      padding: 13px 16px;
-      border-radius: 15px;
-      margin-bottom: 14px;
-      font-size: 14px;
-      white-space: pre-line;
-    }
-
-    .bot {
-      background: #e8f3ee;
-      color: #24483a;
-      border-bottom-left-radius: 4px;
-    }
-
-    .user {
-      background: #08744f;
-      color: white;
-      margin-left: auto;
-      border-bottom-right-radius: 4px;
-    }
-
-    .quick-actions {
-      padding: 18px 25px;
-      border-top: 1px solid #e0e9e4;
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-    }
-
-    .quick-actions button {
-      border: 1px solid #c9ddd3;
-      background: white;
-      color: #063b2c;
-      padding: 9px 13px;
-      border-radius: 20px;
-      cursor: pointer;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .quick-actions button:hover {
-      background: #e8f3ee;
-    }
-
-    .input-area {
-      display: flex;
-      gap: 10px;
-      padding: 20px 25px;
-      border-top: 1px solid #e0e9e4;
-    }
-
-    #userInput {
-      flex: 1;
-      padding: 14px;
-      border: 1px solid #ccd8d2;
-      border-radius: 11px;
-      outline: none;
-      font-size: 14px;
-    }
-
-    #userInput:focus {
-      border-color: #08744f;
-    }
-
-    #sendBtn {
-      border: none;
-      background: #d71920;
-      color: white;
-      padding: 0 22px;
-      border-radius: 11px;
-      cursor: pointer;
-      font-weight: bold;
-    }
-
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 17px;
-      margin-top: 35px;
-    }
-
-    .info-card {
-      background: white;
-      padding: 23px;
-      border-radius: 18px;
-      border: 1px solid #e1ebe6;
-      box-shadow: 0 6px 22px rgba(0,0,0,.05);
-    }
-
-    .info-card h3 {
-      color: #063b2c;
-      margin-bottom: 8px;
-    }
-
-    .info-card p {
-      color: #66756f;
-      font-size: 13px;
-    }
-
-    .emergency {
-      margin-top: 30px;
-      background: #fff0f0;
-      border-left: 5px solid #d71920;
-      padding: 20px;
-      border-radius: 10px;
-      color: #653333;
-      font-size: 14px;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      margin-top: 12px;
-      padding: 12px 18px;
-      border-radius: 9px;
-      background: #d71920;
-      color: white;
-      font-weight: bold;
-      font-size: 13px;
-    }
-
-    footer {
-      margin-top: 60px;
-      background: #03271e;
-      color: #d8eee5;
-      text-align: center;
-      padding: 30px 6%;
-      font-size: 13px;
-    }
-
-    footer a {
-      color: #9fe3c5;
-      text-decoration: none;
-    }
-
-    @media(max-width: 750px) {
-      .info-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .input-area {
-        flex-direction: column;
-      }
-
-      #sendBtn {
-        padding: 13px;
-      }
-
-      .message {
-        max-width: 90%;
-      }
-
-      header {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      nav {
-        justify-content: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<header>
+  <!-- ================= HEADER ================= -->
 
-  <div class="logo">
-    <div class="logo-icon">S</div>
-    RaktSathi
-  </div>
+  <header class="site-header">
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="emergency.html">Emergency</a>
-    <a href="find-blood.html">Find Blood</a>
-    <a href="blood-request.html">Track Request</a>
-    <a href="donor.html">Donor Network</a>
-    <a href="camps.html">Camps</a>
-  </nav>
+    <div class="container nav-container">
 
-</header>
+      <a href="index.html" class="brand">
+
+        <img
+          src="raktsathi-logo.png"
+          alt="RaktSathi Logo"
+          class="brand-logo"
+        >
+
+        <span class="brand-text">
+          RaktSathi
+        </span>
+
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="find-blood.html">
+          Find Blood
+        </a>
+
+        <a href="emergency.html">
+          Emergency
+        </a>
+
+        <a href="donor.html">
+          Donor Network
+        </a>
+
+        <a href="camps.html">
+          Camps
+        </a>
+
+        <a href="assistant.html" class="active">
+          Assistant
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
 
 
-<section class="hero">
+  <!-- ================= HERO ================= -->
 
-  <div class="badge">
-    SMART HEALTHCARE ASSISTANT
-  </div>
+  <main>
 
-  <h1>RaktSathi Assistant</h1>
+    <section class="hero hero-dark">
 
-  <p>
-    Get quick guidance about blood resources, emergency
-    requests, donor coordination and RaktSathi services.
-  </p>
+      <div class="container hero-content">
 
-</section>
+        <span class="eyebrow">
+          RAKTSATHI • SMART HEALTHCARE ASSISTANT
+        </span>
 
+        <h1>
+          Ask. Discover.
+          <span>Coordinate.</span>
+        </h1>
 
-<main class="container">
+        <p class="hero-text">
+          A simple digital assistant that helps users
+          navigate RaktSathi's blood-resource discovery,
+          emergency requests, donor network and healthcare
+          support modules.
+        </p>
 
+        <div class="hero-actions">
 
-  <section class="assistant-card">
+          <a
+            href="#assistant"
+            class="btn btn-primary"
+          >
+            Start Assistant
+          </a>
 
-    <div class="chat-header">
+          <a
+            href="emergency.html"
+            class="btn btn-secondary"
+          >
+            Emergency Request
+          </a>
 
-      <div class="bot-icon">
-        ✦
+        </div>
+
       </div>
+
+    </section>
+
+
+    <!-- ================= ASSISTANT ================= -->
+
+    <section
+      class="section section-alt"
+      id="assistant"
+    >
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            DIGITAL ASSISTANCE
+          </span>
+
+          <h2>
+            How Can RaktSathi Help?
+          </h2>
+
+          <p>
+            Choose a quick action or type your requirement
+            below to navigate the platform.
+          </p>
+
+        </div>
+
+
+        <div class="assistant-card card reveal">
+
+          <!-- ================= MESSAGES ================= -->
+
+          <div
+            id="assistantMessages"
+            class="assistant-messages"
+            aria-live="polite"
+            aria-label="Assistant conversation"
+          >
+
+            <div class="assistant-message assistant-bot">
+
+              <div class="assistant-avatar">
+                RS
+              </div>
+
+              <div class="assistant-bubble">
+
+                <strong>
+                  RaktSathi Assistant
+                </strong>
+
+                <p>
+                  Hello! I can help you navigate blood-resource
+                  discovery, emergency requests, donor network,
+                  camps and blood-group information.
+                </p>
+
+              </div>
+
+            </div>
+
+          </div>
+
+
+          <!-- ================= QUICK ACTIONS ================= -->
+
+          <div class="assistant-quick-actions">
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-assistant-query="I need blood urgently"
+            >
+              🚨 Emergency Blood
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-assistant-query="How can I find blood?"
+            >
+              🩸 Find Blood
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-assistant-query="I want to join the donor network"
+            >
+              ❤️ Donor Network
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-assistant-query="Show me blood donation camps"
+            >
+              📍 Blood Camps
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-assistant-query="Tell me about blood groups"
+            >
+              🔬 Blood Groups
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-assistant-query="What is RaktSathi?"
+            >
+              ℹ️ About RaktSathi
+            </button>
+
+          </div>
+
+
+          <!-- ================= INPUT ================= -->
+
+          <form id="assistantForm"
+                class="assistant-form">
+
+            <div class="assistant-input-row">
+
+              <label
+                for="assistantInput"
+                class="sr-only"
+              >
+                Ask RaktSathi Assistant
+              </label>
+
+              <input
+                type="text"
+                id="assistantInput"
+                name="assistantInput"
+                placeholder="Type your requirement..."
+                autocomplete="off"
+                required
+              >
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+                Send
+              </button>
+
+            </div>
+
+          </form>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CAPABILITIES ================= -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            ASSISTANT CAPABILITIES
+          </span>
+
+          <h2>
+            One Assistant. Multiple Paths.
+          </h2>
+
+          <p>
+            The assistant acts as a navigation layer across
+            the RaktSathi ecosystem.
+          </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              🚨
+            </div>
+
+            <h3>
+              Emergency Support
+            </h3>
+
+            <p>
+              Guides users toward the emergency request
+              workflow when urgent blood support is required.
+            </p>
+
+            <a
+              href="emergency.html"
+              class="text-link"
+            >
+              Start Request →
+            </a>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              🩸
+            </div>
+
+            <h3>
+              Blood Discovery
+            </h3>
+
+            <p>
+              Helps users navigate to the blood-resource
+              discovery module.
+            </p>
+
+            <a
+              href="find-blood.html"
+              class="text-link"
+            >
+              Find Resources →
+            </a>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              ❤️
+            </div>
+
+            <h3>
+              Donor Network
+            </h3>
+
+            <p>
+              Provides access to the structured donor
+              coordination module.
+            </p>
+
+            <a
+              href="donor.html"
+              class="text-link"
+            >
+              Open Donor Network →
+            </a>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              📍
+            </div>
+
+            <h3>
+              Camp Discovery
+            </h3>
+
+            <p>
+              Helps users discover blood donation and
+              awareness camp information.
+            </p>
+
+            <a
+              href="camps.html"
+              class="text-link"
+            >
+              Explore Camps →
+            </a>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              🔬
+            </div>
+
+            <h3>
+              Blood Intelligence
+            </h3>
+
+            <p>
+              Provides easy access to general educational
+              information about blood groups and components.
+            </p>
+
+            <a
+              href="blood-education.html"
+              class="text-link"
+            >
+              Learn More →
+            </a>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              📋
+            </div>
+
+            <h3>
+              Request Tracking
+            </h3>
+
+            <p>
+              Guides users to the request-tracking module
+              for previously created prototype requests.
+            </p>
+
+            <a
+              href="blood-request.html"
+              class="text-link"
+            >
+              Track Request →
+            </a>
+
+          </article>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= INTELLIGENCE LAYER ================= -->
+
+    <section class="section section-dark">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            FUTURE AI LAYER
+          </span>
+
+          <h2>
+            Ready for Intelligent Healthcare Workflows
+          </h2>
+
+          <p>
+            The current prototype uses rule-based assistance.
+            A future backend can connect secure AI services,
+            verified datasets and real-time healthcare workflows.
+          </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+          <article class="card card-dark reveal">
+
+            <div class="card-icon">
+              AI
+            </div>
+
+            <h3>
+              Natural Language
+            </h3>
+
+            <p>
+              Users could describe their requirement in
+              everyday language instead of navigating
+              multiple screens.
+            </p>
+
+          </article>
+
+
+          <article class="card card-dark reveal">
+
+            <div class="card-icon">
+              ⚡
+            </div>
+
+            <h3>
+              Smart Routing
+            </h3>
+
+            <p>
+              The assistant can route a request toward
+              the most relevant RaktSathi module.
+            </p>
+
+          </article>
+
+
+          <article class="card card-dark reveal">
+
+            <div class="card-icon">
+              ✓
+            </div>
+
+            <h3>
+              Verified Information
+            </h3>
+
+            <p>
+              Future versions can integrate verified,
+              authorized healthcare data sources while
+              maintaining clear verification boundaries.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= LIMITATIONS ================= -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="notice notice-warning reveal">
+
+          <h3>
+            Important Assistant Limitation
+          </h3>
+
+          <p>
+            This prototype assistant is not a doctor and does
+            not provide diagnosis, prescriptions, medical
+            compatibility decisions or guaranteed blood
+            availability. For medical decisions, consult a
+            qualified healthcare professional or authorized
+            healthcare facility.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= EMERGENCY CTA ================= -->
+
+    <section class="emergency-cta">
+
+      <div class="container">
+
+        <div class="cta-content reveal">
+
+          <span class="eyebrow">
+            WHEN EVERY MINUTE MATTERS
+          </span>
+
+          <h2>
+            Need Blood Support?
+          </h2>
+
+          <p>
+            Start a structured emergency request and let
+            RaktSathi guide the coordination workflow.
+          </p>
+
+          <a
+            href="emergency.html"
+            class="btn btn-primary"
+          >
+            Start Emergency Request
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="site-footer">
+
+    <div class="container footer-content">
 
       <div>
 
-        <h2>RaktSathi Smart Assistant</h2>
+        <h3>
+          RaktSathi
+        </h3>
 
         <p>
-          Resource discovery & coordination support
+          Intelligent Blood Emergency Coordination Network
         </p>
 
       </div>
 
-    </div>
 
+      <div class="footer-links">
 
-    <div id="chat">
+        <a href="about.html">
+          About
+        </a>
 
-      <div class="message bot">
+        <a href="blood-education.html">
+          Blood Intelligence
+        </a>
 
-        Hello! 👋 I'm the RaktSathi Assistant.
+        <a href="donor.html">
+          Donor Network
+        </a>
 
-        I can help you navigate:
-        • Blood resource discovery
-        • Emergency requests
-        • Donor network
-        • Blood camps
-        • Blood education
-        • Request tracking
-
-        What do you need help with?
+        <a href="camps.html">
+          Camps
+        </a>
 
       </div>
 
     </div>
 
 
-    <div class="quick-actions">
-
-      <button onclick="quickAsk('I need blood')">
-        🩸 I Need Blood
-      </button>
-
-      <button onclick="quickAsk('Create emergency request')">
-        🚨 Emergency Request
-      </button>
-
-      <button onclick="quickAsk('Find donor')">
-        👥 Find Donor
-      </button>
-
-      <button onclick="quickAsk('Blood camps')">
-        📍 Blood Camps
-      </button>
-
-      <button onclick="quickAsk('Blood groups')">
-        🧠 Blood Groups
-      </button>
-
-      <button onclick="quickAsk('What is RaktSathi?')">
-        ℹ️ About RaktSathi
-      </button>
-
-    </div>
-
-
-    <div class="input-area">
-
-      <input
-        type="text"
-        id="userInput"
-        placeholder="Type your question..."
-        autocomplete="off">
-
-      <button id="sendBtn">
-        Send
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <section class="info-grid">
-
-    <div class="info-card">
-
-      <h3>🩸 Blood Resources</h3>
+    <div class="container footer-bottom">
 
       <p>
-        Search potential blood-centre resources by
-        blood group, component and location.
+        © 2026 RaktSathi. Prototype for Smart India Hackathon.
+      </p>
+
+      <p>
+        Connecting People. Supporting Care.
       </p>
 
     </div>
 
+  </footer>
 
-    <div class="info-card">
 
-      <h3>🚨 Emergency Coordination</h3>
+  <!-- ================= SCRIPTS ================= -->
 
-      <p>
-        Create a structured emergency request and
-        begin the RaktSathi coordination workflow.
-      </p>
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/assistant.js"></script>
 
-    </div>
 
+  <!-- ================= SERVICE WORKER ================= -->
 
-    <div class="info-card">
+  <script>
 
-      <h3>👥 Donor Network</h3>
+    if ("serviceWorker" in navigator) {
 
-      <p>
-        Registered donor information can act as a
-        potential resource for matching workflows.
-      </p>
+      window.addEventListener(
+        "load",
+        function () {
 
-    </div>
+          navigator.serviceWorker
+            .register("sw.js")
+            .catch(function (error) {
 
-  </section>
+              console.log(
+                "Service worker registration failed:",
+                error
+              );
 
+            });
 
-  <section class="emergency">
+        }
+      );
 
-    <strong>Medical Emergency?</strong>
-
-    <br>
-
-    The assistant provides navigation and coordination
-    support only. It cannot diagnose, guarantee blood
-    availability or replace healthcare professionals.
-
-    <br>
-
-    <a
-      href="emergency.html"
-      class="btn">
-      Create Emergency Request
-    </a>
-
-  </section>
-
-</main>
-
-
-<footer>
-
-  <strong>RaktSathi</strong>
-
-  <br>
-
-  Intelligent Blood Emergency Coordination Network
-
-  <br><br>
-
-  <a href="index.html">Home</a> ·
-  <a href="emergency.html">Emergency</a> ·
-  <a href="find-blood.html">Find Blood</a> ·
-  <a href="donor.html">Donor Network</a>
-
-  <br><br>
-
-  © 2026 RaktSathi · Prototype
-
-</footer>
-
-
-<script>
-
-const chat =
-  document.getElementById("chat");
-
-const input =
-  document.getElementById("userInput");
-
-const sendBtn =
-  document.getElementById("sendBtn");
-
-
-/* Add message */
-
-function addMessage(text, type) {
-
-  const message =
-    document.createElement("div");
-
-  message.className =
-    `message ${type}`;
-
-  message.textContent =
-    text;
-
-  chat.appendChild(message);
-
-  chat.scrollTop =
-    chat.scrollHeight;
-}
-
-
-/* Assistant response */
-
-function getResponse(text) {
-
-  const message =
-    text.toLowerCase();
-
-
-  if (
-    message.includes("emergency") ||
-    message.includes("urgent") ||
-    message.includes("jaldi") ||
-    message.includes("turant")
-  ) {
-
-    return `
-For an emergency blood requirement:
-
-1. Create an Emergency Request.
-2. Enter the required blood group, component,
-   location and healthcare facility.
-3. RaktSathi can use the information for
-   resource-discovery and coordination workflows.
-
-RaktSathi cannot guarantee blood availability.
-Please coordinate directly with the treating
-healthcare facility or authorised blood centre.
-`;
-
-  }
-
-
-  if (
-    message.includes("find blood") ||
-    message.includes("blood chahiye") ||
-    message.includes("need blood") ||
-    message.includes("blood")
-  ) {
-
-    return `
-You can use the Find Blood module to discover
-potential blood-centre resources.
-
-Go to Find Blood and enter:
-• Blood Group
-• Component
-• District / City
-
-Always confirm current availability directly
-with the authorised blood centre.
-`;
-
-  }
-
-
-  if (
-    message.includes("donor") ||
-    message.includes("donate")
-  ) {
-
-    return `
-RaktSathi has a Smart Donor Network.
-
-Registered information can help identify
-potential matching donor resources based on
-blood group, location and registered availability.
-
-Registration does not confirm medical eligibility
-or guarantee donation.
-`;
-
-  }
-
-
-  if (
-    message.includes("camp") ||
-    message.includes("camps")
-  ) {
-
-    return `
-You can use the Blood Camps section to discover
-upcoming donation camps.
-
-Check:
-• Date
-• Time
-• Location
-• Organiser
-
-Please verify the latest details with the
-organiser or authorised facility before visiting.
-`;
-
-  }
-
-
-  if (
-    message.includes("group") ||
-    message.includes("a+") ||
-    message.includes("b+") ||
-    message.includes("o+") ||
-    message.includes("ab+")
-  ) {
-
-    return `
-RaktSathi provides educational information about
-the ABO and Rh blood-group systems.
-
-For transfusion decisions, blood grouping,
-compatibility testing and final clinical decisions
-must be handled by authorised healthcare
-professionals.
-`;
-
-  }
-
-
-  if (
-    message.includes("track") ||
-    message.includes("request status") ||
-    message.includes("status")
-  ) {
-
-    return `
-Use Track Request to check a request created on
-this device.
-
-Prototype workflow:
-Request Created → Resource Discovery →
-Coordination → Facility Verification → Resolution.
-`;
-
-  }
-
-
-  if (
-    message.includes("rakt") ||
-    message.includes("what is") ||
-    message.includes("about")
-  ) {
-
-    return `
-RaktSathi is an Intelligent Blood Emergency
-Coordination Network.
-
-Its goal is to connect:
-• Emergency blood requests
-• Potential blood resources
-• Donor network
-• Healthcare facilities
-• Verification workflows
-
-It is a coordination prototype, not a blood bank.
-`;
-
-  }
-
-
-  if (
-    message.includes("help") ||
-    message.includes("hello") ||
-    message.includes("hi") ||
-    message.includes("namaste")
-  ) {
-
-    return `
-I can help you with:
-
-🩸 Find Blood
-🚨 Emergency Request
-👥 Donor Network
-📍 Blood Camps
-🧠 Blood Education
-📋 Track Request
-ℹ️ RaktSathi information
-
-Choose a quick option below or type your question.
-`;
-
-  }
-
-
-  return `
-I can help you navigate RaktSathi.
-
-Try asking:
-• I need blood
-• Create emergency request
-• Find donor
-• Blood camps
-• Blood groups
-• Track my request
-• What is RaktSathi?
-
-For medical emergencies, always contact
-the appropriate healthcare facility.
-`;
-
-}
-
-
-/* Send */
-
-function sendMessage() {
-
-  const text =
-    input.value.trim();
-
-  if (!text) return;
-
-
-  addMessage(text, "user");
-
-  input.value = "";
-
-
-  setTimeout(() => {
-
-    const response =
-      getResponse(text);
-
-    addMessage(
-      response,
-      "bot"
-    );
-
-  }, 350);
-
-}
-
-
-/* Quick buttons */
-
-function quickAsk(text) {
-
-  input.value = text;
-
-  sendMessage();
-
-}
-
-
-/* Events */
-
-sendBtn.addEventListener(
-  "click",
-  sendMessage
-);
-
-
-input.addEventListener(
-  "keydown",
-  function(event) {
-
-    if (event.key === "Enter") {
-      sendMessage();
     }
 
-  }
-);
-
-</script>
+  </script>
 
 </body>
 </html>
