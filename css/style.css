@@ -2585,3 +2585,241 @@ p {
       #fff;
   }
 }
+/* =========================================================
+   DESKTOP MODE SPACING FIX
+   RaktSathi
+   ========================================================= */
+
+@media (min-width: 651px) {
+
+  /* Overall section spacing */
+  .section {
+    padding-top: 58px;
+    padding-bottom: 58px;
+  }
+
+  /* Section headings closer to content */
+  .section-heading {
+    margin-bottom: 28px;
+  }
+
+  /* =======================================================
+     STATS
+     ======================================================= */
+
+  .stats-grid {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    gap: 14px;
+  }
+
+  .stat-card {
+    min-height: 82px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 18px;
+  }
+
+
+  /* =======================================================
+     WORKFLOW
+     ONE SINGLE ROW ON DESKTOP
+     ======================================================= */
+
+  .workflow {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(5, minmax(0, 1fr));
+
+    gap: 12px;
+
+    align-items: stretch;
+  }
+
+  .workflow-step {
+    width: 100%;
+
+    min-width: 0;
+
+    padding:
+      20px 12px;
+
+    min-height: 145px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    justify-content: center;
+  }
+
+  .workflow-number {
+    flex-shrink: 0;
+
+    width: 36px;
+    height: 36px;
+
+    margin-bottom: 10px;
+  }
+
+  .workflow-step h3 {
+    margin-bottom: 5px;
+
+    font-size: 0.90rem;
+  }
+
+  .workflow-step p {
+    max-width: 150px;
+
+    font-size: 0.74rem;
+
+    line-height: 1.45;
+  }
+
+
+  /* =======================================================
+     ECOSYSTEM
+     SHOW CARDS IN GRID
+     ======================================================= */
+
+  .grid-3 {
+    grid-template-columns:
+      repeat(3, minmax(0, 1fr));
+
+    gap: 16px;
+  }
+
+  .grid-4 {
+    grid-template-columns:
+      repeat(4, minmax(0, 1fr));
+
+    gap: 16px;
+  }
+
+
+  /* =======================================================
+     GENERAL CARDS
+     ======================================================= */
+
+  .card {
+    padding: 21px;
+  }
+
+
+  /* =======================================================
+     REDUCE LARGE EMPTY SPACES
+     ======================================================= */
+
+  .hero {
+    padding:
+      75px 0 65px;
+  }
+
+  .page-hero {
+    padding:
+      50px 0;
+  }
+
+
+  /* =======================================================
+     FOOTER
+     ======================================================= */
+
+  .site-footer {
+    padding:
+      45px 0 25px;
+  }
+
+  .footer-grid {
+    gap: 22px;
+  }
+
+}
+
+
+/* =========================================================
+   MEDIUM DESKTOP / TABLET LANDSCAPE
+   ========================================================= */
+
+@media (min-width: 651px) and (max-width: 900px) {
+
+  .container {
+    width:
+      calc(100% - 32px);
+  }
+
+  .workflow {
+    grid-template-columns:
+      repeat(5, minmax(0, 1fr));
+
+    gap: 8px;
+  }
+
+  .workflow-step {
+    min-height: 135px;
+
+    padding:
+      15px 7px;
+  }
+
+  .workflow-step h3 {
+    font-size:
+      0.78rem;
+  }
+
+  .workflow-step p {
+    font-size:
+      0.66rem;
+  }
+
+  .workflow-number {
+    width:
+      32px;
+
+    height:
+      32px;
+
+    font-size:
+      0.75rem;
+  }
+
+}
+
+
+/* =========================================================
+   LARGE DESKTOP
+   ========================================================= */
+
+@media (min-width: 1200px) {
+
+  .workflow {
+    gap:
+      18px;
+  }
+
+  .workflow-step {
+    min-height:
+      155px;
+
+    padding:
+      24px 16px;
+  }
+
+  .workflow-step p {
+    max-width:
+      175px;
+
+    font-size:
+      0.80rem;
+  }
+
+}
