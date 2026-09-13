@@ -4,29 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Blood Donation Camps | RaktSathi</title>
-
-  <meta name="description"
-        content="Discover blood donation camps and healthcare events through RaktSathi.">
+  <title>Blood Camps | RaktSathi</title>
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
-      background: #f4fbf7;
-      color: #16352a;
+      font-family: Arial, sans-serif;
+      background: #f5faf7;
+      color: #17352a;
       line-height: 1.6;
     }
 
-    /* NAVBAR */
-    nav {
-      width: 100%;
-      background: #064e3b;
+    header {
+      background: #063b2c;
       color: white;
       padding: 16px 6%;
       display: flex;
@@ -34,252 +29,331 @@
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 15px rgba(0,0,0,.12);
+      z-index: 100;
     }
 
     .logo {
-      font-size: 25px;
-      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 23px;
+      font-weight: bold;
     }
 
-    .logo span {
-      color: #ef4444;
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: #d71920;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin-left: 20px;
       font-size: 14px;
-      font-weight: 600;
     }
 
     nav a:hover {
-      color: #86efac;
+      color: #ffb3b3;
     }
 
-    /* HERO */
     .hero {
-      background: linear-gradient(135deg, #064e3b, #047857);
+      background: linear-gradient(135deg, #063b2c, #08744f);
       color: white;
       text-align: center;
-      padding: 65px 6%;
+      padding: 70px 6%;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 30px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: clamp(34px, 6vw, 56px);
-      margin-bottom: 12px;
-    }
-
-    .hero h1 span {
-      color: #fca5a5;
+      font-size: clamp(32px, 5vw, 52px);
+      margin-bottom: 14px;
     }
 
     .hero p {
-      max-width: 720px;
+      max-width: 760px;
       margin: auto;
-      opacity: .95;
+      color: #d9f4e9;
       font-size: 17px;
     }
 
-    /* CONTAINER */
     .container {
-      width: 92%;
+      width: 90%;
       max-width: 1150px;
-      margin: 40px auto;
+      margin: 45px auto;
     }
 
-    /* FILTER */
-    .filter-card {
+    .filter-box {
       background: white;
-      padding: 25px;
-      border-radius: 20px;
-      box-shadow: 0 10px 30px rgba(6,78,59,.10);
-      margin-bottom: 30px;
+      padding: 28px;
+      border-radius: 22px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.08);
+      margin-bottom: 35px;
     }
 
-    .filter-card h2 {
-      color: #065f46;
-      margin-bottom: 18px;
+    .filter-box h2 {
+      color: #063b2c;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #66756f;
+      margin-bottom: 22px;
     }
 
     .filters {
       display: grid;
-      grid-template-columns: 1fr 1fr auto;
+      grid-template-columns: 2fr 1fr auto;
       gap: 14px;
+      align-items: end;
+    }
+
+    label {
+      display: block;
+      font-size: 14px;
+      font-weight: bold;
+      margin-bottom: 6px;
     }
 
     input,
     select {
       width: 100%;
       padding: 13px;
-      border: 1px solid #cce5d9;
+      border: 1px solid #ccd8d2;
       border-radius: 10px;
-      background: #fbfffd;
-      font-size: 15px;
       outline: none;
+      font-size: 14px;
+      background: white;
     }
 
     input:focus,
     select:focus {
-      border-color: #10b981;
-      box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+      border-color: #08744f;
     }
 
-    .filter-btn {
+    button,
+    .btn {
       border: none;
+      padding: 13px 19px;
       border-radius: 10px;
-      padding: 13px 22px;
-      background: #047857;
-      color: white;
-      font-weight: 700;
       cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
     }
 
-    .filter-btn:hover {
-      background: #065f46;
+    .primary {
+      background: #d71920;
+      color: white;
     }
 
-    /* CAMPS GRID */
+    .secondary {
+      background: #08744f;
+      color: white;
+    }
+
+    .light {
+      background: #e8f3ee;
+      color: #063b2c;
+    }
+
+    .results-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 15px;
+      flex-wrap: wrap;
+      margin-bottom: 18px;
+    }
+
+    .results-top h2 {
+      color: #063b2c;
+    }
+
+    #count {
+      color: #66756f;
+      font-size: 14px;
+    }
+
     #campList {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 22px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
     }
 
     .camp-card {
       background: white;
-      border-radius: 20px;
+      border-radius: 19px;
       padding: 24px;
-      box-shadow: 0 10px 28px rgba(6,78,59,.10);
-      border-top: 4px solid #10b981;
-      transition: .2s;
-    }
-
-    .camp-card:hover {
-      transform: translateY(-5px);
-      box-shadow: 0 15px 35px rgba(6,78,59,.16);
-    }
-
-    .camp-icon {
-      width: 52px;
-      height: 52px;
-      border-radius: 14px;
-      background: #ecfdf5;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 26px;
-      margin-bottom: 15px;
+      border: 1px solid #e1ebe6;
+      box-shadow: 0 7px 25px rgba(0,0,0,.07);
     }
 
     .camp-card h3 {
-      color: #064e3b;
-      margin-bottom: 10px;
-      font-size: 19px;
+      color: #063b2c;
+      margin-bottom: 8px;
+      font-size: 20px;
     }
 
-    .camp-info {
-      margin: 8px 0;
-      color: #536a61;
+    .organizer {
+      color: #08744f;
+      font-weight: bold;
       font-size: 14px;
+      margin-bottom: 15px;
     }
 
-    .camp-info strong {
-      color: #24483b;
+    .details {
+      display: grid;
+      gap: 8px;
+      color: #586961;
+      font-size: 14px;
+      margin-bottom: 15px;
     }
 
-    .camp-status {
+    .tag {
       display: inline-block;
-      margin-top: 12px;
-      padding: 6px 11px;
+      background: #e9f6ef;
+      color: #08744f;
+      padding: 6px 10px;
       border-radius: 20px;
-      background: #dcfce7;
-      color: #166534;
       font-size: 12px;
-      font-weight: 700;
+      font-weight: bold;
+      margin: 2px;
     }
 
-    .map-btn {
-      display: block;
-      text-align: center;
-      margin-top: 18px;
-      padding: 11px;
+    .verification {
+      margin-top: 15px;
+      background: #fff7e6;
+      color: #73591a;
+      padding: 12px;
       border-radius: 10px;
-      background: #f0fdf4;
-      color: #047857;
-      text-decoration: none;
-      font-weight: 700;
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    .map-btn:hover {
-      background: #dcfce7;
+    .card-buttons {
+      display: flex;
+      gap: 9px;
+      flex-wrap: wrap;
+      margin-top: 18px;
     }
 
-    /* EMPTY */
+    .card-buttons a {
+      font-size: 13px;
+    }
+
     .empty {
-      grid-column: 1 / -1;
       background: white;
+      border-radius: 18px;
       padding: 40px;
       text-align: center;
-      border-radius: 18px;
-      color: #60756d;
-      box-shadow: 0 10px 25px rgba(6,78,59,.08);
+      color: #66756f;
+      grid-column: 1 / -1;
     }
 
-    /* NOTICE */
-    .notice {
-      margin-top: 35px;
+    .coordination {
+      margin-top: 45px;
+      background: linear-gradient(135deg, #063b2c, #08744f);
+      color: white;
+      border-radius: 22px;
+      padding: 30px;
+    }
+
+    .coordination h2 {
+      margin-bottom: 10px;
+    }
+
+    .coordination > p {
+      color: #d9f4e9;
+      margin-bottom: 22px;
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+    }
+
+    .step {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.18);
       padding: 20px;
-      background: #fff7ed;
-      border-left: 5px solid #f97316;
-      border-radius: 12px;
-      color: #7c2d12;
+      border-radius: 15px;
+    }
+
+    .step-number {
+      font-size: 13px;
+      font-weight: bold;
+      color: #ffb3b3;
+    }
+
+    .step h3 {
+      margin: 7px 0;
+      font-size: 17px;
+    }
+
+    .step p {
+      color: #d9f4e9;
+      font-size: 13px;
+    }
+
+    .notice {
+      margin-top: 30px;
+      background: #fff3f3;
+      border-left: 5px solid #d71920;
+      padding: 20px;
+      border-radius: 10px;
+      color: #5e3030;
       font-size: 14px;
     }
 
-    /* FOOTER */
     footer {
       margin-top: 60px;
-      background: #022c22;
-      color: #d1fae5;
+      background: #03271e;
+      color: #d8eee5;
       text-align: center;
       padding: 30px 6%;
-      font-size: 14px;
+      font-size: 13px;
     }
 
-    footer strong {
-      color: white;
+    footer a {
+      color: #9fe3c5;
+      text-decoration: none;
     }
 
-    /* MOBILE */
-    @media (max-width: 900px) {
-      #campList {
-        grid-template-columns: repeat(2, 1fr);
-      }
-
-      .filters {
-        grid-template-columns: 1fr;
-      }
-    }
-
-    @media (max-width: 600px) {
-      nav div:last-child {
-        display: none;
-      }
-
-      .hero {
-        padding: 50px 6%;
-      }
-
-      #campList {
+    @media(max-width: 850px) {
+      .filters,
+      #campList,
+      .steps {
         grid-template-columns: 1fr;
       }
 
-      .container {
-        margin: 25px auto;
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        justify-content: center;
       }
     }
   </style>
@@ -287,324 +361,591 @@
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">
-      Rakt<span>Sathi</span>
-    </div>
+<header>
 
-    <div>
-      <a href="index.html">Home</a>
-      <a href="find-blood.html">Find Blood</a>
-      <a href="donor.html">Become a Donor</a>
-    </div>
+  <div class="logo">
+    <div class="logo-icon">S</div>
+    RaktSathi
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="emergency.html">Emergency</a>
+    <a href="find-blood.html">Find Blood</a>
+    <a href="blood-request.html">Track Request</a>
+    <a href="donor.html">Donor Network</a>
+    <a href="camps.html">Camps</a>
   </nav>
 
+</header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Blood Donation <span>Camps</span></h1>
 
-    <p>
-      Discover blood donation camps and healthcare events
-      available through the RaktSathi network.
+<section class="hero">
+
+  <div class="badge">
+    VERIFIED CAMP DISCOVERY
+  </div>
+
+  <h1>Discover Blood Donation Camps</h1>
+
+  <p>
+    Find upcoming blood donation camps and access their
+    location and organiser information through RaktSathi.
+  </p>
+
+</section>
+
+
+<main class="container">
+
+
+  <!-- Filters -->
+
+  <section class="filter-box">
+
+    <h2>Find a Camp</h2>
+
+    <p class="subtitle">
+      Search by camp name, organiser, location or district.
     </p>
-  </section>
 
+    <div class="filters">
 
-  <main class="container">
+      <div>
 
-    <!-- FILTER -->
-    <section class="filter-card">
-
-      <h2>Find a Camp</h2>
-
-      <div class="filters">
+        <label for="search">
+          Search
+        </label>
 
         <input
           type="text"
-          id="searchInput"
-          placeholder="Search camp, organisation or location..."
-        >
-
-        <select id="districtFilter">
-          <option value="">All Districts</option>
-          <option>Lucknow</option>
-          <option>Kanpur</option>
-          <option>Prayagraj</option>
-          <option>Varanasi</option>
-          <option>Agra</option>
-          <option>Gorakhpur</option>
-          <option>Meerut</option>
-          <option>Other</option>
-        </select>
-
-        <button class="filter-btn" onclick="filterCamps()">
-          Search
-        </button>
+          id="search"
+          placeholder="Camp, organiser or location"
+          oninput="filterCamps()">
 
       </div>
 
-    </section>
+
+      <div>
+
+        <label for="district">
+          District
+        </label>
+
+        <select
+          id="district"
+          onchange="filterCamps()">
+
+          <option value="">
+            All Districts
+          </option>
+
+        </select>
+
+      </div>
 
 
-    <!-- CAMP LIST -->
-    <section id="campList"></section>
+      <button
+        class="light"
+        onclick="resetFilters()">
 
+        Reset
 
-    <!-- NOTICE -->
-    <div class="notice">
-
-      <strong>Important:</strong><br>
-
-      Camp information shown on this prototype is for discovery
-      and coordination. Please verify the date, location and
-      eligibility requirements with the organising blood centre
-      or healthcare facility before visiting.
+      </button>
 
     </div>
 
-  </main>
+  </section>
 
 
-  <!-- FOOTER -->
-  <footer>
-    <strong>RaktSathi</strong> — Connecting People. Saving Lives.<br><br>
-    A smart blood-resource coordination platform.
-  </footer>
+  <!-- Results -->
+
+  <section>
+
+    <div class="results-top">
+
+      <div>
+
+        <h2>Upcoming Camps</h2>
+
+        <p id="count">
+          Loading camps...
+        </p>
+
+      </div>
+
+      <a
+        href="emergency.html"
+        class="btn primary">
+
+        Need Blood Urgently?
+
+      </a>
+
+    </div>
 
 
-  <script>
+    <div id="campList">
 
-    let camps = [];
+      <div class="empty">
+        Loading camp information...
+      </div>
 
-    const campList = document.getElementById("campList");
-    const searchInput = document.getElementById("searchInput");
-    const districtFilter = document.getElementById("districtFilter");
+    </div>
+
+  </section>
 
 
-    /* LOAD CAMPS */
+  <!-- Coordination -->
 
-    async function loadCamps() {
+  <section class="coordination">
 
-      try {
+    <h2>
+      RaktSathi Camp Coordination
+    </h2>
 
-        const response = await fetch("camps.json");
+    <p>
+      Camps can strengthen the local donor-resource network
+      by connecting voluntary participation with organised
+      healthcare facilities.
+    </p>
 
-        if (!response.ok) {
-          throw new Error("Unable to load camps");
-        }
 
-        camps = await response.json();
+    <div class="steps">
 
-        displayCamps(camps);
+      <div class="step">
 
-      } catch (error) {
+        <div class="step-number">
+          STEP 01
+        </div>
 
-        console.error(error);
+        <h3>Discover</h3>
 
-        campList.innerHTML = `
-          <div class="empty">
-            <h3>Camp information unavailable</h3>
-            <p>
-              Please try again later or verify camp details
-              with the organising healthcare facility.
-            </p>
-          </div>
-        `;
+        <p>
+          Find a relevant upcoming camp.
+        </p>
 
-      }
+      </div>
 
+
+      <div class="step">
+
+        <div class="step-number">
+          STEP 02
+        </div>
+
+        <h3>Check Details</h3>
+
+        <p>
+          Review date, time, organiser and location.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          STEP 03
+        </div>
+
+        <h3>Verify</h3>
+
+        <p>
+          Confirm current camp details with the organiser
+          or authorised facility.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <div class="step-number">
+          STEP 04
+        </div>
+
+        <h3>Coordinate</h3>
+
+        <p>
+          Connect participation with the appropriate
+          authorised healthcare process.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Safety -->
+
+  <div class="notice">
+
+    <strong>Important Notice:</strong>
+
+    Camp information is provided for discovery and
+    coordination purposes. Always verify the date, time,
+    venue and organiser before visiting.
+
+    RaktSathi does not conduct blood collection or medical
+    screening. Any donation, eligibility assessment,
+    collection, testing and handling of blood is performed
+    by authorised healthcare professionals and facilities.
+
+  </div>
+
+</main>
+
+
+<footer>
+
+  <strong>RaktSathi</strong>
+
+  <br>
+
+  Intelligent Blood Emergency Coordination Network
+
+  <br><br>
+
+  <a href="index.html">Home</a> ·
+  <a href="emergency.html">Emergency</a> ·
+  <a href="find-blood.html">Find Blood</a> ·
+  <a href="donor.html">Donor Network</a>
+
+  <br><br>
+
+  © 2026 RaktSathi · Prototype
+
+</footer>
+
+
+<script>
+
+let camps = [];
+
+
+/* Load camps */
+
+async function loadCamps() {
+
+  try {
+
+    const response =
+      await fetch("camps.json");
+
+    if (!response.ok) {
+      throw new Error("Unable to load camps");
     }
 
+    camps = await response.json();
 
-    /* DISPLAY */
+    createDistrictList();
 
-    function displayCamps(data) {
+    renderCamps(camps);
 
-      campList.innerHTML = "";
+  } catch (error) {
 
-      if (!data.length) {
+    console.error(error);
 
-        campList.innerHTML = `
-          <div class="empty">
-            <h3>No camps found</h3>
-            <p>
-              Try another location or search term.
-            </p>
-          </div>
-        `;
+    document.getElementById("campList").innerHTML = `
 
-        return;
-      }
+      <div class="empty">
+
+        <h3>Camp information unavailable</h3>
+
+        <p>
+          Please try again later.
+        </p>
+
+      </div>
+
+    `;
+
+    document.getElementById("count").textContent =
+      "Unable to load camp data.";
+
+  }
+
+}
 
 
-      data.forEach(camp => {
+/* Create district filter */
 
-        const name =
-          camp.name ||
-          camp.campName ||
-          "Blood Donation Camp";
+function createDistrictList() {
 
-        const organisation =
-          camp.organisation ||
-          camp.organization ||
-          "Organiser not specified";
+  const districtSelect =
+    document.getElementById("district");
 
-        const location =
-          camp.location ||
-          camp.address ||
-          "Location not specified";
+  const districts =
+    camps
+      .map(camp =>
+        camp.district ||
+        camp.city ||
+        ""
+      )
+      .filter(Boolean);
 
-        const district =
+
+  const uniqueDistricts =
+    [...new Set(districts)]
+      .sort();
+
+
+  uniqueDistricts.forEach(district => {
+
+    const option =
+      document.createElement("option");
+
+    option.value = district;
+
+    option.textContent = district;
+
+    districtSelect.appendChild(option);
+
+  });
+
+}
+
+
+/* Filter */
+
+function filterCamps() {
+
+  const search =
+    document
+      .getElementById("search")
+      .value
+      .toLowerCase()
+      .trim();
+
+
+  const district =
+    document
+      .getElementById("district")
+      .value
+      .toLowerCase();
+
+
+  const filtered =
+    camps.filter(camp => {
+
+      const searchable =
+        JSON.stringify(camp)
+          .toLowerCase();
+
+
+      const searchMatch =
+        !search ||
+        searchable.includes(search);
+
+
+      const campDistrict =
+        (
           camp.district ||
-          "District not specified";
-
-        const date =
-          camp.date ||
-          "Date not specified";
-
-        const time =
-          camp.time ||
-          "Time not specified";
+          camp.city ||
+          ""
+        ).toLowerCase();
 
 
-        const mapQuery =
-          encodeURIComponent(
-            `${name}, ${location}, ${district}`
-          );
+      const districtMatch =
+        !district ||
+        campDistrict === district;
 
 
-        const card = document.createElement("article");
+      return searchMatch && districtMatch;
 
-        card.className = "camp-card";
-
-        card.innerHTML = `
-
-          <div class="camp-icon">
-            🩸
-          </div>
-
-          <h3>${escapeHTML(name)}</h3>
-
-          <div class="camp-info">
-            <strong>Organiser:</strong>
-            ${escapeHTML(organisation)}
-          </div>
-
-          <div class="camp-info">
-            <strong>📅 Date:</strong>
-            ${escapeHTML(date)}
-          </div>
-
-          <div class="camp-info">
-            <strong>⏰ Time:</strong>
-            ${escapeHTML(time)}
-          </div>
-
-          <div class="camp-info">
-            <strong>📍 Location:</strong>
-            ${escapeHTML(location)}
-          </div>
-
-          <div class="camp-info">
-            <strong>District:</strong>
-            ${escapeHTML(district)}
-          </div>
-
-          <span class="camp-status">
-            Donation Camp
-          </span>
-
-          <a
-            class="map-btn"
-            href="https://www.google.com/maps/search/?api=1&query=${mapQuery}"
-            target="_blank"
-            rel="noopener"
-          >
-            📍 View on Maps
-          </a>
-
-        `;
-
-        campList.appendChild(card);
-
-      });
-
-    }
+    });
 
 
-    /* FILTER */
+  renderCamps(filtered);
 
-    function filterCamps() {
+}
 
-      const query =
-        searchInput.value
-          .toLowerCase()
-          .trim();
+
+/* Render */
+
+function renderCamps(list) {
+
+  const container =
+    document.getElementById("campList");
+
+
+  document.getElementById("count")
+    .textContent =
+    `${list.length} camp${list.length !== 1 ? "s" : ""} found`;
+
+
+  if (!list.length) {
+
+    container.innerHTML = `
+
+      <div class="empty">
+
+        <h3>No matching camp found</h3>
+
+        <p>
+          Try another search or district.
+        </p>
+
+      </div>
+
+    `;
+
+    return;
+
+  }
+
+
+  container.innerHTML =
+    list.map(camp => {
+
+      const name =
+        camp.name ||
+        camp.camp_name ||
+        "Blood Donation Camp";
+
+
+      const organizer =
+        camp.organizer ||
+        camp.organisation ||
+        camp.organization ||
+        "Organiser information unavailable";
+
+
+      const date =
+        camp.date ||
+        camp.start_date ||
+        "Date not specified";
+
+
+      const time =
+        camp.time ||
+        camp.timing ||
+        "Time not specified";
+
+
+      const location =
+        camp.location ||
+        camp.venue ||
+        camp.address ||
+        "Location not specified";
+
 
       const district =
-        districtFilter.value
-          .toLowerCase();
+        camp.district ||
+        camp.city ||
+        "";
 
 
-      const filtered = camps.filter(camp => {
-
-        const text = JSON.stringify(camp)
-          .toLowerCase();
-
-        const matchesSearch =
-          !query ||
-          text.includes(query);
-
-        const matchesDistrict =
-          !district ||
-          String(
-            camp.district || ""
-          ).toLowerCase() === district;
-
-        return matchesSearch && matchesDistrict;
-
-      });
+      const mapQuery =
+        encodeURIComponent(
+          `${name} ${location}`
+        );
 
 
-      displayCamps(filtered);
+      return `
 
-    }
+        <article class="camp-card">
 
+          <h3>${name}</h3>
 
-    /* LIVE SEARCH */
-
-    searchInput.addEventListener(
-      "input",
-      filterCamps
-    );
-
-    districtFilter.addEventListener(
-      "change",
-      filterCamps
-    );
+          <div class="organizer">
+            Organised by: ${organizer}
+          </div>
 
 
-    /* BASIC HTML ESCAPE */
+          <div class="details">
 
-    function escapeHTML(value) {
+            <div>
+              📅 <strong>Date:</strong>
+              ${date}
+            </div>
 
-      return String(value)
-        .replace(/&/g, "&amp;")
-        .replace(/</g, "&lt;")
-        .replace(/>/g, "&gt;")
-        .replace(/"/g, "&quot;")
-        .replace(/'/g, "&#039;");
+            <div>
+              🕐 <strong>Time:</strong>
+              ${time}
+            </div>
 
-    }
+            <div>
+              📍 <strong>Location:</strong>
+              ${location}
+            </div>
+
+          </div>
 
 
-    /* START */
+          ${district
+            ? `<span class="tag">${district}</span>`
+            : ""
+          }
 
-    loadCamps();
+          <span class="tag">
+            Camp Discovery
+          </span>
 
-  </script>
+
+          <div class="verification">
+
+            🔎 <strong>Verify Before Visiting</strong><br>
+
+            Please confirm the latest camp details
+            with the organiser or authorised facility.
+
+          </div>
+
+
+          <div class="card-buttons">
+
+            <a
+              class="btn secondary"
+              target="_blank"
+              href="https://www.google.com/maps/search/?api=1&query=${mapQuery}">
+
+              📍 View Map
+
+            </a>
+
+
+            <a
+              class="btn light"
+              target="_blank"
+              href="https://www.google.com/maps/dir/?api=1&destination=${mapQuery}">
+
+              🧭 Directions
+
+            </a>
+
+          </div>
+
+        </article>
+
+      `;
+
+    }).join("");
+
+}
+
+
+/* Reset */
+
+function resetFilters() {
+
+  document.getElementById("search").value = "";
+
+  document.getElementById("district").value = "";
+
+  renderCamps(camps);
+
+}
+
+
+/* Start */
+
+loadCamps();
+
+</script>
 
 </body>
 </html>
