@@ -1,25 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en-IN">
+
 <head>
   <meta charset="UTF-8">
 
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-  <meta name="theme-color" content="#8B0000">
+  <meta
+    name="theme-color"
+    content="#8B0000"
+  >
 
   <meta
     name="description"
-    content="RaktSathi Emergency Blood Coordination Request"
+    content="RaktSathi Emergency Blood Coordination"
   >
 
   <title>
-    Emergency Request | RaktSathi
+    RaktSathi | Emergency Request
   </title>
 
   <link
     rel="icon"
     type="image/png"
-    href="raktsathi-logo.png"
+    href="raktsathi-new-logo.png"
   >
 
   <link
@@ -36,51 +43,58 @@
 
 <body>
 
+
   <!-- =====================================================
        HEADER
        ===================================================== -->
 
   <header class="site-header">
 
-    <div class="container">
+    <div class="container nav-container">
 
       <a
         href="index.html"
-        class="logo"
+        class="brand"
         aria-label="RaktSathi Home"
       >
 
         <img
-          src="raktsathi-logo.png"
+          src="raktsathi-new-logo.png"
           alt="RaktSathi Logo"
+          class="brand-logo"
+          width="48"
+          height="48"
         >
 
-        <span>RaktSathi</span>
+        <span class="brand-text">
+          RaktSathi
+        </span>
 
       </a>
 
 
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Open navigation menu"
+      <nav
+        class="main-nav"
+        aria-label="Main navigation"
       >
-        ☰
-      </button>
-
-
-      <nav>
 
         <a href="index.html">
           Home
         </a>
 
-        <a href="emergency.html">
-          Emergency
+        <a href="about.html">
+          About
         </a>
 
         <a href="find-blood.html">
           Find Blood
+        </a>
+
+        <a
+          href="emergency.html"
+          class="active"
+        >
+          Emergency
         </a>
 
         <a href="donor.html">
@@ -89,10 +103,6 @@
 
         <a href="camps.html">
           Camps
-        </a>
-
-        <a href="blood-request.html">
-          Track Request
         </a>
 
         <a href="assistant.html">
@@ -113,6 +123,7 @@
 
   <main>
 
+
     <!-- ===================================================
          HERO
          =================================================== -->
@@ -123,20 +134,51 @@
 
         <div class="hero-content">
 
+
           <div class="hero-badge">
-            EMERGENCY BLOOD COORDINATION
+            🚨 RAKTSATHI • EMERGENCY COORDINATION
           </div>
 
+
           <h1>
-            Start an
-            <span>Emergency Request.</span>
+            When Every Minute
+            <span>Matters.</span>
           </h1>
 
+
           <p>
-            Create a structured blood requirement so that
-            potential resources and relevant coordination
-            pathways can be identified more efficiently.
+            Create a structured emergency blood
+            requirement and receive a request ID
+            that can be used to track the coordination
+            journey.
           </p>
+
+
+          <div class="hero-actions">
+
+            <a
+              href="find-blood.html"
+              class="btn btn-secondary"
+            >
+              🩸
+              <span>
+                Find Blood Resources
+              </span>
+            </a>
+
+
+            <a
+              href="blood-request.html"
+              class="btn btn-secondary"
+            >
+              📋
+              <span>
+                Track Request
+              </span>
+            </a>
+
+          </div>
+
 
         </div>
 
@@ -150,437 +192,481 @@
          EMERGENCY FORM
          =================================================== -->
 
-    <section>
+    <section class="section">
 
       <div class="container">
 
-        <div class="grid grid-2">
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            CREATE EMERGENCY REQUEST
+          </span>
+
+          <h2>
+            Tell Us What Is Needed
+          </h2>
+
+          <p>
+            Enter the available information.
+            The prototype will create a request ID
+            for coordination and tracking.
+          </p>
+
+        </div>
 
 
-          <!-- FORM -->
+        <div class="card">
 
-          <div class="card">
 
-            <div class="section-heading">
+          <form
+            id="emergencyForm"
+            class="form-grid"
+          >
 
-              <h2>
-                Emergency Details
-              </h2>
 
-              <p>
-                Enter the information required to create
-                your coordination request.
-              </p>
+            <!-- Patient Name -->
+
+            <div class="form-group">
+
+              <label for="patientName">
+                Patient Name
+              </label>
+
+              <input
+                type="text"
+                id="patientName"
+                name="patientName"
+                placeholder="Enter patient name"
+                autocomplete="name"
+                required
+              >
 
             </div>
 
 
-            <form id="emergencyForm">
 
-              <div class="form-grid">
-
-
-                <!-- Patient Name -->
-
-                <div class="form-group">
-
-                  <label for="patientName">
-                    Patient / Requester Name
-                  </label>
-
-                  <input
-                    type="text"
-                    id="patientName"
-                    name="patientName"
-                    placeholder="Enter name"
-                    required
-                  >
-
-                </div>
-
-
-                <!-- Contact -->
-
-                <div class="form-group">
-
-                  <label for="phone">
-                    Contact Number
-                  </label>
-
-                  <input
-                    type="tel"
-                    id="phone"
-                    name="phone"
-                    placeholder="Enter contact number"
-                    required
-                  >
-
-                </div>
-
-
-                <!-- Blood Group -->
-
-                <div class="form-group">
-
-                  <label for="bloodGroup">
-                    Required Blood Group
-                  </label>
-
-                  <select
-                    id="bloodGroup"
-                    name="bloodGroup"
-                    required
-                  >
-
-                    <option value="">
-                      Select Blood Group
-                    </option>
-
-                    <option value="A+">A+</option>
-                    <option value="A-">A-</option>
-
-                    <option value="B+">B+</option>
-                    <option value="B-">B-</option>
-
-                    <option value="AB+">AB+</option>
-                    <option value="AB-">AB-</option>
-
-                    <option value="O+">O+</option>
-                    <option value="O-">O-</option>
-
-                  </select>
-
-                </div>
-
-
-                <!-- Component -->
-
-                <div class="form-group">
-
-                  <label for="component">
-                    Required Component
-                  </label>
-
-                  <select
-                    id="component"
-                    name="component"
-                    required
-                  >
-
-                    <option value="">
-                      Select Component
-                    </option>
-
-                    <option value="Whole Blood">
-                      Whole Blood
-                    </option>
-
-                    <option value="Packed Red Cells">
-                      Packed Red Cells
-                    </option>
-
-                    <option value="Fresh Frozen Plasma">
-                      Fresh Frozen Plasma
-                    </option>
-
-                    <option value="Platelets">
-                      Platelets
-                    </option>
-
-                  </select>
-
-                </div>
-
-
-                <!-- Units -->
-
-                <div class="form-group">
-
-                  <label for="units">
-                    Required Units
-                  </label>
-
-                  <input
-                    type="number"
-                    id="units"
-                    name="units"
-                    min="1"
-                    max="50"
-                    placeholder="e.g. 2"
-                    required
-                  >
-
-                </div>
-
-
-                <!-- Urgency -->
-
-                <div class="form-group">
-
-                  <label for="urgency">
-                    Urgency Level
-                  </label>
-
-                  <select
-                    id="urgency"
-                    name="urgency"
-                    required
-                  >
-
-                    <option value="">
-                      Select Urgency
-                    </option>
-
-                    <option value="Emergency">
-                      Emergency
-                    </option>
-
-                    <option value="Urgent">
-                      Urgent
-                    </option>
-
-                    <option value="Planned">
-                      Planned
-                    </option>
-
-                  </select>
-
-                </div>
-
-
-                <!-- District -->
-
-                <div class="form-group">
-
-                  <label for="district">
-                    District / City
-                  </label>
-
-                  <input
-                    type="text"
-                    id="district"
-                    name="district"
-                    placeholder="e.g. Lucknow"
-                    required
-                  >
-
-                </div>
-
-
-                <!-- Facility -->
-
-                <div class="form-group">
-
-                  <label for="facility">
-                    Hospital / Healthcare Facility
-                  </label>
-
-                  <input
-                    type="text"
-                    id="facility"
-                    name="facility"
-                    placeholder="Enter facility name"
-                    required
-                  >
-
-                </div>
-
-
-                <!-- Required Date -->
-
-                <div class="form-group">
-
-                  <label for="requiredDate">
-                    Required Date
-                  </label>
-
-                  <input
-                    type="date"
-                    id="requiredDate"
-                    name="requiredDate"
-                    required
-                  >
-
-                </div>
-
-
-                <!-- Additional Info -->
-
-                <div class="form-group full">
-
-                  <label for="additionalInfo">
-                    Additional Information
-                  </label>
-
-                  <textarea
-                    id="additionalInfo"
-                    name="additionalInfo"
-                    placeholder="Add relevant request information..."
-                  ></textarea>
-
-                </div>
-
-
-                <!-- Submit -->
-
-                <div class="form-group full">
-
-                  <div class="form-actions">
-
-                    <button
-                      type="submit"
-                      class="btn btn-primary"
-                    >
-                      Create Emergency Request
-                    </button>
-
-                    <a
-                      href="find-blood.html"
-                      class="btn"
-                      style="
-                        background:#111820;
-                        color:#ffffff;
-                      "
-                    >
-                      Find Blood Resources
-                    </a>
-
-                  </div>
-
-                </div>
-
-              </div>
-
-            </form>
-
-
-            <div
-              id="emergencyMessage"
-              class="request-message"
-              aria-live="polite"
-            ></div>
-
-          </div>
-
-
-
-          <!-- WORKFLOW -->
-
-          <div>
-
-            <div class="card">
-
-              <div class="section-heading">
-
-                <h2>
-                  Coordination Workflow
-                </h2>
-
-                <p>
-                  Your request follows a structured
-                  coordination journey.
-                </p>
-
-              </div>
-
-
-              <div class="workflow"
-                   style="grid-template-columns:1fr;">
-
-                <div class="workflow-step">
-
-                  <div class="step-number">
-                    1
-                  </div>
-
-                  <strong>
-                    Request Created
-                  </strong>
-
-                  <p>
-                    Requirement is structured with
-                    essential details.
-                  </p>
-
-                </div>
-
-
-                <div class="workflow-step">
-
-                  <div class="step-number">
-                    2
-                  </div>
-
-                  <strong>
-                    Resource Discovery
-                  </strong>
-
-                  <p>
-                    Potential blood resources can be
-                    identified.
-                  </p>
-
-                </div>
-
-
-                <div class="workflow-step">
-
-                  <div class="step-number">
-                    3
-                  </div>
-
-                  <strong>
-                    Potential Matching
-                  </strong>
-
-                  <p>
-                    Relevant resource signals can be
-                    considered for coordination.
-                  </p>
-
-                </div>
-
-
-                <div class="workflow-step">
-
-                  <div class="step-number">
-                    4
-                  </div>
-
-                  <strong>
-                    Facility Verification
-                  </strong>
-
-                  <p>
-                    Critical information must be confirmed
-                    with the authorized facility.
-                  </p>
-
-                </div>
-
-
-                <div class="workflow-step">
-
-                  <div class="step-number">
-                    5
-                  </div>
-
-                  <strong>
-                    Request Update
-                  </strong>
-
-                  <p>
-                    The request can move toward resolution
-                    after verification and coordination.
-                  </p>
-
-                </div>
-
-              </div>
+            <!-- Phone -->
+
+            <div class="form-group">
+
+              <label for="phone">
+                Contact Number
+              </label>
+
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Enter contact number"
+                autocomplete="tel"
+                inputmode="tel"
+                required
+              >
 
             </div>
 
+
+
+            <!-- Blood Group -->
+
+            <div class="form-group">
+
+              <label for="bloodGroup">
+                Blood Group
+              </label>
+
+              <select
+                id="bloodGroup"
+                name="bloodGroup"
+                required
+              >
+
+                <option value="">
+                  Select Blood Group
+                </option>
+
+                <option value="A+">
+                  A+
+                </option>
+
+                <option value="A-">
+                  A-
+                </option>
+
+                <option value="B+">
+                  B+
+                </option>
+
+                <option value="B-">
+                  B-
+                </option>
+
+                <option value="AB+">
+                  AB+
+                </option>
+
+                <option value="AB-">
+                  AB-
+                </option>
+
+                <option value="O+">
+                  O+
+                </option>
+
+                <option value="O-">
+                  O-
+                </option>
+
+              </select>
+
+            </div>
+
+
+
+            <!-- Component -->
+
+            <div class="form-group">
+
+              <label for="component">
+                Blood Component
+              </label>
+
+              <select
+                id="component"
+                name="component"
+                required
+              >
+
+                <option value="">
+                  Select Component
+                </option>
+
+                <option value="Whole Blood">
+                  Whole Blood
+                </option>
+
+                <option value="Packed Red Cells">
+                  Packed Red Cells
+                </option>
+
+                <option value="Fresh Frozen Plasma">
+                  Fresh Frozen Plasma
+                </option>
+
+                <option value="Platelets">
+                  Platelets
+                </option>
+
+              </select>
+
+            </div>
+
+
+
+            <!-- Units -->
+
+            <div class="form-group">
+
+              <label for="units">
+                Units Required
+              </label>
+
+              <input
+                type="number"
+                id="units"
+                name="units"
+                min="1"
+                max="20"
+                placeholder="e.g. 2"
+                required
+              >
+
+            </div>
+
+
+
+            <!-- Urgency -->
+
+            <div class="form-group">
+
+              <label for="urgency">
+                Urgency
+              </label>
+
+              <select
+                id="urgency"
+                name="urgency"
+                required
+              >
+
+                <option value="">
+                  Select Urgency
+                </option>
+
+                <option value="Critical">
+                  🔴 Critical
+                </option>
+
+                <option value="Urgent">
+                  🟠 Urgent
+                </option>
+
+                <option value="Planned">
+                  🟢 Planned
+                </option>
+
+              </select>
+
+            </div>
+
+
+
+            <!-- District -->
+
+            <div class="form-group">
+
+              <label for="district">
+                District / City
+              </label>
+
+              <input
+                type="text"
+                id="district"
+                name="district"
+                placeholder="Enter district or city"
+                autocomplete="address-level2"
+                required
+              >
+
+            </div>
+
+
+
+            <!-- Healthcare Facility -->
+
+            <div class="form-group">
+
+              <label for="facility">
+                Healthcare Facility
+              </label>
+
+              <input
+                type="text"
+                id="facility"
+                name="facility"
+                placeholder="Hospital / Healthcare Facility"
+              >
+
+            </div>
+
+
+
+            <!-- Required Date -->
+
+            <div class="form-group">
+
+              <label for="requiredDate">
+                Required Date
+              </label>
+
+              <input
+                type="date"
+                id="requiredDate"
+                name="requiredDate"
+              >
+
+            </div>
+
+
+
+            <!-- Additional Information -->
+
+            <div class="form-group form-group-full">
+
+              <label for="additionalInfo">
+                Additional Information
+              </label>
+
+              <textarea
+                id="additionalInfo"
+                name="additionalInfo"
+                rows="5"
+                placeholder="Add any relevant coordination information..."
+              ></textarea>
+
+            </div>
+
+
+
+            <!-- Submit -->
+
+            <div class="form-actions">
+
+              <button
+                type="submit"
+                class="btn btn-primary"
+              >
+
+                🚨
+                <span>
+                  Create Emergency Request
+                </span>
+
+              </button>
+
+            </div>
+
+
+          </form>
+
+
+
+          <!-- Success / Error Message -->
+
+          <div
+            id="emergencyMessage"
+            class="message"
+            aria-live="polite"
+          ></div>
+
+
+          <!-- Request Result -->
+
+          <div
+            id="emergencyResult"
+            class="message"
+            aria-live="polite"
+          ></div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         WORKFLOW
+         =================================================== -->
+
+    <section class="section section-light">
+
+      <div class="container">
+
+
+        <div class="section-heading">
+
+          <span class="section-kicker">
+            EMERGENCY WORKFLOW
+          </span>
+
+          <h2>
+            What Happens Next?
+          </h2>
+
+          <p>
+            RaktSathi organizes the emergency
+            coordination journey into clear stages.
+          </p>
+
+        </div>
+
+
+        <div class="workflow">
+
+
+          <div class="workflow-step">
+
+            <div class="workflow-number">
+              01
+            </div>
+
+            <h3>
+              Request Created
+            </h3>
+
+            <p>
+              Your requirement is structured into
+              a prototype request.
+            </p>
+
           </div>
+
+
+          <div class="workflow-step">
+
+            <div class="workflow-number">
+              02
+            </div>
+
+            <h3>
+              Resource Discovery
+            </h3>
+
+            <p>
+              Potential blood resources can be
+              identified using structured information.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-step">
+
+            <div class="workflow-number">
+              03
+            </div>
+
+            <h3>
+              Potential Matching
+            </h3>
+
+            <p>
+              Relevant resource pathways can be
+              organized for coordination.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-step">
+
+            <div class="workflow-number">
+              04
+            </div>
+
+            <h3>
+              Facility Verification
+            </h3>
+
+            <p>
+              Information must be confirmed with
+              an authorized healthcare facility.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-step">
+
+            <div class="workflow-number">
+              05
+            </div>
+
+            <h3>
+              Request Update
+            </h3>
+
+            <p>
+              The request can be tracked and updated
+              based on the coordination outcome.
+            </p>
+
+          </div>
+
 
         </div>
 
@@ -594,34 +680,126 @@
          IMPORTANT NOTICE
          =================================================== -->
 
-    <section>
+    <section class="section">
 
       <div class="container">
 
-        <div class="emergency-cta">
 
-          <h2>
-            Important Emergency Notice
-          </h2>
+        <div class="grid grid-2">
 
-          <p>
-            RaktSathi is a coordination prototype. It does
-            not guarantee blood availability and does not
-            replace an authorized hospital, blood centre,
-            doctor or emergency service.
-          </p>
 
-          <p>
-            In a genuine medical emergency, contact the
-            treating healthcare facility or appropriate
-            emergency services immediately.
-          </p>
+          <article class="card">
+
+            <div class="card-icon">
+              ⚠️
+            </div>
+
+            <h3>
+              Important
+            </h3>
+
+            <p>
+              Creating a RaktSathi request does not
+              guarantee blood availability, donor
+              availability or fulfillment of the
+              requirement.
+            </p>
+
+          </article>
+
+
+          <article class="card">
+
+            <div class="card-icon">
+              🏥
+            </div>
+
+            <h3>
+              Authorized Healthcare Facilities
+            </h3>
+
+            <p>
+              Actual blood collection, testing,
+              compatibility decisions, storage,
+              release and transfusion remain with
+              authorized healthcare professionals
+              and facilities.
+            </p>
+
+          </article>
+
 
         </div>
 
       </div>
 
     </section>
+
+
+
+    <!-- ===================================================
+         CTA
+         =================================================== -->
+
+    <section class="section section-light">
+
+      <div class="container">
+
+        <div class="section-heading center">
+
+          <span class="section-kicker">
+            NEED ANOTHER PATH?
+          </span>
+
+          <h2>
+            Explore Blood Resources
+          </h2>
+
+          <p>
+            Search potential resources or use the
+            Smart Assistant to navigate RaktSathi.
+          </p>
+
+
+          <div
+            style="
+              margin-top: 24px;
+              display: flex;
+              justify-content: center;
+              gap: 12px;
+              flex-wrap: wrap;
+            "
+          >
+
+            <a
+              href="find-blood.html"
+              class="btn btn-primary"
+            >
+              🩸
+              <span>
+                Find Blood
+              </span>
+            </a>
+
+
+            <a
+              href="assistant.html"
+              class="btn btn-secondary"
+            >
+              🤖
+              <span>
+                Smart Assistant
+              </span>
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
 
   </main>
 
@@ -631,19 +809,23 @@
        FOOTER
        ===================================================== -->
 
-  <footer>
+  <footer class="site-footer">
 
     <div class="container">
 
       <div class="footer-grid">
 
-        <div>
 
-          <div class="brand">
+        <div class="footer-brand-section">
+
+
+          <div class="footer-brand">
 
             <img
-              src="raktsathi-logo.png"
+              src="raktsathi-new-logo.png"
               alt="RaktSathi Logo"
+              width="42"
+              height="42"
             >
 
             <span>
@@ -652,85 +834,66 @@
 
           </div>
 
-          <br>
 
           <p>
-            Intelligent Blood Emergency Coordination
-            Network — connecting emergency requirements
-            with potential resources and verification
-            workflows.
+            Intelligent Blood Emergency
+            Coordination Network
           </p>
 
-        </div>
 
+          <p>
+            Connecting People. Supporting Care.
+          </p>
 
-        <div>
-
-          <h4>
-            Platform
-          </h4>
-
-          <div class="footer-links">
-
-            <a href="emergency.html">
-              Emergency Request
-            </a>
-
-            <a href="find-blood.html">
-              Find Blood
-            </a>
-
-            <a href="donor.html">
-              Donor Network
-            </a>
-
-            <a href="camps.html">
-              Blood Camps
-            </a>
-
-          </div>
 
         </div>
 
 
-        <div>
 
-          <h4>
-            Support
-          </h4>
+        <nav
+          class="footer-links"
+          aria-label="Footer navigation"
+        >
 
-          <div class="footer-links">
+          <a href="index.html">
+            Home
+          </a>
 
-            <a href="blood-request.html">
-              Track Request
-            </a>
+          <a href="about.html">
+            About
+          </a>
 
-            <a href="assistant.html">
-              Smart Assistant
-            </a>
+          <a href="find-blood.html">
+            Find Blood
+          </a>
 
-            <a href="about.html">
-              About
-            </a>
+          <a href="emergency.html">
+            Emergency
+          </a>
 
-          </div>
+          <a href="donor.html">
+            Donor Network
+          </a>
+
+          <a href="camps.html">
+            Camps
+          </a>
+
+          <a href="assistant.html">
+            Assistant
+          </a>
+
+        </nav>
+
+
+
+        <div class="footer-bottom">
+
+          © 2026 RaktSathi.
+          Prototype for Smart India Hackathon.
 
         </div>
 
-      </div>
-
-
-      <div class="footer-bottom">
-
-        <p>
-          © 2026 RaktSathi · Team Kryptonite ·
-          Smart India Hackathon Project
-        </p>
-
-        <p>
-          Prototype only. Critical healthcare information
-          must be verified with authorized facilities.
-        </p>
 
       </div>
 
@@ -748,232 +911,203 @@
 
   <script src="js/app.js"></script>
 
+  <script src="js/request.js"></script>
+
+  <script src="js/loader.js"></script>
+
 
   <script>
-    document.addEventListener(
-      "DOMContentLoaded",
-      () => {
 
-        const form =
-          document.getElementById(
-            "emergencyForm"
+    const emergencyForm =
+      document.getElementById("emergencyForm");
+
+    if (emergencyForm) {
+
+      emergencyForm.addEventListener(
+        "submit",
+        function (event) {
+
+          event.preventDefault();
+
+
+          const patientName =
+            document.getElementById("patientName").value.trim();
+
+          const phone =
+            document.getElementById("phone").value.trim();
+
+          const bloodGroup =
+            document.getElementById("bloodGroup").value;
+
+          const component =
+            document.getElementById("component").value;
+
+          const units =
+            document.getElementById("units").value;
+
+          const urgency =
+            document.getElementById("urgency").value;
+
+          const district =
+            document.getElementById("district").value.trim();
+
+          const facility =
+            document.getElementById("facility").value.trim();
+
+          const requiredDate =
+            document.getElementById("requiredDate").value;
+
+          const additionalInfo =
+            document.getElementById("additionalInfo").value.trim();
+
+
+          const requestId =
+            "RS-" +
+            Date.now()
+              .toString(36)
+              .toUpperCase()
+              .slice(-8);
+
+
+          const requestData = {
+
+            requestId: requestId,
+
+            patientName: patientName,
+
+            phone: phone,
+
+            bloodGroup: bloodGroup,
+
+            component: component,
+
+            units: units,
+
+            urgency: urgency,
+
+            district: district,
+
+            facility: facility,
+
+            requiredDate: requiredDate,
+
+            additionalInfo: additionalInfo,
+
+            createdAt:
+              new Date().toISOString(),
+
+            status:
+              "Request Created",
+
+            workflow: [
+
+              {
+                stage: "Request Created",
+                status: "Completed"
+              },
+
+              {
+                stage: "Resource Discovery",
+                status: "Pending"
+              },
+
+              {
+                stage: "Potential Matching",
+                status: "Pending"
+              },
+
+              {
+                stage: "Facility Verification",
+                status: "Pending"
+              },
+
+              {
+                stage: "Request Update",
+                status: "Pending"
+              }
+
+            ]
+
+          };
+
+
+          localStorage.setItem(
+            "raktSathiEmergencyRequest",
+            JSON.stringify(requestData)
           );
 
-        const message =
-          document.getElementById(
-            "emergencyMessage"
-          );
+
+          const message =
+            document.getElementById(
+              "emergencyMessage"
+            );
 
 
-        if (!form) return;
+          const result =
+            document.getElementById(
+              "emergencyResult"
+            );
 
 
-        form.addEventListener(
-          "submit",
-          event => {
-
-            event.preventDefault();
+          message.innerHTML = "";
 
 
-            const requestId =
-              "RS-" +
-              Math.random()
-                .toString(36)
-                .substring(2, 10)
-                .toUpperCase();
+          result.innerHTML = `
+
+            <div class="success-message">
+
+              <strong>
+                ✅ Emergency Request Created
+              </strong>
+
+              <p>
+                Your prototype request ID is:
+              </p>
+
+              <strong class="request-id">
+                ${requestId}
+              </strong>
+
+              <p>
+                Save this ID to track the request.
+              </p>
+
+              <a
+                href="blood-request.html"
+                class="btn btn-primary"
+              >
+                📋
+                <span>
+                  Track Request
+                </span>
+              </a>
+
+            </div>
+
+          `;
 
 
-            const request = {
+          emergencyForm.reset();
 
-              requestId,
+        }
+      );
 
-              patientName:
-                document
-                  .getElementById(
-                    "patientName"
-                  )
-                  .value
-                  .trim(),
-
-              phone:
-                document
-                  .getElementById(
-                    "phone"
-                  )
-                  .value
-                  .trim(),
-
-              bloodGroup:
-                document
-                  .getElementById(
-                    "bloodGroup"
-                  )
-                  .value,
-
-              component:
-                document
-                  .getElementById(
-                    "component"
-                  )
-                  .value,
-
-              units:
-                document
-                  .getElementById(
-                    "units"
-                  )
-                  .value,
-
-              urgency:
-                document
-                  .getElementById(
-                    "urgency"
-                  )
-                  .value,
-
-              district:
-                document
-                  .getElementById(
-                    "district"
-                  )
-                  .value
-                  .trim(),
-
-              facility:
-                document
-                  .getElementById(
-                    "facility"
-                  )
-                  .value
-                  .trim(),
-
-              requiredDate:
-                document
-                  .getElementById(
-                    "requiredDate"
-                  )
-                  .value,
-
-              additionalInfo:
-                document
-                  .getElementById(
-                    "additionalInfo"
-                  )
-                  .value
-                  .trim(),
-
-              status:
-                "Request Created",
-
-              workflow: [
-                "Request Created",
-                "Resource Discovery",
-                "Potential Matching",
-                "Facility Verification",
-                "Request Update"
-              ],
-
-              createdAt:
-                new Date().toISOString()
-
-            };
+    }
 
 
-            try {
-
-              localStorage.setItem(
-                "raktSathiEmergencyRequest",
-                JSON.stringify(request)
-              );
-
-
-              message.innerHTML = `
-                <strong>
-                  Emergency Request Created Successfully
-                </strong>
-
-                <br><br>
-
-                Your Request ID:
-
-                <strong>
-                  ${requestId}
-                </strong>
-
-                <br><br>
-
-                Please save this Request ID for tracking.
-
-                <br><br>
-
-                <small>
-                  Prototype mode: request data is currently
-                  stored on this device only.
-                </small>
-
-                <br><br>
-
-                <a
-                  href="blood-request.html"
-                  class="btn btn-primary"
-                >
-                  Track Request →
-                </a>
-              `;
-
-
-              message.className =
-                "request-message success";
-
-
-              message.scrollIntoView({
-                behavior: "smooth",
-                block: "center"
-              });
-
-
-              form.reset();
-
-
-            } catch (error) {
-
-              console.error(
-                "Request storage error:",
-                error
-              );
-
-
-              message.textContent =
-                "Request save nahi ho paya. Please try again.";
-
-              message.className =
-                "request-message error";
-
-            }
-
-          }
-        );
-
-      }
-    );
-  </script>
-
-
-  <!-- Service Worker -->
-
-  <script>
+    /* Service Worker */
 
     if ("serviceWorker" in navigator) {
 
       window.addEventListener(
         "load",
-        () => {
+        function () {
 
           navigator.serviceWorker
             .register("sw.js")
-            .catch(error => {
+            .catch(function (error) {
 
-              console.error(
+              console.log(
                 "Service Worker registration failed:",
                 error
               );
@@ -987,5 +1121,7 @@
 
   </script>
 
+
 </body>
+
 </html>
