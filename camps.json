@@ -1,127 +1,48 @@
 {
-  "dataStatus": "prototype",
-  "notice": "These blood donation camps are demonstration entries only. Please verify event details with the authorized organizer before visiting.",
+  "last_updated": "Prototype Dataset",
+  "source_note": "Demonstration camp data. Camp details, organizer information, date, time and venue must be verified before participation.",
   "camps": [
     {
-      "id": "CAMP001",
-      "title": "VitalLoop Demo Blood Donation Camp",
-      "organizer": "Demo Healthcare Partner",
+      "id": "RS-CAMP-001",
+      "name": "Community Blood Awareness & Donation Camp",
+      "organizer": "Authorized Healthcare Partner",
       "date": "2026-10-05",
       "time": "10:00 AM - 04:00 PM",
-      "city": "Lucknow",
+      "location": "Lucknow",
+      "district": "Lucknow",
       "state": "Uttar Pradesh",
-      "location": "Gomti Nagar",
-      "bloodGroups": [
-        "A+",
-        "A-",
-        "B+",
-        "B-",
-        "O+",
-        "O-",
-        "AB+",
-        "AB-"
-      ],
-      "status": "Demo",
-      "verification": "Prototype placeholder"
+      "address": "Lucknow, Uttar Pradesh",
+      "contact": "",
+      "status": "Verification Required",
+      "map_query": "Lucknow Uttar Pradesh"
     },
     {
-      "id": "CAMP002",
-      "title": "Community Blood Donation Drive",
-      "organizer": "Demo Community Organization",
+      "id": "RS-CAMP-002",
+      "name": "Voluntary Blood Donation Awareness Camp",
+      "organizer": "Healthcare Community Initiative",
       "date": "2026-10-12",
       "time": "09:00 AM - 03:00 PM",
-      "city": "Kanpur",
+      "location": "Lucknow",
+      "district": "Lucknow",
       "state": "Uttar Pradesh",
-      "location": "Swaroop Nagar",
-      "bloodGroups": [
-        "A+",
-        "B+",
-        "O+",
-        "O-"
-      ],
-      "status": "Demo",
-      "verification": "Prototype placeholder"
+      "address": "Lucknow, Uttar Pradesh",
+      "contact": "",
+      "status": "Verification Required",
+      "map_query": "Lucknow Uttar Pradesh"
     },
     {
-      "id": "CAMP003",
-      "title": "Voluntary Blood Donation Camp",
-      "organizer": "Demo Blood Centre Partner",
-      "date": "2026-10-18",
-      "time": "10:00 AM - 05:00 PM",
-      "city": "Prayagraj",
-      "state": "Uttar Pradesh",
-      "location": "Civil Lines",
-      "bloodGroups": [
-        "A+",
-        "B+",
-        "B-",
-        "O+",
-        "AB+"
-      ],
-      "status": "Demo",
-      "verification": "Prototype placeholder"
-    },
-    {
-      "id": "CAMP004",
-      "title": "Health & Blood Donation Awareness Camp",
-      "organizer": "Demo Healthcare Organization",
-      "date": "2026-10-24",
-      "time": "09:30 AM - 04:30 PM",
-      "city": "Varanasi",
-      "state": "Uttar Pradesh",
-      "location": "BHU Area",
-      "bloodGroups": [
-        "A+",
-        "A-",
-        "B+",
-        "O+",
-        "O-",
-        "AB+"
-      ],
-      "status": "Demo",
-      "verification": "Prototype placeholder"
-    },
-    {
-      "id": "CAMP005",
-      "title": "Community Blood Donation Drive",
-      "organizer": "Demo Volunteer Network",
-      "date": "2026-11-01",
+      "id": "RS-CAMP-003",
+      "name": "Blood Donation & Health Awareness Drive",
+      "organizer": "Authorized Healthcare Partner",
+      "date": "2026-10-19",
       "time": "10:00 AM - 04:00 PM",
-      "city": "Agra",
+      "location": "Lucknow",
+      "district": "Lucknow",
       "state": "Uttar Pradesh",
-      "location": "Sanjay Place",
-      "bloodGroups": [
-        "A+",
-        "B+",
-        "B-",
-        "O+",
-        "AB+",
-        "AB-"
-      ],
-      "status": "Demo",
-      "verification": "Prototype placeholder"
-    },
-    {
-      "id": "CAMP006",
-      "title": "Voluntary Blood Donation Awareness Drive",
-      "organizer": "Demo Healthcare Partner",
-      "date": "2026-11-08",
-      "time": "09:00 AM - 03:00 PM",
-      "city": "New Delhi",
-      "state": "Delhi",
-      "location": "Central Delhi",
-      "bloodGroups": [
-        "A+",
-        "A-",
-        "B+",
-        "B-",
-        "O+",
-        "O-",
-        "AB+",
-        "AB-"
-      ],
-      "status": "Demo",
-      "verification": "Prototype placeholder"
+      "address": "Lucknow, Uttar Pradesh",
+      "contact": "",
+      "status": "Verification Required",
+      "map_query": "Lucknow Uttar Pradesh"
     }
   ]
 }
