@@ -2,139 +2,74 @@
 
 ## Intelligent Blood Emergency Coordination Network
 
-### Connecting People. Saving Lives.
+### Connecting People. Supporting Care.
 
-RaktSathi is a healthcare technology prototype designed to improve the journey from a blood requirement to coordinated resource discovery.
+RaktSathi is a healthcare-technology prototype designed to improve the way emergency blood requirements are discovered, coordinated, verified and tracked.
 
-Instead of functioning as a blood bank, RaktSathi acts as a digital coordination layer connecting:
+Instead of functioning only as a blood-bank directory, RaktSathi focuses on the complete emergency coordination journey:
 
-- Emergency blood requests
-- Potential blood-centre resources
-- Potential donor resources
-- Healthcare facilities
-- Verification workflows
-- Request tracking
-- Blood awareness and education
-- Smart navigation assistance
+**Request → Match → Coordinate → Verify → Resolve**
 
 ---
 
 # 🚨 The Problem
 
-During a blood emergency, patients and attendants may have to coordinate with multiple blood centres, donors and healthcare stakeholders.
+During a blood emergency, patients and their families may face several challenges:
 
-Common challenges include:
+- Blood-resource information can be fragmented across different sources.
+- Emergency situations create significant time pressure.
+- Availability information can change quickly.
+- Finding potential donors may require manual communication.
+- There may be a gap between discovering a resource and verifying it.
+- Emergency requests are often difficult to track through multiple communication channels.
 
-- Fragmented resource information
-- Time-consuming manual searching
-- Difficulty identifying potentially relevant resources
-- Lack of a structured emergency request workflow
-- Unclear verification status
-- Difficulty tracking a request
-- Limited coordination between different stakeholders
+The challenge is therefore not only:
 
-The challenge is not only finding information.
+> "Where is blood available?"
 
-The challenge is **coordinating the right information with the right people at the right stage.**
+It is also:
+
+> "How can an emergency requirement move from request to verified coordination in a structured way?"
 
 ---
 
 # 💡 Our Solution
 
-RaktSathi introduces an **Emergency-First Blood Coordination Workflow**.
+RaktSathi provides a unified digital coordination layer connecting:
 
-### Core Journey
+- Emergency blood requests
+- Blood-resource discovery
+- Potential donor networks
+- Healthcare facilities
+- Blood donation camps
+- Request tracking
+- Blood-group education
+- Smart digital assistance
+- Future analytics and AI/ML capabilities
 
-**Request → Match → Coordinate → Verify → Resolve**
-
-The platform allows a user to:
-
-1. Create a structured emergency blood request
-2. Discover potential blood-centre resources
-3. Identify potentially relevant donor resources
-4. Coordinate with the appropriate healthcare facility
-5. Verify information before real-world action
-6. Track the request status
-
----
-
-# ⭐ Key Features
-
-## 1. Emergency Blood Request
-
-Users can create a structured blood requirement containing:
-
-- Blood group
-- Blood component
-- Required units
-- Urgency level
-- District / city
-- Hospital / healthcare facility
-- Required date
-- Additional information
-
-Each request receives a unique Request ID.
+The platform is designed around the user's emergency requirement rather than isolated information searches.
 
 ---
 
-## 2. Smart Resource Discovery
-
-The Find Blood module supports discovery based on:
-
-- Blood group
-- Blood component
-- District / city
-- Blood-centre name
-- Location
-
-Potential resources can be displayed with map and direction options.
-
----
-
-## 3. Smart Donor Network
-
-RaktSathi can maintain a prototype donor-resource network.
-
-Potential matching signals include:
-
-- Blood group
-- Location
-- Registered availability
-- Other relevant request information
-
-A donor match is only a **potential resource**.
-
-It does not confirm medical eligibility, compatibility or donation.
-
----
-
-## 4. Verification Layer
-
-One of the key concepts of RaktSathi is separating:
-
-**Potential Match**
-
-from
-
-**Confirmed Healthcare Resource**
-
-Availability information should be verified through the appropriate authorised blood centre or healthcare facility.
-
----
-
-## 5. Request Tracking
-
-The request workflow can be represented as:
+# 🎯 Core Workflow
 
 ```text
-Request Created
-       ↓
-Resource Discovery
-       ↓
-Potential Matching
-       ↓
-Coordination
-       ↓
-Facility Verification
-       ↓
-Resolution
+┌─────────────────────┐
+│  Emergency Request  │
+└──────────┬──────────┘
+           ↓
+┌─────────────────────┐
+│  Smart Matching     │
+└──────────┬──────────┘
+           ↓
+┌─────────────────────┐
+│  Resource Discovery │
+└──────────┬──────────┘
+           ↓
+┌─────────────────────┐
+│ Facility Verification│
+└──────────┬──────────┘
+           ↓
+┌─────────────────────┐
+│ Request Resolution  │
+└─────────────────────┘
