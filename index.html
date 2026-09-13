@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8">
 
   <meta
@@ -15,35 +17,34 @@
 
   <meta
     name="description"
-    content="RaktSathi - Intelligent Blood Emergency Coordination Network connecting emergency blood requirements with potential resources, donor networks, healthcare facilities and verification workflows."
+    content="RaktSathi - Intelligent Blood Emergency Coordination Network."
   >
 
   <title>
-    RaktSathi | Intelligent Blood Emergency Coordination Network
+    RaktSathi | Intelligent Blood Emergency Coordination
   </title>
 
-  <!-- Favicon -->
-  <link
-    rel="icon"
-    type="image/png"
-    href="raktsathi-logo.png"
-  >
-
-  <!-- PWA Manifest -->
   <link
     rel="manifest"
     href="manifest.json"
   >
 
-  <!-- Main Stylesheet -->
+  <link
+    rel="icon"
+    href="raktsathi-logo.png"
+    type="image/png"
+  >
+
   <link
     rel="stylesheet"
     href="css/style.css"
   >
+
 </head>
 
 
 <body>
+
 
   <!-- =====================================================
        HEADER
@@ -51,49 +52,50 @@
 
   <header class="site-header">
 
-    <div class="container">
+    <div class="container nav-container">
+
+
+      <!-- LOGO + BRAND -->
 
       <a
         href="index.html"
-        class="logo"
+        class="brand"
         aria-label="RaktSathi Home"
       >
 
         <img
           src="raktsathi-logo.png"
           alt="RaktSathi Logo"
+          class="brand-logo"
         >
 
-        <span>RaktSathi</span>
+        <span class="brand-text">
+          RaktSathi
+        </span>
 
       </a>
 
 
-      <!-- Mobile Menu Button -->
+      <!-- NAVIGATION -->
 
-      <button
-        class="menu-toggle"
-        type="button"
-        aria-label="Open navigation menu"
+      <nav
+        class="main-nav"
+        aria-label="Main navigation"
       >
-        ☰
-      </button>
 
-
-      <!-- Navigation -->
-
-      <nav>
-
-        <a href="index.html">
+        <a
+          href="index.html"
+          class="active"
+        >
           Home
-        </a>
-
-        <a href="emergency.html">
-          Emergency
         </a>
 
         <a href="find-blood.html">
           Find Blood
+        </a>
+
+        <a href="emergency.html">
+          Emergency
         </a>
 
         <a href="donor.html">
@@ -102,10 +104,6 @@
 
         <a href="camps.html">
           Camps
-        </a>
-
-        <a href="blood-request.html">
-          Track Request
         </a>
 
         <a href="assistant.html">
@@ -121,63 +119,70 @@
 
 
   <!-- =====================================================
-       HERO
+       MAIN
        ===================================================== -->
 
   <main>
 
-    <section class="hero">
 
-      <div class="container">
+    <!-- ===================================================
+         HERO
+         =================================================== -->
 
-        <div class="hero-content">
+    <section class="hero hero-dark">
 
-          <div class="hero-badge">
-            INTELLIGENT BLOOD EMERGENCY
-            COORDINATION NETWORK
-          </div>
+      <div class="container hero-content">
 
 
-          <h1>
-            When Every
-            <span>Minute Matters.</span>
-          </h1>
+        <span class="eyebrow">
+          INTELLIGENT BLOOD EMERGENCY COORDINATION NETWORK
+        </span>
 
 
-          <p>
-            RaktSathi connects emergency blood requirements
-            with potential resources, donor networks,
-            healthcare facilities and verification workflows
-            through one intelligent coordination platform.
-          </p>
+        <h1>
+
+          When Every Minute
+          <span>Matters.</span>
+
+        </h1>
 
 
-          <div class="hero-actions">
+        <p class="hero-text">
 
-            <a
-              href="emergency.html"
-              class="btn btn-primary"
-            >
-              🚨 Emergency Request
-            </a>
+          RaktSathi connects emergency blood requirements
+          with potential resources, donor networks,
+          healthcare facilities and verification workflows
+          through one structured digital coordination layer.
 
-
-            <a
-              href="find-blood.html"
-              class="btn btn-secondary"
-            >
-              Find Blood Resources
-            </a>
+        </p>
 
 
-            <a
-              href="assistant.html"
-              class="btn btn-secondary"
-            >
-              Smart Assistant
-            </a>
+        <div class="hero-actions">
 
-          </div>
+
+          <a
+            href="emergency.html"
+            class="btn btn-primary"
+          >
+            🚨 Emergency Request
+          </a>
+
+
+          <a
+            href="find-blood.html"
+            class="btn btn-secondary"
+          >
+            🩸 Find Blood Resources
+          </a>
+
+
+          <a
+            href="assistant.html"
+            class="btn btn-secondary"
+          >
+            🤖 Smart Assistant
+          </a>
+
 
         </div>
 
@@ -188,92 +193,87 @@
 
 
     <!-- ===================================================
-         INTRO / STATS
+         STATS
          =================================================== -->
 
-    <section>
+    <section class="section">
 
       <div class="container">
 
-        <div class="section-heading">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            RAKTSATHI AT A GLANCE
+          </span>
 
           <h2>
-            One Platform. One Coordinated Workflow.
+            Built Around Emergency Coordination
           </h2>
 
           <p>
-            RaktSathi is designed around emergency-first
-            blood-resource coordination rather than simple
-            information searching.
+            More than a search page — RaktSathi is designed
+            around the complete blood-resource coordination
+            journey.
           </p>
 
         </div>
 
 
-        <div class="stats">
+        <div class="stats-grid">
 
-          <div class="stat">
 
-            <span
-              class="stat-number"
-              data-counter="24"
-            >
-              24
+          <article class="stat-card reveal">
+
+            <span class="stat-number">
+              01
             </span>
 
             <span class="stat-label">
-              Emergency-first workflow
+              Emergency-First Workflow
             </span>
 
-          </div>
+          </article>
 
 
-          <div class="stat">
+          <article class="stat-card reveal">
 
-            <span
-              class="stat-number"
-              data-counter="5"
-            >
-              5
+            <span class="stat-number">
+              05
             </span>
 
             <span class="stat-label">
-              Coordination stages
+              Coordination Stages
             </span>
 
-          </div>
+          </article>
 
 
-          <div class="stat">
+          <article class="stat-card reveal">
 
-            <span
-              class="stat-number"
-              data-counter="1"
-            >
-              1
+            <span class="stat-number">
+              08+
             </span>
 
             <span class="stat-label">
-              Integrated platform
+              Integrated Modules
             </span>
 
-          </div>
+          </article>
 
 
-          <div class="stat">
+          <article class="stat-card reveal">
 
-            <span
-              class="stat-number"
-              data-counter="100"
-            >
-              100
+            <span class="stat-number">
+              ✓
             </span>
 
             <span class="stat-label">
-              % verification-focused design
+              Verification-Focused Design
             </span>
 
-          </div>
+          </article>
+
 
         </div>
 
@@ -287,19 +287,24 @@
          CORE WORKFLOW
          =================================================== -->
 
-    <section class="dark-section">
+    <section class="section section-alt">
 
       <div class="container">
 
-        <div class="section-heading">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            CORE WORKFLOW
+          </span>
 
           <h2>
             From Request to Resolution
           </h2>
 
           <p>
-            A structured workflow helps reduce fragmented
-            searching during time-sensitive situations.
+            A structured journey designed to reduce search
+            friction during a blood emergency.
           </p>
 
         </div>
@@ -307,90 +312,115 @@
 
         <div class="workflow">
 
-          <div class="workflow-step">
 
-            <div class="step-number">
-              1
-            </div>
+          <div class="workflow-step reveal">
 
-            <strong>
+            <span class="workflow-number">
+              01
+            </span>
+
+            <h3>
               Request
-            </strong>
+            </h3>
 
             <p>
-              Create an emergency blood requirement.
+              Create a structured emergency blood requirement.
             </p>
 
           </div>
 
 
-          <div class="workflow-step">
+          <div class="workflow-arrow">
+            →
+          </div>
 
-            <div class="step-number">
-              2
-            </div>
 
-            <strong>
+          <div class="workflow-step reveal">
+
+            <span class="workflow-number">
+              02
+            </span>
+
+            <h3>
               Match
-            </strong>
+            </h3>
 
             <p>
-              Discover potential blood resources.
+              Identify potential resources using structured
+              information.
             </p>
 
           </div>
 
 
-          <div class="workflow-step">
+          <div class="workflow-arrow">
+            →
+          </div>
 
-            <div class="step-number">
-              3
-            </div>
 
-            <strong>
+          <div class="workflow-step reveal">
+
+            <span class="workflow-number">
+              03
+            </span>
+
+            <h3>
               Coordinate
-            </strong>
+            </h3>
 
             <p>
-              Connect relevant resources and stakeholders.
+              Connect the requirement with relevant
+              resource pathways.
             </p>
 
           </div>
 
 
-          <div class="workflow-step">
+          <div class="workflow-arrow">
+            →
+          </div>
 
-            <div class="step-number">
-              4
-            </div>
 
-            <strong>
+          <div class="workflow-step reveal">
+
+            <span class="workflow-number">
+              04
+            </span>
+
+            <h3>
               Verify
-            </strong>
+            </h3>
 
             <p>
-              Confirm critical information with the
-              authorized facility.
+              Confirm information with an authorized
+              healthcare facility.
             </p>
 
           </div>
 
 
-          <div class="workflow-step">
+          <div class="workflow-arrow">
+            →
+          </div>
 
-            <div class="step-number">
-              5
-            </div>
 
-            <strong>
+          <div class="workflow-step reveal">
+
+            <span class="workflow-number">
+              05
+            </span>
+
+            <h3>
               Resolve
-            </strong>
+            </h3>
 
             <p>
-              Track the request toward closure.
+              Update and close the coordination request
+              based on the outcome.
             </p>
 
           </div>
+
 
         </div>
 
@@ -404,35 +434,37 @@
          SERVICES
          =================================================== -->
 
-    <section>
+    <section class="section">
 
       <div class="container">
 
-        <div class="section-heading">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            RAKTSATHI ECOSYSTEM
+          </span>
 
           <h2>
-            RaktSathi Services
+            Everything Connected in One Platform
           </h2>
 
           <p>
-            A modular platform designed to support the
-            complete blood-resource coordination journey.
+            Navigate from emergency requirements to
+            information, discovery and coordination.
           </p>
 
         </div>
 
 
-        <div class="grid grid-3">
+        <div class="feature-grid">
 
 
-          <!-- Emergency -->
+          <!-- EMERGENCY -->
 
-          <a
-            href="emergency.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
+            <div class="card-icon">
               🚨
             </div>
 
@@ -441,21 +473,25 @@
             </h3>
 
             <p>
-              Quickly create a structured blood requirement
-              with urgency, facility and location details.
+              Create a structured blood requirement
+              and receive a prototype request ID.
             </p>
 
-          </a>
+            <a
+              href="emergency.html"
+              class="text-link"
+            >
+              Start Emergency →
+            </a>
+
+          </article>
 
 
-          <!-- Find Blood -->
+          <!-- FIND BLOOD -->
 
-          <a
-            href="find-blood.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
+            <div class="card-icon">
               🩸
             </div>
 
@@ -465,44 +501,51 @@
 
             <p>
               Discover potential blood-centre resources
-              using blood group, component and location
-              filters.
+              using group, component and location filters.
             </p>
 
-          </a>
+            <a
+              href="find-blood.html"
+              class="text-link"
+            >
+              Find Resources →
+            </a>
+
+          </article>
 
 
-          <!-- Donor -->
+          <!-- DONOR -->
 
-          <a
-            href="donor.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
-              🤝
+            <div class="card-icon">
+              ❤️
             </div>
 
             <h3>
-              Smart Donor Network
+              Donor Network
             </h3>
 
             <p>
-              Support potential donor discovery and
-              coordination through a structured network.
+              Support structured donor coordination using
+              relevant information.
             </p>
 
-          </a>
+            <a
+              href="donor.html"
+              class="text-link"
+            >
+              Open Donor Network →
+            </a>
+
+          </article>
 
 
-          <!-- Camps -->
+          <!-- CAMPS -->
 
-          <a
-            href="camps.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
+            <div class="card-icon">
               📍
             </div>
 
@@ -511,22 +554,26 @@
             </h3>
 
             <p>
-              Discover blood donation and awareness camps
-              with location and verification information.
+              Discover blood donation and awareness
+              camp information.
             </p>
 
-          </a>
+            <a
+              href="camps.html"
+              class="text-link"
+            >
+              Explore Camps →
+            </a>
+
+          </article>
 
 
-          <!-- Tracking -->
+          <!-- TRACKING -->
 
-          <a
-            href="blood-request.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
-              📊
+            <div class="card-icon">
+              📋
             </div>
 
             <h3>
@@ -534,21 +581,25 @@
             </h3>
 
             <p>
-              Follow the prototype coordination workflow
-              using a generated Request ID.
+              Follow the progress of a previously
+              created prototype request.
             </p>
 
-          </a>
+            <a
+              href="blood-request.html"
+              class="text-link"
+            >
+              Track Request →
+            </a>
+
+          </article>
 
 
-          <!-- Assistant -->
+          <!-- ASSISTANT -->
 
-          <a
-            href="assistant.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
+            <div class="card-icon">
               🤖
             </div>
 
@@ -557,22 +608,26 @@
             </h3>
 
             <p>
-              Get guided navigation across RaktSathi's
-              blood and healthcare coordination modules.
+              Navigate RaktSathi features using a
+              simple digital assistant.
             </p>
 
-          </a>
+            <a
+              href="assistant.html"
+              class="text-link"
+            >
+              Ask Assistant →
+            </a>
+
+          </article>
 
 
-          <!-- Education -->
+          <!-- BLOOD EDUCATION -->
 
-          <a
-            href="blood-education.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
-              🧬
+            <div class="card-icon">
+              🔬
             </div>
 
             <h3>
@@ -580,21 +635,25 @@
             </h3>
 
             <p>
-              Learn about blood groups, components and
-              responsible blood-resource awareness.
+              Learn about blood groups, components
+              and important awareness concepts.
             </p>
 
-          </a>
+            <a
+              href="blood-education.html"
+              class="text-link"
+            >
+              Learn More →
+            </a>
+
+          </article>
 
 
-          <!-- Healthcare -->
+          <!-- HEALTHCARE -->
 
-          <a
-            href="medicine.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
+            <div class="card-icon">
               🏥
             </div>
 
@@ -603,22 +662,26 @@
             </h3>
 
             <p>
-              Navigate toward appropriate healthcare and
-              professional support pathways.
+              Navigate toward appropriate healthcare
+              resources and professional guidance.
             </p>
 
-          </a>
+            <a
+              href="medicine.html"
+              class="text-link"
+            >
+              Explore Care →
+            </a>
+
+          </article>
 
 
-          <!-- About -->
+          <!-- ABOUT -->
 
-          <a
-            href="about.html"
-            class="service-card"
-          >
+          <article class="card reveal">
 
-            <div class="service-icon">
-              ✦
+            <div class="card-icon">
+              ℹ️
             </div>
 
             <h3>
@@ -626,11 +689,19 @@
             </h3>
 
             <p>
-              Explore the problem, solution, innovation and
-              future vision behind the project.
+              Understand the problem, solution,
+              innovation and future vision.
             </p>
 
-          </a>
+            <a
+              href="about.html"
+              class="text-link"
+            >
+              Explore Project →
+            </a>
+
+          </article>
+
 
         </div>
 
@@ -644,50 +715,54 @@
          INNOVATION
          =================================================== -->
 
-    <section class="dark-section">
+    <section class="section section-dark">
 
       <div class="container">
 
-        <div class="section-heading">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            WHY RAKTSATHI?
+          </span>
 
           <h2>
-            What Makes RaktSathi Different?
+            From Blood Search to Blood Coordination
           </h2>
 
           <p>
-            RaktSathi focuses on coordination, verification
-            and emergency workflow instead of functioning
-            only as a blood-search directory.
+            The innovation is not only in discovering a
+            resource — it is in connecting the entire
+            emergency coordination journey.
           </p>
 
         </div>
 
 
-        <div class="grid grid-3">
+        <div class="feature-grid">
 
 
-          <div class="innovation-card">
+          <article class="card card-dark reveal">
 
-            <div class="feature-icon">
+            <div class="card-icon">
               ⚡
             </div>
 
             <h3>
-              Emergency-First Design
+              Emergency-First
             </h3>
 
             <p>
-              The platform starts with the actual requirement
-              and guides the user through a structured
-              coordination workflow.
+              The platform begins with the user's
+              emergency requirement.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="innovation-card">
+          <article class="card card-dark reveal">
 
-            <div class="feature-icon">
+            <div class="card-icon">
               🧠
             </div>
 
@@ -696,17 +771,16 @@
             </h3>
 
             <p>
-              Future-ready matching can consider blood group,
-              component, location and relevant availability
-              signals.
+              Potential resources can be identified
+              using structured coordination signals.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="innovation-card">
+          <article class="card card-dark reveal">
 
-            <div class="feature-icon">
+            <div class="card-icon">
               ✓
             </div>
 
@@ -715,36 +789,35 @@
             </h3>
 
             <p>
-              Critical information is clearly marked for
-              confirmation with authorized healthcare
-              facilities.
+              Potential matches are separated from
+              professionally verified resources.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="innovation-card">
+          <article class="card card-dark reveal">
 
-            <div class="feature-icon">
-              📈
+            <div class="card-icon">
+              📊
             </div>
 
             <h3>
-              Decision Support
+              Future Intelligence
             </h3>
 
             <p>
-              Future analytics can identify demand patterns
-              and support better resource coordination.
+              The architecture is ready for future
+              analytics and AI/ML decision-support.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="innovation-card">
+          <article class="card card-dark reveal">
 
-            <div class="feature-icon">
-              🔄
+            <div class="card-icon">
+              📋
             </div>
 
             <h3>
@@ -752,30 +825,30 @@
             </h3>
 
             <p>
-              A structured status flow makes the coordination
-              journey easier to understand.
+              A structured status flow provides better
+              visibility throughout the request.
             </p>
 
-          </div>
+          </article>
 
 
-          <div class="innovation-card">
+          <article class="card card-dark reveal">
 
-            <div class="feature-icon">
-              🌐
+            <div class="card-icon">
+              🏥
             </div>
 
             <h3>
-              Modular Architecture
+              Healthcare Coordination
             </h3>
 
             <p>
-              Emergency requests, resource discovery,
-              donor networks, camps and assistance can evolve
-              independently.
+              Future versions can integrate verified
+              healthcare facilities and data sources.
             </p>
 
-          </div>
+          </article>
+
 
         </div>
 
@@ -789,27 +862,49 @@
          EMERGENCY CTA
          =================================================== -->
 
-    <section>
+    <section class="emergency-cta">
 
       <div class="container">
 
-        <div class="emergency-cta">
+        <div class="cta-content reveal">
+
+
+          <span class="eyebrow">
+            WHEN EVERY MINUTE MATTERS
+          </span>
+
 
           <h2>
-            Need Blood Coordination Support?
+            Need Blood Support?
           </h2>
 
+
           <p>
-            Create a structured request and begin the
-            RaktSathi coordination workflow.
+            Start a structured emergency request and
+            move through the RaktSathi coordination workflow.
           </p>
 
-          <a
-            href="emergency.html"
-            class="btn btn-secondary"
-          >
-            Start Emergency Request →
-          </a>
+
+          <div class="hero-actions">
+
+
+            <a
+              href="emergency.html"
+              class="btn btn-primary"
+            >
+              Start Emergency Request
+            </a>
+
+
+            <a
+              href="find-blood.html"
+              class="btn btn-secondary"
+            >
+              Find Blood Resources
+            </a>
+
+
+          </div>
 
         </div>
 
@@ -823,86 +918,100 @@
          SAFETY
          =================================================== -->
 
-    <section>
+    <section class="section section-alt">
 
       <div class="container">
 
-        <div class="section-heading">
 
-          <h2>
-            Built With Responsibility
-          </h2>
+        <div class="notice notice-warning reveal">
+
+          <h3>
+            Responsible Healthcare Technology
+          </h3>
 
           <p>
-            RaktSathi is designed as a coordination and
-            discovery layer—not as a replacement for
-            authorized healthcare systems.
+            RaktSathi is a coordination and information
+            prototype. It does not collect, test, store,
+            transport, release or transfuse blood. It does
+            not diagnose patients, prescribe medicines,
+            determine medical compatibility or guarantee
+            blood availability. Actual blood operations and
+            medical decisions remain with authorized
+            healthcare facilities and qualified professionals.
           </p>
 
         </div>
 
 
-        <div class="grid grid-2">
+        <div class="notice notice-info reveal">
+
+          <h3>
+            Verification Matters
+          </h3>
+
+          <p>
+            Resource and camp information shown in the
+            prototype may be demonstration data. Always
+            verify current availability and relevant details
+            directly with the authorized healthcare facility
+            or organizer.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
 
 
-          <div class="card">
 
-            <h3>
-              Verification First
-            </h3>
+    <!-- ===================================================
+         FINAL CTA
+         =================================================== -->
 
-            <p>
-              Blood availability, eligibility, compatibility
-              and final allocation must be confirmed by the
-              relevant authorized healthcare facility or
-              blood centre.
-            </p>
+    <section class="section">
 
-          </div>
+      <div class="container">
 
 
-          <div class="card">
+        <div class="section-heading reveal">
 
-            <h3>
-              No Blood Operations
-            </h3>
-
-            <p>
-              RaktSathi does not test, store, transport,
-              release or transfuse blood. These processes
-              remain with authorized facilities and qualified
-              professionals.
-            </p>
-
-          </div>
+          <span class="eyebrow">
+            SMART INDIA HACKATHON
+          </span>
 
 
-          <div class="card">
-
-            <h3>
-              No Availability Guarantee
-            </h3>
-
-            <p>
-              Information shown by the prototype should never
-              be interpreted as a guarantee of real-time blood
-              availability.
-            </p>
-
-          </div>
+          <h2>
+            Connecting People.
+            Supporting Care.
+          </h2>
 
 
-          <div class="card">
+          <p>
+            RaktSathi — an intelligent coordination approach
+            to the blood emergency journey.
+          </p>
 
-            <h3>
-              Human Oversight
-            </h3>
 
-            <p>
-              Critical healthcare decisions remain under
-              qualified professional and institutional
-              oversight.
-            </p>
+          <div
+            class="hero-actions"
+            style="justify-content:center;"
+          >
+
+            <a
+              href="about.html"
+              class="btn btn-primary"
+            >
+              Explore Our Innovation
+            </a>
+
+
+            <a
+              href="assistant.html"
+              class="btn btn-secondary"
+            >
+              Open Smart Assistant
+            </a>
 
           </div>
 
@@ -920,112 +1029,72 @@
        FOOTER
        ===================================================== -->
 
-  <footer>
+  <footer class="site-footer">
 
-    <div class="container">
-
-      <div class="footer-grid">
+    <div class="container footer-content">
 
 
-        <div>
+      <div>
 
-          <div class="brand">
-
-            <img
-              src="raktsathi-logo.png"
-              alt="RaktSathi Logo"
-            >
-
-            <span>
-              RaktSathi
-            </span>
-
-          </div>
-
-          <br>
-
-          <p>
-            Intelligent Blood Emergency Coordination Network
-            connecting people, potential resources, donor
-            networks and healthcare facilities.
-          </p>
-
-        </div>
-
-
-        <div>
-
-          <h4>
-            Platform
-          </h4>
-
-          <div class="footer-links">
-
-            <a href="emergency.html">
-              Emergency Request
-            </a>
-
-            <a href="find-blood.html">
-              Find Blood
-            </a>
-
-            <a href="donor.html">
-              Donor Network
-            </a>
-
-            <a href="camps.html">
-              Blood Camps
-            </a>
-
-          </div>
-
-        </div>
-
-
-        <div>
-
-          <h4>
-            Support
-          </h4>
-
-          <div class="footer-links">
-
-            <a href="blood-request.html">
-              Track Request
-            </a>
-
-            <a href="assistant.html">
-              Smart Assistant
-            </a>
-
-            <a href="blood-education.html">
-              Blood Intelligence
-            </a>
-
-            <a href="about.html">
-              About RaktSathi
-            </a>
-
-          </div>
-
-        </div>
-
-      </div>
-
-
-      <div class="footer-bottom">
+        <h3>
+          RaktSathi
+        </h3>
 
         <p>
-          © 2026 RaktSathi · Team Kryptonite ·
-          Smart India Hackathon Project
+          Intelligent Blood Emergency Coordination Network
         </p>
 
         <p>
-          Prototype only. Critical healthcare information
-          must be verified with authorized facilities.
+          Connecting People. Supporting Care.
         </p>
 
       </div>
+
+
+      <div class="footer-links">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="find-blood.html">
+          Find Blood
+        </a>
+
+        <a href="emergency.html">
+          Emergency
+        </a>
+
+        <a href="donor.html">
+          Donor Network
+        </a>
+
+        <a href="camps.html">
+          Camps
+        </a>
+
+        <a href="assistant.html">
+          Assistant
+        </a>
+
+      </div>
+
+    </div>
+
+
+    <div class="container footer-bottom">
+
+      <p>
+        © 2026 RaktSathi. Prototype for Smart India Hackathon.
+      </p>
+
+      <p>
+        Team Kryptonite
+      </p>
 
     </div>
 
@@ -1034,7 +1103,7 @@
 
 
   <!-- =====================================================
-       SCRIPTS
+       JAVASCRIPT
        ===================================================== -->
 
   <script src="js/animations.js"></script>
@@ -1042,7 +1111,10 @@
   <script src="js/app.js"></script>
 
 
-  <!-- Service Worker -->
+
+  <!-- =====================================================
+       SERVICE WORKER
+       ===================================================== -->
 
   <script>
 
@@ -1050,21 +1122,14 @@
 
       window.addEventListener(
         "load",
-        () => {
+        function () {
 
           navigator.serviceWorker
             .register("sw.js")
-            .then(() => {
+            .catch(function (error) {
 
               console.log(
-                "RaktSathi Service Worker registered."
-              );
-
-            })
-            .catch(error => {
-
-              console.error(
-                "Service Worker registration failed:",
+                "Service worker registration failed:",
                 error
               );
 
@@ -1076,6 +1141,7 @@
     }
 
   </script>
+
 
 </body>
 
