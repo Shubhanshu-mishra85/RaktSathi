@@ -1,121 +1,105 @@
+/* =========================================================
+   RAKTSATHI - SAFE SCROLL ANIMATIONS
+   Content kabhi permanently hidden nahi hoga
+   ========================================================= */
+
 (function () {
   "use strict";
 
-  function createLoader() {
-    if (!document.body) return;
-    if (document.getElementById("raktsathi-loader")) return;
+  function initAnimations() {
 
-    const loader = document.createElement("div");
-    loader.id = "raktsathi-loader";
+    const animatedElements = document.querySelectorAll(
+      ".reveal, " +
+      ".scroll-reveal, " +
+      ".fade-in, " +
+      ".fade-up, " +
+      ".animate-on-scroll, " +
+      "[data-animate], " +
+      "[data-reveal]"
+    );
 
-    loader.innerHTML = `
-      <div class="rs-loader-scene">
+    /* 
+       IMPORTANT:
+       Page load par saare elements visible rakho.
+       Animation fail hone par bhi content disappear nahi hoga.
+    */
+    animatedElements.forEach(function (element) {
+      element.style.opacity = "1";
+      element.style.visibility = "visible";
+      element.style.transform = "none";
+    });
 
-        <div class="rs-drop-wrapper">
-          <div class="rs-drop">
-            <span class="rs-drop-shine"></span>
-          </div>
-        </div>
-
-        <div class="rs-impact-shadow"></div>
-
-        <div class="rs-splash">
-          <span class="splash-drop splash-1"></span>
-          <span class="splash-drop splash-2"></span>
-          <span class="splash-drop splash-3"></span>
-          <span class="splash-drop splash-4"></span>
-          <span class="splash-drop splash-5"></span>
-          <span class="splash-drop splash-6"></span>
-          <div class="rs-splash-crown">
-            <span></span>
-          </div>
-        </div>
-
-        <div class="rs-ripple ripple-1"></div>
-        <div class="rs-ripple ripple-2"></div>
-        <div class="rs-ripple ripple-3"></div>
-
-        <div class="rs-loader-brand">
-          <div class="rs-logo-circle">
-            <img src="raktsathi-new-logo.png" alt="RaktSathi">
-          </div>
-
-          <div class="rs-brand-name">
-            <span>Rakt</span>Sathi
-          </div>
-
-          <div class="rs-loader-tagline">
-            Connecting People. Supporting Care.
-          </div>
-
-          <div class="rs-loader-dots">
-            <i></i>
-            <i></i>
-            <i></i>
-          </div>
-        </div>
-
-      </div>
-    `;
-
-    document.body.prepend(loader);
-  }
-
-  function hideLoader() {
-    const loader = document.getElementById("raktsathi-loader");
-
-    if (!loader) {
-      document.documentElement.classList.remove("rs-loading");
-      document.body.classList.remove("rs-loading");
+    /* Optional smooth animation */
+    if (
+      window.matchMedia &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches
+    ) {
       return;
     }
 
-    loader.classList.add("rs-loader-exit");
-
-    document.documentElement.classList.remove("rs-loading");
-    document.body.classList.remove("rs-loading");
-
-    setTimeout(function () {
-      if (loader && loader.parentNode) {
-        loader.parentNode.removeChild(loader);
-      }
-
-      document.documentElement.classList.remove("rs-loading");
-      document.body.classList.remove("rs-loading");
-    }, 900);
-  }
-
-  function startLoader() {
-    createLoader();
-
     /*
-      Maximum 4.5 seconds.
-      Iske baad loader forcefully remove ho jayega.
+       Sirf halka reveal effect.
+       Element pehle se visible rahega.
     */
-    setTimeout(hideLoader, 4500);
-  }
+    animatedElements.forEach(function (element) {
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", startLoader, {
-      once: true
+      element.style.transition =
+        "opacity 0.6s ease, transform 0.6s ease";
+
+      element.style.opacity = "0";
+      element.style.transform = "translateY(18px)";
+
+      requestAnimationFrame(function () {
+        setTimeout(function () {
+          element.style.opacity = "1";
+          element.style.visibility = "visible";
+          element.style.transform = "translateY(0)";
+        }, 50);
+      });
+
     });
-  } else {
-    startLoader();
   }
 
-  window.addEventListener("load", function () {
-    setTimeout(hideLoader, 1000);
-  }, {
-    once: true
-  });
+  /* Start after DOM is ready */
+  if (document.readyState === "loading") {
+
+    document.addEventListener(
+      "DOMContentLoaded",
+      initAnimations,
+      { once: true }
+    );
+
+  } else {
+
+    initAnimations();
+
+  }
 
   /*
-    Emergency fallback:
-    Agar kisi bhi reason se JS/CSS animation stuck ho,
-    6 seconds ke baad loader definitely remove hoga.
+     FINAL SAFETY:
+     Agar kisi animation/script ki wajah se element hidden
+     reh gaya, 2 seconds ke baad sab visible.
   */
   setTimeout(function () {
-    hideLoader();
-  }, 6000);
+
+    const elements = document.querySelectorAll(
+      ".reveal, " +
+      ".scroll-reveal, " +
+      ".fade-in, " +
+      ".fade-up, " +
+      ".animate-on-scroll, " +
+      "[data-animate], " +
+      "[data-reveal]"
+    );
+
+    elements.forEach(function (element) {
+
+      element.style.opacity = "1";
+      element.style.visibility = "visible";
+      element.style.transform = "none";
+
+    });
+
+  }, 2000);
 
 })();
