@@ -2387,3 +2387,73 @@ img[src*="raktsathi-header-bg.png"] {
     height: 56px;
   }
 }
+/* =========================================================
+   RAKTSATHI - BLANK PAGE / REVEAL ANIMATION FIX
+   ========================================================= */
+
+/* Never allow sections to remain invisible */
+.reveal,
+.scroll-reveal,
+.fade-in,
+.fade-up,
+.animate-on-scroll,
+[data-animate],
+[data-reveal] {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+/* If animation script adds hidden state */
+.reveal:not(.visible),
+.scroll-reveal:not(.visible),
+.fade-in:not(.visible),
+.fade-up:not(.visible),
+.animate-on-scroll:not(.visible) {
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+}
+
+/* Keep main website above background/loader */
+main,
+section,
+.container,
+.hero,
+.site-header,
+.site-footer {
+    position: relative;
+    z-index: 1;
+}
+
+/* Prevent accidental huge blank areas */
+section {
+    min-height: 0 !important;
+}
+
+/* Normal page flow */
+html,
+body {
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Loader must be the ONLY full-screen overlay */
+#raktsathi-loader {
+    position: fixed !important;
+    inset: 0 !important;
+    z-index: 999999 !important;
+}
+
+/* Once loader is removed, page is completely accessible */
+#raktsathi-loader.rs-loader-exit {
+    pointer-events: none !important;
+}
+
+/* Make sure footer stays at the bottom naturally */
+.site-footer {
+    position: relative !important;
+    margin-top: 0 !important;
+}
