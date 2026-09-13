@@ -1,1452 +1,1181 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#087443">
-<meta name="description" content="RaktSathi — Smart Blood Resource Network connecting people with blood centres and donor coordination.">
-<title>RaktSathi | Blood Resource Network</title>
-
-<style>
-:root{
-  --green:#087443;
-  --green-dark:#04512f;
-  --green-light:#e9f8f0;
-  --red:#c9182b;
-  --red-dark:#8e1020;
-  --gold:#c9a44c;
-  --dark:#10251c;
-  --text:#26362f;
-  --muted:#68766f;
-  --white:#ffffff;
-  --bg:#f5faf7;
-  --border:#dcebe3;
-  --shadow:0 15px 45px rgba(0,70,40,.10);
-  --radius:22px;
-}
-
-*{
-  margin:0;
-  padding:0;
-  box-sizing:border-box;
-}
-
-html{
-  scroll-behavior:smooth;
-}
-
-body{
-  font-family:Arial,Helvetica,sans-serif;
-  background:var(--bg);
-  color:var(--text);
-  overflow-x:hidden;
-}
-
-a{
-  text-decoration:none;
-  color:inherit;
-}
-
-/* ================= SPLASH ================= */
-
-.splash{
-  position:fixed;
-  inset:0;
-  background:linear-gradient(135deg,#032c1c,#087443,#0b9b5c);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  z-index:9999;
-  animation:splashOut 1s ease 2.4s forwards;
-}
-
-.splash-inner{
-  text-align:center;
-  color:white;
-  animation:splashIn 1s ease;
-}
-
-.splash-logo{
-  width:110px;
-  height:110px;
-  object-fit:contain;
-  border-radius:25px;
-  background:white;
-  padding:8px;
-  box-shadow:0 15px 50px rgba(0,0,0,.25);
-  animation:logoPulse 1.5s ease infinite;
-}
-
-.splash-title{
-  margin-top:18px;
-  font-size:36px;
-  font-weight:800;
-  letter-spacing:1px;
-}
-
-.splash-sub{
-  margin-top:7px;
-  opacity:.85;
-  font-size:13px;
-  letter-spacing:2px;
-}
-
-.loader{
-  width:150px;
-  height:4px;
-  background:rgba(255,255,255,.2);
-  margin:24px auto 0;
-  border-radius:20px;
-  overflow:hidden;
-}
-
-.loader span{
-  display:block;
-  width:0;
-  height:100%;
-  background:#fff;
-  animation:loading 2.2s ease forwards;
-}
-
-@keyframes splashIn{
-  from{opacity:0;transform:scale(.75)}
-  to{opacity:1;transform:scale(1)}
-}
-
-@keyframes logoPulse{
-  50%{transform:scale(1.06)}
-}
-
-@keyframes loading{
-  to{width:100%}
-}
-
-@keyframes splashOut{
-  to{
-    opacity:0;
-    visibility:hidden;
-  }
-}
-
-/* ================= NAVBAR ================= */
-
-.navbar{
-  position:sticky;
-  top:0;
-  z-index:1000;
-  background:rgba(255,255,255,.94);
-  backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border);
-}
-
-.nav-inner{
-  max-width:1180px;
-  margin:auto;
-  padding:13px 20px;
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:20px;
-}
-
-.brand{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  font-weight:900;
-  font-size:23px;
-  color:var(--green-dark);
-}
-
-.brand-mark{
-  width:39px;
-  height:39px;
-  border-radius:12px;
-  background:linear-gradient(145deg,var(--red),#f04455);
-  display:grid;
-  place-items:center;
-  color:#fff;
-  font-size:21px;
-  box-shadow:0 8px 20px rgba(201,24,43,.22);
-}
-
-.nav-links{
-  display:flex;
-  align-items:center;
-  gap:22px;
-  font-size:14px;
-  font-weight:600;
-}
-
-.nav-links a{
-  color:#3f5149;
-}
-
-.nav-links a:hover{
-  color:var(--green);
-}
-
-.nav-btn{
-  background:var(--green);
-  color:white!important;
-  padding:10px 16px;
-  border-radius:12px;
-}
-
-/* ================= HERO ================= */
-
-.hero{
-  min-height:620px;
-  position:relative;
-  display:flex;
-  align-items:center;
-  overflow:hidden;
-  background:
-    linear-gradient(90deg,rgba(2,42,27,.92),rgba(4,91,53,.76),rgba(4,81,48,.25)),
-    url("blood-donation.jpg") center/cover no-repeat;
-}
-
-.hero-content{
-  width:min(1180px,100%);
-  margin:auto;
-  padding:80px 20px;
-  color:white;
-  position:relative;
-  z-index:2;
-}
-
-.badge{
-  display:inline-flex;
-  align-items:center;
-  gap:7px;
-  background:rgba(255,255,255,.13);
-  border:1px solid rgba(255,255,255,.25);
-  padding:8px 13px;
-  border-radius:30px;
-  font-size:12px;
-  letter-spacing:.5px;
-  backdrop-filter:blur(10px);
-}
-
-.hero h1{
-  max-width:760px;
-  font-size:clamp(42px,7vw,78px);
-  line-height:1.02;
-  margin:22px 0 18px;
-  letter-spacing:-3px;
-}
-
-.hero h1 span{
-  color:#ff6675;
-}
-
-.hero p{
-  max-width:650px;
-  font-size:18px;
-  line-height:1.7;
-  color:#edf8f2;
-}
-
-.hero-actions{
-  margin-top:30px;
-  display:flex;
-  flex-wrap:wrap;
-  gap:12px;
-}
-
-.btn{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  gap:8px;
-  padding:14px 20px;
-  border-radius:14px;
-  font-weight:800;
-  font-size:14px;
-  transition:.25s;
-}
-
-.btn:hover{
-  transform:translateY(-3px);
-}
-
-.btn-primary{
-  background:white;
-  color:var(--green-dark);
-}
-
-.btn-red{
-  background:var(--red);
-  color:white;
-}
-
-.btn-outline{
-  border:1px solid rgba(255,255,255,.35);
-  color:white;
-  background:rgba(255,255,255,.08);
-}
-
-/* ================= STATS ================= */
-
-.stats{
-  max-width:1080px;
-  margin:-50px auto 0;
-  position:relative;
-  z-index:5;
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:12px;
-  padding:0 20px;
-}
-
-.stat{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:18px;
-  padding:22px;
-  text-align:center;
-  box-shadow:var(--shadow);
-}
-
-.stat strong{
-  display:block;
-  font-size:25px;
-  color:var(--green-dark);
-}
-
-.stat span{
-  font-size:12px;
-  color:var(--muted);
-}
-
-/* ================= GENERAL ================= */
-
-.section{
-  max-width:1180px;
-  margin:auto;
-  padding:90px 20px;
-}
-
-.section-head{
-  text-align:center;
-  max-width:720px;
-  margin:0 auto 45px;
-}
-
-.section-label{
-  color:var(--green);
-  font-size:12px;
-  font-weight:900;
-  letter-spacing:2px;
-  text-transform:uppercase;
-}
-
-.section h2{
-  font-size:clamp(30px,5vw,48px);
-  color:var(--dark);
-  margin:12px 0;
-  letter-spacing:-1px;
-}
-
-.section-head p{
-  color:var(--muted);
-  line-height:1.7;
-}
-
-/* ================= SERVICE CARDS ================= */
-
-.services{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:18px;
-}
-
-.service{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:var(--radius);
-  padding:28px 22px;
-  box-shadow:var(--shadow);
-  transition:.3s;
-  position:relative;
-  overflow:hidden;
-}
-
-.service:before{
-  content:"";
-  position:absolute;
-  top:0;
-  left:0;
-  right:0;
-  height:4px;
-  background:var(--green);
-}
-
-.service:hover{
-  transform:translateY(-8px);
-  box-shadow:0 25px 55px rgba(0,70,40,.15);
-}
-
-.icon{
-  width:56px;
-  height:56px;
-  border-radius:17px;
-  display:grid;
-  place-items:center;
-  font-size:27px;
-  background:var(--green-light);
-  margin-bottom:18px;
-}
-
-.service:nth-child(2) .icon{
-  background:#fff0f2;
-}
-
-.service:nth-child(3) .icon{
-  background:#fff7df;
-}
-
-.service:nth-child(4) .icon{
-  background:#edf2ff;
-}
-
-.service h3{
-  font-size:19px;
-  color:var(--dark);
-  margin-bottom:8px;
-}
-
-.service p{
-  font-size:13px;
-  line-height:1.65;
-  color:var(--muted);
-  margin-bottom:18px;
-}
-
-.service a{
-  color:var(--green);
-  font-size:13px;
-  font-weight:800;
-}
-
-/* ================= NETWORK ================= */
-
-.network{
-  background:linear-gradient(135deg,#063c27,#087443);
-  border-radius:30px;
-  padding:55px;
-  color:white;
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:45px;
-  align-items:center;
-  overflow:hidden;
-  position:relative;
-}
-
-.network:after{
-  content:"";
-  position:absolute;
-  width:300px;
-  height:300px;
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:50%;
-  right:-80px;
-  top:-80px;
-}
-
-.network h2{
-  color:white;
-  font-size:clamp(30px,4vw,46px);
-  margin:10px 0 16px;
-}
-
-.network p{
-  color:#d8eee4;
-  line-height:1.7;
-}
-
-.map-box{
-  min-height:300px;
-  border-radius:24px;
-  background:
-    radial-gradient(circle at 30% 30%,rgba(255,255,255,.18) 2px,transparent 3px),
-    linear-gradient(145deg,#0c8d59,#075334);
-  background-size:45px 45px,auto;
-  position:relative;
-  border:1px solid rgba(255,255,255,.16);
-  overflow:hidden;
-}
-
-.map-ring{
-  position:absolute;
-  width:190px;
-  height:190px;
-  border:1px dashed rgba(255,255,255,.35);
-  border-radius:50%;
-  left:50%;
-  top:50%;
-  transform:translate(-50%,-50%);
-}
-
-.pin{
-  position:absolute;
-  font-size:25px;
-  animation:float 2s ease-in-out infinite;
-}
-
-.pin.one{left:25%;top:25%}
-.pin.two{right:25%;top:35%;animation-delay:.4s}
-.pin.three{left:40%;bottom:20%;animation-delay:.8s}
-.pin.main{left:50%;top:50%;font-size:35px;transform:translate(-50%,-50%)}
-
-@keyframes float{
-  50%{transform:translateY(-7px)}
-}
-
-/* ================= WORKFLOW ================= */
-
-.workflow{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-}
-
-.step{
-  background:white;
-  border:1px solid var(--border);
-  border-radius:20px;
-  padding:25px;
-  text-align:center;
-}
-
-.step-number{
-  width:42px;
-  height:42px;
-  margin:auto auto 15px;
-  border-radius:50%;
-  display:grid;
-  place-items:center;
-  background:var(--green);
-  color:white;
-  font-weight:900;
-}
-
-.step h3{
-  font-size:16px;
-  margin-bottom:7px;
-}
-
-.step p{
-  color:var(--muted);
-  font-size:12px;
-  line-height:1.6;
-}
-
-/* ================= SAFETY ================= */
-
-.safety{
-  background:#fff;
-  border:1px solid var(--border);
-  border-radius:28px;
-  padding:38px;
-  display:grid;
-  grid-template-columns:auto 1fr;
-  gap:22px;
-  align-items:start;
-  box-shadow:var(--shadow);
-}
-
-.safety-icon{
-  width:65px;
-  height:65px;
-  border-radius:20px;
-  background:#fff2f3;
-  display:grid;
-  place-items:center;
-  font-size:31px;
-}
-
-.safety h3{
-  color:var(--dark);
-  margin-bottom:8px;
-}
-
-.safety p{
-  color:var(--muted);
-  line-height:1.7;
-  font-size:14px;
-}
-
-/* ================= CTA ================= */
-
-.cta{
-  max-width:1180px;
-  margin:0 auto 80px;
-  padding:65px 25px;
-  text-align:center;
-  border-radius:30px;
-  background:linear-gradient(135deg,#087443,#0c9c5d);
-  color:white;
-  position:relative;
-  overflow:hidden;
-}
-
-.cta h2{
-  font-size:clamp(30px,5vw,48px);
-  margin-bottom:12px;
-}
-
-.cta p{
-  max-width:650px;
-  margin:0 auto 25px;
-  color:#e1f5eb;
-  line-height:1.7;
-}
-
-/* ================= FOOTER ================= */
-
-footer{
-  background:#071c13;
-  color:#d7e6df;
-  padding:45px 20px 25px;
-}
-
-.footer-inner{
-  max-width:1180px;
-  margin:auto;
-  display:grid;
-  grid-template-columns:1.4fr 1fr 1fr;
-  gap:40px;
-}
-
-.footer-brand{
-  font-size:25px;
-  font-weight:900;
-  color:white;
-  margin-bottom:12px;
-}
-
-.footer p{
-  color:#94aaa0;
-  line-height:1.7;
-  font-size:13px;
-}
-
-.footer h4{
-  color:white;
-  margin-bottom:14px;
-}
-
-.footer a{
-  display:block;
-  color:#9db1a8;
-  font-size:13px;
-  margin:9px 0;
-}
-
-.footer a:hover{
-  color:white;
-}
-
-.copyright{
-  max-width:1180px;
-  margin:35px auto 0;
-  padding-top:20px;
-  border-top:1px solid rgba(255,255,255,.1);
-  text-align:center;
-  font-size:11px;
-  color:#789087;
-}
-
-/* ================= SOS ================= */
-
-.sos{
-  position:fixed;
-  right:20px;
-  bottom:20px;
-  z-index:900;
-  width:58px;
-  height:58px;
-  border-radius:50%;
-  background:var(--red);
-  color:white;
-  display:grid;
-  place-items:center;
-  font-size:24px;
-  box-shadow:0 10px 30px rgba(201,24,43,.35);
-  animation:sosPulse 2s infinite;
-}
-
-@keyframes sosPulse{
-  50%{box-shadow:0 10px 35px rgba(201,24,43,.55)}
-}
-
-/* ================= RESPONSIVE ================= */
-
-@media(max-width:900px){
-
-  .nav-links{
-    display:none;
-  }
-
-  .hero{
-    min-height:570px;
-  }
-
-  .stats{
-    grid-template-columns:repeat(2,1fr);
-    margin-top:-35px;
-  }
-
-  .services{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .workflow{
-    grid-template-columns:repeat(2,1fr);
-  }
-
-  .network{
-    grid-template-columns:1fr;
-    padding:35px 25px;
-  }
-
-  .footer-inner{
-    grid-template-columns:1fr 1fr;
-  }
-}
-
-@media(max-width:600px){
-
-  .nav-inner{
-    padding:10px 14px;
-  }
-
-  .brand{
-    font-size:19px;
-  }
-
-  .brand-mark{
-    width:35px;
-    height:35px;
-  }
-
-  .hero{
-    min-height:610px;
-    background:
-      linear-gradient(90deg,rgba(2,42,27,.91),rgba(4,91,53,.60)),
-      url("blood-donation.jpg") center/cover no-repeat;
-  }
-
-  .hero-content{
-    padding:70px 18px;
-  }
-
-  .hero h1{
-    font-size:43px;
-    letter-spacing:-2px;
-  }
-
-  .hero p{
-    font-size:15px;
-    line-height:1.6;
-  }
-
-  .hero-actions{
-    flex-direction:column;
-  }
-
-  .btn{
-    width:100%;
-  }
-
-  .stats{
-    padding:0 12px;
-    gap:8px;
-  }
-
-  .stat{
-    padding:17px 8px;
-  }
-
-  .stat strong{
-    font-size:21px;
-  }
-
-  .stat span{
-    font-size:10px;
-  }
-
-  .section{
-    padding:65px 14px;
-  }
-
-  .section h2{
-    font-size:31px;
-  }
-
-  .services{
-    grid-template-columns:1fr;
-    gap:12px;
-  }
-
-  .service{
-    padding:23px 19px;
-  }
-
-  .workflow{
-    grid-template-columns:1fr;
-  }
-
-  .network{
-    border-radius:23px;
-  }
-
-  .map-box{
-    min-height:240px;
-  }
-
-  .safety{
-    grid-template-columns:1fr;
-    padding:25px;
-  }
-
-  .cta{
-    margin:0 14px 55px;
-    padding:45px 20px;
-    border-radius:24px;
-  }
-
-  .footer-inner{
-    grid-template-columns:1fr;
-    gap:25px;
-  }
-
-  .sos{
-    width:52px;
-    height:52px;
-    right:14px;
-    bottom:14px;
-  }
-
-  .splash-title{
-    font-size:30px;
-  }
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>RaktSathi | Emergency Blood Coordination Network</title>
+
+  <meta name="description"
+        content="RaktSathi is a patient-centric emergency blood coordination and healthcare resource network.">
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: #f4fbf7;
+      color: #17372c;
+      line-height: 1.6;
+    }
+
+    /* ================= NAVBAR ================= */
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 9999;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      padding: 15px 6%;
+
+      background: rgba(2, 44, 34, 0.96);
+      backdrop-filter: blur(12px);
+
+      box-shadow: 0 5px 25px rgba(0,0,0,.12);
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      color: white;
+      text-decoration: none;
+
+      font-size: 25px;
+      font-weight: 900;
+      letter-spacing: .4px;
+    }
+
+    .brand-mark {
+      width: 39px;
+      height: 39px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 12px;
+
+      background: #dc2626;
+      color: white;
+
+      font-size: 21px;
+      font-weight: 900;
+    }
+
+    .brand span {
+      color: #f87171;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .nav-links a:hover {
+      color: #86efac;
+    }
+
+    .nav-emergency {
+      background: #dc2626;
+      padding: 9px 15px;
+      border-radius: 9px;
+    }
+
+    /* ================= HERO ================= */
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+
+      background:
+        radial-gradient(circle at 15% 20%, rgba(16,185,129,.22), transparent 30%),
+        radial-gradient(circle at 85% 70%, rgba(239,68,68,.15), transparent 30%),
+        linear-gradient(135deg, #022c22, #065f46, #047857);
+
+      color: white;
+
+      padding: 85px 6% 90px;
+    }
+
+    .hero-content {
+      max-width: 1150px;
+      margin: auto;
+
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      gap: 55px;
+      align-items: center;
+    }
+
+    .badge {
+      display: inline-block;
+
+      padding: 7px 13px;
+      margin-bottom: 18px;
+
+      border: 1px solid rgba(255,255,255,.22);
+      border-radius: 30px;
+
+      background: rgba(255,255,255,.08);
+
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .7px;
+    }
+
+    .hero h1 {
+      font-size: clamp(38px, 6vw, 70px);
+      line-height: 1.05;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #f87171;
+    }
+
+    .hero-text {
+      max-width: 700px;
+      color: #d1fae5;
+      font-size: 18px;
+      margin-bottom: 28px;
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 13px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      text-decoration: none;
+
+      padding: 13px 20px;
+      border-radius: 11px;
+
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    .btn-red {
+      background: #dc2626;
+      color: white;
+    }
+
+    .btn-red:hover {
+      background: #b91c1c;
+    }
+
+    .btn-light {
+      background: white;
+      color: #065f46;
+    }
+
+    .btn-light:hover {
+      background: #ecfdf5;
+    }
+
+    /* HERO VISUAL */
+
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+    }
+
+    .network-orb {
+      width: 310px;
+      height: 310px;
+
+      border-radius: 50%;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      background:
+        radial-gradient(circle, #dc2626 0 12%, transparent 13%),
+        radial-gradient(circle, rgba(255,255,255,.13) 0 48%, transparent 49%);
+
+      border: 1px solid rgba(255,255,255,.15);
+
+      box-shadow:
+        0 0 80px rgba(16,185,129,.18),
+        inset 0 0 50px rgba(255,255,255,.05);
+
+      position: relative;
+    }
+
+    .network-orb::before,
+    .network-orb::after {
+      content: "";
+      position: absolute;
+
+      border: 1px solid rgba(134,239,172,.28);
+      border-radius: 50%;
+    }
+
+    .network-orb::before {
+      width: 210px;
+      height: 210px;
+    }
+
+    .network-orb::after {
+      width: 135px;
+      height: 135px;
+    }
+
+    .orb-text {
+      position: relative;
+      z-index: 2;
+
+      text-align: center;
+    }
+
+    .orb-text strong {
+      display: block;
+      font-size: 43px;
+    }
+
+    .orb-text small {
+      color: #d1fae5;
+      font-weight: 700;
+    }
+
+    /* ================= CONTAINER ================= */
+
+    .container {
+      width: 92%;
+      max-width: 1150px;
+      margin: 55px auto;
+    }
+
+    .section-heading {
+      text-align: center;
+      margin-bottom: 35px;
+    }
+
+    .section-heading h2 {
+      color: #064e3b;
+      font-size: clamp(27px, 4vw, 40px);
+      margin-bottom: 8px;
+    }
+
+    .section-heading p {
+      max-width: 700px;
+      margin: auto;
+      color: #61756d;
+    }
+
+    /* ================= DIFFERENCE ================= */
+
+    .difference {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .difference-card {
+      background: white;
+      padding: 27px;
+      border-radius: 20px;
+
+      box-shadow: 0 10px 30px rgba(6,78,59,.08);
+
+      border-top: 4px solid #10b981;
+    }
+
+    .difference-icon {
+      font-size: 29px;
+      margin-bottom: 12px;
+    }
+
+    .difference-card h3 {
+      color: #064e3b;
+      margin-bottom: 8px;
+    }
+
+    .difference-card p {
+      color: #60746c;
+      font-size: 14px;
+    }
+
+    /* ================= EMERGENCY ================= */
+
+    .emergency-panel {
+      margin-top: 65px;
+
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+
+      background: linear-gradient(135deg, #7f1d1d, #b91c1c);
+      color: white;
+
+      padding: 35px;
+      border-radius: 25px;
+
+      box-shadow: 0 15px 40px rgba(127,29,29,.18);
+    }
+
+    .emergency-panel h2 {
+      font-size: 32px;
+      margin-bottom: 10px;
+    }
+
+    .emergency-panel p {
+      color: #fee2e2;
+    }
+
+    .emergency-steps {
+      display: grid;
+      gap: 10px;
+    }
+
+    .step {
+      padding: 13px 15px;
+
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.12);
+
+      border-radius: 11px;
+
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* ================= WORKFLOW ================= */
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 12px;
+    }
+
+    .workflow-card {
+      background: white;
+      padding: 22px 15px;
+      border-radius: 17px;
+
+      text-align: center;
+
+      box-shadow: 0 8px 24px rgba(6,78,59,.07);
+    }
+
+    .workflow-number {
+      width: 39px;
+      height: 39px;
+
+      margin: 0 auto 12px;
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      border-radius: 50%;
+
+      background: #dcfce7;
+      color: #047857;
+
+      font-weight: 900;
+    }
+
+    .workflow-card h3 {
+      color: #064e3b;
+      font-size: 15px;
+    }
+
+    .workflow-card p {
+      color: #667a72;
+      font-size: 12px;
+      margin-top: 5px;
+    }
+
+    /* ================= SERVICES ================= */
+
+    .services {
+      margin-top: 65px;
+    }
+
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .service {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+
+      text-decoration: none;
+      color: inherit;
+
+      box-shadow: 0 9px 28px rgba(6,78,59,.08);
+
+      border: 1px solid #e2eee8;
+
+      transition: .2s;
+    }
+
+    .service:hover {
+      transform: translateY(-5px);
+      border-color: #86efac;
+    }
+
+    .service-icon {
+      font-size: 29px;
+      margin-bottom: 11px;
+    }
+
+    .service h3 {
+      color: #064e3b;
+      margin-bottom: 6px;
+    }
+
+    .service p {
+      color: #657970;
+      font-size: 13px;
+    }
+
+    /* ================= ANALYTICS ================= */
+
+    .analytics {
+      margin-top: 65px;
+
+      background: #022c22;
+      color: white;
+
+      border-radius: 25px;
+      padding: 35px;
+    }
+
+    .analytics h2 {
+      margin-bottom: 8px;
+    }
+
+    .analytics > p {
+      color: #bbf7d0;
+      margin-bottom: 25px;
+    }
+
+    .analytics-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .metric {
+      background: rgba(255,255,255,.07);
+      padding: 20px;
+      border-radius: 15px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 27px;
+      color: #86efac;
+    }
+
+    .metric span {
+      font-size: 13px;
+      color: #d1fae5;
+    }
+
+    /* ================= SAFETY ================= */
+
+    .safety {
+      margin-top: 40px;
+
+      padding: 21px;
+
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+
+      border-radius: 12px;
+
+      color: #7c2d12;
+      font-size: 14px;
+    }
+
+    /* ================= CTA ================= */
+
+    .cta {
+      margin-top: 60px;
+
+      text-align: center;
+
+      background: linear-gradient(135deg, #065f46, #047857);
+
+      color: white;
+
+      padding: 45px 25px;
+
+      border-radius: 25px;
+    }
+
+    .cta h2 {
+      font-size: 32px;
+      margin-bottom: 9px;
+    }
+
+    .cta p {
+      color: #d1fae5;
+      margin-bottom: 22px;
+    }
+
+    /* ================= FOOTER ================= */
+
+    footer {
+      margin-top: 70px;
+
+      background: #011c16;
+      color: #a7cfc0;
+
+      padding: 35px 6%;
+      text-align: center;
+
+      font-size: 13px;
+    }
+
+    footer strong {
+      color: white;
+      font-size: 18px;
+    }
+
+    .footer-line {
+      margin-top: 10px;
+    }
+
+    /* ================= MOBILE ================= */
+
+    @media (max-width: 900px) {
+
+      .hero-content {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .hero-text {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .hero-buttons {
+        justify-content: center;
+      }
+
+      .difference {
+        grid-template-columns: 1fr;
+      }
+
+      .workflow {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .service-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .emergency-panel {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-visual {
+        display: none;
+      }
+    }
+
+    @media (max-width: 650px) {
+
+      .nav-links {
+        display: none;
+      }
+
+      nav {
+        padding: 13px 5%;
+      }
+
+      .hero {
+        padding: 60px 6%;
+      }
+
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      .service-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .analytics-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .emergency-panel {
+        padding: 25px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- ================= SPLASH ================= -->
+  <!-- ================= NAVBAR ================= -->
 
-<div class="splash">
-  <div class="splash-inner">
-
-    <img
-      src="vitalloop-splash.png"
-      class="splash-logo"
-      alt="RaktSathi Logo"
-    >
-
-    <div class="splash-title">RaktSathi</div>
-
-    <div class="splash-sub">
-      BLOOD RESOURCE NETWORK
-    </div>
-
-    <div class="loader">
-      <span></span>
-    </div>
-
-  </div>
-</div>
-
-
-<!-- ================= NAVBAR ================= -->
-
-<header class="navbar">
-
-  <div class="nav-inner">
+  <nav>
 
     <a href="index.html" class="brand">
 
-      <div class="brand-mark">🩸</div>
+      <div class="brand-mark">S</div>
 
-      RaktSathi
+      Rakt<span>Sathi</span>
 
     </a>
 
-    <nav class="nav-links">
+    <div class="nav-links">
 
-      <a href="#services">Services</a>
-      <a href="#network">Network</a>
-      <a href="#workflow">How It Works</a>
-      <a href="blood-education.html">Education</a>
+      <a href="index.html">Home</a>
 
-      <a href="blood-request.html" class="nav-btn">
-        Request Blood
-      </a>
+      <a href="find-blood.html">Find Resources</a>
 
-    </nav>
+      <a href="donor.html">Donor</a>
 
-  </div>
+      <a href="camps.html">Camps</a>
 
-</header>
+      <a href="assistant.html">Assistant</a>
 
-
-<!-- ================= HERO ================= -->
-
-<section class="hero">
-
-  <div class="hero-content">
-
-    <div class="badge">
-      🩸 Smart Blood Resource Network
-    </div>
-
-    <h1>
-      Connecting <span>People.</span><br>
-      Saving Lives.
-    </h1>
-
-    <p>
-      RaktSathi is a healthcare technology platform concept
-      designed to help people discover relevant blood resources,
-      raise blood requests and coordinate potential donors
-      through one connected experience.
-    </p>
-
-    <div class="hero-actions">
-
-      <a href="find-blood.html" class="btn btn-primary">
-        🔎 Find Blood Resources
-      </a>
-
-      <a href="blood-request.html" class="btn btn-red">
-        🩸 Raise Blood Request
-      </a>
-
-      <a href="donor.html" class="btn btn-outline">
-        🤝 Become a Donor
+      <a href="emergency.html" class="nav-emergency">
+        Emergency
       </a>
 
     </div>
 
-  </div>
+  </nav>
 
-</section>
 
+  <!-- ================= HERO ================= -->
 
-<!-- ================= STATS ================= -->
+  <section class="hero">
 
-<div class="stats">
+    <div class="hero-content">
 
-  <div class="stat">
-    <strong>24×7</strong>
-    <span>Resource Discovery</span>
-  </div>
+      <div>
 
-  <div class="stat">
-    <strong>📍</strong>
-    <span>Location Based</span>
-  </div>
+        <div class="badge">
+          SMART BLOOD COORDINATION NETWORK
+        </div>
 
-  <div class="stat">
-    <strong>🤝</strong>
-    <span>Donor Coordination</span>
-  </div>
+        <h1>
+          When Every Minute
+          <span>Matters.</span>
+        </h1>
 
-  <div class="stat">
-    <strong>🔐</strong>
-    <span>Safety Focused</span>
-  </div>
+        <p class="hero-text">
+          RaktSathi connects emergency blood requests with potential
+          donor support, authorised blood centres and healthcare
+          resources through one patient-centric coordination platform.
+        </p>
 
-</div>
+        <div class="hero-buttons">
 
+          <a href="emergency.html" class="btn btn-red">
+            🚨 Create Emergency Request
+          </a>
 
-<!-- ================= SERVICES ================= -->
+          <a href="find-blood.html" class="btn btn-light">
+            Find Blood Resources
+          </a>
 
-<section class="section" id="services">
+        </div>
 
-  <div class="section-head">
-
-    <div class="section-label">
-      RaktSathi Services
-    </div>
-
-    <h2>
-      One Platform.<br>
-      Connected Support.
-    </h2>
-
-    <p>
-      Access different healthcare-resource services
-      without putting everything on one crowded page.
-    </p>
-
-  </div>
-
-
-  <div class="services">
-
-    <div class="service">
-
-      <div class="icon">🔎</div>
-
-      <h3>Find Blood</h3>
-
-      <p>
-        Discover relevant blood centres and available
-        resources using group, component and location filters.
-      </p>
-
-      <a href="find-blood.html">
-        Open Find Blood →
-      </a>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="icon">🩸</div>
-
-      <h3>Blood Request</h3>
-
-      <p>
-        Raise a structured blood-resource request
-        and provide the information needed for coordination.
-      </p>
-
-      <a href="blood-request.html">
-        Create Request →
-      </a>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="icon">🤝</div>
-
-      <h3>Donor Network</h3>
-
-      <p>
-        Potential donors can register their details
-        for future coordination and discovery.
-      </p>
-
-      <a href="donor.html">
-        Join Network →
-      </a>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="icon">🏥</div>
-
-      <h3>Blood Camps</h3>
-
-      <p>
-        Explore blood-donation camp information
-        and support community participation.
-      </p>
-
-      <a href="camps.html">
-        Explore Camps →
-      </a>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="icon">📚</div>
-
-      <h3>Blood Education</h3>
-
-      <p>
-        Learn about blood donation, safety,
-        eligibility and responsible transfusion practices.
-      </p>
-
-      <a href="blood-education.html">
-        Learn More →
-      </a>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="icon">🤖</div>
-
-      <h3>Healthcare Assistant</h3>
-
-      <p>
-        Get first-level educational guidance and
-        navigation support through a healthcare assistant.
-      </p>
-
-      <a href="assistant.html">
-        Open Assistant →
-      </a>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="icon">🚨</div>
-
-      <h3>Emergency Support</h3>
-
-      <p>
-        Quickly access emergency contacts and
-        nearby healthcare resources.
-      </p>
-
-      <a href="emergency.html">
-        Emergency Support →
-      </a>
-
-    </div>
-
-
-    <div class="service">
-
-      <div class="icon">💊</div>
-
-      <h3>Medicine Information</h3>
-
-      <p>
-        Access general medicine information and
-        responsible healthcare guidance.
-      </p>
-
-      <a href="medicine.html">
-        Medicine Info →
-      </a>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= NETWORK ================= -->
-
-<section class="section" id="network">
-
-  <div class="network">
-
-    <div>
-
-      <div class="section-label" style="color:#a8e7c8;">
-        LOCATION INTELLIGENCE
       </div>
 
-      <h2>
-        Find relevant blood resources around you.
-      </h2>
 
-      <p>
-        RaktSathi can use location-based discovery to
-        help users identify relevant blood centres and
-        calculate approximate distance when reliable
-        location coordinates are available.
-      </p>
+      <div class="hero-visual">
 
-      <br>
+        <div class="network-orb">
 
-      <a href="find-blood.html" class="btn btn-primary">
-        Explore Blood Network →
-      </a>
+          <div class="orb-text">
+            <strong>🩸</strong>
+            <small>CONNECT • COORDINATE • SUPPORT</small>
+          </div>
 
-    </div>
+        </div>
 
-
-    <div class="map-box">
-
-      <div class="map-ring"></div>
-
-      <div class="pin one">🏥</div>
-      <div class="pin two">🏥</div>
-      <div class="pin three">📍</div>
-      <div class="pin main">📍</div>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= WORKFLOW ================= -->
-
-<section class="section" id="workflow">
-
-  <div class="section-head">
-
-    <div class="section-label">
-      Simple Workflow
-    </div>
-
-    <h2>
-      From Need to Resource.
-    </h2>
-
-    <p>
-      A simple technology-assisted journey for
-      discovering and coordinating healthcare resources.
-    </p>
-
-  </div>
-
-
-  <div class="workflow">
-
-    <div class="step">
-
-      <div class="step-number">1</div>
-
-      <h3>Raise a Need</h3>
-
-      <p>
-        Enter blood group, component and
-        relevant request information.
-      </p>
-
-    </div>
-
-
-    <div class="step">
-
-      <div class="step-number">2</div>
-
-      <h3>Discover</h3>
-
-      <p>
-        Find relevant authorized blood centres
-        and potential donor resources.
-      </p>
-
-    </div>
-
-
-    <div class="step">
-
-      <div class="step-number">3</div>
-
-      <h3>Coordinate</h3>
-
-      <p>
-        Connect with the appropriate centre
-        or potential donor through available channels.
-      </p>
-
-    </div>
-
-
-    <div class="step">
-
-      <div class="step-number">4</div>
-
-      <h3>Receive Care</h3>
-
-      <p>
-        Actual donation, testing, compatibility
-        and blood release remain with authorized facilities.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= SAFETY ================= -->
-
-<section class="section">
-
-  <div class="safety">
-
-    <div class="safety-icon">
-      🛡️
-    </div>
-
-    <div>
-
-      <h3>
-        Safety & Responsible Use
-      </h3>
-
-      <p>
-        RaktSathi is a discovery and coordination technology
-        prototype. It does not store, test, transport, release
-        or distribute blood. Actual blood collection, testing,
-        compatibility assessment, storage and release are
-        performed by authorized blood centres and healthcare
-        facilities according to applicable medical protocols.
-        Blood availability shown by a prototype should never
-        be treated as a guarantee.
-      </p>
-
-    </div>
-
-  </div>
-
-</section>
-
-
-<!-- ================= CTA ================= -->
-
-<section class="cta">
-
-  <h2>
-    Be a Link in the Lifesaving Network.
-  </h2>
-
-  <p>
-    Discover blood resources, support responsible donation
-    and help build a more connected healthcare ecosystem.
-  </p>
-
-  <a href="donor.html" class="btn btn-primary">
-    🤝 Join the Donor Network
-  </a>
-
-</section>
-
-
-<!-- ================= FOOTER ================= -->
-
-<footer>
-
-  <div class="footer-inner">
-
-    <div>
-
-      <div class="footer-brand">
-        🩸 RaktSathi
       </div>
 
+    </div>
+
+  </section>
+
+
+  <!-- ================= DIFFERENTIATION ================= -->
+
+  <main class="container">
+
+    <section>
+
+      <div class="section-heading">
+
+        <h2>More Than Blood Search</h2>
+
+        <p>
+          RaktSathi focuses on the complete emergency coordination
+          journey instead of acting as only a blood availability directory.
+        </p>
+
+      </div>
+
+
+      <div class="difference">
+
+        <div class="difference-card">
+
+          <div class="difference-icon">🚨</div>
+
+          <h3>Emergency-First</h3>
+
+          <p>
+            Create structured blood-support requests with urgency,
+            hospital and requirement information.
+          </p>
+
+        </div>
+
+
+        <div class="difference-card">
+
+          <div class="difference-icon">🧠</div>
+
+          <h3>Smart Matching</h3>
+
+          <p>
+            Help identify potential donor and blood-resource
+            connections using relevant request information.
+          </p>
+
+        </div>
+
+
+        <div class="difference-card">
+
+          <div class="difference-icon">🔄</div>
+
+          <h3>Coordination Workflow</h3>
+
+          <p>
+            Track a request from creation through resource discovery,
+            verification and closure.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= EMERGENCY ================= -->
+
+    <section class="emergency-panel">
+
+      <div>
+
+        <h2>Emergency Blood Support</h2>
+
+        <p>
+          Start a structured request and make the required information
+          easier for the coordination process to understand.
+        </p>
+
+        <br>
+
+        <a href="emergency.html" class="btn btn-light">
+          Start Emergency Request →
+        </a>
+
+      </div>
+
+
+      <div class="emergency-steps">
+
+        <div class="step">
+          01 &nbsp; Create Request
+        </div>
+
+        <div class="step">
+          02 &nbsp; Identify Potential Resources
+        </div>
+
+        <div class="step">
+          03 &nbsp; Coordinate With Relevant Facility
+        </div>
+
+        <div class="step">
+          04 &nbsp; Verify Availability
+        </div>
+
+        <div class="step">
+          05 &nbsp; Close / Update Request
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= WORKFLOW ================= -->
+
+    <section style="margin-top:65px;">
+
+      <div class="section-heading">
+
+        <h2>How RaktSathi Works</h2>
+
+        <p>
+          A simple digital workflow for emergency blood-resource coordination.
+        </p>
+
+      </div>
+
+
+      <div class="workflow">
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">1</div>
+
+          <h3>Request</h3>
+
+          <p>
+            Submit blood requirement.
+          </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">2</div>
+
+          <h3>Match</h3>
+
+          <p>
+            Identify potential resources.
+          </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">3</div>
+
+          <h3>Coordinate</h3>
+
+          <p>
+            Connect relevant parties.
+          </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">4</div>
+
+          <h3>Verify</h3>
+
+          <p>
+            Confirm through authorised facilities.
+          </p>
+
+        </div>
+
+
+        <div class="workflow-card">
+
+          <div class="workflow-number">5</div>
+
+          <h3>Resolve</h3>
+
+          <p>
+            Update or close the request.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SERVICES ================= -->
+
+    <section class="services">
+
+      <div class="section-heading">
+
+        <h2>RaktSathi Services</h2>
+
+        <p>
+          One platform for discovery, coordination and blood-awareness support.
+        </p>
+
+      </div>
+
+
+      <div class="service-grid">
+
+        <a href="emergency.html" class="service">
+
+          <div class="service-icon">🚨</div>
+
+          <h3>Emergency Request</h3>
+
+          <p>
+            Create a structured emergency blood-support request.
+          </p>
+
+        </a>
+
+
+        <a href="find-blood.html" class="service">
+
+          <div class="service-icon">🔎</div>
+
+          <h3>Find Resources</h3>
+
+          <p>
+            Explore nearby blood-centre and blood-resource information.
+          </p>
+
+        </a>
+
+
+        <a href="donor.html" class="service">
+
+          <div class="service-icon">❤️</div>
+
+          <h3>Potential Donor Network</h3>
+
+          <p>
+            Register as a potential donor for future coordination.
+          </p>
+
+        </a>
+
+
+        <a href="blood-request.html" class="service">
+
+          <div class="service-icon">📋</div>
+
+          <h3>Blood Request</h3>
+
+          <p>
+            Submit and manage blood-support requirement information.
+          </p>
+
+        </a>
+
+
+        <a href="camps.html" class="service">
+
+          <div class="service-icon">🩸</div>
+
+          <h3>Donation Camps</h3>
+
+          <p>
+            Discover blood donation camps and related events.
+          </p>
+
+        </a>
+
+
+        <a href="blood-education.html" class="service">
+
+          <div class="service-icon">🧬</div>
+
+          <h3>Blood Education</h3>
+
+          <p>
+            Learn about blood groups, components and donation basics.
+          </p>
+
+        </a>
+
+
+        <a href="assistant.html" class="service">
+
+          <div class="service-icon">🤖</div>
+
+          <h3>Smart Assistant</h3>
+
+          <p>
+            Get navigation and general informational guidance.
+          </p>
+
+        </a>
+
+
+        <a href="medicine.html" class="service">
+
+          <div class="service-icon">💊</div>
+
+          <h3>Healthcare Resources</h3>
+
+          <p>
+            Explore additional healthcare-resource information.
+          </p>
+
+        </a>
+
+
+        <a href="emergency.html" class="service">
+
+          <div class="service-icon">📍</div>
+
+          <h3>Emergency Coordination</h3>
+
+          <p>
+            Follow the request journey from creation to verification.
+          </p>
+
+        </a>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= ANALYTICS ================= -->
+
+    <section class="analytics">
+
+      <h2>Data-Driven Coordination</h2>
+
       <p>
-        Smart Blood Resource Network designed to
-        connect people with relevant blood resources,
-        donor coordination and healthcare information.
+        Future versions can use verified data to provide decision-support
+        insights for blood-resource planning.
       </p>
 
+
+      <div class="analytics-grid">
+
+        <div class="metric">
+
+          <strong>01</strong>
+
+          <span>
+            District-level demand monitoring
+          </span>
+
+        </div>
+
+
+        <div class="metric">
+
+          <strong>02</strong>
+
+          <span>
+            Potential resource matching
+          </span>
+
+        </div>
+
+
+        <div class="metric">
+
+          <strong>03</strong>
+
+          <span>
+            Demand trend and planning insights
+          </span>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= SAFETY ================= -->
+
+    <div class="safety">
+
+      <strong>Important Safety Notice:</strong><br>
+
+      RaktSathi is a technology prototype for blood-resource discovery
+      and coordination. It does not collect, test, store, transport,
+      release or distribute blood. Actual blood availability,
+      donor eligibility, compatibility, collection, testing, storage
+      and transfusion are handled by authorised blood centres and
+      qualified healthcare professionals.
+
     </div>
 
 
-    <div>
+    <!-- ================= CTA ================= -->
 
-      <h4>Resources</h4>
+    <section class="cta">
 
-      <a href="find-blood.html">Find Blood</a>
-      <a href="blood-request.html">Blood Request</a>
-      <a href="donor.html">Donor Network</a>
-      <a href="camps.html">Blood Camps</a>
+      <h2>Help Build a Faster Coordination Network</h2>
 
+      <p>
+        Discover resources, register as a potential donor or create
+        an emergency request.
+      </p>
+
+      <a href="emergency.html" class="btn btn-red">
+        🚨 Start Emergency Request
+      </a>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer>
+
+    <strong>RaktSathi</strong>
+
+    <div class="footer-line">
+      Emergency Blood Coordination & Patient Support Network
     </div>
 
-
-    <div>
-
-      <h4>Information</h4>
-
-      <a href="blood-education.html">Blood Education</a>
-      <a href="assistant.html">Healthcare Assistant</a>
-      <a href="emergency.html">Emergency Support</a>
-      <a href="medicine.html">Medicine Information</a>
-
+    <div class="footer-line">
+      Connecting People. Coordinating Resources. Supporting Care.
     </div>
 
-  </div>
+    <div class="footer-line">
+      © 2026 RaktSathi — SIH Project Prototype
+    </div>
 
-
-  <div class="copyright">
-    © 2026 RaktSathi. Healthcare technology prototype.
-  </div>
-
-</footer>
-
-
-<!-- ================= SOS ================= -->
-
-<a
-  href="emergency.html"
-  class="sos"
-  aria-label="Emergency Support"
->
-  🚨
-</a>
-
-
-<script>
-
-/* Prevent splash from staying longer if page loads quickly */
-
-window.addEventListener("load", function(){
-
-  setTimeout(function(){
-
-    const splash = document.querySelector(".splash");
-
-    if(splash){
-      splash.style.pointerEvents = "none";
-    }
-
-  },2500);
-
-});
-
-
-/* Simple reveal animation */
-
-const revealItems = document.querySelectorAll(
-  ".service, .step, .stat, .safety"
-);
-
-const observer = new IntersectionObserver(
-  function(entries){
-
-    entries.forEach(function(entry){
-
-      if(entry.isIntersecting){
-
-        entry.target.style.opacity = "1";
-        entry.target.style.transform = "translateY(0)";
-
-      }
-
-    });
-
-  },
-  {
-    threshold:.12
-  }
-);
-
-
-revealItems.forEach(function(item){
-
-  item.style.opacity = "0";
-  item.style.transform = "translateY(20px)";
-  item.style.transition = "opacity .6s ease, transform .6s ease";
-
-  observer.observe(item);
-
-});
-
-</script>
+  </footer>
 
 </body>
 </html>
