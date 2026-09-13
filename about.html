@@ -1,777 +1,1048 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>About VitalLoop | Blood Resource Network</title>
+  <title>About RaktSathi | Intelligent Blood Coordination</title>
 
-<style>
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-html{
-  scroll-behavior:smooth;
-}
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5faf7;
+      color: #17352a;
+      line-height: 1.6;
+    }
 
-body{
-  font-family:Arial,sans-serif;
-  background:#fff;
-  color:#172033;
-  line-height:1.65;
-}
+    header {
+      background: #063b2c;
+      color: white;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(255,255,255,.96);
-  border-bottom:1px solid #e5e7eb;
-  padding:15px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 23px;
+      font-weight: bold;
+    }
 
-.logo{
-  color:#b91c1c;
-  font-size:22px;
-  font-weight:800;
-}
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: #d71920;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
 
-nav{
-  display:flex;
-  gap:20px;
-}
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
 
-nav a{
-  text-decoration:none;
-  color:#475569;
-  font-size:14px;
-  font-weight:600;
-}
+    nav a {
+      color: white;
+      text-decoration: none;
+      font-size: 14px;
+    }
 
-nav a:hover{
-  color:#b91c1c;
-}
+    nav a:hover {
+      color: #ffb3b3;
+    }
 
-.hero{
-  padding:75px 6%;
-  background:
-  radial-gradient(circle at 85% 20%,#fee2e2,transparent 30%),
-  linear-gradient(180deg,#fff7f7,#fff);
-}
+    .hero {
+      background: linear-gradient(135deg, #063b2c, #08744f);
+      color: white;
+      text-align: center;
+      padding: 75px 6%;
+    }
 
-.hero-inner{
-  max-width:1050px;
-  margin:auto;
-}
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 30px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
+    }
 
-.tag{
-  color:#b91c1c;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:2px;
-}
+    .hero h1 {
+      font-size: clamp(34px, 5vw, 56px);
+      margin-bottom: 15px;
+    }
 
-h1{
-  font-size:clamp(40px,6vw,68px);
-  line-height:1.05;
-  letter-spacing:-2px;
-  margin:12px 0 18px;
-}
+    .hero p {
+      max-width: 820px;
+      margin: auto;
+      color: #d9f4e9;
+      font-size: 17px;
+    }
 
-.hero p{
-  max-width:780px;
-  color:#64748b;
-  font-size:17px;
-}
+    .container {
+      width: 90%;
+      max-width: 1150px;
+      margin: 50px auto;
+    }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:65px 6%;
-}
+    .intro {
+      background: white;
+      padding: 32px;
+      border-radius: 22px;
+      box-shadow: 0 9px 30px rgba(0,0,0,.07);
+      margin-bottom: 45px;
+    }
 
-.title{
-  margin-bottom:30px;
-}
+    .intro h2,
+    .section-title h2 {
+      color: #063b2c;
+    }
 
-.title small{
-  color:#b91c1c;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:2px;
-}
+    .intro h2 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
 
-.title h2{
-  font-size:38px;
-  line-height:1.15;
-  margin-top:8px;
-}
+    .intro p {
+      color: #586961;
+    }
 
-.title p{
-  color:#64748b;
-  margin-top:10px;
-}
+    .section-title {
+      text-align: center;
+      margin-bottom: 25px;
+    }
 
-.grid{
-  display:grid;
-  grid-template-columns:repeat(2,1fr);
-  gap:20px;
-}
+    .section-title h2 {
+      font-size: 31px;
+    }
 
-.card{
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:20px;
-  padding:28px;
-  box-shadow:0 10px 30px rgba(15,23,42,.06);
-  transition:.25s;
-}
+    .section-title p {
+      color: #66756f;
+      margin-top: 7px;
+    }
 
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 18px 40px rgba(15,23,42,.1);
-}
+    .problem-grid,
+    .solution-grid,
+    .innovation-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
 
-.icon{
-  width:48px;
-  height:48px;
-  border-radius:14px;
-  background:#fee2e2;
-  display:grid;
-  place-items:center;
-  font-size:23px;
-  margin-bottom:15px;
-}
+    .card {
+      background: white;
+      padding: 25px;
+      border-radius: 18px;
+      border: 1px solid #e1ebe6;
+      box-shadow: 0 7px 24px rgba(0,0,0,.05);
+    }
 
-.card h3{
-  font-size:21px;
-  margin-bottom:9px;
-}
+    .card .number {
+      color: #d71920;
+      font-weight: bold;
+      font-size: 13px;
+    }
 
-.card p{
-  color:#64748b;
-  font-size:14px;
-}
+    .card h3 {
+      color: #063b2c;
+      margin: 7px 0;
+    }
 
-.flow{
-  display:grid;
-  grid-template-columns:repeat(5,1fr);
-  gap:12px;
-}
+    .card p {
+      color: #66756f;
+      font-size: 14px;
+    }
 
-.flow-card{
-  padding:22px 16px;
-  background:#f8fafc;
-  border-radius:15px;
-  text-align:center;
-  border-top:3px solid #b91c1c;
-}
+    .architecture {
+      margin-top: 50px;
+      background: linear-gradient(135deg, #063b2c, #08744f);
+      color: white;
+      padding: 32px;
+      border-radius: 22px;
+    }
 
-.flow-card span{
-  font-size:28px;
-}
+    .architecture h2 {
+      margin-bottom: 10px;
+    }
 
-.flow-card h3{
-  font-size:15px;
-  margin:8px 0;
-}
+    .architecture > p {
+      color: #d9f4e9;
+      margin-bottom: 25px;
+    }
 
-.flow-card p{
-  color:#64748b;
-  font-size:12px;
-}
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 10px;
+      align-items: center;
+    }
 
-.pricing{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
+    .flow-item {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 18px 10px;
+      border-radius: 14px;
+      text-align: center;
+    }
 
-.price-card{
-  padding:25px;
-  border-radius:18px;
-  background:white;
-  border:1px solid #e5e7eb;
-}
+    .flow-item strong {
+      display: block;
+      margin-bottom: 5px;
+    }
 
-.price-card h3{
-  margin-bottom:10px;
-}
+    .arrow {
+      text-align: center;
+      font-size: 22px;
+    }
 
-.price{
-  font-size:28px;
-  font-weight:900;
-  color:#b91c1c;
-}
+    .comparison {
+      margin-top: 50px;
+      background: white;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 8px 30px rgba(0,0,0,.06);
+      overflow-x: auto;
+    }
 
-.price-card p{
-  margin-top:10px;
-  color:#64748b;
-  font-size:13px;
-}
+    .comparison h2 {
+      color: #063b2c;
+      margin-bottom: 18px;
+    }
 
-.highlight{
-  background:#fff7f7;
-  border:1px solid #fecaca;
-}
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      min-width: 650px;
+    }
 
-.assistance{
-  margin-top:20px;
-  padding:20px;
-  border-radius:15px;
-  background:#ecfdf5;
-  border:1px solid #a7f3d0;
-  color:#065f46;
-}
+    th,
+    td {
+      padding: 14px;
+      border-bottom: 1px solid #e1ebe6;
+      text-align: left;
+      font-size: 14px;
+    }
 
-.warning{
-  margin-top:20px;
-  padding:18px;
-  border-radius:14px;
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  color:#9a3412;
-  font-size:13px;
-}
+    th {
+      background: #063b2c;
+      color: white;
+    }
 
-.safety{
-  background:#111827;
-  color:white;
-  border-radius:20px;
-  padding:30px;
-}
+    td:first-child {
+      font-weight: bold;
+      color: #063b2c;
+    }
 
-.safety p{
-  color:#cbd5e1;
-  margin-top:10px;
-  font-size:14px;
-}
+    .impact {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
 
-.safety ul{
-  margin:18px 0 0 20px;
-  color:#cbd5e1;
-}
+    .impact-card {
+      background: #eaf5ef;
+      padding: 23px;
+      border-radius: 17px;
+      text-align: center;
+    }
 
-.safety li{
-  margin:8px 0;
-}
+    .impact-card strong {
+      display: block;
+      color: #08744f;
+      font-size: 25px;
+      margin-bottom: 5px;
+    }
 
-.vision{
-  text-align:center;
-  padding:70px 6%;
-  background:
-  radial-gradient(circle at 50% 50%,#fee2e2,transparent 45%),
-  #fff7f7;
-}
+    .impact-card p {
+      color: #52645c;
+      font-size: 13px;
+    }
 
-.vision h2{
-  font-size:42px;
-  margin-bottom:12px;
-}
+    .vision {
+      margin-top: 50px;
+      background: #fff;
+      border: 2px solid #dceae3;
+      border-radius: 22px;
+      padding: 35px;
+      text-align: center;
+    }
 
-.vision p{
-  max-width:700px;
-  margin:auto;
-  color:#64748b;
-}
+    .vision h2 {
+      color: #063b2c;
+      margin-bottom: 10px;
+    }
 
-footer{
-  background:#111827;
-  color:#cbd5e1;
-  padding:35px 6%;
-  text-align:center;
-}
+    .vision .tagline {
+      color: #d71920;
+      font-weight: bold;
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
 
-footer strong{
-  color:white;
-  font-size:20px;
-}
+    .vision p {
+      max-width: 800px;
+      margin: auto;
+      color: #66756f;
+    }
 
-@media(max-width:850px){
+    .safety {
+      margin-top: 35px;
+      background: #fff3f3;
+      border-left: 5px solid #d71920;
+      padding: 20px;
+      border-radius: 10px;
+      color: #5e3030;
+      font-size: 14px;
+    }
 
-  nav{
-    display:none;
-  }
+    .cta {
+      margin-top: 40px;
+      background: #d71920;
+      color: white;
+      border-radius: 22px;
+      padding: 32px;
+      text-align: center;
+    }
 
-  .flow{
-    grid-template-columns:1fr 1fr;
-  }
+    .cta h2 {
+      margin-bottom: 8px;
+    }
 
-  .pricing{
-    grid-template-columns:1fr 1fr;
-  }
-}
+    .cta p {
+      color: #ffe1e1;
+      margin-bottom: 18px;
+    }
 
-@media(max-width:600px){
+    .btn {
+      display: inline-block;
+      background: white;
+      color: #a50f15;
+      padding: 13px 20px;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: bold;
+      font-size: 14px;
+      margin: 4px;
+    }
 
-  .hero{
-    padding:55px 5%;
-  }
+    footer {
+      margin-top: 60px;
+      background: #03271e;
+      color: #d8eee5;
+      text-align: center;
+      padding: 30px 6%;
+      font-size: 13px;
+    }
 
-  .container{
-    padding:50px 5%;
-  }
+    footer a {
+      color: #9fe3c5;
+      text-decoration: none;
+    }
 
-  .grid,
-  .pricing,
-  .flow{
-    grid-template-columns:1fr;
-  }
+    @media(max-width: 900px) {
+      .problem-grid,
+      .solution-grid,
+      .innovation-grid {
+        grid-template-columns: 1fr;
+      }
 
-  h1{
-    font-size:42px;
-  }
+      .impact {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-  .title h2{
-    font-size:30px;
-  }
+      .flow {
+        grid-template-columns: 1fr;
+      }
 
-  .vision h2{
-    font-size:32px;
-  }
-}
-</style>
+      .arrow {
+        transform: rotate(90deg);
+      }
+
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
+      nav {
+        justify-content: center;
+      }
+    }
+
+    @media(max-width: 550px) {
+      .impact {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
 <header>
 
-<div class="logo">
-🩸 VitalLoop
-</div>
+  <div class="logo">
+    <div class="logo-icon">S</div>
+    RaktSathi
+  </div>
 
-<nav>
-<a href="index.html">Home</a>
-<a href="blood-request.html">Need Blood</a>
-<a href="donor.html">Become a Donor</a>
-<a href="blood-education.html">Education</a>
-<a href="camps.html">Camps</a>
-<a href="about.html">About</a>
-</nav>
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="emergency.html">Emergency</a>
+    <a href="find-blood.html">Find Blood</a>
+    <a href="blood-request.html">Track Request</a>
+    <a href="donor.html">Donor Network</a>
+    <a href="camps.html">Camps</a>
+    <a href="assistant.html">Assistant</a>
+  </nav>
 
 </header>
 
 
 <section class="hero">
 
-<div class="hero-inner">
+  <div class="badge">
+    ABOUT RAKTSATHI
+  </div>
 
-<span class="tag">
-ABOUT VITALLOOP
-</span>
+  <h1>Intelligent Blood Emergency Coordination</h1>
 
-<h1>
-Making Blood Resource Discovery Simpler.
-</h1>
-
-<p>
-VitalLoop is a free healthcare technology prototype designed
-to help families discover relevant blood resources, raise
-blood requests and coordinate with potential donors and
-authorized healthcare resources through one connected
-experience.
-</p>
-
-</div>
+  <p>
+    RaktSathi is a patient-centric coordination layer designed
+    to connect emergency blood requirements with potential
+    resources, donor networks, healthcare facilities and
+    verification workflows.
+  </p>
 
 </section>
 
 
-<section class="container">
+<main class="container">
 
-<div class="title">
 
-<small>THE PROBLEM</small>
+  <!-- Introduction -->
 
-<h2>
-When an emergency happens, finding the right resource can be difficult.
-</h2>
+  <section class="intro">
 
-<p>
-Families may have to contact multiple people, hospitals or
-blood centres while dealing with an emergency. VitalLoop
-aims to make this discovery and coordination process simpler.
-</p>
+    <h2>What is RaktSathi?</h2>
 
-</div>
+    <p>
+      RaktSathi is a healthcare technology prototype focused
+      on improving the journey from a blood requirement to
+      coordinated resource discovery.
 
+      Instead of acting as a blood bank, RaktSathi works as
+      a digital coordination layer that helps structure
+      requests, discover potential resources, identify
+      matching donor information and guide users toward
+      appropriate verification.
 
-<div class="grid">
+      The core philosophy is simple:
+      <strong>Discover → Match → Coordinate → Verify → Resolve.</strong>
+    </p>
 
-<div class="card">
+  </section>
 
-<div class="icon">
-🚑
-</div>
 
-<h3>
-Emergency Situation
-</h3>
+  <!-- Problem -->
 
-<p>
-For example, after an accident, a patient's family may
-urgently need a particular blood group and may not know
-where relevant resources or potential donors can be found.
-</p>
+  <section>
 
-</div>
+    <div class="section-title">
 
+      <h2>The Problem</h2>
 
-<div class="card">
+      <p>
+        Blood emergencies involve multiple people,
+        facilities and information sources.
+      </p>
 
-<div class="icon">
-🔎
-</div>
+    </div>
 
-<h3>
-Resource Discovery
-</h3>
 
-<p>
-VitalLoop can organize blood-resource information so that
-users can search using blood group and location.
-</p>
+    <div class="problem-grid">
 
-</div>
+      <div class="card">
 
+        <div class="number">
+          PROBLEM 01
+        </div>
 
-<div class="card">
+        <h3>Fragmented Information</h3>
 
-<div class="icon">
-🤝
-</div>
+        <p>
+          Patients and attendants may need to search across
+          multiple sources while trying to understand where
+          relevant blood resources may exist.
+        </p>
 
-<h3>
-Potential Donor Coordination
-</h3>
+      </div>
 
-<p>
-If a suitable family donor is not available, the system can
-help identify potential donors based on the information
-available in the prototype.
-</p>
 
-</div>
+      <div class="card">
 
+        <div class="number">
+          PROBLEM 02
+        </div>
 
-<div class="card">
+        <h3>Emergency Time Pressure</h3>
 
-<div class="icon">
-🏥
-</div>
+        <p>
+          During urgent situations, manually coordinating
+          requirements, locations and potential resources
+          can become difficult.
+        </p>
 
-<h3>
-Authorized Healthcare Role
-</h3>
+      </div>
 
-<p>
-Blood collection, testing, compatibility decisions,
-storage and issue remain the responsibility of authorized
-blood centres and healthcare professionals.
-</p>
 
-</div>
+      <div class="card">
 
-</div>
+        <div class="number">
+          PROBLEM 03
+        </div>
 
-</section>
+        <h3>Verification Gap</h3>
 
+        <p>
+          Online availability information may not represent
+          real-time confirmed availability, making verification
+          an essential part of the workflow.
+        </p>
 
-<section class="container">
+      </div>
 
-<div class="title">
+    </div>
 
-<small>HOW IT WORKS</small>
+  </section>
 
-<h2>
-From request to coordination
-</h2>
 
-</div>
+  <!-- Solution -->
 
+  <section style="margin-top:50px;">
 
-<div class="flow">
+    <div class="section-title">
 
-<div class="flow-card">
+      <h2>The RaktSathi Solution</h2>
 
-<span>📝</span>
+      <p>
+        One coordinated workflow instead of disconnected steps.
+      </p>
 
-<h3>
-1. Request
-</h3>
+    </div>
 
-<p>
-Family raises a blood requirement.
-</p>
 
-</div>
+    <div class="solution-grid">
 
+      <div class="card">
 
-<div class="flow-card">
+        <div class="number">
+          SOLUTION 01
+        </div>
 
-<span>🩸</span>
+        <h3>Emergency Request</h3>
 
-<h3>
-2. Blood Group
-</h3>
+        <p>
+          Create a structured request containing blood group,
+          component, location, urgency and healthcare facility.
+        </p>
 
-<p>
-Required blood group and units are entered.
-</p>
+      </div>
 
-</div>
 
+      <div class="card">
 
-<div class="flow-card">
+        <div class="number">
+          SOLUTION 02
+        </div>
 
-<span>📍</span>
+        <h3>Smart Resource Discovery</h3>
 
-<h3>
-3. Location
-</h3>
+        <p>
+          Search potential blood-centre resources using
+          structured requirements and location information.
+        </p>
 
-<p>
-Relevant location is provided.
-</p>
+      </div>
 
-</div>
 
+      <div class="card">
 
-<div class="flow-card">
+        <div class="number">
+          SOLUTION 03
+        </div>
 
-<span>🔎</span>
+        <h3>Potential Donor Matching</h3>
 
-<h3>
-4. Discovery
-</h3>
+        <p>
+          Identify potentially relevant registered donor
+          resources using blood group, location and
+          availability information.
+        </p>
 
-<p>
-Potential donors and resources can be identified.
-</p>
+      </div>
 
-</div>
 
+      <div class="card">
 
-<div class="flow-card">
+        <div class="number">
+          SOLUTION 04
+        </div>
 
-<span>🤝</span>
+        <h3>Verification Workflow</h3>
 
-<h3>
-5. Coordination
-</h3>
+        <p>
+          Keep facility verification between discovery and
+          any real-world medical action.
+        </p>
 
-<p>
-The family can follow the appropriate healthcare workflow.
-</p>
+      </div>
 
-</div>
 
-</div>
+      <div class="card">
 
-</section>
+        <div class="number">
+          SOLUTION 05
+        </div>
 
+        <h3>Request Tracking</h3>
 
-<section class="container">
+        <p>
+          Provide a structured status journey from request
+          creation to resolution.
+        </p>
 
-<div class="title">
+      </div>
 
-<small>PROCESSING CHARGES</small>
 
-<h2>
-Blood is not treated as a product for sale.
-</h2>
+      <div class="card">
 
-<p>
-Where applicable, authorized blood centres may charge
-regulated processing/service-related charges. The exact
-amount depends on the blood centre, component and
-applicable rules.
-</p>
+        <div class="number">
+          SOLUTION 06
+        </div>
 
-</div>
+        <h3>Smart Assistant</h3>
 
+        <p>
+          Guide users toward the appropriate RaktSathi
+          module based on their requirement.
+        </p>
 
-<div class="pricing">
+      </div>
 
-<div class="price-card">
+    </div>
 
-<h3>
-Government / Public Centre
-</h3>
+  </section>
 
-<div class="price">
-As applicable
-</div>
 
-<p>
-Charges and concessions can vary by centre and patient
-eligibility. Users should confirm the current amount with
-the concerned authorized blood centre.
-</p>
+  <!-- Architecture -->
 
-</div>
+  <section class="architecture">
 
+    <h2>RaktSathi Core Workflow</h2>
 
-<div class="price-card highlight">
+    <p>
+      The platform is designed around a simple emergency
+      coordination pipeline.
+    </p>
 
-<h3>
-Financial Assistance
-</h3>
 
-<div class="price">
-Proposed
-</div>
+    <div class="flow">
 
-<p>
-VitalLoop's SIH concept proposes a financial-assistance
-mechanism for eligible low-income/BPL beneficiaries,
-subject to verification, funding and applicable rules.
-</p>
+      <div class="flow-item">
+        <strong>01</strong>
+        Request
+      </div>
 
-</div>
+      <div class="flow-item">
+        <strong>02</strong>
+        Match
+      </div>
 
+      <div class="flow-item">
+        <strong>03</strong>
+        Coordinate
+      </div>
 
-<div class="price-card">
+      <div class="flow-item">
+        <strong>04</strong>
+        Verify
+      </div>
 
-<h3>
-Private / Other Centre
-</h3>
+      <div class="flow-item">
+        <strong>05</strong>
+        Resolve
+      </div>
 
-<div class="price">
-Centre-specific
-</div>
+    </div>
 
-<p>
-Applicable charges can differ by centre and blood
-component. Always verify the current official rate before
-making any payment.
-</p>
+  </section>
 
-</div>
 
-</div>
+  <!-- Innovation -->
 
+  <section style="margin-top:50px;">
 
-<div class="assistance">
+    <div class="section-title">
 
-<strong>
-💚 VitalLoop Assistance Concept
-</strong>
+      <h2>Innovation Layer</h2>
 
-<p>
-For the SIH prototype, VitalLoop proposes up to 50%
-assistance for verified eligible BPL/low-income users,
-subject to a future approved funding and verification
-model. This is a project proposal, not a currently
-guaranteed government benefit.
-</p>
+      <p>
+        Features designed to make RaktSathi more than
+        a basic blood-search interface.
+      </p>
 
-</div>
+    </div>
 
 
-<div class="warning">
+    <div class="innovation-grid">
 
-<strong>
-⚠️ Important:
-</strong>
+      <div class="card">
 
-Do not make a payment to a donor. Any applicable charge
-should be paid only through the authorized blood centre
-or healthcare facility according to its official process.
+        <div class="number">
+          INNOVATION 01
+        </div>
 
-</div>
+        <h3>Emergency-First Design</h3>
 
-</section>
+        <p>
+          The primary workflow starts with the patient's
+          requirement instead of making users navigate
+          disconnected services.
+        </p>
 
+      </div>
 
-<section class="container">
 
-<div class="safety">
+      <div class="card">
 
-<h2>
-🛡️ Safety & Trust
-</h2>
+        <div class="number">
+          INNOVATION 02
+        </div>
 
-<p>
-VitalLoop is designed as a discovery and coordination
-layer. It does not replace doctors, hospitals or authorized
-blood centres.
-</p>
+        <h3>Smart Matching</h3>
 
-<ul>
+        <p>
+          Blood group, component, location and registered
+          availability can be used as matching signals.
+        </p>
 
-<li>
-No guarantee of blood availability.
-</li>
+      </div>
 
-<li>
-No independent blood collection or storage by VitalLoop.
-</li>
 
-<li>
-No independent compatibility decision.
-</li>
+      <div class="card">
 
-<li>
-Final screening and transfusion decisions remain with
-qualified healthcare professionals.
-</li>
+        <div class="number">
+          INNOVATION 03
+        </div>
 
-<li>
-Prototype/demo data should never be treated as live
-medical availability.
-</li>
+        <h3>Verification Layer</h3>
 
-<li>
-Real patient information should only be handled through
-a properly secured production backend.
-</li>
+        <p>
+          Potential matches are clearly separated from
+          confirmed medical or facility decisions.
+        </p>
 
-</ul>
+      </div>
 
-</div>
 
-</section>
+      <div class="card">
 
+        <div class="number">
+          INNOVATION 04
+        </div>
 
-<section class="vision">
+        <h3>Coordination Tracking</h3>
 
-<h2>
-Healthier People. Brighter Tomorrow.
-</h2>
+        <p>
+          Request states provide visibility into where
+          a requirement currently stands.
+        </p>
 
-<p>
-Our vision is to make healthcare-resource discovery more
-accessible, understandable and connected — especially
-when families need help quickly.
-</p>
+      </div>
 
-</section>
+
+      <div class="card">
+
+        <div class="number">
+          INNOVATION 05
+        </div>
+
+        <h3>Decision-Support Ready</h3>
+
+        <p>
+          The architecture can later support analytics
+          such as demand trends and resource prioritisation.
+        </p>
+
+      </div>
+
+
+      <div class="card">
+
+        <div class="number">
+          INNOVATION 06
+        </div>
+
+        <h3>Modular Architecture</h3>
+
+        <p>
+          Emergency requests, resource discovery, donor
+          network, camps and assistant modules can evolve
+          independently.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Comparison -->
+
+  <section class="comparison">
+
+    <h2>How RaktSathi is Positioned</h2>
+
+    <table>
+
+      <thead>
+
+        <tr>
+          <th>Capability</th>
+          <th>Traditional Search</th>
+          <th>RaktSathi</th>
+        </tr>
+
+      </thead>
+
+      <tbody>
+
+        <tr>
+          <td>Blood Resource Search</td>
+          <td>Basic / fragmented</td>
+          <td>Structured discovery</td>
+        </tr>
+
+        <tr>
+          <td>Emergency Request</td>
+          <td>Usually separate</td>
+          <td>Integrated workflow</td>
+        </tr>
+
+        <tr>
+          <td>Potential Donor Matching</td>
+          <td>Manual</td>
+          <td>Matching-ready architecture</td>
+        </tr>
+
+        <tr>
+          <td>Verification</td>
+          <td>Often unclear</td>
+          <td>Explicit verification stage</td>
+        </tr>
+
+        <tr>
+          <td>Request Tracking</td>
+          <td>Limited</td>
+          <td>Structured status flow</td>
+        </tr>
+
+        <tr>
+          <td>Smart Assistant</td>
+          <td>Not integrated</td>
+          <td>Navigation & coordination support</td>
+        </tr>
+
+      </tbody>
+
+    </table>
+
+  </section>
+
+
+  <!-- Impact -->
+
+  <section>
+
+    <div class="section-title" style="margin-top:50px;">
+
+      <h2>Expected Impact</h2>
+
+      <p>
+        RaktSathi aims to improve coordination, clarity
+        and discoverability during blood-related needs.
+      </p>
+
+    </div>
+
+
+    <div class="impact">
+
+      <div class="impact-card">
+
+        <strong>01</strong>
+
+        <p>
+          Faster resource discovery
+        </p>
+
+      </div>
+
+
+      <div class="impact-card">
+
+        <strong>02</strong>
+
+        <p>
+          Better emergency coordination
+        </p>
+
+      </div>
+
+
+      <div class="impact-card">
+
+        <strong>03</strong>
+
+        <p>
+          Clearer verification workflow
+        </p>
+
+      </div>
+
+
+      <div class="impact-card">
+
+        <strong>04</strong>
+
+        <p>
+          Data-driven future expansion
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- Vision -->
+
+  <section class="vision">
+
+    <h2>Our Vision</h2>
+
+    <div class="tagline">
+      Connecting People. Saving Lives.
+    </div>
+
+    <p>
+      Build a responsible digital coordination network where
+      emergency blood requirements can be structured,
+      potential resources can be discovered and the right
+      healthcare stakeholders can be connected through a
+      transparent verification workflow.
+    </p>
+
+  </section>
+
+
+  <!-- Safety -->
+
+  <section class="safety">
+
+    <strong>Safety & Responsibility:</strong>
+
+    RaktSathi is a healthcare coordination prototype.
+    It does not collect, test, store, transport, release
+    or transfuse blood.
+
+    It does not guarantee blood availability and does not
+    make medical compatibility, donor eligibility or
+    treatment decisions.
+
+    Actual blood collection, testing, storage, compatibility
+    assessment and transfusion are handled by authorised
+    healthcare professionals and facilities.
+
+  </section>
+
+
+  <!-- CTA -->
+
+  <section class="cta">
+
+    <h2>Explore the RaktSathi Workflow</h2>
+
+    <p>
+      Start with an emergency request or discover
+      potential blood resources.
+    </p>
+
+    <a
+      href="emergency.html"
+      class="btn">
+      Emergency Request
+    </a>
+
+    <a
+      href="find-blood.html"
+      class="btn">
+      Find Blood Resources
+    </a>
+
+    <a
+      href="assistant.html"
+      class="btn">
+      Smart Assistant
+    </a>
+
+  </section>
+
+</main>
 
 
 <footer>
 
-<strong>
-VitalLoop
-</strong>
+  <strong>RaktSathi</strong>
 
-<p>
-Your Complete Healthcare Journey
-</p>
+  <br>
 
-<p>
-Free healthcare technology prototype for SIH
-</p>
+  Intelligent Blood Emergency Coordination Network
+
+  <br><br>
+
+  <a href="index.html">Home</a> ·
+  <a href="emergency.html">Emergency</a> ·
+  <a href="find-blood.html">Find Blood</a> ·
+  <a href="donor.html">Donor Network</a> ·
+  <a href="camps.html">Camps</a>
+
+  <br><br>
+
+  © 2026 RaktSathi · Prototype
 
 </footer>
-
 
 </body>
 </html>
