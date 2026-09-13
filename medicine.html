@@ -2,660 +2,798 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Medicine & Care Guide | RaktSathi</title>
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <meta name="theme-color" content="#8B0000">
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5faf7;
-      color: #17352a;
-      line-height: 1.6;
-    }
+  <meta name="description"
+        content="RaktSathi Medicine and Care Information - Healthcare navigation and support.">
 
-    header {
-      background: #063b2c;
-      color: white;
-      padding: 16px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+  <title>Medicine & Care | RaktSathi</title>
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 23px;
-      font-weight: bold;
-    }
+  <link rel="manifest" href="manifest.json">
+  <link rel="icon" href="raktsathi-logo.png">
 
-    .logo-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: #d71920;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      font-size: 22px;
-      font-weight: bold;
-    }
-
-    nav {
-      display: flex;
-      gap: 18px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      color: #ffb3b3;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #063b2c, #08744f);
-      color: white;
-      text-align: center;
-      padding: 65px 6%;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 15px;
-      border: 1px solid rgba(255,255,255,.4);
-      border-radius: 30px;
-      font-size: 12px;
-      letter-spacing: 1px;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(32px, 5vw, 52px);
-      margin-bottom: 13px;
-    }
-
-    .hero p {
-      max-width: 760px;
-      margin: auto;
-      color: #d9f4e9;
-      font-size: 17px;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1100px;
-      margin: 45px auto;
-    }
-
-    .notice {
-      background: #fff3f3;
-      border-left: 5px solid #d71920;
-      padding: 20px;
-      border-radius: 10px;
-      color: #5e3030;
-      margin-bottom: 35px;
-      font-size: 14px;
-    }
-
-    .section-title {
-      text-align: center;
-      margin-bottom: 25px;
-    }
-
-    .section-title h2 {
-      color: #063b2c;
-      font-size: 30px;
-    }
-
-    .section-title p {
-      color: #66756f;
-      margin-top: 7px;
-    }
-
-    .care-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .care-card {
-      background: white;
-      padding: 25px;
-      border-radius: 18px;
-      border: 1px solid #e1ebe6;
-      box-shadow: 0 7px 25px rgba(0,0,0,.06);
-    }
-
-    .icon {
-      width: 50px;
-      height: 50px;
-      background: #e8f3ee;
-      color: #08744f;
-      border-radius: 13px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 23px;
-      margin-bottom: 14px;
-    }
-
-    .care-card h3 {
-      color: #063b2c;
-      margin-bottom: 8px;
-    }
-
-    .care-card p {
-      color: #66756f;
-      font-size: 14px;
-    }
-
-    .workflow {
-      margin-top: 50px;
-      background: linear-gradient(135deg, #063b2c, #08744f);
-      color: white;
-      padding: 30px;
-      border-radius: 22px;
-    }
-
-    .workflow h2 {
-      margin-bottom: 8px;
-    }
-
-    .workflow > p {
-      color: #d9f4e9;
-      margin-bottom: 22px;
-    }
-
-    .steps {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 15px;
-    }
-
-    .step {
-      background: rgba(255,255,255,.1);
-      border: 1px solid rgba(255,255,255,.18);
-      padding: 20px;
-      border-radius: 15px;
-    }
-
-    .step-number {
-      color: #ffb3b3;
-      font-size: 12px;
-      font-weight: bold;
-    }
-
-    .step h3 {
-      margin: 7px 0;
-      font-size: 17px;
-    }
-
-    .step p {
-      color: #d9f4e9;
-      font-size: 13px;
-    }
-
-    .faq {
-      margin-top: 45px;
-      background: white;
-      padding: 30px;
-      border-radius: 22px;
-      box-shadow: 0 7px 25px rgba(0,0,0,.06);
-    }
-
-    .faq h2 {
-      color: #063b2c;
-      margin-bottom: 15px;
-    }
-
-    details {
-      border-bottom: 1px solid #dfe9e4;
-      padding: 16px 0;
-    }
-
-    summary {
-      cursor: pointer;
-      font-weight: bold;
-      color: #063b2c;
-    }
-
-    details p {
-      color: #66756f;
-      font-size: 14px;
-      margin-top: 9px;
-    }
-
-    .emergency {
-      margin-top: 35px;
-      background: #d71920;
-      color: white;
-      padding: 30px;
-      border-radius: 20px;
-    }
-
-    .emergency p {
-      color: #ffe1e1;
-      margin: 8px 0 18px;
-    }
-
-    .btn {
-      display: inline-block;
-      text-decoration: none;
-      padding: 12px 19px;
-      border-radius: 9px;
-      font-weight: bold;
-      font-size: 13px;
-      background: white;
-      color: #a50f15;
-    }
-
-    footer {
-      margin-top: 60px;
-      background: #03271e;
-      color: #d8eee5;
-      text-align: center;
-      padding: 30px 6%;
-      font-size: 13px;
-    }
-
-    footer a {
-      color: #9fe3c5;
-      text-decoration: none;
-    }
-
-    @media(max-width: 850px) {
-      .care-grid,
-      .steps {
-        grid-template-columns: 1fr;
-      }
-
-      header {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      nav {
-        justify-content: center;
-      }
-    }
-  </style>
+  <link rel="stylesheet" href="css/style.css">
 </head>
 
 <body>
 
-<header>
+  <!-- ================= HEADER ================= -->
 
-  <div class="logo">
-    <div class="logo-icon">S</div>
-    RaktSathi
-  </div>
+  <header class="site-header">
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="emergency.html">Emergency</a>
-    <a href="find-blood.html">Find Blood</a>
-    <a href="blood-request.html">Track Request</a>
-    <a href="donor.html">Donor Network</a>
-    <a href="camps.html">Camps</a>
-    <a href="assistant.html">Assistant</a>
-  </nav>
+    <div class="container nav-container">
 
-</header>
+      <a href="index.html" class="brand">
+
+        <img
+          src="raktsathi-logo.png"
+          alt="RaktSathi Logo"
+          class="brand-logo"
+        >
+
+        <span class="brand-text">
+          RaktSathi
+        </span>
+
+      </a>
+
+      <nav class="main-nav" aria-label="Main navigation">
+
+        <a href="index.html">
+          Home
+        </a>
+
+        <a href="find-blood.html">
+          Find Blood
+        </a>
+
+        <a href="emergency.html">
+          Emergency
+        </a>
+
+        <a href="donor.html">
+          Donor Network
+        </a>
+
+        <a href="camps.html">
+          Camps
+        </a>
+
+        <a href="assistant.html">
+          Assistant
+        </a>
+
+      </nav>
+
+    </div>
+
+  </header>
 
 
-<section class="hero">
+  <!-- ================= HERO ================= -->
 
-  <div class="badge">
-    HEALTHCARE SUPPORT & CARE GUIDE
-  </div>
+  <main>
 
-  <h1>Medicine & Care Information</h1>
+    <section class="hero hero-dark">
 
-  <p>
-    General healthcare guidance to help users understand
-    the right coordination pathway during a health-related need.
-  </p>
+      <div class="container hero-content">
 
-</section>
+        <span class="eyebrow">
+          RAKTSATHI • MEDICINE & CARE
+        </span>
+
+        <h1>
+          Find the Right
+          <span>Healthcare Path.</span>
+        </h1>
+
+        <p class="hero-text">
+          A healthcare-navigation module designed to help
+          users identify the appropriate next step without
+          replacing professional medical advice.
+        </p>
+
+        <div class="hero-actions">
+
+          <a
+            href="#care-options"
+            class="btn btn-primary"
+          >
+            Explore Care Options
+          </a>
+
+          <a
+            href="assistant.html"
+            class="btn btn-secondary"
+          >
+            Ask Assistant
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
 
 
-<main class="container">
+    <!-- ================= CARE OPTIONS ================= -->
+
+    <section
+      class="section"
+      id="care-options"
+    >
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            HEALTHCARE NAVIGATION
+          </span>
+
+          <h2>
+            Choose the Path You Need
+          </h2>
+
+          <p>
+            RaktSathi can guide users toward the appropriate
+            healthcare-resource module.
+          </p>
+
+        </div>
 
 
-  <div class="notice">
-
-    <strong>Important:</strong>
-
-    RaktSathi does not prescribe medicines, diagnose
-    diseases or replace a doctor. Medicine selection,
-    dosage, interactions and treatment decisions must be
-    made by a qualified healthcare professional.
-
-  </div>
+        <div class="feature-grid">
 
 
-  <!-- Care Areas -->
+          <!-- MEDICAL CONSULTATION -->
 
-  <section>
+          <article class="card reveal">
 
-    <div class="section-title">
+            <div class="card-icon">
+              👨‍⚕️
+            </div>
 
-      <h2>Healthcare Support Areas</h2>
+            <h3>
+              Medical Consultation
+            </h3>
 
-      <p>
-        Use the appropriate healthcare pathway for your need.
-      </p>
+            <p>
+              For symptoms, diagnosis or treatment-related
+              questions, consult a qualified healthcare
+              professional.
+            </p>
+
+            <span class="text-link">
+              Professional Review Required
+            </span>
+
+          </article>
+
+
+          <!-- MEDICINE INFORMATION -->
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              💊
+            </div>
+
+            <h3>
+              Medicine Information
+            </h3>
+
+            <p>
+              Use trusted healthcare sources or ask a
+              qualified professional about a medicine's
+              appropriate use.
+            </p>
+
+            <span class="text-link">
+              Verify Before Use
+            </span>
+
+          </article>
+
+
+          <!-- HEALTHCARE FACILITY -->
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              🏥
+            </div>
+
+            <h3>
+              Healthcare Facility
+            </h3>
+
+            <p>
+              For medical care, testing or treatment,
+              contact an appropriate authorized healthcare
+              facility.
+            </p>
+
+            <a
+              href="find-blood.html"
+              class="text-link"
+            >
+              Explore Resources →
+            </a>
+
+          </article>
+
+
+          <!-- BLOOD REQUIREMENT -->
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              🩸
+            </div>
+
+            <h3>
+              Blood Requirement
+            </h3>
+
+            <p>
+              If a patient needs blood support, use the
+              structured RaktSathi emergency workflow.
+            </p>
+
+            <a
+              href="emergency.html"
+              class="text-link"
+            >
+              Start Emergency Request →
+            </a>
+
+          </article>
+
+
+          <!-- REQUEST TRACKING -->
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              📋
+            </div>
+
+            <h3>
+              Track Request
+            </h3>
+
+            <p>
+              Continue to the request-tracking module
+              for an existing RaktSathi request.
+            </p>
+
+            <a
+              href="blood-request.html"
+              class="text-link"
+            >
+              Track Request →
+            </a>
+
+          </article>
+
+
+          <!-- SMART ASSISTANT -->
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              🤖
+            </div>
+
+            <h3>
+              Smart Assistant
+            </h3>
+
+            <p>
+              Use the RaktSathi assistant to navigate
+              available platform features.
+            </p>
+
+            <a
+              href="assistant.html"
+              class="text-link"
+            >
+              Open Assistant →
+            </a>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= CARE WORKFLOW ================= -->
+
+    <section class="section section-alt">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            SAFE HEALTHCARE WORKFLOW
+          </span>
+
+          <h2>
+            Identify → Choose → Review → Coordinate
+          </h2>
+
+          <p>
+            RaktSathi focuses on navigation and coordination,
+            while medical decisions remain with qualified
+            healthcare professionals.
+          </p>
+
+        </div>
+
+
+        <div class="workflow">
+
+
+          <div class="workflow-step reveal">
+
+            <span class="workflow-number">
+              01
+            </span>
+
+            <h3>
+              Identify Need
+            </h3>
+
+            <p>
+              Understand whether you need healthcare
+              information, consultation, facility support
+              or blood-resource coordination.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-arrow">
+            →
+          </div>
+
+
+          <div class="workflow-step reveal">
+
+            <span class="workflow-number">
+              02
+            </span>
+
+            <h3>
+              Choose Path
+            </h3>
+
+            <p>
+              Select the RaktSathi module that best matches
+              your current requirement.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-arrow">
+            →
+          </div>
+
+
+          <div class="workflow-step reveal">
+
+            <span class="workflow-number">
+              03
+            </span>
+
+            <h3>
+              Professional Review
+            </h3>
+
+            <p>
+              Medical diagnosis, treatment and medicine
+              decisions require qualified professionals.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-arrow">
+            →
+          </div>
+
+
+          <div class="workflow-step reveal">
+
+            <span class="workflow-number">
+              04
+            </span>
+
+            <h3>
+              Coordinate
+            </h3>
+
+            <p>
+              Continue with the appropriate healthcare
+              facility or RaktSathi coordination workflow.
+            </p>
+
+          </div>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= MEDICINE SAFETY ================= -->
+
+    <section class="section section-dark">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            MEDICINE SAFETY
+          </span>
+
+          <h2>
+            Information Should Support,
+            Not Replace, Professional Care
+          </h2>
+
+          <p>
+            RaktSathi does not prescribe medicines or
+            independently decide treatment.
+          </p>
+
+        </div>
+
+
+        <div class="feature-grid">
+
+
+          <article class="card card-dark reveal">
+
+            <div class="card-icon">
+              ✓
+            </div>
+
+            <h3>
+              Verify Medicine Information
+            </h3>
+
+            <p>
+              Medicine-related information should be
+              confirmed using reliable healthcare sources
+              and qualified professionals.
+            </p>
+
+          </article>
+
+
+          <article class="card card-dark reveal">
+
+            <div class="card-icon">
+              ⚕
+            </div>
+
+            <h3>
+              Professional Guidance
+            </h3>
+
+            <p>
+              Diagnosis, dosage, treatment selection and
+              medicine suitability require professional
+              evaluation.
+            </p>
+
+          </article>
+
+
+          <article class="card card-dark reveal">
+
+            <div class="card-icon">
+              🔒
+            </div>
+
+            <h3>
+              Responsible Design
+            </h3>
+
+            <p>
+              The platform is designed to avoid presenting
+              automated suggestions as medical instructions.
+            </p>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= BLOOD SUPPORT ================= -->
+
+    <section class="section">
+
+      <div class="container">
+
+        <div class="section-heading reveal">
+
+          <span class="eyebrow">
+            BLOOD RESOURCE SUPPORT
+          </span>
+
+          <h2>
+            If the Requirement Is Blood-Related
+          </h2>
+
+          <p>
+            Move directly to RaktSathi's emergency
+            coordination workflow.
+          </p>
+
+        </div>
+
+
+        <div class="card-grid">
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              🚨
+            </div>
+
+            <h3>
+              Emergency Blood Request
+            </h3>
+
+            <p>
+              Create a structured request containing
+              relevant requirement information.
+            </p>
+
+            <a
+              href="emergency.html"
+              class="btn btn-primary"
+            >
+              Create Request
+            </a>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              🔎
+            </div>
+
+            <h3>
+              Find Blood Resources
+            </h3>
+
+            <p>
+              Search the available prototype blood-centre
+              resource dataset.
+            </p>
+
+            <a
+              href="find-blood.html"
+              class="btn btn-secondary"
+            >
+              Find Resources
+            </a>
+
+          </article>
+
+
+          <article class="card reveal">
+
+            <div class="card-icon">
+              📊
+            </div>
+
+            <h3>
+              Track Request
+            </h3>
+
+            <p>
+              Check the status of a previously created
+              RaktSathi prototype request.
+            </p>
+
+            <a
+              href="blood-request.html"
+              class="btn btn-secondary"
+            >
+              Track Request
+            </a>
+
+          </article>
+
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= IMPORTANT NOTICE ================= -->
+
+    <section class="section section-alt">
+
+      <div class="container">
+
+        <div class="notice notice-warning reveal">
+
+          <h3>
+            Important Healthcare Notice
+          </h3>
+
+          <p>
+            RaktSathi is a healthcare-navigation and
+            blood-resource coordination prototype. It does
+            not diagnose diseases, prescribe medicines,
+            determine treatment, guarantee blood availability,
+            or replace a doctor, hospital or authorized
+            healthcare facility.
+          </p>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================= EMERGENCY CTA ================= -->
+
+    <section class="emergency-cta">
+
+      <div class="container">
+
+        <div class="cta-content reveal">
+
+          <span class="eyebrow">
+            WHEN EVERY MINUTE MATTERS
+          </span>
+
+          <h2>
+            Need Blood Support?
+          </h2>
+
+          <p>
+            Start a structured emergency request through
+            RaktSathi.
+          </p>
+
+          <a
+            href="emergency.html"
+            class="btn btn-primary"
+          >
+            Start Emergency Request
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================= FOOTER ================= -->
+
+  <footer class="site-footer">
+
+    <div class="container footer-content">
+
+      <div>
+
+        <h3>
+          RaktSathi
+        </h3>
+
+        <p>
+          Intelligent Blood Emergency Coordination Network
+        </p>
+
+      </div>
+
+
+      <div class="footer-links">
+
+        <a href="about.html">
+          About
+        </a>
+
+        <a href="blood-education.html">
+          Blood Intelligence
+        </a>
+
+        <a href="donor.html">
+          Donor Network
+        </a>
+
+        <a href="camps.html">
+          Camps
+        </a>
+
+      </div>
 
     </div>
 
 
-    <div class="care-grid">
+    <div class="container footer-bottom">
 
+      <p>
+        © 2026 RaktSathi. Prototype for Smart India Hackathon.
+      </p>
 
-      <div class="care-card">
-
-        <div class="icon">🩺</div>
-
-        <h3>Medical Consultation</h3>
-
-        <p>
-          For symptoms, diagnosis or treatment decisions,
-          consult a qualified healthcare professional.
-        </p>
-
-      </div>
-
-
-      <div class="care-card">
-
-        <div class="icon">💊</div>
-
-        <h3>Medicine Information</h3>
-
-        <p>
-          Prescription medicines should be taken only
-          according to professional medical advice and
-          the prescribed instructions.
-        </p>
-
-      </div>
-
-
-      <div class="care-card">
-
-        <div class="icon">🏥</div>
-
-        <h3>Healthcare Facility</h3>
-
-        <p>
-          For urgent or complex healthcare needs,
-          coordinate directly with the appropriate
-          hospital or authorised healthcare facility.
-        </p>
-
-      </div>
-
-
-      <div class="care-card">
-
-        <div class="icon">🩸</div>
-
-        <h3>Blood Requirement</h3>
-
-        <p>
-          For blood-related requirements, use RaktSathi's
-          resource discovery and emergency coordination
-          workflow.
-        </p>
-
-      </div>
-
-
-      <div class="care-card">
-
-        <div class="icon">📋</div>
-
-        <h3>Request Tracking</h3>
-
-        <p>
-          Use the tracking module to view the status of
-          a blood request created through this prototype.
-        </p>
-
-      </div>
-
-
-      <div class="care-card">
-
-        <div class="icon">🤖</div>
-
-        <h3>Smart Assistant</h3>
-
-        <p>
-          Get navigation support for RaktSathi modules
-          through the Smart Healthcare Assistant.
-        </p>
-
-      </div>
+      <p>
+        Connecting People. Supporting Care.
+      </p>
 
     </div>
 
-  </section>
+  </footer>
 
 
-  <!-- Safe workflow -->
+  <!-- ================= SCRIPTS ================= -->
 
-  <section class="workflow">
+  <script src="js/animations.js"></script>
+  <script src="js/app.js"></script>
 
-    <h2>Safe Healthcare Coordination</h2>
 
-    <p>
-      RaktSathi focuses on connecting people with the
-      appropriate healthcare pathway rather than making
-      medical decisions.
-    </p>
+  <!-- ================= SERVICE WORKER ================= -->
 
+  <script>
 
-    <div class="steps">
+    if ("serviceWorker" in navigator) {
 
-      <div class="step">
+      window.addEventListener(
+        "load",
+        function () {
 
-        <div class="step-number">
-          STEP 01
-        </div>
+          navigator.serviceWorker
+            .register("sw.js")
+            .catch(function (error) {
 
-        <h3>Identify Need</h3>
+              console.log(
+                "Service worker registration failed:",
+                error
+              );
 
-        <p>
-          Understand whether the requirement is general,
-          urgent or blood-related.
-        </p>
+            });
 
-      </div>
+        }
+      );
 
+    }
 
-      <div class="step">
-
-        <div class="step-number">
-          STEP 02
-        </div>
-
-        <h3>Choose Path</h3>
-
-        <p>
-          Select consultation, healthcare facility,
-          blood resource or request tracking.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          STEP 03
-        </div>
-
-        <h3>Professional Review</h3>
-
-        <p>
-          Medical decisions remain with qualified
-          healthcare professionals.
-        </p>
-
-      </div>
-
-
-      <div class="step">
-
-        <div class="step-number">
-          STEP 04
-        </div>
-
-        <h3>Coordinate</h3>
-
-        <p>
-          Use RaktSathi to navigate the appropriate
-          coordination workflow.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- FAQ -->
-
-  <section class="faq">
-
-    <h2>Frequently Asked Questions</h2>
-
-
-    <details>
-
-      <summary>
-        Can RaktSathi recommend a medicine?
-      </summary>
-
-      <p>
-        No. RaktSathi is not a prescribing system.
-        Medicine selection and treatment decisions require
-        qualified professional assessment.
-      </p>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        Can I change a prescribed dose using this website?
-      </summary>
-
-      <p>
-        No. Do not change, stop or start a prescription
-        based only on information from this website.
-        Consult the prescribing healthcare professional.
-      </p>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        What if my need is a blood emergency?
-      </summary>
-
-      <p>
-        Use the Emergency Request module to structure
-        the blood requirement and coordinate with the
-        treating healthcare facility or authorised
-        blood centre.
-      </p>
-
-    </details>
-
-
-    <details>
-
-      <summary>
-        Does RaktSathi replace a hospital?
-      </summary>
-
-      <p>
-        No. RaktSathi is a coordination and discovery
-        prototype. It does not replace hospitals,
-        blood centres or healthcare professionals.
-      </p>
-
-    </details>
-
-  </section>
-
-
-  <!-- Emergency -->
-
-  <section class="emergency">
-
-    <h2>Blood Emergency?</h2>
-
-    <p>
-      Move directly to the RaktSathi emergency
-      coordination workflow.
-    </p>
-
-    <a
-      href="emergency.html"
-      class="btn">
-
-      Create Emergency Request
-
-    </a>
-
-  </section>
-
-</main>
-
-
-<footer>
-
-  <strong>RaktSathi</strong>
-
-  <br>
-
-  Intelligent Blood Emergency Coordination Network
-
-  <br><br>
-
-  <a href="index.html">Home</a> ·
-  <a href="emergency.html">Emergency</a> ·
-  <a href="find-blood.html">Find Blood</a> ·
-  <a href="assistant.html">Assistant</a>
-
-  <br><br>
-
-  © 2026 RaktSathi · Prototype
-
-</footer>
+  </script>
 
 </body>
 </html>
