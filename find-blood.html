@@ -1,1309 +1,1834 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta
+    name="viewport"
+    content="width=device-width, initial-scale=1.0"
+  >
 
-<title>Find Blood Resources | VitalLoop</title>
+  <meta
+    name="description"
+    content="VitalLoop Blood Resource Network - Find nearby authorized blood centres."
+  >
 
-<meta name="description"
-content="Find relevant blood resources by blood group, component and location with VitalLoop.">
+  <title>Find Blood | VitalLoop</title>
 
-<style>
+  <style>
 
-/* =========================
-   RESET
-========================= */
-
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-}
-
-html{
-    scroll-behavior:smooth;
-}
-
-body{
-    font-family:Arial,Helvetica,sans-serif;
-    background:#f4fbf7;
-    color:#10251c;
-}
-
-button,
-input,
-select{
-    font-family:inherit;
-}
-
-a{
-    text-decoration:none;
-    color:inherit;
-}
-
-
-/* =========================
-   NAVBAR
-========================= */
-
-.navbar{
-    position:sticky;
-    top:0;
-    z-index:1000;
-
-    height:75px;
-
-    background:rgba(255,255,255,.96);
-
-    backdrop-filter:blur(15px);
-
-    border-bottom:1px solid #dceee4;
-
-    box-shadow:0 5px 25px rgba(0,80,40,.06);
-}
-
-.nav{
-    max-width:1200px;
-    height:100%;
-    margin:auto;
-    padding:0 25px;
-
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
-
-.logo{
-    display:flex;
-    align-items:center;
-    gap:10px;
-}
-
-.logo-icon{
-    width:43px;
-    height:43px;
-
-    border-radius:14px;
-
-    background:linear-gradient(
-        135deg,
-        #09a650,
-        #06783a
-    );
-
-    color:white;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    font-size:23px;
-    font-weight:bold;
-
-    box-shadow:
-    0 8px 20px rgba(7,148,71,.2);
-}
-
-.logo-text strong{
-    display:block;
-    color:#067c3d;
-    font-size:21px;
-}
-
-.logo-text small{
-    display:block;
-    color:#697a71;
-    font-size:9px;
-}
-
-.back{
-    color:#087c3d;
-    font-size:14px;
-    font-weight:bold;
-
-    transition:.3s;
-}
-
-.back:hover{
-    transform:translateX(-4px);
-}
-
-
-/* =========================
-   HERO
-========================= */
-
-.hero{
-    padding:75px 7% 90px;
-
-    text-align:center;
-
-    background:
-    radial-gradient(
-        circle at 50% 0%,
-        #baf3cb,
-        transparent 42%
-    ),
-    linear-gradient(
-        135deg,
-        #eafaf0,
-        #ffffff
-    );
-}
-
-.hero-label{
-    color:#079447;
-
-    font-size:12px;
-
-    font-weight:800;
-
-    letter-spacing:3px;
-}
-
-.hero h1{
-    font-size:48px;
-
-    margin:15px 0;
-
-    line-height:1.1;
-}
-
-.hero h1 span{
-    color:#079447;
-}
-
-.hero p{
-    max-width:700px;
-
-    margin:auto;
-
-    color:#60736a;
-
-    line-height:1.75;
-
-    font-size:16px;
-}
-
-
-/* =========================
-   SEARCH CONTAINER
-========================= */
-
-.search-wrapper{
-    max-width:1050px;
-
-    margin:-35px auto 70px;
-
-    padding:0 20px;
-
-    position:relative;
-
-    z-index:5;
-}
-
-.search-card{
-    background:white;
-
-    padding:32px;
-
-    border-radius:24px;
-
-    border:1px solid #deeee5;
-
-    box-shadow:
-    0 20px 55px rgba(0,75,42,.12);
-}
-
-.search-title{
-    display:flex;
-    align-items:center;
-    gap:12px;
-
-    margin-bottom:25px;
-}
-
-.search-icon{
-    width:48px;
-    height:48px;
-
-    border-radius:14px;
-
-    display:flex;
-    align-items:center;
-    justify-content:center;
-
-    background:#dcf7e6;
-
-    font-size:23px;
-}
-
-.search-title h2{
-    font-size:21px;
-}
-
-.search-title p{
-    color:#718078;
-    font-size:12px;
-    margin-top:4px;
-}
-
-
-/* FORM */
-
-.form-grid{
-    display:grid;
-
-    grid-template-columns:
-    repeat(2,1fr);
-
-    gap:18px;
-}
-
-.field label{
-    display:block;
-
-    color:#4d6258;
-
-    font-size:12px;
-
-    font-weight:bold;
-
-    margin-bottom:7px;
-}
-
-.field input,
-.field select{
-
-    width:100%;
-
-    padding:14px;
-
-    border-radius:11px;
-
-    border:1px solid #d6e6dd;
-
-    outline:none;
-
-    background:#fbfdfc;
-
-    color:#263d32;
-
-    transition:.3s;
-}
-
-.field input:focus,
-.field select:focus{
-
-    border-color:#079447;
-
-    box-shadow:
-    0 0 0 3px rgba(7,148,71,.08);
-
-}
-
-.search-button{
-
-    width:100%;
-
-    margin-top:20px;
-
-    padding:15px;
-
-    border:none;
-
-    border-radius:11px;
-
-    color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #09a650,
-        #067b3b
-    );
-
-    font-size:15px;
-
-    font-weight:bold;
-
-    cursor:pointer;
-
-    box-shadow:
-    0 10px 25px rgba(7,148,71,.2);
-
-    transition:.3s;
-}
-
-.search-button:hover{
-
-    transform:translateY(-3px);
-
-    box-shadow:
-    0 15px 30px rgba(7,148,71,.3);
-
-}
-
-
-/* =========================
-   RESULTS
-========================= */
-
-.results{
-    max-width:1050px;
-
-    margin:auto;
-
-    padding:0 20px 80px;
-}
-
-.results-heading{
-    margin-bottom:22px;
-}
-
-.results-heading h2{
-    font-size:28px;
-}
-
-.results-heading p{
-    color:#718078;
-
-    font-size:13px;
-
-    margin-top:7px;
-}
-
-.result-card{
-
-    display:flex;
-
-    align-items:center;
-
-    justify-content:space-between;
-
-    gap:20px;
-
-    background:white;
-
-    padding:22px;
-
-    border-radius:18px;
-
-    border:1px solid #dfede5;
-
-    margin-bottom:15px;
-
-    transition:.35s;
-}
-
-.result-card:hover{
-
-    transform:translateY(-5px);
-
-    box-shadow:
-    0 15px 35px rgba(0,80,45,.09);
-
-}
-
-.result-left{
-
-    display:flex;
-
-    align-items:flex-start;
-
-    gap:15px;
-}
-
-.result-icon{
-
-    width:50px;
-    height:50px;
-
-    flex-shrink:0;
-
-    border-radius:15px;
-
-    background:#e0f8e8;
-
-    display:flex;
-
-    align-items:center;
-    justify-content:center;
-
-    font-size:22px;
-}
-
-.result-info h3{
-
-    font-size:16px;
-
-    margin-bottom:7px;
-}
-
-.result-info p{
-
-    color:#687970;
-
-    font-size:13px;
-
-    line-height:1.65;
-}
-
-.status{
-
-    padding:8px 13px;
-
-    border-radius:20px;
-
-    background:#e3f8ea;
-
-    color:#087c3d;
-
-    font-size:10px;
-
-    font-weight:bold;
-
-    white-space:nowrap;
-}
-
-
-/* =========================
-   EMPTY STATE
-========================= */
-
-.empty{
-
-    text-align:center;
-
-    padding:35px;
-
-    background:white;
-
-    border-radius:18px;
-
-    border:1px solid #dfede5;
-
-    color:#687970;
-}
-
-.empty-icon{
-
-    font-size:40px;
-
-    margin-bottom:10px;
-}
-
-.empty h3{
-
-    color:#21382d;
-
-    margin-bottom:7px;
-}
-
-.empty p{
-
-    font-size:13px;
-
-    line-height:1.6;
-}
-
-
-/* =========================
-   SAFETY BOX
-========================= */
-
-.safety{
-
-    max-width:1050px;
-
-    margin:0 auto 80px;
-
-    padding:0 20px;
-}
-
-.safety-box{
-
-    padding:27px;
-
-    border-radius:20px;
-
-    background:#e9f9ef;
-
-    border:1px solid #bfe5cc;
-}
-
-.safety-box h3{
-
-    color:#087c3d;
-
-    font-size:18px;
-
-    margin-bottom:10px;
-}
-
-.safety-box p{
-
-    color:#53695e;
-
-    font-size:13px;
-
-    line-height:1.75;
-}
-
-
-/* =========================
-   CTA
-========================= */
-
-.cta{
-
-    padding:70px 7%;
-
-    text-align:center;
-
-    color:white;
-
-    background:
-    linear-gradient(
-        135deg,
-        #056c36,
-        #09a650
-    );
-}
-
-.cta h2{
-
-    font-size:34px;
-
-    margin-bottom:12px;
-}
-
-.cta p{
-
-    max-width:650px;
-
-    margin:auto;
-
-    font-size:14px;
-
-    line-height:1.7;
-
-    opacity:.9;
-}
-
-.cta-button{
-
-    display:inline-block;
-
-    margin-top:24px;
-
-    padding:14px 23px;
-
-    border-radius:11px;
-
-    background:white;
-
-    color:#087c3d;
-
-    font-size:14px;
-
-    font-weight:bold;
-
-    transition:.3s;
-}
-
-.cta-button:hover{
-
-    transform:translateY(-4px);
-}
-
-
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-
-    background:#053d27;
-
-    color:white;
-
-    padding:45px 7% 25px;
-
-    text-align:center;
-}
-
-.footer-logo{
-
-    font-size:25px;
-
-    font-weight:bold;
-}
-
-footer p{
-
-    color:#a8c3b5;
-
-    font-size:12px;
-
-    margin-top:8px;
-
-    line-height:1.7;
-}
-
-.copyright{
-
-    margin-top:25px;
-
-    padding-top:18px;
-
-    border-top:1px solid #286149;
-
-    color:#8fa99c;
-
-    font-size:11px;
-}
-
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:650px){
-
-    .nav{
-        padding:0 17px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
-    .hero{
+    body {
+      font-family:
+        Inter,
+        Arial,
+        Helvetica,
+        sans-serif;
 
+      background:
+        linear-gradient(
+          135deg,
+          #f4fff8,
+          #ffffff
+        );
+
+      color: #123b28;
+      min-height: 100vh;
+    }
+
+    /* NAVBAR */
+
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+
+      background: rgba(255,255,255,0.96);
+
+      border-bottom:
+        1px solid #dcefe3;
+
+      backdrop-filter: blur(12px);
+
+      padding: 14px 5%;
+    }
+
+    .nav-inner {
+      max-width: 1250px;
+      margin: auto;
+
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
+      gap: 20px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      text-decoration: none;
+      color: #087f3f;
+
+      font-size: 22px;
+      font-weight: 800;
+    }
+
+    .brand-mark {
+      width: 42px;
+      height: 42px;
+
+      border-radius: 12px;
+
+      background:
+        linear-gradient(
+          135deg,
+          #087f3f,
+          #19a85b
+        );
+
+      color: white;
+
+      display: grid;
+      place-items: center;
+
+      font-size: 22px;
+    }
+
+    .back-btn {
+      text-decoration: none;
+
+      color: #087f3f;
+
+      border: 1px solid #bfe3cd;
+
+      padding: 10px 16px;
+
+      border-radius: 10px;
+
+      font-weight: 700;
+
+      transition: 0.25s;
+    }
+
+    .back-btn:hover {
+      background: #087f3f;
+      color: white;
+    }
+
+
+    /* HERO */
+
+    .hero {
+      max-width: 1250px;
+
+      margin: auto;
+
+      padding:
+        70px 5%
+        40px;
+
+      text-align: center;
+    }
+
+    .eyebrow {
+      display: inline-block;
+
+      color: #087f3f;
+
+      font-size: 13px;
+
+      font-weight: 800;
+
+      letter-spacing: 2px;
+
+      margin-bottom: 14px;
+    }
+
+    .hero h1 {
+      font-size:
+        clamp(34px, 6vw, 64px);
+
+      line-height: 1.05;
+
+      margin-bottom: 18px;
+
+      color: #103c27;
+    }
+
+    .hero h1 span {
+      color: #087f3f;
+    }
+
+    .hero p {
+      max-width: 720px;
+
+      margin: auto;
+
+      color: #607568;
+
+      font-size: 17px;
+
+      line-height: 1.7;
+    }
+
+
+    /* LOCATION AREA */
+
+    .location-box {
+      max-width: 1250px;
+
+      margin: 20px auto 30px;
+
+      padding: 0 5%;
+    }
+
+    .location-panel {
+      background:
+        linear-gradient(
+          135deg,
+          #087f3f,
+          #0ca653
+        );
+
+      color: white;
+
+      border-radius: 24px;
+
+      padding: 30px;
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 25px;
+
+      box-shadow:
+        0 20px 45px
+        rgba(8,127,63,0.18);
+    }
+
+    .location-panel h2 {
+      font-size: 25px;
+      margin-bottom: 8px;
+    }
+
+    .location-panel p {
+      opacity: 0.9;
+      line-height: 1.5;
+    }
+
+    .location-button {
+      border: none;
+
+      background: white;
+
+      color: #087f3f;
+
+      padding: 15px 22px;
+
+      border-radius: 12px;
+
+      font-size: 15px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+
+      white-space: nowrap;
+
+      transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+    }
+
+    .location-button:hover {
+      transform: translateY(-2px);
+
+      box-shadow:
+        0 10px 25px
+        rgba(0,0,0,0.15);
+    }
+
+    .location-button:disabled {
+      opacity: 0.7;
+      cursor: wait;
+    }
+
+
+    .location-status {
+      max-width: 1250px;
+
+      margin: 0 auto 25px;
+
+      padding: 0 5%;
+
+      color: #087f3f;
+
+      font-size: 14px;
+
+      font-weight: 700;
+    }
+
+
+    /* SEARCH */
+
+    .search-area {
+      max-width: 1250px;
+
+      margin: 0 auto 35px;
+
+      padding: 0 5%;
+    }
+
+    .search-panel {
+      background: white;
+
+      border:
+        1px solid #dcefe3;
+
+      border-radius: 22px;
+
+      padding: 25px;
+
+      box-shadow:
+        0 12px 35px
+        rgba(10,70,40,0.06);
+    }
+
+    .search-panel h2 {
+      margin-bottom: 20px;
+
+      color: #123b28;
+    }
+
+    .filters {
+      display: grid;
+
+      grid-template-columns:
+        repeat(4, 1fr);
+
+      gap: 15px;
+    }
+
+    .filter-group {
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 7px;
+    }
+
+    .filter-group label {
+      font-size: 13px;
+
+      font-weight: 800;
+
+      color: #416052;
+    }
+
+    .filter-group select,
+    .filter-group input {
+      width: 100%;
+
+      padding: 13px 14px;
+
+      border:
+        1px solid #cfe6d8;
+
+      border-radius: 10px;
+
+      outline: none;
+
+      background: #fbfffc;
+
+      color: #123b28;
+
+      font-size: 14px;
+    }
+
+    .filter-group select:focus,
+    .filter-group input:focus {
+      border-color: #087f3f;
+
+      box-shadow:
+        0 0 0 3px
+        rgba(8,127,63,0.08);
+    }
+
+    .filter-actions {
+      display: flex;
+
+      gap: 10px;
+
+      margin-top: 18px;
+    }
+
+    .primary-btn,
+    .secondary-btn {
+      border: none;
+
+      padding: 12px 20px;
+
+      border-radius: 10px;
+
+      font-weight: 800;
+
+      cursor: pointer;
+    }
+
+    .primary-btn {
+      background: #087f3f;
+      color: white;
+    }
+
+    .secondary-btn {
+      background: #e9f7ef;
+      color: #087f3f;
+    }
+
+
+    /* RESULTS */
+
+    .results-area {
+      max-width: 1250px;
+
+      margin: auto;
+
+      padding: 0 5% 70px;
+    }
+
+    .results-top {
+      display: flex;
+
+      align-items: center;
+
+      justify-content: space-between;
+
+      gap: 15px;
+
+      margin-bottom: 20px;
+    }
+
+    .results-top h2 {
+      color: #123b28;
+    }
+
+    #resultCount {
+      color: #648070;
+
+      font-size: 14px;
+    }
+
+    .blood-results {
+      display: grid;
+
+      grid-template-columns:
+        repeat(
+          auto-fit,
+          minmax(290px, 1fr)
+        );
+
+      gap: 20px;
+    }
+
+
+    /* CARD */
+
+    .blood-card {
+      background: white;
+
+      border:
+        1px solid #dcefe3;
+
+      border-radius: 20px;
+
+      padding: 22px;
+
+      box-shadow:
+        0 12px 32px
+        rgba(10,70,40,0.06);
+
+      transition:
+        transform 0.25s,
+        box-shadow 0.25s;
+
+      animation:
+        cardIn 0.45s ease both;
+    }
+
+    .blood-card:hover {
+      transform:
+        translateY(-5px);
+
+      box-shadow:
+        0 20px 40px
+        rgba(10,70,40,0.10);
+    }
+
+    @keyframes cardIn {
+
+      from {
+        opacity: 0;
+        transform:
+          translateY(15px);
+      }
+
+      to {
+        opacity: 1;
+        transform:
+          translateY(0);
+      }
+
+    }
+
+    .distance {
+      display: inline-block;
+
+      background: #e7f7ed;
+
+      color: #087f3f;
+
+      padding: 7px 10px;
+
+      border-radius: 20px;
+
+      font-size: 12px;
+
+      font-weight: 900;
+
+      margin-bottom: 13px;
+    }
+
+    .blood-card h3 {
+      font-size: 20px;
+
+      line-height: 1.3;
+
+      margin-bottom: 10px;
+
+      color: #123b28;
+    }
+
+    .centre-type {
+      display: inline-block;
+
+      background: #f0faf4;
+
+      border:
+        1px solid #d5eee0;
+
+      color: #087f3f;
+
+      padding: 5px 9px;
+
+      border-radius: 20px;
+
+      font-size: 11px;
+
+      font-weight: 800;
+
+      margin-bottom: 15px;
+    }
+
+    .blood-card p {
+      color: #607568;
+
+      font-size: 14px;
+
+      line-height: 1.6;
+
+      margin-bottom: 7px;
+    }
+
+    .blood-card strong {
+      color: #294f3a;
+    }
+
+    .card-actions {
+      display: grid;
+
+      grid-template-columns:
+        repeat(2, 1fr);
+
+      gap: 10px;
+
+      margin-top: 18px;
+    }
+
+    .card-actions a {
+      text-align: center;
+
+      text-decoration: none;
+
+      padding: 11px 10px;
+
+      border-radius: 10px;
+
+      background: #087f3f;
+
+      color: white;
+
+      font-size: 13px;
+
+      font-weight: 800;
+    }
+
+    .card-actions a:nth-child(2) {
+      background: #e8f7ee;
+
+      color: #087f3f;
+    }
+
+    .blood-card small {
+      display: block;
+
+      margin-top: 16px;
+
+      padding-top: 13px;
+
+      border-top:
+        1px solid #edf5ef;
+
+      color: #718379;
+
+      font-size: 11px;
+
+      line-height: 1.5;
+    }
+
+
+    /* EMPTY */
+
+    .empty-state {
+      grid-column: 1 / -1;
+
+      background: white;
+
+      border:
+        1px dashed #b9dcc7;
+
+      border-radius: 20px;
+
+      padding: 55px 25px;
+
+      text-align: center;
+
+      color: #648070;
+    }
+
+    .empty-icon {
+      font-size: 45px;
+
+      margin-bottom: 15px;
+    }
+
+    .empty-state h3 {
+      color: #123b28;
+
+      margin-bottom: 8px;
+    }
+
+
+    /* SAFETY */
+
+    .safety {
+      max-width: 1250px;
+
+      margin: 0 auto 60px;
+
+      padding: 0 5%;
+    }
+
+    .safety-box {
+      background: #fff9e8;
+
+      border:
+        1px solid #f0dfaa;
+
+      border-radius: 18px;
+
+      padding: 20px;
+
+      color: #695b31;
+
+      line-height: 1.6;
+
+      font-size: 13px;
+    }
+
+    .safety-box strong {
+      color: #4f421d;
+    }
+
+
+    /* FOOTER */
+
+    footer {
+      background: #08291a;
+
+      color: #dcefe3;
+
+      padding: 35px 5%;
+
+      text-align: center;
+    }
+
+    footer h3 {
+      color: white;
+
+      margin-bottom: 7px;
+    }
+
+    footer p {
+      font-size: 13px;
+
+      opacity: 0.8;
+    }
+
+
+    /* MOBILE */
+
+    @media (max-width: 900px) {
+
+      .filters {
+        grid-template-columns:
+          repeat(2, 1fr);
+      }
+
+    }
+
+
+    @media (max-width: 700px) {
+
+      .navbar {
+        padding: 12px 4%;
+      }
+
+      .hero {
         padding:
-        60px 6% 80px;
+          45px 5%
+          25px;
+      }
+
+      .hero p {
+        font-size: 15px;
+      }
+
+      .location-panel {
+        flex-direction: column;
+
+        align-items: stretch;
+
+        padding: 22px;
+      }
+
+      .location-button {
+        width: 100%;
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+      }
+
+      .filter-actions {
+        flex-direction: column;
+      }
+
+      .primary-btn,
+      .secondary-btn {
+        width: 100%;
+      }
+
+      .results-top {
+        align-items: flex-start;
+
+        flex-direction: column;
+      }
 
     }
 
-    .hero h1{
-
-        font-size:37px;
-
-    }
-
-    .hero p{
-
-        font-size:14px;
-
-    }
-
-    .search-wrapper{
-
-        margin-top:-30px;
-
-    }
-
-    .search-card{
-
-        padding:22px;
-
-    }
-
-    .form-grid{
-
-        grid-template-columns:1fr;
-
-    }
-
-    .result-card{
-
-        flex-direction:column;
-
-        align-items:flex-start;
-
-    }
-
-    .status{
-
-        margin-left:65px;
-
-    }
-
-    .cta h2{
-
-        font-size:29px;
-
-    }
-
-}
-
-</style>
+  </style>
 </head>
 
 
 <body>
 
+  <!-- NAVBAR -->
 
-<!-- =====================================================
-     NAVBAR
-===================================================== -->
+  <nav class="navbar">
 
-<header class="navbar">
+    <div class="nav-inner">
 
-<nav class="nav">
+      <a href="index.html" class="brand">
 
-<a href="index.html" class="logo">
+        <div class="brand-mark">
+          V+
+        </div>
 
-<div class="logo-icon">
-V
-</div>
+        VitalLoop
 
-<div class="logo-text">
+      </a>
 
-<strong>
-VitalLoop
-</strong>
+      <a
+        href="index.html"
+        class="back-btn"
+      >
+        ← Back to Home
+      </a>
 
-<small>
-Your Complete Healthcare Journey
-</small>
+    </div>
 
-</div>
+  </nav>
 
-</a>
 
+  <!-- HERO -->
 
-<a href="index.html" class="back">
-← Back to Home
-</a>
+  <header class="hero">
 
-</nav>
+    <span class="eyebrow">
+      VITALLOOP BLOOD RESOURCE NETWORK
+    </span>
 
-</header>
+    <h1>
+      Find Blood Centres
+      <span>Near You</span>
+    </h1>
 
+    <p>
+      Discover licensed blood centres across Uttar Pradesh,
+      search by blood group and district, and calculate
+      the distance from your current location.
+    </p>
 
+  </header>
 
-<!-- =====================================================
-     HERO
-===================================================== -->
 
-<section class="hero">
+  <!-- LOCATION -->
 
-<div class="hero-label">
-VITALLOOP BLOOD RESOURCE NETWORK
-</div>
+  <section class="location-box">
 
-<h1>
-Find <span>Blood Resources</span>
-</h1>
+    <div class="location-panel">
 
-<p>
-Search for relevant blood resources using blood group,
-component and location. Current availability should always
-be confirmed directly with the concerned authorized centre.
-</p>
+      <div>
 
-</section>
+        <h2>
+          📍 Find the Nearest Centre
+        </h2>
 
+        <p>
+          Allow location access to calculate
+          your distance from blood centres.
+        </p>
 
+      </div>
 
-<!-- =====================================================
-     SEARCH
-===================================================== -->
+      <button
+        id="locationButton"
+        class="location-button"
+        onclick="useMyLocation()"
+      >
+        📍 Use My Location
+      </button>
 
-<div class="search-wrapper">
+    </div>
 
-<div class="search-card">
+  </section>
 
 
-<div class="search-title">
+  <div
+    id="locationStatus"
+    class="location-status"
+  >
+    📍 Location not selected
+  </div>
 
-<div class="search-icon">
-🔎
-</div>
 
-<div>
+  <!-- SEARCH -->
 
-<h2>
-Search Blood Resources
-</h2>
+  <section class="search-area">
 
-<p>
-Enter your requirements to explore the network.
-</p>
+    <div class="search-panel">
 
-</div>
+      <h2>
+        Search Blood Resources
+      </h2>
 
-</div>
+      <div class="filters">
 
+        <div class="filter-group">
 
+          <label for="bloodGroup">
+            Blood Group
+          </label>
 
-<div class="form-grid">
+          <select id="bloodGroup">
 
+            <option value="">
+              All Blood Groups
+            </option>
 
-<div class="field">
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
 
-<label>
-Blood Group
-</label>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
 
-<select id="bloodGroup">
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
 
-<option value="">
-Select Blood Group
-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
 
-<option>A+</option>
-<option>A-</option>
-
-<option>B+</option>
-<option>B-</option>
-
-<option>O+</option>
-<option>O-</option>
-
-<option>AB+</option>
-<option>AB-</option>
-
-</select>
-
-</div>
-
-
-
-<div class="field">
-
-<label>
-Blood Component
-</label>
-
-<select id="component">
-
-<option value="">
-Select Component
-</option>
-
-<option>Whole Blood</option>
-<option>Red Blood Cells</option>
-<option>Platelets</option>
-<option>Plasma</option>
-
-</select>
-
-</div>
-
-
-
-<div class="field">
-
-<label>
-City / Location
-</label>
-
-<input
-type="text"
-id="city"
-placeholder="Example: Lucknow">
-
-</div>
-
-
-
-<div class="field">
-
-<label>
-Search Radius
-</label>
-
-<select id="radius">
-
-<option>
-5 km
-</option>
-
-<option>
-10 km
-</option>
-
-<option>
-25 km
-</option>
-
-<option>
-50 km
-</option>
-
-</select>
-
-</div>
-
-
-</div>
-
-
-<button
-class="search-button"
-onclick="searchBlood()">
-
-🔎 Search Blood Resources
-
-</button>
-
-
-</div>
-
-</div>
-
-
-
-<!-- =====================================================
-     RESULTS
-===================================================== -->
-
-<section class="results">
-
-
-<div class="results-heading">
-
-<h2>
-Relevant Resources
-</h2>
-
-<p id="resultMessage">
-Your search results will appear here.
-</p>
-
-</div>
-
-
-
-<div id="resultsContainer">
-
-
-<div class="empty">
-
-<div class="empty-icon">
-🩸
-</div>
-
-<h3>
-Start Your Search
-</h3>
-
-<p>
-Select a blood group and enter your location to
-explore relevant resource options.
-</p>
-
-</div>
-
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     SAFETY
-===================================================== -->
-
-<section class="safety">
-
-<div class="safety-box">
-
-<h3>
-⚠️ Important Safety Information
-</h3>
-
-<p>
-VitalLoop is a healthcare technology prototype and
-discovery/coordination layer. It does not itself collect,
-test, store, transport, release or distribute blood.
-Actual donation, testing, compatibility, storage and
-transfusion are handled by authorized healthcare
-facilities and trained professionals. Search results
-shown by this prototype do not represent guaranteed
-real-time blood availability.
-</p>
-
-</div>
-
-</section>
-
-
-
-<!-- =====================================================
-     CTA
-===================================================== -->
-
-<section class="cta">
-
-<h2>
-Can't Find What You Need?
-</h2>
-
-<p>
-You can raise a structured blood request and explore
-potential donor coordination through VitalLoop.
-</p>
-
-<a
-href="blood-request.html"
-class="cta-button">
-
-Raise Blood Request →
-
-</a>
-
-</section>
-
-
-
-<!-- =====================================================
-     FOOTER
-===================================================== -->
-
-<footer>
-
-<div class="footer-logo">
-VitalLoop
-</div>
-
-<p>
-Your Complete Healthcare Journey
-</p>
-
-<p>
-Healthier People. Brighter Tomorrow.
-</p>
-
-<div class="copyright">
-
-© 2026 VitalLoop. Healthcare technology prototype.
-
-</div>
-
-</footer>
-
-
-
-<!-- =====================================================
-     JAVASCRIPT
-===================================================== -->
-
-<script>
-
-function searchBlood(){
-
-    const group =
-    document.getElementById("bloodGroup").value;
-
-    const component =
-    document.getElementById("component").value;
-
-    const city =
-    document.getElementById("city").value.trim();
-
-    const radius =
-    document.getElementById("radius").value;
-
-    const container =
-    document.getElementById("resultsContainer");
-
-    const message =
-    document.getElementById("resultMessage");
-
-
-    /* VALIDATION */
-
-    if(!group || !city){
-
-        container.innerHTML = `
-
-        <div class="empty">
-
-            <div class="empty-icon">
-                ⚠️
-            </div>
-
-            <h3>
-                Information Required
-            </h3>
-
-            <p>
-                Please select a blood group and enter
-                your city or location.
-            </p>
+          </select>
 
         </div>
 
+
+        <div class="filter-group">
+
+          <label for="component">
+            Component
+          </label>
+
+          <select id="component">
+
+            <option value="">
+              All Components
+            </option>
+
+            <option value="Whole Blood">
+              Whole Blood
+            </option>
+
+            <option value="PRBC">
+              PRBC
+            </option>
+
+            <option value="Platelets">
+              Platelets
+            </option>
+
+            <option value="FFP">
+              FFP
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="filter-group">
+
+          <label for="district">
+            District
+          </label>
+
+          <select id="district">
+
+            <option value="">
+              All Districts
+            </option>
+
+            <option value="Lucknow">
+              Lucknow
+            </option>
+
+            <option value="Agra">
+              Agra
+            </option>
+
+            <option value="Kanpur Nagar">
+              Kanpur Nagar
+            </option>
+
+            <option value="Varanasi">
+              Varanasi
+            </option>
+
+            <option value="Prayagraj">
+              Prayagraj
+            </option>
+
+            <option value="Gorakhpur">
+              Gorakhpur
+            </option>
+
+            <option value="Meerut">
+              Meerut
+            </option>
+
+            <option value="Bareilly">
+              Bareilly
+            </option>
+
+            <option value="Ayodhya">
+              Ayodhya
+            </option>
+
+            <option value="Other">
+              Other
+            </option>
+
+          </select>
+
+        </div>
+
+
+        <div class="filter-group">
+
+          <label for="search">
+            Search Centre
+          </label>
+
+          <input
+            id="search"
+            type="search"
+            placeholder="Centre name..."
+          >
+
+        </div>
+
+      </div>
+
+
+      <div class="filter-actions">
+
+        <button
+          class="primary-btn"
+          onclick="applyFilters()"
+        >
+          Search
+        </button>
+
+        <button
+          class="secondary-btn"
+          onclick="resetFilters()"
+        >
+          Reset
+        </button>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- RESULTS -->
+
+  <section class="results-area">
+
+    <div class="results-top">
+
+      <h2>
+        Blood Centres
+      </h2>
+
+      <span id="resultCount">
+        Loading centres...
+      </span>
+
+    </div>
+
+
+    <div
+      id="bloodResults"
+      class="blood-results"
+    >
+
+      <div class="empty-state">
+
+        <div class="empty-icon">
+          🩸
+        </div>
+
+        <h3>
+          Loading blood centres...
+        </h3>
+
+        <p>
+          Please wait while VitalLoop loads
+          the blood-centre database.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- SAFETY -->
+
+  <section class="safety">
+
+    <div class="safety-box">
+
+      <strong>
+        ⚠️ Important healthcare notice
+      </strong>
+
+      <br>
+
+      VitalLoop is a discovery and coordination
+      platform. It does not store, test, transport,
+      distribute or release blood.
+
+      Authorized blood centres and healthcare
+      facilities remain responsible for medical
+      screening, testing, compatibility, collection,
+      storage and transfusion.
+
+      Blood availability must always be verified
+      directly with the authorized centre.
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+
+  <footer>
+
+    <h3>
+      VitalLoop
+    </h3>
+
+    <p>
+      Connecting People. Saving Lives. |
+      Your Complete Healthcare Journey
+    </p>
+
+    <p style="margin-top:10px;">
+      Healthcare technology prototype for
+      Smart India Hackathon
+    </p>
+
+  </footer>
+
+
+  <!-- JAVASCRIPT -->
+
+  <script>
+
+    let BLOOD_CENTRES = [];
+
+    let filteredCentres = [];
+
+    let userLocation = null;
+
+
+    /* LOAD JSON */
+
+    async function loadBloodCentres() {
+
+      const results =
+        document.getElementById(
+          "bloodResults"
+        );
+
+      try {
+
+        const response =
+          await fetch(
+            "data/blood-centres.json"
+          );
+
+        if (!response.ok) {
+          throw new Error(
+            "Unable to load database"
+          );
+        }
+
+        BLOOD_CENTRES =
+          await response.json();
+
+        filteredCentres =
+          [...BLOOD_CENTRES];
+
+        displayBloodCentres(
+          filteredCentres
+        );
+
+      } catch (error) {
+
+        console.error(error);
+
+        results.innerHTML = `
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              ⚠️
+            </div>
+
+            <h3>
+              Unable to load blood-centre data
+            </h3>
+
+            <p>
+              Please check that
+              data/blood-centres.json
+              exists in your GitHub repository.
+            </p>
+
+          </div>
+
         `;
 
-        message.innerText =
-        "Please complete the required fields.";
+        document.getElementById(
+          "resultCount"
+        ).textContent =
+          "Database error";
 
-        return;
+      }
 
     }
 
 
-    /* RESULT MESSAGE */
+    /* DISTANCE */
 
-    message.innerText =
-    "Prototype results for "
-    + group
-    + " in "
-    + city
-    + " within "
-    + radius
-    + ".";
+    function calculateDistance(
+      lat1,
+      lon1,
+      lat2,
+      lon2
+    ) {
+
+      const R = 6371;
+
+      const dLat =
+        (lat2 - lat1)
+        * Math.PI / 180;
+
+      const dLon =
+        (lon2 - lon1)
+        * Math.PI / 180;
+
+      const a =
+        Math.sin(dLat / 2) ** 2 +
+        Math.cos(
+          lat1 * Math.PI / 180
+        ) *
+        Math.cos(
+          lat2 * Math.PI / 180
+        ) *
+        Math.sin(dLon / 2) ** 2;
+
+      const c =
+        2 *
+        Math.atan2(
+          Math.sqrt(a),
+          Math.sqrt(1 - a)
+        );
+
+      return R * c;
+
+    }
 
 
-    /* RESULTS */
+    /* LOCATION */
 
-    container.innerHTML = `
+    function useMyLocation() {
+
+      const button =
+        document.getElementById(
+          "locationButton"
+        );
+
+      const status =
+        document.getElementById(
+          "locationStatus"
+        );
+
+      if (!navigator.geolocation) {
+
+        status.textContent =
+          "❌ Location is not supported by your browser.";
+
+        return;
+
+      }
+
+      button.disabled = true;
+
+      button.textContent =
+        "📍 Getting Location...";
+
+      status.textContent =
+        "📍 Requesting your location permission...";
 
 
-    <!-- RESOURCE 1 -->
+      navigator.geolocation.getCurrentPosition(
 
-    <div class="result-card">
+        function(position) {
 
-        <div class="result-left">
+          userLocation = {
 
-            <div class="result-icon">
-                🏥
+            latitude:
+              position.coords.latitude,
+
+            longitude:
+              position.coords.longitude
+
+          };
+
+
+          status.textContent =
+            "✅ Location detected. Finding nearest centres...";
+
+
+          calculateCentreDistances();
+
+
+          button.disabled = false;
+
+          button.textContent =
+            "📍 Location Updated";
+
+
+        },
+
+
+        function(error) {
+
+          console.error(error);
+
+          button.disabled = false;
+
+          button.textContent =
+            "📍 Use My Location";
+
+
+          if (error.code === 1) {
+
+            status.textContent =
+              "❌ Location permission denied. Please allow location access.";
+
+          } else {
+
+            status.textContent =
+              "❌ Unable to get your location. Please try again.";
+
+          }
+
+        },
+
+
+        {
+
+          enableHighAccuracy: true,
+
+          timeout: 15000,
+
+          maximumAge: 60000
+
+        }
+
+      );
+
+    }
+
+
+    /* CALCULATE DISTANCES */
+
+    function calculateCentreDistances() {
+
+      if (!userLocation) return;
+
+
+      BLOOD_CENTRES =
+        BLOOD_CENTRES.map(
+          function(centre) {
+
+            if (
+              centre.latitude === null ||
+              centre.longitude === null ||
+              centre.latitude === undefined ||
+              centre.longitude === undefined
+            ) {
+
+              return {
+
+                ...centre,
+
+                distance: null
+
+              };
+
+            }
+
+
+            const distance =
+              calculateDistance(
+
+                userLocation.latitude,
+
+                userLocation.longitude,
+
+                Number(
+                  centre.latitude
+                ),
+
+                Number(
+                  centre.longitude
+                )
+
+              );
+
+
+            return {
+
+              ...centre,
+
+              distance: distance
+
+            };
+
+          }
+        );
+
+
+      applyFilters();
+
+    }
+
+
+    /* FILTERS */
+
+    function applyFilters() {
+
+      const group =
+        document.getElementById(
+          "bloodGroup"
+        ).value
+        .toLowerCase();
+
+      const component =
+        document.getElementById(
+          "component"
+        ).value
+        .toLowerCase();
+
+      const district =
+        document.getElementById(
+          "district"
+        ).value
+        .toLowerCase();
+
+      const search =
+        document.getElementById(
+          "search"
+        ).value
+        .toLowerCase()
+        .trim();
+
+
+      filteredCentres =
+        BLOOD_CENTRES.filter(
+          function(centre) {
+
+            const text =
+              JSON.stringify(
+                centre
+              ).toLowerCase();
+
+
+            const groupMatch =
+              !group ||
+              text.includes(group);
+
+
+            const componentMatch =
+              !component ||
+              text.includes(component);
+
+
+            const districtMatch =
+              !district ||
+              (
+                centre.district &&
+                centre.district
+                  .toLowerCase()
+                  .includes(district)
+              );
+
+
+            const searchMatch =
+              !search ||
+              text.includes(search);
+
+
+            return (
+              groupMatch &&
+              componentMatch &&
+              districtMatch &&
+              searchMatch
+            );
+
+          }
+        );
+
+
+      if (userLocation) {
+
+        filteredCentres.sort(
+          function(a, b) {
+
+            if (
+              a.distance === null
+            ) return 1;
+
+            if (
+              b.distance === null
+            ) return -1;
+
+            return (
+              a.distance -
+              b.distance
+            );
+
+          }
+        );
+
+      }
+
+
+      displayBloodCentres(
+        filteredCentres
+      );
+
+    }
+
+
+    /* RESET */
+
+    function resetFilters() {
+
+      document.getElementById(
+        "bloodGroup"
+      ).value = "";
+
+      document.getElementById(
+        "component"
+      ).value = "";
+
+      document.getElementById(
+        "district"
+      ).value = "";
+
+      document.getElementById(
+        "search"
+      ).value = "";
+
+
+      applyFilters();
+
+    }
+
+
+    /* DISPLAY */
+
+    function displayBloodCentres(
+      centres
+    ) {
+
+      const container =
+        document.getElementById(
+          "bloodResults"
+        );
+
+      const count =
+        document.getElementById(
+          "resultCount"
+        );
+
+
+      count.textContent =
+        centres.length +
+        " centre" +
+        (
+          centres.length === 1
+            ? ""
+            : "s"
+        );
+
+
+      if (!centres.length) {
+
+        container.innerHTML = `
+
+          <div class="empty-state">
+
+            <div class="empty-icon">
+              🔎
             </div>
 
-            <div class="result-info">
+            <h3>
+              No matching blood centre found
+            </h3>
+
+            <p>
+              Try changing your search or filters.
+            </p>
+
+          </div>
+
+        `;
+
+        return;
+
+      }
+
+
+      container.innerHTML =
+        centres.map(
+          function(centre) {
+
+            const distance =
+              centre.distance !== undefined &&
+              centre.distance !== null
+                ? centre.distance
+                    .toFixed(1)
+                    + " km away"
+                : "Distance unavailable";
+
+
+            const query =
+              encodeURIComponent(
+                centre.name +
+                " " +
+                (
+                  centre.address || ""
+                ) +
+                " " +
+                (
+                  centre.district || ""
+                ) +
+                " Uttar Pradesh"
+              );
+
+
+            let mapsLink;
+
+
+            if (
+              centre.latitude !== null &&
+              centre.longitude !== null &&
+              centre.latitude !== undefined &&
+              centre.longitude !== undefined
+            ) {
+
+              mapsLink =
+                "https://www.google.com/maps/dir/?api=1&destination=" +
+                centre.latitude +
+                "," +
+                centre.longitude;
+
+            } else {
+
+              mapsLink =
+                "https://www.google.com/maps/search/?api=1&query=" +
+                query;
+
+            }
+
+
+            return `
+
+              <article class="blood-card">
+
+                <div class="distance">
+                  📍 ${distance}
+                </div>
+
 
                 <h3>
-                    Authorized Blood Centre
+                  ${escapeHTML(
+                    centre.name || "Blood Centre"
+                  )}
                 </h3>
 
-                <p>
 
-                    📍 ${city}
+                <span class="centre-type">
+                  ${escapeHTML(
+                    centre.type ||
+                    "Blood Centre"
+                  )}
+                </span>
 
-                    <br>
-
-                    🩸 Blood Group:
-                    ${group}
-
-                    ${
-                        component
-                        ?
-                        "<br>🧪 Component: "
-                        + component
-                        :
-                        ""
-                    }
-
-                    <br>
-
-                    📏 Search Radius:
-                    ${radius}
-
-                </p>
-
-            </div>
-
-        </div>
-
-        <div class="status">
-            VERIFY
-        </div>
-
-    </div>
-
-
-
-    <!-- RESOURCE 2 -->
-
-    <div class="result-card">
-
-        <div class="result-left">
-
-            <div class="result-icon">
-                ❤️
-            </div>
-
-            <div class="result-info">
-
-                <h3>
-                    Potential Donor Coordination
-                </h3>
 
                 <p>
-
-                    Potential eligible donors may be
-                    coordinated through the VitalLoop
-                    network.
-
-                    <br>
-
-                    Actual donation requires screening
-                    at an authorized centre.
-
+                  <strong>
+                    District:
+                  </strong>
+                  ${escapeHTML(
+                    centre.district || "Uttar Pradesh"
+                  )}
                 </p>
 
-            </div>
-
-        </div>
-
-        <div class="status">
-            COORDINATE
-        </div>
-
-    </div>
-
-
-
-    <!-- RESOURCE 3 -->
-
-    <div class="result-card">
-
-        <div class="result-left">
-
-            <div class="result-icon">
-                📍
-            </div>
-
-            <div class="result-info">
-
-                <h3>
-                    Location-Based Discovery
-                </h3>
 
                 <p>
-
-                    Relevant healthcare resources can
-                    conceptually be discovered based
-                    on location.
-
-                    <br>
-
-                    Current availability must be
-                    confirmed directly with the centre.
-
+                  ${escapeHTML(
+                    centre.address ||
+                    "Address not available"
+                  )}
                 </p>
 
-            </div>
 
-        </div>
+                ${
+                  centre.contactPerson
+                    ? `
+                      <p>
+                        <strong>
+                          Contact:
+                        </strong>
+                        ${escapeHTML(
+                          centre.contactPerson
+                        )}
+                      </p>
+                    `
+                    : ""
+                }
 
-        <div class="status">
-            DEMO
-        </div>
 
-    </div>
+                ${
+                  centre.phone
+                    ? `
+                      <p>
+                        <strong>
+                          Phone:
+                        </strong>
+                        ${escapeHTML(
+                          centre.phone
+                        )}
+                      </p>
+                    `
+                    : ""
+                }
 
 
-    `;
+                <div class="card-actions">
 
-}
+                  ${
+                    centre.phone
+                      ? `
+                        <a
+                          href="tel:${escapeHTML(
+                            centre.phone
+                          )}"
+                        >
+                          📞 Call
+                        </a>
+                      `
+                      : `
+                        <a
+                          href="${mapsLink}"
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          🗺️ Map
+                        </a>
+                      `
+                  }
 
-</script>
 
+                  <a
+                    href="${mapsLink}"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    🗺️ Directions
+                  </a>
+
+                </div>
+
+
+                <small>
+
+                  Source:
+                  ${escapeHTML(
+                    centre.source ||
+                    "SBTC UP"
+                  )}
+
+                  <br>
+
+                  Blood availability must be
+                  verified with the authorized
+                  blood centre.
+
+                </small>
+
+              </article>
+
+            `;
+
+          }
+        ).join("");
+
+    }
+
+
+    /* HTML SAFETY */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(
+          /&/g,
+          "&amp;"
+        )
+        .replace(
+          /</g,
+          "&lt;"
+        )
+        .replace(
+          />/g,
+          "&gt;"
+        )
+        .replace(
+          /"/g,
+          "&quot;"
+        )
+        .replace(
+          /'/g,
+          "&#039;"
+        );
+
+    }
+
+
+    /* LIVE SEARCH */
+
+    document
+      .getElementById("search")
+      .addEventListener(
+        "input",
+        function() {
+
+          applyFilters();
+
+        }
+      );
+
+
+    /* LOAD */
+
+    loadBloodCentres();
+
+  </script>
 
 </body>
 </html>
