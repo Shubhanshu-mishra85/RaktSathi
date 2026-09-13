@@ -1,632 +1,366 @@
 /* =========================================================
-   VITALLOOP — BLOOD REQUEST ENGINE
-   Demo / Prototype Version
+   RaktSathi - Blood Request Controller
    ========================================================= */
 
 document.addEventListener("DOMContentLoaded", () => {
+  initBloodRequestForm();
+  initRequestTracking();
+});
 
-  const form =
-    document.querySelector("#blood-request-form") ||
-    document.querySelector("form[data-blood-request]") ||
-    document.querySelector("form");
+
+/* =========================================================
+   BLOOD REQUEST FORM
+   ========================================================= */
+
+function initBloodRequestForm() {
+  const form = document.getElementById("bloodRequestForm");
 
   if (!form) return;
 
+  form.addEventListener("submit", event => {
+    event.preventDefault();
 
-  /* ---------------------------------------------------------
-     FIELD FINDER
-     Works with common IDs / names
-     --------------------------------------------------------- */
+    const requestId = generateRequestId();
 
-  function getField(...selectors) {
+    const request = {
+      requestId: requestId,
+      patientName: getValue("patientName"),
+      phone: getValue("phone"),
+      bloodGroup: getValue("bloodGroup"),
+      component: getValue("component"),
+      units: getValue("units"),
+      requirementType: getValue("requirementType"),
+      district: getValue("district"),
+      facility: getValue("facility"),
+      requiredDate: getValue("requiredDate"),
+      additionalInfo: getValue("additionalInfo"),
 
-    for (const selector of selectors) {
+      status: "Request Created",
 
-      const element = document.querySelector(selector);
+      workflow: [
+        "Request Created",
+        "Resource Discovery",
+        "Coordination",
+        "Facility Verification",
+        "Resolution"
+      ],
 
-      if (element) return element;
-
-    }
-
-    return null;
-  }
-
-
-  const patientName = getField(
-    "#patient-name",
-    "#patientName",
-    '[name="patientName"]',
-    '[name="patient_name"]'
-  );
-
-
-  const requesterName = getField(
-    "#requester-name",
-    "#requesterName",
-    '[name="requesterName"]',
-    '[name="requester_name"]'
-  );
+      createdAt: new Date().toISOString()
+    };
 
 
-  const bloodGroup = getField(
-    "#blood-group",
-    "#bloodGroup",
-    '[name="bloodGroup"]',
-    '[name="blood_group"]'
-  );
-
-
-  const units = getField(
-    "#units",
-    "#blood-units",
-    '[name="units"]',
-    '[name="blood_units"]'
-  );
-
-
-  const hospital = getField(
-    "#hospital",
-    "#hospital-name",
-    "#facility",
-    '[name="hospital"]',
-    '[name="facility"]'
-  );
-
-
-  const city = getField(
-    "#city",
-    "#location",
-    '[name="city"]',
-    '[name="location"]'
-  );
-
-
-  const urgency = getField(
-    "#urgency",
-    '[name="urgency"]'
-  );
-
-
-  const phone = getField(
-    "#phone",
-    "#mobile",
-    '[name="phone"]',
-    '[name="mobile"]'
-  );
-
-
-  /* ---------------------------------------------------------
-     RESULT AREA
-     --------------------------------------------------------- */
-
-  let resultBox =
-    document.querySelector("#request-result");
-
-  if (!resultBox) {
-
-    resultBox =
-      document.createElement("div");
-
-    resultBox.id = "request-result";
-
-    resultBox.className = "mt-2";
-
-    form.insertAdjacentElement(
-      "afterend",
-      resultBox
-    );
-
-  }
-
-
-  /* ---------------------------------------------------------
-     REQUEST ID
-     --------------------------------------------------------- */
-
-  function generateRequestId() {
-
-    const time =
-      Date.now()
-        .toString(36)
-        .toUpperCase();
-
-    const random =
-      Math.random()
-        .toString(36)
-        .substring(2, 6)
-        .toUpperCase();
-
-    return `VL-BR-${time}-${random}`;
-
-  }
-
-
-  /* ---------------------------------------------------------
-     LOCAL STORAGE
-     --------------------------------------------------------- */
-
-  function getRequests() {
-
+    /* Save prototype request locally */
     try {
-
-      const saved =
-        localStorage.getItem(
-          "vitalloop_blood_requests"
-        );
-
-      return saved
-        ? JSON.parse(saved)
-        : [];
-
-    } catch (error) {
-
-      console.error(error);
-
-      return [];
-
-    }
-
-  }
-
-
-  function saveRequest(request) {
-
-    const requests =
-      getRequests();
-
-    requests.push(request);
-
-    localStorage.setItem(
-      "vitalloop_blood_requests",
-      JSON.stringify(requests)
-    );
-
-  }
-
-
-  /* ---------------------------------------------------------
-     VALIDATION
-     --------------------------------------------------------- */
-
-  function validateForm() {
-
-    let valid = true;
-
-    const requiredFields =
-      form.querySelectorAll("[required]");
-
-
-    requiredFields.forEach(field => {
-
-      if (!String(field.value || "").trim()) {
-
-        valid = false;
-
-        field.classList.add(
-          "field-error"
-        );
-
-      } else {
-
-        field.classList.remove(
-          "field-error"
-        );
-
-      }
-
-    });
-
-
-    if (bloodGroup && !bloodGroup.value) {
-      valid = false;
-      bloodGroup.classList.add("field-error");
-    }
-
-
-    if (units) {
-
-      const number =
-        Number(units.value);
-
-      if (
-        !Number.isFinite(number) ||
-        number < 1 ||
-        number > 20
-      ) {
-
-        valid = false;
-
-        units.classList.add(
-          "field-error"
-        );
-
-      }
-
-    }
-
-
-    return valid;
-
-  }
-
-
-  /* ---------------------------------------------------------
-     LOAD DEMO RESOURCES
-     --------------------------------------------------------- */
-
-  async function findMatchingResources(
-    requestedGroup,
-    requestedCity
-  ) {
-
-    try {
-
-      const response =
-        await fetch(
-          "data/resources.json"
-        );
-
-      if (!response.ok) {
-        throw new Error(
-          "Resource dataset unavailable"
-        );
-      }
-
-
-      const data =
-        await response.json();
-
-
-      const resources =
-        Array.isArray(data.resources)
-          ? data.resources
-          : [];
-
-
-      const group =
-        String(requestedGroup || "")
-          .trim()
-          .toLowerCase();
-
-
-      const location =
-        String(requestedCity || "")
-          .trim()
-          .toLowerCase();
-
-
-      return resources.filter(resource => {
-
-        const cityMatch =
-          !location ||
-          String(resource.city || "")
-            .toLowerCase()
-            .includes(location);
-
-
-        const bloodMatch =
-          Array.isArray(resource.bloodGroups) &&
-          resource.bloodGroups.some(item => {
-
-            return (
-              String(item.group || "")
-                .toLowerCase() === group
-            );
-
-          });
-
-
-        return cityMatch && bloodMatch;
-
-      });
-
-
-    } catch (error) {
-
-      console.warn(
-        "Could not load demo resources:",
-        error
+      localStorage.setItem(
+        "raktSathiBloodRequest",
+        JSON.stringify(request)
       );
-
-      return [];
-
-    }
-
-  }
-
-
-  /* ---------------------------------------------------------
-     DISPLAY MATCHES
-     --------------------------------------------------------- */
-
-  function displayMatches(
-    matches,
-    requestedGroup,
-    requestedCity
-  ) {
-
-    if (!matches.length) {
-
-      resultBox.innerHTML = `
-
-        <div class="alert alert-info">
-
-          <strong>Request created.</strong><br><br>
-
-          No matching demo resource was found for
-          <strong>
-            ${escapeHTML(requestedGroup)}
-          </strong>
-          in
-          <strong>
-            ${escapeHTML(requestedCity || "the selected area")}
-          </strong>.
-
-          <br><br>
-
-          This prototype does not represent
-          real-time blood inventory.
-
-        </div>
-
-      `;
-
+    } catch (error) {
+      showMessage(
+        "Request save nahi ho paya. Please try again.",
+        "error"
+      );
       return;
-
     }
 
 
-    const cards =
-      matches.map(resource => {
+    /* Success message */
+    showMessage(
+      `
+      <strong>Request Created Successfully</strong><br><br>
 
-        return `
+      Your Request ID:
+      <strong>${requestId}</strong>
 
-          <div class="card"
-               style="padding:18px;margin-top:12px;">
+      <br><br>
 
-            <h3>
-              ${escapeHTML(resource.name)}
-            </h3>
+      Is Request ID ko future tracking ke liye save karke rakhein.
 
-            <p class="text-muted">
-              ${escapeHTML(resource.area || "")},
-              ${escapeHTML(resource.city || "")}
-            </p>
+      <br><br>
 
-            <div class="resource-row">
+      <small>
+      Prototype mode: request data is currently stored on this device only.
+      </small>
+      `,
+      "success"
+    );
 
-              <span>Blood Group</span>
+    form.reset();
 
-              <strong>
-                ${escapeHTML(requestedGroup)}
-              </strong>
-
-            </div>
-
-            <div class="resource-row">
-
-              <span>Status</span>
-
-              <strong class="limited">
-                Demo — verify with centre
-              </strong>
-
-            </div>
-
-          </div>
-
-        `;
-
-      }).join("");
+    updateRequestStatus(request);
+  });
+}
 
 
-    resultBox.innerHTML = `
+/* =========================================================
+   REQUEST TRACKING
+   ========================================================= */
 
-      <div class="alert alert-success">
+function initRequestTracking() {
+  const trackingForm =
+    document.getElementById("trackingForm");
 
-        <strong>
-          Potential demo matches found
-        </strong>
+  if (!trackingForm) return;
 
-        <br>
+  trackingForm.addEventListener("submit", event => {
+    event.preventDefault();
 
-        These are prototype resources only.
-        Contact and verify availability with
-        the authorized blood centre.
+    const input =
+      document.getElementById("trackingId");
+
+    if (!input) return;
+
+    const requestId =
+      input.value.trim().toUpperCase();
+
+    if (!requestId) {
+      showTrackingMessage(
+        "Please enter a valid Request ID.",
+        "error"
+      );
+      return;
+    }
+
+    const request =
+      getStoredRequest();
+
+    if (!request) {
+      showTrackingMessage(
+        "No request found on this device.",
+        "error"
+      );
+      return;
+    }
+
+    if (
+      request.requestId.toUpperCase() !== requestId
+    ) {
+      showTrackingMessage(
+        "Request ID match nahi hua.",
+        "error"
+      );
+      return;
+    }
+
+    displayTrackingResult(request);
+  });
+}
+
+
+/* =========================================================
+   DISPLAY TRACKING RESULT
+   ========================================================= */
+
+function displayTrackingResult(request) {
+  const result =
+    document.getElementById("trackingResult");
+
+  if (!result) return;
+
+  result.innerHTML = `
+    <div class="tracking-card">
+
+      <div class="tracking-header">
+        <span>Request ID</span>
+        <strong>${escapeHTML(request.requestId)}</strong>
+      </div>
+
+      <div class="tracking-status">
+        <span>Status</span>
+        <strong>${escapeHTML(request.status)}</strong>
+      </div>
+
+      <div class="tracking-details">
+
+        <p>
+          <strong>Blood Group:</strong>
+          ${escapeHTML(request.bloodGroup)}
+        </p>
+
+        <p>
+          <strong>Component:</strong>
+          ${escapeHTML(request.component)}
+        </p>
+
+        <p>
+          <strong>Units:</strong>
+          ${escapeHTML(request.units)}
+        </p>
+
+        <p>
+          <strong>Requirement:</strong>
+          ${escapeHTML(request.requirementType)}
+        </p>
+
+        <p>
+          <strong>District:</strong>
+          ${escapeHTML(request.district)}
+        </p>
+
+        <p>
+          <strong>Healthcare Facility:</strong>
+          ${escapeHTML(request.facility)}
+        </p>
 
       </div>
 
-      ${cards}
+      <div class="workflow">
 
-    `;
+        ${request.workflow.map((step, index) => `
+          <div class="workflow-step ${
+            index === 0 ? "completed" : ""
+          }">
 
-  }
+            <span class="step-number">
+              ${index + 1}
+            </span>
 
-
-  /* ---------------------------------------------------------
-     SUBMIT
-     --------------------------------------------------------- */
-
-  form.addEventListener(
-    "submit",
-    async event => {
-
-      event.preventDefault();
-
-
-      if (!validateForm()) {
-
-        resultBox.innerHTML = `
-
-          <div class="alert alert-warning">
-
-            Please complete all required
-            information correctly.
+            <span>${escapeHTML(step)}</span>
 
           </div>
+        `).join("")}
 
-        `;
+      </div>
 
-        resultBox.scrollIntoView({
-          behavior: "smooth",
-          block: "center"
-        });
+      <p class="verification-note">
+        Availability and final blood-resource coordination
+        must be verified with the relevant authorized facility.
+      </p>
 
-        return;
+    </div>
+  `;
 
-      }
-
-
-      const requestId =
-        generateRequestId();
-
-
-      const request = {
-
-        requestId: requestId,
-
-        patientName:
-          patientName
-            ? patientName.value.trim()
-            : "",
-
-        requesterName:
-          requesterName
-            ? requesterName.value.trim()
-            : "",
-
-        bloodGroup:
-          bloodGroup
-            ? bloodGroup.value.trim()
-            : "",
-
-        units:
-          units
-            ? Number(units.value)
-            : 1,
-
-        hospital:
-          hospital
-            ? hospital.value.trim()
-            : "",
-
-        city:
-          city
-            ? city.value.trim()
-            : "",
-
-        urgency:
-          urgency
-            ? urgency.value.trim()
-            : "",
-
-        phone:
-          phone
-            ? phone.value.trim()
-            : "",
-
-        createdAt:
-          new Date().toISOString(),
-
-        status:
-          "Demo Request Created"
-
-      };
+  result.classList.add("visible");
+}
 
 
-      /* Save only in this browser for prototype */
+/* =========================================================
+   STORAGE
+   ========================================================= */
 
-      saveRequest(request);
-
-
-      /* Show request confirmation */
-
-      resultBox.innerHTML = `
-
-        <div class="alert alert-success">
-
-          <strong>
-            Blood request created successfully.
-          </strong>
-
-          <br><br>
-
-          Request ID:
-
-          <strong>
-            ${escapeHTML(requestId)}
-          </strong>
-
-          <br><br>
-
-          Keep this ID for your prototype
-          demonstration.
-
-        </div>
-
-        <div class="alert alert-warning">
-
-          <strong>Important:</strong>
-
-          VitalLoop is a discovery,
-          matching and coordination layer.
-
-          It does not collect, test, store,
-          transport or issue blood.
-
-          Final availability,
-          compatibility and transfusion decisions
-          remain with authorized blood centres
-          and qualified healthcare professionals.
-
-        </div>
-
-      `;
-
-
-      resultBox.scrollIntoView({
-        behavior: "smooth",
-        block: "center"
-      });
-
-
-      /* Find matching demo resources */
-
-      const matches =
-        await findMatchingResources(
-          request.bloodGroup,
-          request.city
-        );
-
-
-      displayMatches(
-        matches,
-        request.bloodGroup,
-        request.city
+function getStoredRequest() {
+  try {
+    const emergencyRequest =
+      localStorage.getItem(
+        "raktSathiEmergencyRequest"
       );
 
+    const bloodRequest =
+      localStorage.getItem(
+        "raktSathiBloodRequest"
+      );
 
-      /* Reset form after successful save */
-
-      form.reset();
-
+    if (bloodRequest) {
+      return JSON.parse(bloodRequest);
     }
-  );
+
+    if (emergencyRequest) {
+      return JSON.parse(emergencyRequest);
+    }
+
+    return null;
+
+  } catch (error) {
+    console.error(
+      "Unable to read request:",
+      error
+    );
+
+    return null;
+  }
+}
 
 
-  /* ---------------------------------------------------------
-     ESCAPE HTML
-     --------------------------------------------------------- */
+/* =========================================================
+   HELPERS
+   ========================================================= */
 
-  function escapeHTML(value) {
+function getValue(id) {
+  const element =
+    document.getElementById(id);
 
-    return String(value ?? "")
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;")
-      .replace(/"/g, "&quot;")
-      .replace(/'/g, "&#039;");
+  return element
+    ? element.value.trim()
+    : "";
+}
 
+
+function generateRequestId() {
+  const randomPart =
+    Math.random()
+      .toString(36)
+      .substring(2, 10)
+      .toUpperCase();
+
+  return `RS-${randomPart}`;
+}
+
+
+function showMessage(message, type) {
+  const container =
+    document.getElementById("requestMessage");
+
+  if (!container) {
+    alert(
+      message.replace(/<[^>]*>/g, "")
+    );
+    return;
   }
 
-});
+  container.innerHTML = message;
+  container.className =
+    `request-message ${type}`;
+
+  container.scrollIntoView({
+    behavior: "smooth",
+    block: "center"
+  });
+}
+
+
+function showTrackingMessage(message, type) {
+  const result =
+    document.getElementById("trackingResult");
+
+  if (!result) {
+    alert(message);
+    return;
+  }
+
+  result.innerHTML = `
+    <div class="tracking-message ${type}">
+      ${escapeHTML(message)}
+    </div>
+  `;
+
+  result.classList.add("visible");
+}
+
+
+function updateRequestStatus(request) {
+  const status =
+    document.querySelector(
+      "[data-request-status]"
+    );
+
+  if (!status || !request) return;
+
+  status.textContent =
+    request.status;
+
+  status.classList.add("active");
+}
+
+
+/* =========================================================
+   BASIC HTML SAFETY
+   ========================================================= */
+
+function escapeHTML(value) {
+  return String(value || "")
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+}
