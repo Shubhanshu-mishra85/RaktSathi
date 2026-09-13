@@ -1,22 +1,25 @@
 /* =========================================================
    RaktSathi - Service Worker
-   PWA & Offline Support
+   Intelligent Blood Emergency Coordination Network
    ========================================================= */
 
-const CACHE_NAME = "raktsathi-v1.0.0";
+const CACHE_NAME = "raktsathi-v1.1.0";
 
 const CORE_FILES = [
   "./",
   "./index.html",
   "./about.html",
-  "./blood-education.html",
-  "./blood-request.html",
-  "./camps.html",
-  "./donor.html",
   "./emergency.html",
+  "./find-blood.html",
+  "./blood-request.html",
+  "./donor.html",
+  "./camps.html",
+  "./blood-education.html",
   "./assistant.html",
   "./medicine.html",
-  "./find-blood.html",
+
+  "./manifest.json",
+  "./raktsathi-logo.png",
 
   "./css/style.css",
 
@@ -28,10 +31,7 @@ const CORE_FILES = [
   "./js/search.js",
 
   "./data/blood-centres.json",
-  "./camps.json",
-
-  "./manifest.json",
-  "./raktsathi-logo.png"
+  "./camps.json"
 ];
 
 
@@ -42,30 +42,17 @@ const CORE_FILES = [
 self.addEventListener("install", event => {
 
   event.waitUntil(
-
     caches.open(CACHE_NAME)
-      .then(cache => {
-
-        return cache.addAll(
-          CORE_FILES
-        );
-
-      })
-      .then(() => {
-
-        return self.skipWaiting();
-
-      })
+      .then(cache => cache.addAll(CORE_FILES))
+      .then(() => self.skipWaiting())
       .catch(error => {
-
         console.error(
           "RaktSathi cache installation failed:",
           error
         );
-
       })
-
   );
+
 });
 
 
@@ -84,24 +71,19 @@ self.addEventListener("activate", event => {
 
           cacheNames
             .filter(
-              name =>
-                name !== CACHE_NAME
+              name => name !== CACHE_NAME
             )
             .map(
-              name =>
-                caches.delete(name)
+              name => caches.delete(name)
             )
 
         );
 
       })
-      .then(() => {
-
-        return self.clients.claim();
-
-      })
+      .then(() => self.clients.claim())
 
   );
+
 });
 
 
@@ -111,75 +93,110 @@ self.addEventListener("activate", event => {
 
 self.addEventListener("fetch", event => {
 
-  const request =
-    event.request;
+  const request = event.request;
 
-  /*
-   * Only handle GET requests.
-   */
   if (request.method !== "GET") {
     return;
   }
 
+  /*
+   * Navigation requests:
+   * Network first, cached page as fallback.
+   */
+
+  if (request.mode === "navigate") {
+
+    event.respondWith(
+
+      fetch(request)
+        .then(response => {
+
+          const copy =
+            response.clone();
+
+          caches.open(CACHE_NAME)
+            .then(cache => {
+              cache.put(
+                request,
+                copy
+              );
+            });
+
+          return response;
+
+        })
+        .catch(() => {
+
+          return caches.match(
+            "./index.html"
+          );
+
+        })
+
+    );
+
+    return;
+  }
+
+
+  /*
+   * Static resources:
+   * Cache first, then network.
+   */
 
   event.respondWith(
 
     caches.match(request)
       .then(cachedResponse => {
 
-        /*
-         * Use cached version first.
-         */
         if (cachedResponse) {
           return cachedResponse;
         }
 
-
-        /*
-         * Otherwise try the network.
-         */
         return fetch(request)
-          .then(networkResponse => {
+          .then(response => {
 
-            /*
-             * Cache valid same-origin responses.
-             */
             if (
-              networkResponse &&
-              networkResponse.status === 200 &&
-              networkResponse.type === "basic"
+              response &&
+              response.status === 200 &&
+              response.type === "basic"
             ) {
 
-              const responseClone =
-                networkResponse.clone();
+              const copy =
+                response.clone();
 
               caches.open(CACHE_NAME)
                 .then(cache => {
 
                   cache.put(
                     request,
-                    responseClone
+                    copy
                   );
 
                 });
 
             }
 
-            return networkResponse;
-
-          })
-          .catch(() => {
-
-            /*
-             * Offline fallback.
-             */
-            return caches.match(
-              "./index.html"
-            );
+            return response;
 
           });
 
       })
+      .catch(() => {
+
+        return new Response(
+          "RaktSathi is currently offline.",
+          {
+            status: 503,
+            headers: {
+              "Content-Type":
+                "text/plain; charset=utf-8"
+            }
+          }
+        );
+
+      })
 
   );
+
 });
