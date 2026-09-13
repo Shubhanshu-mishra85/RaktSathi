@@ -1,495 +1,229 @@
-/* =========================================
-   VITALLOOP - PROFESSIONAL ANIMATIONS
-   Blood Resource Network
-   ========================================= */
-
-document.addEventListener("DOMContentLoaded", function () {
-
-    /* -------------------------------
-       PAGE LOAD ANIMATION
-    -------------------------------- */
-
-    document.body.classList.add("vl-page-ready");
-
-
-    /* -------------------------------
-       SCROLL REVEAL
-    -------------------------------- */
-
-    const revealElements = document.querySelectorAll(
-        ".card, .feature-card, .blood-card, .resource-card, " +
-        ".step, .section, .hero-content, .hero-card, " +
-        ".education-card, .camp-card, .info-card"
-    );
-
-    if ("IntersectionObserver" in window) {
-
-        const revealObserver = new IntersectionObserver(
-            function (entries, observer) {
-
-                entries.forEach(function (entry) {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("vl-reveal-visible");
-
-                        observer.unobserve(entry.target);
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-        revealElements.forEach(function (element, index) {
-
-            element.classList.add("vl-reveal");
-
-            element.style.transitionDelay =
-                Math.min(index * 0.04, 0.35) + "s";
-
-            revealObserver.observe(element);
-
-        });
-
-    } else {
-
-        revealElements.forEach(function (element) {
-
-            element.classList.add("vl-reveal-visible");
-
-        });
-
-    }
-
-
-    /* -------------------------------
-       NUMBER COUNTER ANIMATION
-    -------------------------------- */
-
-    const counters = document.querySelectorAll(
-        "[data-counter]"
-    );
-
-    function animateCounter(element) {
-
-        const target =
-            parseInt(element.getAttribute("data-counter"), 10);
-
-        if (isNaN(target)) {
-            return;
-        }
-
-        const duration = 1400;
-        const startTime = performance.now();
-
-        function updateCounter(currentTime) {
-
-            const progress =
-                Math.min(
-                    (currentTime - startTime) / duration,
-                    1
-                );
-
-            const eased =
-                1 - Math.pow(1 - progress, 3);
-
-            const value =
-                Math.floor(target * eased);
-
-            element.textContent =
-                value.toLocaleString();
-
-            if (progress < 1) {
-
-                requestAnimationFrame(updateCounter);
-
-            } else {
-
-                element.textContent =
-                    target.toLocaleString();
-
-            }
-
-        }
-
-        requestAnimationFrame(updateCounter);
-    }
-
-
-    if ("IntersectionObserver" in window) {
-
-        const counterObserver =
-            new IntersectionObserver(
-                function (entries, observer) {
-
-                    entries.forEach(function (entry) {
-
-                        if (entry.isIntersecting) {
-
-                            animateCounter(entry.target);
-
-                            observer.unobserve(entry.target);
-
-                        }
-
-                    });
-
-                },
-                {
-                    threshold: 0.6
-                }
-            );
-
-        counters.forEach(function (counter) {
-
-            counterObserver.observe(counter);
-
-        });
-
-    }
-
-
-    /* -------------------------------
-       BUTTON PRESS EFFECT
-    -------------------------------- */
-
-    const buttons =
-        document.querySelectorAll(
-            "button, .btn, .button, a.btn"
-        );
-
-    buttons.forEach(function (button) {
-
-        button.addEventListener("click", function () {
-
-            button.classList.add("vl-button-click");
-
-            setTimeout(function () {
-
-                button.classList.remove("vl-button-click");
-
-            }, 180);
-
-        });
-
+/* =========================================================
+   RaktSathi - Premium UI Animations
+   ========================================================= */
+
+document.addEventListener("DOMContentLoaded", () => {
+  initRevealAnimations();
+  initCounterAnimations();
+  initSmoothScrolling();
+  initCardHoverEffects();
+});
+
+
+/* =========================================================
+   REVEAL ANIMATIONS
+   ========================================================= */
+
+function initRevealAnimations() {
+  const elements = document.querySelectorAll(
+    ".reveal, .fade-up, .animate-on-scroll, " +
+    ".service-card, .feature-card, .step, .innovation-card"
+  );
+
+  if (!elements.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    elements.forEach(element => {
+      element.classList.add("visible");
     });
 
+    return;
+  }
 
-    /* -------------------------------
-       CARD HOVER EFFECT
-    -------------------------------- */
+  const observer =
+    new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
 
-    const cards =
-        document.querySelectorAll(
-            ".card, .feature-card, .blood-card, " +
-            ".resource-card, .camp-card, .education-card"
-        );
+          if (!entry.isIntersecting) return;
 
-    cards.forEach(function (card) {
+          entry.target.classList.add("visible");
 
-        card.addEventListener("mouseenter", function () {
-
-            card.classList.add("vl-card-hover");
-
+          observer.unobserve(
+            entry.target
+          );
         });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: "0px 0px -40px 0px"
+      }
+    );
 
-        card.addEventListener("mouseleave", function () {
+  elements.forEach(element => {
+    observer.observe(element);
+  });
+}
 
-            card.classList.remove("vl-card-hover");
 
-        });
+/* =========================================================
+   NUMBER COUNTERS
+   ========================================================= */
 
+function initCounterAnimations() {
+  const counters =
+    document.querySelectorAll(
+      "[data-counter]"
+    );
+
+  if (!counters.length) return;
+
+  if (!("IntersectionObserver" in window)) {
+    counters.forEach(counter => {
+      counter.textContent =
+        counter.dataset.counter;
     });
 
+    return;
+  }
 
-    /* -------------------------------
-       ACTIVE NAVIGATION
-    -------------------------------- */
+  const observer =
+    new IntersectionObserver(
+      entries => {
+        entries.forEach(entry => {
 
-    const currentPage =
-        window.location.pathname
-            .split("/")
-            .pop()
-            .toLowerCase();
+          if (!entry.isIntersecting) return;
 
-    const navLinks =
-        document.querySelectorAll(
-            "nav a, header a"
-        );
+          animateCounter(entry.target);
 
-    navLinks.forEach(function (link) {
+          observer.unobserve(
+            entry.target
+          );
+        });
+      },
+      {
+        threshold: 0.5
+      }
+    );
 
-        const href =
+  counters.forEach(counter => {
+    observer.observe(counter);
+  });
+}
+
+
+function animateCounter(element) {
+  const target =
+    Number(element.dataset.counter);
+
+  if (!Number.isFinite(target)) return;
+
+  const duration = 1200;
+  const startTime = performance.now();
+
+  function update(currentTime) {
+    const progress =
+      Math.min(
+        (currentTime - startTime) /
+        duration,
+        1
+      );
+
+    const eased =
+      1 - Math.pow(1 - progress, 3);
+
+    const currentValue =
+      Math.floor(target * eased);
+
+    element.textContent =
+      currentValue.toLocaleString("en-IN");
+
+    if (progress < 1) {
+      requestAnimationFrame(update);
+    }
+  }
+
+  requestAnimationFrame(update);
+}
+
+
+/* =========================================================
+   SMOOTH SCROLL
+   ========================================================= */
+
+function initSmoothScrolling() {
+  document
+    .querySelectorAll('a[href^="#"]')
+    .forEach(link => {
+
+      link.addEventListener(
+        "click",
+        event => {
+
+          const targetId =
             link.getAttribute("href");
 
-        if (!href) {
+          if (
+            !targetId ||
+            targetId === "#"
+          ) {
             return;
-        }
+          }
 
-        const linkPage =
-            href.split("/")
-                .pop()
-                .split("#")[0]
-                .toLowerCase();
-
-        if (
-            linkPage &&
-            linkPage === currentPage
-        ) {
-
-            link.classList.add(
-                "vl-active-link"
-            );
-
-        }
-
-    });
-
-
-    /* -------------------------------
-       BACK TO TOP BUTTON
-    -------------------------------- */
-
-    const topButton =
-        document.querySelector(
-            "#backToTop"
-        );
-
-    if (topButton) {
-
-        window.addEventListener(
-            "scroll",
-            function () {
-
-                if (window.scrollY > 500) {
-
-                    topButton.classList.add(
-                        "vl-top-visible"
-                    );
-
-                } else {
-
-                    topButton.classList.remove(
-                        "vl-top-visible"
-                    );
-
-                }
-
-            }
-        );
-
-        topButton.addEventListener(
-            "click",
-            function () {
-
-                window.scrollTo({
-                    top: 0,
-                    behavior: "smooth"
-                });
-
-            }
-        );
-
-    }
-
-
-    /* -------------------------------
-       SMOOTH INTERNAL LINKS
-    -------------------------------- */
-
-    document.querySelectorAll(
-        'a[href^="#"]'
-    ).forEach(function (link) {
-
-        link.addEventListener(
-            "click",
-            function (event) {
-
-                const targetId =
-                    link.getAttribute("href");
-
-                if (
-                    !targetId ||
-                    targetId === "#"
-                ) {
-                    return;
-                }
-
-                const target =
-                    document.querySelector(
-                        targetId
-                    );
-
-                if (!target) {
-                    return;
-                }
-
-                event.preventDefault();
-
-                target.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-        );
-
-    });
-
-
-    /* -------------------------------
-       PARALLAX HERO EFFECT
-    -------------------------------- */
-
-    const hero =
-        document.querySelector(
-            ".hero, .hero-section"
-        );
-
-    if (hero) {
-
-        window.addEventListener(
-            "scroll",
-            function () {
-
-                const scroll =
-                    window.scrollY;
-
-                if (scroll < 800) {
-
-                    hero.style.backgroundPosition =
-                        "center " +
-                        (scroll * 0.15) +
-                        "px";
-
-                }
-
-            }
-        );
-
-    }
-
-
-    /* -------------------------------
-       FLOATING MEDICAL PULSE
-    -------------------------------- */
-
-    const pulseElements =
-        document.querySelectorAll(
-            ".pulse, .heartbeat, .live-indicator"
-        );
-
-    pulseElements.forEach(function (element) {
-
-        element.classList.add(
-            "vl-pulse-animation"
-        );
-
-    });
-
-
-    /* -------------------------------
-       REDUCE MOTION ACCESSIBILITY
-    -------------------------------- */
-
-    const reduceMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
-
-    if (reduceMotion.matches) {
-
-        document.documentElement.style
-            .scrollBehavior = "auto";
-
-        document
-            .querySelectorAll(
-                ".vl-reveal"
-            )
-            .forEach(function (element) {
-
-                element.classList.add(
-                    "vl-reveal-visible"
-                );
-
-            });
-
-    }
-
-
-    /* -------------------------------
-       CONNECTION STATUS
-    -------------------------------- */
-
-    function updateConnectionStatus() {
-
-        const status =
+          const target =
             document.querySelector(
-                "#connectionStatus"
+              targetId
             );
 
-        if (!status) {
-            return;
+          if (!target) return;
+
+          event.preventDefault();
+
+          target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
+          });
         }
+      );
+    });
+}
 
-        if (navigator.onLine) {
 
-            status.textContent =
-                "Online";
+/* =========================================================
+   CARD HOVER EFFECTS
+   ========================================================= */
 
-            status.classList.remove(
-                "offline"
-            );
-
-            status.classList.add(
-                "online"
-            );
-
-        } else {
-
-            status.textContent =
-                "Offline";
-
-            status.classList.remove(
-                "online"
-            );
-
-            status.classList.add(
-                "offline"
-            );
-
-        }
-
-    }
-
-    updateConnectionStatus();
-
-    window.addEventListener(
-        "online",
-        updateConnectionStatus
+function initCardHoverEffects() {
+  const cards =
+    document.querySelectorAll(
+      ".service-card, .feature-card, " +
+      ".innovation-card, .blood-centre-card"
     );
 
-    window.addEventListener(
-        "offline",
-        updateConnectionStatus
+  cards.forEach(card => {
+
+    card.addEventListener(
+      "mouseenter",
+      () => {
+        card.classList.add(
+          "is-hovered"
+        );
+      }
     );
 
-
-    /* -------------------------------
-       CONSOLE BRAND MESSAGE
-    -------------------------------- */
-
-    console.log(
-        "%cVitalLoop",
-        "font-size:22px;font-weight:700;"
+    card.addEventListener(
+      "mouseleave",
+      () => {
+        card.classList.remove(
+          "is-hovered"
+        );
+      }
     );
-
-    console.log(
-        "Your Complete Healthcare Journey"
-    );
-
+  });
 });
+
+
+/* =========================================================
+   REDUCE MOTION SUPPORT
+   ========================================================= */
+
+const prefersReducedMotion =
+  window.matchMedia(
+    "(prefers-reduced-motion: reduce)"
+  );
+
+if (prefersReducedMotion.matches) {
+  document.documentElement.classList.add(
+    "reduce-motion"
+  );
+}
