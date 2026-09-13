@@ -1,757 +1,610 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Donor Network | VitalLoop</title>
+  <title>Blood Donation Camps | RaktSathi</title>
 
-<style>
-*{
-    margin:0;
-    padding:0;
-    box-sizing:border-box;
-    font-family:Arial,sans-serif;
-}
+  <meta name="description"
+        content="Discover blood donation camps and healthcare events through RaktSathi.">
 
-body{
-    background:#f2fbf6;
-    color:#173b2b;
-}
-
-/* NAVBAR */
-nav{
-    height:70px;
-    background:#fff;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-    padding:0 6%;
-    box-shadow:0 3px 18px rgba(0,80,40,.08);
-    position:sticky;
-    top:0;
-    z-index:100;
-}
-
-.logo{
-    font-size:25px;
-    font-weight:800;
-    color:#08783e;
-}
-
-.logo span{
-    color:#14a85b;
-}
-
-.back{
-    text-decoration:none;
-    color:#08783e;
-    font-weight:600;
-}
-
-/* HERO */
-.hero{
-    text-align:center;
-    padding:65px 20px 45px;
-    background:linear-gradient(135deg,#e5fff0,#f8fffb);
-}
-
-.hero-icon{
-    width:78px;
-    height:78px;
-    margin:auto;
-    border-radius:50%;
-    background:#08783e;
-    color:white;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:38px;
-    animation:pulse 2s infinite;
-    box-shadow:0 12px 30px rgba(8,120,62,.25);
-}
-
-.hero h1{
-    margin-top:20px;
-    font-size:42px;
-    color:#075f32;
-}
-
-.hero p{
-    max-width:680px;
-    margin:15px auto 0;
-    line-height:1.7;
-    color:#60786b;
-}
-
-/* CONTAINER */
-.container{
-    max-width:1050px;
-    margin:45px auto;
-    padding:0 20px;
-}
-
-/* CARDS */
-.card{
-    background:white;
-    border-radius:24px;
-    padding:32px;
-    margin-bottom:25px;
-    box-shadow:0 12px 40px rgba(0,70,35,.08);
-    animation:slideUp .7s ease;
-}
-
-.card h2{
-    color:#075f32;
-    margin-bottom:8px;
-}
-
-.subtitle{
-    color:#718178;
-    margin-bottom:25px;
-    line-height:1.6;
-}
-
-/* FORM */
-.form-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:20px;
-}
-
-.field{
-    display:flex;
-    flex-direction:column;
-}
-
-.full{
-    grid-column:1/-1;
-}
-
-label{
-    font-weight:700;
-    margin-bottom:8px;
-    color:#28533e;
-}
-
-input,
-select{
-    padding:14px;
-    border:1px solid #d5e7dc;
-    border-radius:12px;
-    outline:none;
-    background:#fbfffc;
-    font-size:15px;
-}
-
-input:focus,
-select:focus{
-    border-color:#14a85b;
-    box-shadow:0 0 0 3px rgba(20,168,91,.1);
-}
-
-/* AVAILABILITY */
-.availability{
-    display:flex;
-    gap:12px;
-}
-
-.availability input{
-    display:none;
-}
-
-.availability label{
-    flex:1;
-    text-align:center;
-    padding:14px;
-    border:1px solid #d5e7dc;
-    border-radius:12px;
-    cursor:pointer;
-    transition:.3s;
-}
-
-.availability input:checked + label{
-    background:#08783e;
-    color:white;
-    border-color:#08783e;
-}
-
-/* BUTTON */
-.btn{
-    width:100%;
-    border:0;
-    padding:16px;
-    margin-top:25px;
-    border-radius:14px;
-    background:linear-gradient(135deg,#08783e,#12a85a);
-    color:white;
-    font-size:17px;
-    font-weight:800;
-    cursor:pointer;
-    box-shadow:0 10px 25px rgba(8,120,62,.22);
-    transition:.3s;
-}
-
-.btn:hover{
-    transform:translateY(-2px);
-}
-
-/* SUCCESS */
-.success{
-    display:none;
-    text-align:center;
-    padding:25px;
-}
-
-.check{
-    width:75px;
-    height:75px;
-    margin:auto;
-    border-radius:50%;
-    background:#08783e;
-    color:white;
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    font-size:38px;
-    animation:pop .5s ease;
-}
-
-.success h2{
-    margin-top:18px;
-    color:#075f32;
-}
-
-.donor-id{
-    display:inline-block;
-    margin-top:15px;
-    background:#e8f8ee;
-    color:#08783e;
-    padding:10px 18px;
-    border-radius:10px;
-    font-weight:bold;
-}
-
-/* INFO GRID */
-.info-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:18px;
-}
-
-.info{
-    padding:22px;
-    border-radius:17px;
-    background:#f3fbf6;
-    border:1px solid #dfefe5;
-}
-
-.info-icon{
-    font-size:30px;
-}
-
-.info h3{
-    margin:12px 0 7px;
-    color:#075f32;
-}
-
-.info p{
-    font-size:14px;
-    color:#66786d;
-    line-height:1.6;
-}
-
-/* SAFETY */
-.safety{
-    background:#effaf3;
-    border-left:5px solid #14a85b;
-    padding:18px;
-    border-radius:12px;
-    color:#496657;
-    font-size:14px;
-    line-height:1.7;
-}
-
-/* FOOTER */
-footer{
-    background:#063d22;
-    color:#d8f5e4;
-    text-align:center;
-    padding:30px 20px;
-    margin-top:55px;
-}
-
-footer strong{
-    color:white;
-}
-
-/* ANIMATIONS */
-@keyframes pulse{
-    0%,100%{transform:scale(1)}
-    50%{transform:scale(1.08)}
-}
-
-@keyframes slideUp{
-    from{
-        opacity:0;
-        transform:translateY(25px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes pop{
-    from{
-        opacity:0;
-        transform:scale(.4);
-    }
-    to{
-        opacity:1;
-        transform:scale(1);
-    }
-}
-
-/* MOBILE */
-@media(max-width:700px){
-
-    nav{
-        padding:0 20px;
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    .hero h1{
-        font-size:32px;
+    body {
+      background: #f4fbf7;
+      color: #16352a;
+      line-height: 1.6;
     }
 
-    .form-grid{
-        grid-template-columns:1fr;
+    /* NAVBAR */
+    nav {
+      width: 100%;
+      background: #064e3b;
+      color: white;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,.12);
     }
 
-    .full{
-        grid-column:auto;
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
     }
 
-    .card{
-        padding:22px 18px;
+    .logo span {
+      color: #ef4444;
     }
 
-    .info-grid{
-        grid-template-columns:1fr;
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      font-weight: 600;
     }
 
-    .availability{
-        flex-direction:column;
+    nav a:hover {
+      color: #86efac;
     }
-}
-</style>
+
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #064e3b, #047857);
+      color: white;
+      text-align: center;
+      padding: 65px 6%;
+    }
+
+    .hero h1 {
+      font-size: clamp(34px, 6vw, 56px);
+      margin-bottom: 12px;
+    }
+
+    .hero h1 span {
+      color: #fca5a5;
+    }
+
+    .hero p {
+      max-width: 720px;
+      margin: auto;
+      opacity: .95;
+      font-size: 17px;
+    }
+
+    /* CONTAINER */
+    .container {
+      width: 92%;
+      max-width: 1150px;
+      margin: 40px auto;
+    }
+
+    /* FILTER */
+    .filter-card {
+      background: white;
+      padding: 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(6,78,59,.10);
+      margin-bottom: 30px;
+    }
+
+    .filter-card h2 {
+      color: #065f46;
+      margin-bottom: 18px;
+    }
+
+    .filters {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 14px;
+    }
+
+    input,
+    select {
+      width: 100%;
+      padding: 13px;
+      border: 1px solid #cce5d9;
+      border-radius: 10px;
+      background: #fbfffd;
+      font-size: 15px;
+      outline: none;
+    }
+
+    input:focus,
+    select:focus {
+      border-color: #10b981;
+      box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+    }
+
+    .filter-btn {
+      border: none;
+      border-radius: 10px;
+      padding: 13px 22px;
+      background: #047857;
+      color: white;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .filter-btn:hover {
+      background: #065f46;
+    }
+
+    /* CAMPS GRID */
+    #campList {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 22px;
+    }
+
+    .camp-card {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      box-shadow: 0 10px 28px rgba(6,78,59,.10);
+      border-top: 4px solid #10b981;
+      transition: .2s;
+    }
+
+    .camp-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 35px rgba(6,78,59,.16);
+    }
+
+    .camp-icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 14px;
+      background: #ecfdf5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 15px;
+    }
+
+    .camp-card h3 {
+      color: #064e3b;
+      margin-bottom: 10px;
+      font-size: 19px;
+    }
+
+    .camp-info {
+      margin: 8px 0;
+      color: #536a61;
+      font-size: 14px;
+    }
+
+    .camp-info strong {
+      color: #24483b;
+    }
+
+    .camp-status {
+      display: inline-block;
+      margin-top: 12px;
+      padding: 6px 11px;
+      border-radius: 20px;
+      background: #dcfce7;
+      color: #166534;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .map-btn {
+      display: block;
+      text-align: center;
+      margin-top: 18px;
+      padding: 11px;
+      border-radius: 10px;
+      background: #f0fdf4;
+      color: #047857;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .map-btn:hover {
+      background: #dcfce7;
+    }
+
+    /* EMPTY */
+    .empty {
+      grid-column: 1 / -1;
+      background: white;
+      padding: 40px;
+      text-align: center;
+      border-radius: 18px;
+      color: #60756d;
+      box-shadow: 0 10px 25px rgba(6,78,59,.08);
+    }
+
+    /* NOTICE */
+    .notice {
+      margin-top: 35px;
+      padding: 20px;
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 12px;
+      color: #7c2d12;
+      font-size: 14px;
+    }
+
+    /* FOOTER */
+    footer {
+      margin-top: 60px;
+      background: #022c22;
+      color: #d1fae5;
+      text-align: center;
+      padding: 30px 6%;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    /* MOBILE */
+    @media (max-width: 900px) {
+      #campList {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .filters {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 600px) {
+      nav div:last-child {
+        display: none;
+      }
+
+      .hero {
+        padding: 50px 6%;
+      }
+
+      #campList {
+        grid-template-columns: 1fr;
+      }
+
+      .container {
+        margin: 25px auto;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<!-- NAVBAR -->
-<nav>
-    <div class="logo">Vital<span>Loop</span></div>
+  <!-- NAVBAR -->
+  <nav>
+    <div class="logo">
+      Rakt<span>Sathi</span>
+    </div>
 
-    <a href="index.html" class="back">
-        ← Back to Home
-    </a>
-</nav>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="find-blood.html">Find Blood</a>
+      <a href="donor.html">Become a Donor</a>
+    </div>
+  </nav>
 
 
-<!-- HERO -->
-<section class="hero">
-
-    <div class="hero-icon">🩸</div>
-
-    <h1>Become a Blood Donor</h1>
+  <!-- HERO -->
+  <section class="hero">
+    <h1>Blood Donation <span>Camps</span></h1>
 
     <p>
-        Join the VitalLoop donor network and help make relevant
-        blood-resource discovery easier for people who need it.
+      Discover blood donation camps and healthcare events
+      available through the RaktSathi network.
     </p>
+  </section>
 
-</section>
 
+  <main class="container">
 
-<div class="container">
+    <!-- FILTER -->
+    <section class="filter-card">
 
-<!-- REGISTRATION CARD -->
-<div class="card">
+      <h2>Find a Camp</h2>
 
-    <div id="donorForm">
+      <div class="filters">
 
-        <h2>Donor Registration</h2>
-
-        <p class="subtitle">
-            Enter your basic details to create a donor profile
-            for this prototype.
-        </p>
-
-        <form onsubmit="registerDonor(event)">
-
-            <div class="form-grid">
-
-                <!-- NAME -->
-                <div class="field">
-
-                    <label>Full Name *</label>
-
-                    <input
-                        type="text"
-                        id="name"
-                        placeholder="Enter your full name"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- BLOOD GROUP -->
-                <div class="field">
-
-                    <label>Blood Group *</label>
-
-                    <select id="bloodGroup" required>
-
-                        <option value="">
-                            Select blood group
-                        </option>
-
-                        <option>A+</option>
-                        <option>A-</option>
-                        <option>B+</option>
-                        <option>B-</option>
-                        <option>AB+</option>
-                        <option>AB-</option>
-                        <option>O+</option>
-                        <option>O-</option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- CITY -->
-                <div class="field">
-
-                    <label>City *</label>
-
-                    <input
-                        type="text"
-                        id="city"
-                        placeholder="e.g. Lucknow"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- PHONE -->
-                <div class="field">
-
-                    <label>Contact Number *</label>
-
-                    <input
-                        type="tel"
-                        id="phone"
-                        placeholder="10-digit mobile number"
-                        maxlength="10"
-                        pattern="[0-9]{10}"
-                        required
-                    >
-
-                </div>
-
-
-                <!-- LAST DONATION -->
-                <div class="field">
-
-                    <label>Last Donation Date</label>
-
-                    <input
-                        type="date"
-                        id="lastDonation"
-                    >
-
-                </div>
-
-
-                <!-- PREFERRED RADIUS -->
-                <div class="field">
-
-                    <label>Preferred Search Radius</label>
-
-                    <select id="radius">
-
-                        <option>5 km</option>
-                        <option>10 km</option>
-                        <option>25 km</option>
-                        <option>50 km</option>
-
-                    </select>
-
-                </div>
-
-
-                <!-- AVAILABILITY -->
-                <div class="field full">
-
-                    <label>Current Availability *</label>
-
-                    <div class="availability">
-
-                        <div style="flex:1">
-
-                            <input
-                                type="radio"
-                                id="available"
-                                name="availability"
-                                value="Available"
-                                required
-                            >
-
-                            <label for="available">
-                                ✓ Available
-                            </label>
-
-                        </div>
-
-                        <div style="flex:1">
-
-                            <input
-                                type="radio"
-                                id="unavailable"
-                                name="availability"
-                                value="Unavailable"
-                            >
-
-                            <label for="unavailable">
-                                Not Available
-                            </label>
-
-                        </div>
-
-                    </div>
-
-                </div>
-
-            </div>
-
-
-            <button class="btn" type="submit">
-                🩸 Join Donor Network
-            </button>
-
-        </form>
-
-    </div>
-
-
-    <!-- SUCCESS -->
-    <div class="success" id="success">
-
-        <div class="check">✓</div>
-
-        <h2>Donor Profile Created</h2>
-
-        <p style="margin-top:12px;color:#65776d;line-height:1.6">
-
-            Your donor profile has been created successfully
-            in this VitalLoop prototype.
-
-        </p>
-
-        <div class="donor-id" id="donorId">
-            VL-D000000
-        </div>
-
-        <p style="margin-top:20px;color:#65776d;font-size:14px">
-
-            Actual blood donation is performed only through
-            authorized blood centres or healthcare facilities
-            after required medical screening and procedures.
-
-        </p>
-
-        <a
-            href="find-blood.html"
-            style="
-            display:inline-block;
-            margin-top:22px;
-            padding:13px 22px;
-            border-radius:12px;
-            background:#08783e;
-            color:white;
-            text-decoration:none;
-            font-weight:bold;
-            "
+        <input
+          type="text"
+          id="searchInput"
+          placeholder="Search camp, organisation or location..."
         >
-            Find Blood Resources →
-        </a>
+
+        <select id="districtFilter">
+          <option value="">All Districts</option>
+          <option>Lucknow</option>
+          <option>Kanpur</option>
+          <option>Prayagraj</option>
+          <option>Varanasi</option>
+          <option>Agra</option>
+          <option>Gorakhpur</option>
+          <option>Meerut</option>
+          <option>Other</option>
+        </select>
+
+        <button class="filter-btn" onclick="filterCamps()">
+          Search
+        </button>
+
+      </div>
+
+    </section>
+
+
+    <!-- CAMP LIST -->
+    <section id="campList"></section>
+
+
+    <!-- NOTICE -->
+    <div class="notice">
+
+      <strong>Important:</strong><br>
+
+      Camp information shown on this prototype is for discovery
+      and coordination. Please verify the date, location and
+      eligibility requirements with the organising blood centre
+      or healthcare facility before visiting.
 
     </div>
 
-</div>
+  </main>
 
 
-<!-- HOW IT WORKS -->
-<div class="card">
+  <!-- FOOTER -->
+  <footer>
+    <strong>RaktSathi</strong> — Connecting People. Saving Lives.<br><br>
+    A smart blood-resource coordination platform.
+  </footer>
 
-    <h2>How Donor Coordination Works</h2>
 
-    <p class="subtitle">
-        VitalLoop acts as a discovery and coordination layer.
-    </p>
+  <script>
 
-    <div class="info-grid">
+    let camps = [];
 
-        <div class="info">
+    const campList = document.getElementById("campList");
+    const searchInput = document.getElementById("searchInput");
+    const districtFilter = document.getElementById("districtFilter");
 
-            <div class="info-icon">👤</div>
 
-            <h3>1. Create Profile</h3>
+    /* LOAD CAMPS */
 
+    async function loadCamps() {
+
+      try {
+
+        const response = await fetch("camps.json");
+
+        if (!response.ok) {
+          throw new Error("Unable to load camps");
+        }
+
+        camps = await response.json();
+
+        displayCamps(camps);
+
+      } catch (error) {
+
+        console.error(error);
+
+        campList.innerHTML = `
+          <div class="empty">
+            <h3>Camp information unavailable</h3>
             <p>
-                Add your blood group, city and availability
-                to create a donor profile.
+              Please try again later or verify camp details
+              with the organising healthcare facility.
             </p>
+          </div>
+        `;
 
-        </div>
+      }
+
+    }
 
 
-        <div class="info">
+    /* DISPLAY */
 
-            <div class="info-icon">🔎</div>
+    function displayCamps(data) {
 
-            <h3>2. Discover Requests</h3>
+      campList.innerHTML = "";
 
+      if (!data.length) {
+
+        campList.innerHTML = `
+          <div class="empty">
+            <h3>No camps found</h3>
             <p>
-                Relevant blood requests can be matched using
-                blood group and location information.
+              Try another location or search term.
             </p>
+          </div>
+        `;
 
-        </div>
-
-
-        <div class="info">
-
-            <div class="info-icon">🏥</div>
-
-            <h3>3. Authorized Donation</h3>
-
-            <p>
-                If coordination proceeds, donation takes place
-                at an authorized healthcare facility or blood centre.
-            </p>
-
-        </div>
-
-    </div>
-
-</div>
+        return;
+      }
 
 
-<!-- SAFETY -->
-<div class="card">
+      data.forEach(camp => {
 
-    <div class="safety">
+        const name =
+          camp.name ||
+          camp.campName ||
+          "Blood Donation Camp";
 
-        <strong>🛡️ Blood Safety First</strong><br>
+        const organisation =
+          camp.organisation ||
+          camp.organization ||
+          "Organiser not specified";
 
-        VitalLoop does not collect, test, store, transport or
-        release blood. Donor eligibility, medical screening,
-        infection testing, compatibility and actual blood
-        donation are handled by authorized healthcare
-        professionals and blood centres.
+        const location =
+          camp.location ||
+          camp.address ||
+          "Location not specified";
 
-    </div>
+        const district =
+          camp.district ||
+          "District not specified";
 
-</div>
+        const date =
+          camp.date ||
+          "Date not specified";
 
-</div>
-
-
-<!-- FOOTER -->
-<footer>
-
-    <strong>VitalLoop</strong><br>
-
-    Your Complete Healthcare Journey
-
-    <div style="margin-top:8px;font-size:13px;opacity:.75">
-        Healthcare Technology Prototype • Smart India Hackathon
-    </div>
-
-</footer>
+        const time =
+          camp.time ||
+          "Time not specified";
 
 
-<script>
-
-function registerDonor(event){
-
-    event.preventDefault();
-
-    const name =
-        document.getElementById("name").value;
-
-    const bloodGroup =
-        document.getElementById("bloodGroup").value;
-
-    const city =
-        document.getElementById("city").value;
-
-    const phone =
-        document.getElementById("phone").value;
-
-    const lastDonation =
-        document.getElementById("lastDonation").value;
-
-    const radius =
-        document.getElementById("radius").value;
-
-    const availability =
-        document.querySelector(
-            'input[name="availability"]:checked'
-        ).value;
+        const mapQuery =
+          encodeURIComponent(
+            `${name}, ${location}, ${district}`
+          );
 
 
-    /* DEMO DONOR ID */
+        const card = document.createElement("article");
 
-    const number =
-        Math.floor(100000 + Math.random() * 900000);
+        card.className = "camp-card";
 
-    document.getElementById("donorId").innerText =
-        "VL-D" + number;
+        card.innerHTML = `
+
+          <div class="camp-icon">
+            🩸
+          </div>
+
+          <h3>${escapeHTML(name)}</h3>
+
+          <div class="camp-info">
+            <strong>Organiser:</strong>
+            ${escapeHTML(organisation)}
+          </div>
+
+          <div class="camp-info">
+            <strong>📅 Date:</strong>
+            ${escapeHTML(date)}
+          </div>
+
+          <div class="camp-info">
+            <strong>⏰ Time:</strong>
+            ${escapeHTML(time)}
+          </div>
+
+          <div class="camp-info">
+            <strong>📍 Location:</strong>
+            ${escapeHTML(location)}
+          </div>
+
+          <div class="camp-info">
+            <strong>District:</strong>
+            ${escapeHTML(district)}
+          </div>
+
+          <span class="camp-status">
+            Donation Camp
+          </span>
+
+          <a
+            class="map-btn"
+            href="https://www.google.com/maps/search/?api=1&query=${mapQuery}"
+            target="_blank"
+            rel="noopener"
+          >
+            📍 View on Maps
+          </a>
+
+        `;
+
+        campList.appendChild(card);
+
+      });
+
+    }
 
 
-    /* PROTOTYPE DATA */
+    /* FILTER */
 
-    console.log({
-        name,
-        bloodGroup,
-        city,
-        phone,
-        lastDonation,
-        radius,
-        availability
-    });
+    function filterCamps() {
+
+      const query =
+        searchInput.value
+          .toLowerCase()
+          .trim();
+
+      const district =
+        districtFilter.value
+          .toLowerCase();
 
 
-    document.getElementById("donorForm").style.display =
-        "none";
+      const filtered = camps.filter(camp => {
 
-    document.getElementById("success").style.display =
-        "block";
+        const text = JSON.stringify(camp)
+          .toLowerCase();
 
-    window.scrollTo({
-        top:0,
-        behavior:"smooth"
-    });
+        const matchesSearch =
+          !query ||
+          text.includes(query);
 
-}
+        const matchesDistrict =
+          !district ||
+          String(
+            camp.district || ""
+          ).toLowerCase() === district;
 
-</script>
+        return matchesSearch && matchesDistrict;
+
+      });
+
+
+      displayCamps(filtered);
+
+    }
+
+
+    /* LIVE SEARCH */
+
+    searchInput.addEventListener(
+      "input",
+      filterCamps
+    );
+
+    districtFilter.addEventListener(
+      "change",
+      filterCamps
+    );
+
+
+    /* BASIC HTML ESCAPE */
+
+    function escapeHTML(value) {
+
+      return String(value)
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#039;");
+
+    }
+
+
+    /* START */
+
+    loadCamps();
+
+  </script>
 
 </body>
 </html>
