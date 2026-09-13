@@ -4,29 +4,24 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Become a Donor | RaktSathi</title>
-
-  <meta name="description"
-        content="Register as a blood donor with RaktSathi and help connect patients with potential blood donors.">
+  <title>Donor Network | RaktSathi</title>
 
   <style>
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
     }
 
     body {
-      background: #f4fbf7;
-      color: #16352a;
+      font-family: Arial, sans-serif;
+      background: #f5faf7;
+      color: #17352a;
       line-height: 1.6;
     }
 
-    /* NAVBAR */
-    nav {
-      width: 100%;
-      background: #064e3b;
+    header {
+      background: #063b2c;
       color: white;
       padding: 16px 6%;
       display: flex;
@@ -34,145 +29,122 @@
       align-items: center;
       position: sticky;
       top: 0;
-      z-index: 1000;
-      box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+      z-index: 100;
     }
 
     .logo {
-      font-size: 25px;
-      font-weight: 800;
-      letter-spacing: .5px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 23px;
+      font-weight: bold;
     }
 
-    .logo span {
-      color: #ef4444;
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      background: #d71920;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 22px;
+      font-weight: bold;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
     nav a {
       color: white;
       text-decoration: none;
-      margin-left: 22px;
       font-size: 14px;
-      font-weight: 600;
     }
 
     nav a:hover {
-      color: #86efac;
+      color: #ffb3b3;
     }
 
-    /* HERO */
     .hero {
-      background: linear-gradient(135deg, #064e3b, #047857);
+      background: linear-gradient(135deg, #063b2c, #08744f);
       color: white;
-      padding: 70px 6%;
       text-align: center;
+      padding: 70px 6%;
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 8px 15px;
+      border: 1px solid rgba(255,255,255,.4);
+      border-radius: 30px;
+      font-size: 12px;
+      letter-spacing: 1px;
+      margin-bottom: 18px;
     }
 
     .hero h1 {
-      font-size: clamp(34px, 6vw, 58px);
+      font-size: clamp(32px, 5vw, 52px);
       margin-bottom: 14px;
-    }
-
-    .hero h1 span {
-      color: #fca5a5;
     }
 
     .hero p {
       max-width: 750px;
       margin: auto;
+      color: #d9f4e9;
       font-size: 17px;
-      opacity: .95;
     }
 
-    /* MAIN */
     .container {
-      width: 92%;
+      width: 90%;
       max-width: 1100px;
       margin: 45px auto;
     }
 
+    .card {
+      background: white;
+      border-radius: 22px;
+      padding: 30px;
+      box-shadow: 0 10px 35px rgba(0,0,0,.08);
+      margin-bottom: 25px;
+    }
+
+    .card h2 {
+      color: #063b2c;
+      margin-bottom: 8px;
+    }
+
+    .subtitle {
+      color: #66756f;
+      margin-bottom: 25px;
+    }
+
     .grid {
       display: grid;
-      grid-template-columns: 1fr 1.2fr;
-      gap: 30px;
-      align-items: start;
-    }
-
-    /* INFO CARD */
-    .info {
-      background: white;
-      padding: 30px;
-      border-radius: 22px;
-      box-shadow: 0 12px 35px rgba(6,78,59,.10);
-    }
-
-    .info h2 {
-      color: #065f46;
-      margin-bottom: 18px;
-    }
-
-    .info p {
-      margin-bottom: 18px;
-      color: #496158;
-    }
-
-    .benefit {
-      display: flex;
-      gap: 14px;
-      margin: 18px 0;
-      padding: 15px;
-      background: #f0fdf4;
-      border-radius: 14px;
-    }
-
-    .icon {
-      font-size: 25px;
-    }
-
-    .benefit strong {
-      display: block;
-      color: #064e3b;
-      margin-bottom: 3px;
-    }
-
-    /* FORM */
-    .form-card {
-      background: white;
-      padding: 30px;
-      border-radius: 22px;
-      box-shadow: 0 12px 35px rgba(6,78,59,.10);
-    }
-
-    .form-card h2 {
-      color: #065f46;
-      margin-bottom: 22px;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 17px;
     }
 
     label {
       display: block;
-      margin: 15px 0 7px;
-      font-weight: 700;
+      font-weight: bold;
       font-size: 14px;
-      color: #24483b;
+      margin-bottom: 6px;
     }
 
     input,
     select,
     textarea {
       width: 100%;
-      padding: 13px 14px;
-      border: 1px solid #cce5d9;
-      border-radius: 11px;
+      padding: 13px;
+      border: 1px solid #ccd8d2;
+      border-radius: 10px;
       outline: none;
-      font-size: 15px;
-      background: #fbfffd;
-    }
-
-    input:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #10b981;
-      box-shadow: 0 0 0 3px rgba(16,185,129,.12);
+      font-size: 14px;
+      background: white;
+      font-family: inherit;
     }
 
     textarea {
@@ -180,93 +152,169 @@
       resize: vertical;
     }
 
-    .row {
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: #08744f;
+    }
+
+    .full {
+      grid-column: 1 / -1;
+    }
+
+    .buttons {
+      margin-top: 22px;
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    button,
+    .btn {
+      border: none;
+      padding: 13px 20px;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: bold;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .primary {
+      background: #d71920;
+      color: white;
+    }
+
+    .secondary {
+      background: #08744f;
+      color: white;
+    }
+
+    .light {
+      background: #e8f3ee;
+      color: #063b2c;
+    }
+
+    #message {
+      display: none;
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 10px;
+    }
+
+    .success {
+      background: #eaf8ef;
+      color: #17643e;
+    }
+
+    .error {
+      background: #fff1f1;
+      color: #9b2929;
+    }
+
+    .matching-box {
+      background: linear-gradient(135deg, #063b2c, #08744f);
+      color: white;
+      border-radius: 22px;
+      padding: 30px;
+    }
+
+    .matching-box h2 {
+      margin-bottom: 10px;
+    }
+
+    .matching-box p {
+      color: #d9f4e9;
+      margin-bottom: 22px;
+    }
+
+    .match-grid {
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 15px;
     }
 
-    button {
-      width: 100%;
-      margin-top: 22px;
-      padding: 15px;
-      border: none;
-      border-radius: 12px;
-      background: linear-gradient(135deg, #dc2626, #b91c1c);
-      color: white;
-      font-size: 16px;
-      font-weight: 800;
-      cursor: pointer;
-      transition: .2s;
-    }
-
-    button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(185,28,28,.25);
-    }
-
-    /* SUCCESS */
-    .success {
-      display: none;
-      margin-top: 20px;
-      padding: 16px;
-      border-radius: 12px;
-      background: #ecfdf5;
-      border: 1px solid #86efac;
-      color: #166534;
-      font-weight: 600;
-    }
-
-    /* SAFETY */
-    .notice {
-      margin-top: 30px;
+    .match-item {
+      background: rgba(255,255,255,.1);
+      border: 1px solid rgba(255,255,255,.2);
       padding: 20px;
-      background: #fff7ed;
-      border-left: 5px solid #f97316;
-      border-radius: 12px;
-      color: #7c2d12;
+      border-radius: 15px;
+    }
+
+    .match-item strong {
+      display: block;
+      font-size: 22px;
+      margin-bottom: 5px;
+    }
+
+    .workflow {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px;
+      margin-top: 20px;
+    }
+
+    .step {
+      background: #f0f7f3;
+      padding: 20px;
+      border-radius: 15px;
+      border-top: 4px solid #08744f;
+    }
+
+    .step span {
+      font-weight: bold;
+      color: #d71920;
+      font-size: 13px;
+    }
+
+    .step h3 {
+      margin: 7px 0;
+      color: #063b2c;
+      font-size: 17px;
+    }
+
+    .step p {
+      color: #66756f;
+      font-size: 13px;
+    }
+
+    .notice {
+      background: #fff3f3;
+      border-left: 5px solid #d71920;
+      padding: 20px;
+      border-radius: 10px;
+      color: #5e3030;
       font-size: 14px;
     }
 
-    /* FOOTER */
     footer {
-      margin-top: 60px;
-      background: #022c22;
-      color: #d1fae5;
+      background: #03271e;
+      color: #d8eee5;
       text-align: center;
       padding: 30px 6%;
-      font-size: 14px;
+      font-size: 13px;
+      margin-top: 60px;
     }
 
-    footer strong {
-      color: white;
+    footer a {
+      color: #9fe3c5;
+      text-decoration: none;
     }
 
-    /* MOBILE */
-    @media (max-width: 800px) {
+    @media(max-width: 800px) {
+      .grid,
+      .match-grid,
+      .workflow {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 12px;
+      }
+
       nav {
-        padding: 14px 5%;
-      }
-
-      nav div:last-child {
-        display: none;
-      }
-
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      .row {
-        grid-template-columns: 1fr;
-        gap: 0;
-      }
-
-      .hero {
-        padding: 55px 6%;
-      }
-
-      .container {
-        margin: 30px auto;
+        justify-content: center;
       }
     }
   </style>
@@ -274,260 +322,479 @@
 
 <body>
 
-  <!-- NAVBAR -->
-  <nav>
-    <div class="logo">
-      Rakt<span>Sathi</span>
-    </div>
+<header>
 
-    <div>
-      <a href="index.html">Home</a>
-      <a href="find-blood.html">Find Blood</a>
-      <a href="blood-request.html">Request Blood</a>
-    </div>
+  <div class="logo">
+    <div class="logo-icon">S</div>
+    RaktSathi
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="emergency.html">Emergency</a>
+    <a href="find-blood.html">Find Blood</a>
+    <a href="blood-request.html">Track Request</a>
+    <a href="donor.html">Donor Network</a>
+    <a href="camps.html">Camps</a>
   </nav>
 
+</header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <h1>Become a <span>Blood Donor</span></h1>
 
-    <p>
-      Your decision to donate can help connect patients with potential
-      blood donors when they need support.
+<section class="hero">
+
+  <div class="badge">
+    SMART DONOR NETWORK
+  </div>
+
+  <h1>Connect Potential Donors</h1>
+
+  <p>
+    Build a responsible donor network that can help identify
+    potential matching resources during blood emergencies.
+  </p>
+
+</section>
+
+
+<main class="container">
+
+
+  <!-- Registration -->
+
+  <section class="card">
+
+    <h2>Join the RaktSathi Donor Network</h2>
+
+    <p class="subtitle">
+      Your information can help RaktSathi identify potential
+      donor resources when a matching requirement is created.
     </p>
-  </section>
 
 
-  <!-- CONTENT -->
-  <main class="container">
+    <form id="donorForm">
 
-    <div class="grid">
+      <div class="grid">
 
-      <!-- INFORMATION -->
-      <section class="info">
+        <div>
+          <label for="name">
+            Full Name
+          </label>
 
-        <h2>Why Become a Donor?</h2>
-
-        <p>
-          RaktSathi helps create a digital coordination layer between
-          people seeking blood and potential donors.
-        </p>
-
-        <div class="benefit">
-          <div class="icon">🩸</div>
-          <div>
-            <strong>Support Patients</strong>
-            Help patients find potential donor support faster.
-          </div>
+          <input
+            type="text"
+            id="name"
+            placeholder="Enter full name"
+            required>
         </div>
 
-        <div class="benefit">
-          <div class="icon">🤝</div>
-          <div>
-            <strong>Build a Donor Network</strong>
-            Become part of a community focused on blood-resource coordination.
-          </div>
+
+        <div>
+          <label for="phone">
+            Contact Number
+          </label>
+
+          <input
+            type="tel"
+            id="phone"
+            placeholder="Enter contact number"
+            required>
         </div>
 
-        <div class="benefit">
-          <div class="icon">📍</div>
-          <div>
-            <strong>Location-Based Discovery</strong>
-            Your district can help identify relevant donor connections.
-          </div>
+
+        <div>
+          <label for="bloodGroup">
+            Blood Group
+          </label>
+
+          <select id="bloodGroup" required>
+
+            <option value="">
+              Select Blood Group
+            </option>
+
+            <option>A+</option>
+            <option>A-</option>
+            <option>B+</option>
+            <option>B-</option>
+            <option>AB+</option>
+            <option>AB-</option>
+            <option>O+</option>
+            <option>O-</option>
+
+          </select>
         </div>
 
-        <div class="benefit">
-          <div class="icon">⚡</div>
-          <div>
-            <strong>Faster Coordination</strong>
-            Reduce the time needed to identify possible donor support.
-          </div>
+
+        <div>
+          <label for="district">
+            District / City
+          </label>
+
+          <input
+            type="text"
+            id="district"
+            placeholder="e.g. Lucknow"
+            required>
         </div>
 
-      </section>
 
-
-      <!-- DONOR FORM -->
-      <section class="form-card">
-
-        <h2>Donor Registration</h2>
-
-        <form id="donorForm">
-
-          <div class="row">
-
-            <div>
-              <label for="name">Full Name</label>
-              <input
-                type="text"
-                id="name"
-                placeholder="Enter your name"
-                required
-              >
-            </div>
-
-            <div>
-              <label for="phone">Phone Number</label>
-              <input
-                type="tel"
-                id="phone"
-                placeholder="10-digit mobile number"
-                maxlength="10"
-                required
-              >
-            </div>
-
-          </div>
-
-
-          <div class="row">
-
-            <div>
-              <label for="bloodGroup">Blood Group</label>
-
-              <select id="bloodGroup" required>
-                <option value="">Select blood group</option>
-                <option>A+</option>
-                <option>A-</option>
-                <option>B+</option>
-                <option>B-</option>
-                <option>AB+</option>
-                <option>AB-</option>
-                <option>O+</option>
-                <option>O-</option>
-              </select>
-            </div>
-
-            <div>
-              <label for="district">District</label>
-
-              <input
-                type="text"
-                id="district"
-                placeholder="e.g. Lucknow"
-                required
-              >
-            </div>
-
-          </div>
-
-
-          <label for="availability">Availability</label>
+        <div>
+          <label for="availability">
+            Availability Status
+          </label>
 
           <select id="availability" required>
-            <option value="">Select availability</option>
-            <option>Available for emergency requests</option>
-            <option>Available with prior coordination</option>
-            <option>Currently unavailable</option>
+
+            <option value="">
+              Select Status
+            </option>
+
+            <option value="available">
+              Available to be contacted
+            </option>
+
+            <option value="limited">
+              Limited Availability
+            </option>
+
+            <option value="unavailable">
+              Currently Unavailable
+            </option>
+
           </select>
+        </div>
 
 
+        <div>
           <label for="lastDonation">
-            Last Donation Date
+            Last Registered Donation Date
           </label>
 
           <input
             type="date"
-            id="lastDonation"
-          >
+            id="lastDonation">
+        </div>
 
 
-          <label for="message">
+        <div class="full">
+
+          <label for="info">
             Additional Information
           </label>
 
           <textarea
-            id="message"
-            placeholder="Optional information..."
-          ></textarea>
+            id="info"
+            placeholder="Optional information"></textarea>
 
-
-          <button type="submit">
-            Register as Donor
-          </button>
-
-        </form>
-
-
-        <div class="success" id="successMessage">
-          ✅ Donor information saved successfully for this prototype.
-          RaktSathi does not guarantee donor availability.
         </div>
 
-      </section>
+      </div>
+
+
+      <div class="buttons">
+
+        <button
+          type="submit"
+          class="primary">
+          Register in Donor Network
+        </button>
+
+        <button
+          type="reset"
+          class="light">
+          Reset
+        </button>
+
+      </div>
+
+    </form>
+
+
+    <div id="message"></div>
+
+  </section>
+
+
+  <!-- Smart Matching -->
+
+  <section class="matching-box">
+
+    <h2>How Smart Donor Matching Works</h2>
+
+    <p>
+      RaktSathi can use request requirements to identify
+      potential donor resources. Matching does not confirm
+      eligibility or guarantee donation.
+    </p>
+
+
+    <div class="match-grid">
+
+      <div class="match-item">
+
+        <strong>01</strong>
+
+        Blood Group
+
+        <br>
+
+        Match the requested blood group
+        with registered donor information.
+
+      </div>
+
+
+      <div class="match-item">
+
+        <strong>02</strong>
+
+        Location
+
+        <br>
+
+        Prioritise potentially relevant
+        geographic resources.
+
+      </div>
+
+
+      <div class="match-item">
+
+        <strong>03</strong>
+
+        Availability
+
+        <br>
+
+        Consider the donor's registered
+        availability status.
+
+      </div>
 
     </div>
 
+  </section>
 
-    <!-- SAFETY NOTICE -->
-    <div class="notice">
 
-      <strong>Important Safety Notice:</strong><br>
+  <!-- Workflow -->
 
-      RaktSathi is a discovery and coordination prototype.
-      Donor registration does not guarantee donation or blood availability.
-      Actual donor eligibility, screening, blood collection, testing,
-      compatibility, storage and transfusion are handled by authorized
-      blood centres and healthcare professionals.
+  <section class="card">
+
+    <h2>Donor Coordination Workflow</h2>
+
+    <p class="subtitle">
+      A responsible matching process keeps verification
+      before any medical decision.
+    </p>
+
+
+    <div class="workflow">
+
+      <div class="step">
+
+        <span>STEP 01</span>
+
+        <h3>Emergency Request</h3>
+
+        <p>
+          A blood requirement is created.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>STEP 02</span>
+
+        <h3>Smart Matching</h3>
+
+        <p>
+          Potential donor resources are identified.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>STEP 03</span>
+
+        <h3>Contact & Verify</h3>
+
+        <p>
+          Appropriate verification is handled by
+          responsible people and facilities.
+        </p>
+
+      </div>
+
+
+      <div class="step">
+
+        <span>STEP 04</span>
+
+        <h3>Facility Coordination</h3>
+
+        <p>
+          Actual donation and medical procedures
+          remain with authorised facilities.
+        </p>
+
+      </div>
 
     </div>
 
-  </main>
+  </section>
 
 
-  <!-- FOOTER -->
-  <footer>
-    <strong>RaktSathi</strong> — Connecting People. Saving Lives.<br><br>
-    A smart blood-resource coordination platform.
-  </footer>
+  <!-- Safety -->
+
+  <section class="notice">
+
+    <strong>Important Safety Notice:</strong>
+
+    RaktSathi is a coordination prototype and does not
+    collect, test, store, transport, release or transfuse blood.
+
+    Donor registration does not mean a person is medically
+    eligible to donate. Final eligibility, screening,
+    compatibility and donation decisions must be made by
+    authorised healthcare professionals and blood centres.
+
+    Availability information should be independently verified.
+
+  </section>
+
+</main>
 
 
-  <script>
-    const donorForm = document.getElementById("donorForm");
-    const successMessage = document.getElementById("successMessage");
+<footer>
 
-    donorForm.addEventListener("submit", function(event) {
+  <strong>RaktSathi</strong>
 
-      event.preventDefault();
+  <br>
 
-      const phone = document.getElementById("phone").value.trim();
+  Intelligent Blood Emergency Coordination Network
 
-      // Phone validation
-      if (!/^[6-9][0-9]{9}$/.test(phone)) {
-        alert("Please enter a valid 10-digit Indian mobile number.");
-        return;
-      }
+  <br><br>
 
-      const donorData = {
-        name: document.getElementById("name").value.trim(),
-        phone: phone,
-        bloodGroup: document.getElementById("bloodGroup").value,
-        district: document.getElementById("district").value.trim(),
-        availability: document.getElementById("availability").value,
-        lastDonation: document.getElementById("lastDonation").value,
-        message: document.getElementById("message").value.trim(),
-        registeredAt: new Date().toISOString()
-      };
+  <a href="index.html">Home</a> ·
+  <a href="emergency.html">Emergency</a> ·
+  <a href="find-blood.html">Find Blood</a> ·
+  <a href="blood-request.html">Track Request</a>
 
-      // Prototype storage
-      localStorage.setItem(
-        "raktSathiDonor",
-        JSON.stringify(donorData)
-      );
+  <br><br>
 
-      successMessage.style.display = "block";
+  © 2026 RaktSathi · Prototype
 
-      donorForm.reset();
+</footer>
 
-      window.scrollTo({
-        top: successMessage.offsetTop - 100,
-        behavior: "smooth"
-      });
 
-    });
-  </script>
+<script>
+
+const form =
+  document.getElementById("donorForm");
+
+const message =
+  document.getElementById("message");
+
+
+form.addEventListener("submit", function(event) {
+
+  event.preventDefault();
+
+
+  const donor = {
+
+    id:
+      "RS-D-" +
+      Math.random()
+        .toString(36)
+        .substring(2, 10)
+        .toUpperCase(),
+
+    name:
+      document
+        .getElementById("name")
+        .value
+        .trim(),
+
+    phone:
+      document
+        .getElementById("phone")
+        .value
+        .trim(),
+
+    bloodGroup:
+      document
+        .getElementById("bloodGroup")
+        .value,
+
+    district:
+      document
+        .getElementById("district")
+        .value
+        .trim(),
+
+    availability:
+      document
+        .getElementById("availability")
+        .value,
+
+    lastDonation:
+      document
+        .getElementById("lastDonation")
+        .value,
+
+    additionalInfo:
+      document
+        .getElementById("info")
+        .value
+        .trim(),
+
+    registeredAt:
+      new Date().toISOString()
+
+  };
+
+
+  localStorage.setItem(
+    "raktSathiDonor",
+    JSON.stringify(donor)
+  );
+
+
+  message.className =
+    "success";
+
+  message.style.display =
+    "block";
+
+  message.innerHTML = `
+
+    <strong>✓ Donor Network Registration Saved</strong>
+
+    <br><br>
+
+    Registration ID:
+    <strong>${donor.id}</strong>
+
+    <br><br>
+
+    Your information has been saved locally
+    for this prototype.
+
+  `;
+
+
+  form.reset();
+
+});
+
+
+</script>
 
 </body>
 </html>
