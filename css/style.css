@@ -1981,3 +1981,409 @@ img[src*="raktsathi-header-bg.png"] {
     transition-duration: .01ms !important;
   }
 }
+/* =====================================================
+   RAKTSATHI LOADER - SAFE FIX
+   Prevents blank screen after animation
+   ===================================================== */
+
+#raktsathi-loader {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100vw !important;
+  height: 100vh !important;
+  z-index: 999999 !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  background: #fff7f8 !important;
+  overflow: hidden !important;
+  pointer-events: auto;
+}
+
+#raktsathi-loader.rs-loader-exit {
+  animation: rsLoaderFadeOut 0.8s ease forwards !important;
+  pointer-events: none !important;
+}
+
+.rs-loader-scene {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Falling blood drop */
+
+.rs-drop-wrapper {
+  position: absolute;
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  animation: rsDropFall 1.25s cubic-bezier(.22,.61,.36,1) forwards;
+}
+
+.rs-drop {
+  width: 48px;
+  height: 62px;
+  position: relative;
+  background: #b40000;
+  border-radius: 55% 55% 60% 60%;
+  transform: rotate(45deg);
+  box-shadow:
+    0 10px 30px rgba(139,0,0,.25),
+    inset -6px -7px 12px rgba(70,0,0,.18);
+}
+
+.rs-drop::before {
+  content: "";
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  top: -11px;
+  left: 8px;
+  background: #b40000;
+  transform: rotate(-45deg);
+  border-radius: 100% 0 100% 100%;
+}
+
+.rs-drop-shine {
+  position: absolute;
+  width: 8px;
+  height: 18px;
+  left: 10px;
+  top: 12px;
+  border-radius: 50%;
+  background: rgba(255,255,255,.65);
+  transform: rotate(-45deg);
+  z-index: 2;
+}
+
+/* Impact */
+
+.rs-impact-shadow {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  width: 10px;
+  height: 4px;
+  border-radius: 50%;
+  background: rgba(180,0,0,.35);
+  transform: translateX(-50%);
+  animation: rsImpact 1.1s ease 1.05s forwards;
+}
+
+/* Splash */
+
+.rs-splash {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  transform: translate(-50%, -50%);
+  opacity: 0;
+  animation: rsSplashShow .8s ease 1.15s forwards;
+}
+
+.splash-drop {
+  position: absolute;
+  width: 9px;
+  height: 18px;
+  background: #b40000;
+  border-radius: 70% 70% 70% 20%;
+  left: 50%;
+  top: 50%;
+  transform-origin: center bottom;
+}
+
+.splash-1 {
+  animation: splash1 .7s ease 1.2s forwards;
+}
+
+.splash-2 {
+  animation: splash2 .7s ease 1.2s forwards;
+}
+
+.splash-3 {
+  animation: splash3 .7s ease 1.2s forwards;
+}
+
+.splash-4 {
+  animation: splash4 .7s ease 1.2s forwards;
+}
+
+.splash-5 {
+  animation: splash5 .7s ease 1.2s forwards;
+}
+
+.splash-6 {
+  animation: splash6 .7s ease 1.2s forwards;
+}
+
+/* Ripple */
+
+.rs-ripple {
+  position: absolute;
+  top: 57%;
+  left: 50%;
+  border: 2px solid rgba(180,0,0,.5);
+  border-radius: 50%;
+  transform: translate(-50%, -50%) scale(.2);
+  opacity: 0;
+}
+
+.ripple-1 {
+  width: 70px;
+  height: 25px;
+  animation: rsRipple 1.4s ease 1.2s forwards;
+}
+
+.ripple-2 {
+  width: 120px;
+  height: 40px;
+  animation: rsRipple 1.4s ease 1.35s forwards;
+}
+
+.ripple-3 {
+  width: 180px;
+  height: 55px;
+  animation: rsRipple 1.4s ease 1.5s forwards;
+}
+
+/* Brand */
+
+.rs-loader-brand {
+  position: absolute;
+  top: 62%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  opacity: 0;
+  animation: rsBrandReveal .9s ease 1.9s forwards;
+}
+
+.rs-logo-circle {
+  width: 82px;
+  height: 82px;
+  margin: 0 auto 12px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #ffffff;
+  box-shadow:
+    0 12px 35px rgba(139,0,0,.16),
+    0 0 0 1px rgba(139,0,0,.08);
+}
+
+.rs-logo-circle img {
+  width: 62px;
+  height: 62px;
+  object-fit: contain;
+}
+
+.rs-brand-name {
+  font-size: 2.1rem;
+  font-weight: 800;
+  letter-spacing: -0.05em;
+  color: #111111;
+}
+
+.rs-brand-name span {
+  color: #b40000;
+}
+
+.rs-loader-tagline {
+  margin-top: 6px;
+  color: #666666;
+  font-size: .9rem;
+  letter-spacing: .02em;
+}
+
+.rs-loader-dots {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+}
+
+.rs-loader-dots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #b40000;
+  animation: rsDot 1s ease-in-out infinite;
+}
+
+.rs-loader-dots i:nth-child(2) {
+  animation-delay: .15s;
+}
+
+.rs-loader-dots i:nth-child(3) {
+  animation-delay: .3s;
+}
+
+/* =====================================================
+   ANIMATIONS
+   ===================================================== */
+
+@keyframes rsDropFall {
+  0% {
+    transform: translateX(-50%) translateY(-20vh);
+  }
+
+  75% {
+    transform: translateX(-50%) translateY(43vh);
+  }
+
+  88% {
+    transform: translateX(-50%) translateY(40vh);
+  }
+
+  100% {
+    transform: translateX(-50%) translateY(43vh);
+  }
+}
+
+@keyframes rsImpact {
+  0% {
+    width: 10px;
+    opacity: .4;
+  }
+
+  100% {
+    width: 130px;
+    opacity: 0;
+  }
+}
+
+@keyframes rsSplashShow {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.2);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes rsRipple {
+  0% {
+    opacity: .6;
+    transform: translate(-50%, -50%) scale(.2);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes rsBrandReveal {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -45%) scale(.8);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+
+@keyframes rsDot {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: .4;
+  }
+
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
+
+@keyframes rsLoaderFadeOut {
+  0% {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+/* Splash directions */
+
+@keyframes splash1 {
+  to {
+    transform: translate(-50%, -50%) translate(-65px, -35px) rotate(-35deg);
+    opacity: 0;
+  }
+}
+
+@keyframes splash2 {
+  to {
+    transform: translate(-50%, -50%) translate(65px, -35px) rotate(35deg);
+    opacity: 0;
+  }
+}
+
+@keyframes splash3 {
+  to {
+    transform: translate(-50%, -50%) translate(-85px, 5px) rotate(-70deg);
+    opacity: 0;
+  }
+}
+
+@keyframes splash4 {
+  to {
+    transform: translate(-50%, -50%) translate(85px, 5px) rotate(70deg);
+    opacity: 0;
+  }
+}
+
+@keyframes splash5 {
+  to {
+    transform: translate(-50%, -50%) translate(-35px, -65px) rotate(-15deg);
+    opacity: 0;
+  }
+}
+
+@keyframes splash6 {
+  to {
+    transform: translate(-50%, -50%) translate(35px, -65px) rotate(15deg);
+    opacity: 0;
+  }
+}
+
+/* Mobile */
+
+@media (max-width: 600px) {
+
+  .rs-brand-name {
+    font-size: 1.9rem;
+  }
+
+  .rs-loader-tagline {
+    font-size: .82rem;
+  }
+
+  .rs-logo-circle {
+    width: 74px;
+    height: 74px;
+  }
+
+  .rs-logo-circle img {
+    width: 56px;
+    height: 56px;
+  }
+}
