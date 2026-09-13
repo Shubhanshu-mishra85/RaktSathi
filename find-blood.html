@@ -2,1009 +2,743 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Find Blood | RaktSathi</title>
+  <meta
+    name="description"
+    content="RaktSathi Smart Blood Resource Discovery and Verification"
+  >
 
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+  <meta name="theme-color" content="#8B0000">
 
-    body {
-      font-family: Arial, sans-serif;
-      background: #f5faf7;
-      color: #17352a;
-      line-height: 1.6;
-    }
+  <title>
+    Find Blood Resources | RaktSathi
+  </title>
 
-    header {
-      background: #063b2c;
-      color: white;
-      padding: 16px 6%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+  <link
+    rel="icon"
+    type="image/png"
+    href="raktsathi-logo.png"
+  >
 
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-size: 23px;
-      font-weight: bold;
-    }
+  <link
+    rel="manifest"
+    href="manifest.json"
+  >
 
-    .logo-icon {
-      width: 38px;
-      height: 38px;
-      border-radius: 12px;
-      background: #d71920;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-weight: bold;
-      font-size: 23px;
-    }
-
-    nav {
-      display: flex;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      font-size: 14px;
-    }
-
-    nav a:hover {
-      color: #ffb3b3;
-    }
-
-    .hero {
-      background: linear-gradient(135deg, #063b2c, #08744f);
-      color: white;
-      padding: 70px 6%;
-      text-align: center;
-    }
-
-    .badge {
-      display: inline-block;
-      padding: 8px 14px;
-      border: 1px solid rgba(255,255,255,0.4);
-      border-radius: 30px;
-      font-size: 12px;
-      letter-spacing: 1px;
-      margin-bottom: 18px;
-    }
-
-    .hero h1 {
-      font-size: clamp(32px, 5vw, 55px);
-      margin-bottom: 15px;
-    }
-
-    .hero p {
-      max-width: 760px;
-      margin: auto;
-      color: #d9f4e9;
-      font-size: 17px;
-    }
-
-    .container {
-      width: 90%;
-      max-width: 1150px;
-      margin: 45px auto;
-    }
-
-    .search-box {
-      background: white;
-      border-radius: 22px;
-      padding: 30px;
-      box-shadow: 0 10px 35px rgba(0,0,0,0.08);
-      margin-top: -65px;
-      position: relative;
-    }
-
-    .search-box h2 {
-      margin-bottom: 8px;
-      color: #063b2c;
-    }
-
-    .subtitle {
-      color: #66756f;
-      margin-bottom: 25px;
-    }
-
-    .grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 16px;
-    }
-
-    label {
-      font-weight: bold;
-      font-size: 14px;
-      margin-bottom: 6px;
-      display: block;
-    }
-
-    input,
-    select {
-      width: 100%;
-      padding: 13px;
-      border: 1px solid #ccd8d2;
-      border-radius: 10px;
-      outline: none;
-      font-size: 14px;
-      background: white;
-    }
-
-    input:focus,
-    select:focus {
-      border-color: #08744f;
-    }
-
-    .buttons {
-      margin-top: 22px;
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    button,
-    .btn {
-      border: none;
-      padding: 13px 20px;
-      border-radius: 10px;
-      cursor: pointer;
-      font-weight: bold;
-      text-decoration: none;
-      display: inline-block;
-    }
-
-    .primary {
-      background: #d71920;
-      color: white;
-    }
-
-    .secondary {
-      background: #08744f;
-      color: white;
-    }
-
-    .light {
-      background: #e8f3ee;
-      color: #063b2c;
-    }
-
-    #status {
-      margin-top: 20px;
-      padding: 14px;
-      border-radius: 10px;
-      background: #eef7f2;
-      color: #31594a;
-      display: none;
-    }
-
-    .results-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 15px;
-      margin: 40px 0 18px;
-      flex-wrap: wrap;
-    }
-
-    .results-header h2 {
-      color: #063b2c;
-    }
-
-    #resultCount {
-      color: #66756f;
-      font-size: 14px;
-    }
-
-    #results {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .centre-card {
-      background: white;
-      border-radius: 18px;
-      padding: 23px;
-      box-shadow: 0 7px 25px rgba(0,0,0,0.07);
-      border: 1px solid #e2ece7;
-    }
-
-    .centre-card h3 {
-      color: #063b2c;
-      margin-bottom: 8px;
-    }
-
-    .location {
-      color: #66756f;
-      font-size: 14px;
-      margin-bottom: 15px;
-    }
-
-    .tag {
-      display: inline-block;
-      background: #e9f6ef;
-      color: #08744f;
-      padding: 6px 10px;
-      border-radius: 20px;
-      font-size: 12px;
-      margin: 3px;
-      font-weight: bold;
-    }
-
-    .verify {
-      margin-top: 15px;
-      padding: 11px;
-      background: #fff7e6;
-      border-radius: 9px;
-      color: #73591a;
-      font-size: 13px;
-    }
-
-    .card-buttons {
-      display: flex;
-      gap: 9px;
-      flex-wrap: wrap;
-      margin-top: 17px;
-    }
-
-    .card-buttons a {
-      font-size: 13px;
-    }
-
-    .empty {
-      background: white;
-      padding: 35px;
-      text-align: center;
-      border-radius: 18px;
-      color: #66756f;
-      grid-column: 1 / -1;
-    }
-
-    .info-section {
-      margin-top: 45px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
-    }
-
-    .info-card {
-      background: #063b2c;
-      color: white;
-      padding: 25px;
-      border-radius: 18px;
-    }
-
-    .info-card h3 {
-      margin-bottom: 10px;
-    }
-
-    .info-card p {
-      color: #d9f4e9;
-      font-size: 14px;
-    }
-
-    .notice {
-      margin-top: 30px;
-      background: #fff3f3;
-      border-left: 5px solid #d71920;
-      padding: 20px;
-      border-radius: 10px;
-      color: #5e3030;
-      font-size: 14px;
-    }
-
-    footer {
-      margin-top: 60px;
-      background: #03271e;
-      color: #d8eee5;
-      text-align: center;
-      padding: 30px 6%;
-      font-size: 13px;
-    }
-
-    footer a {
-      color: #9fe3c5;
-      text-decoration: none;
-    }
-
-    @media(max-width: 800px) {
-      .grid,
-      #results,
-      .info-section {
-        grid-template-columns: 1fr;
-      }
-
-      header {
-        flex-direction: column;
-        gap: 12px;
-      }
-
-      nav {
-        justify-content: center;
-      }
-
-      .search-box {
-        margin-top: -35px;
-      }
-    }
-  </style>
+  <link
+    rel="stylesheet"
+    href="css/style.css"
+  >
 </head>
+
 
 <body>
 
-<header>
-  <div class="logo">
-    <div class="logo-icon">S</div>
-    RaktSathi
-  </div>
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
 
-  <nav>
-    <a href="index.html">Home</a>
-    <a href="emergency.html">Emergency</a>
-    <a href="find-blood.html">Find Blood</a>
-    <a href="blood-request.html">Track Request</a>
-    <a href="camps.html">Camps</a>
-  </nav>
-</header>
+  <header class="site-header">
 
+    <div class="container">
 
-<section class="hero">
-  <div class="badge">RESOURCE DISCOVERY + VERIFICATION</div>
+      <a
+        href="index.html"
+        class="logo"
+        aria-label="RaktSathi Home"
+      >
 
-  <h1>Find Blood Resources</h1>
+        <img
+          src="raktsathi-logo.png"
+          alt="RaktSathi Logo"
+        >
 
-  <p>
-    Discover nearby blood centres and potential resources based on
-    blood group, component and location.
-  </p>
-</section>
+        <span>RaktSathi</span>
+
+      </a>
 
 
-<main class="container">
-
-  <section class="search-box">
-
-    <h2>Smart Resource Search</h2>
-
-    <p class="subtitle">
-      Enter the requirement details to discover relevant blood resources.
-    </p>
-
-    <div class="grid">
-
-      <div>
-        <label for="bloodGroup">Blood Group</label>
-
-        <select id="bloodGroup">
-          <option value="">Any Blood Group</option>
-          <option>A+</option>
-          <option>A-</option>
-          <option>B+</option>
-          <option>B-</option>
-          <option>AB+</option>
-          <option>AB-</option>
-          <option>O+</option>
-          <option>O-</option>
-        </select>
-      </div>
-
-
-      <div>
-        <label for="component">Component</label>
-
-        <select id="component">
-          <option value="">Any Component</option>
-          <option>Whole Blood</option>
-          <option>Red Blood Cells</option>
-          <option>Platelets</option>
-          <option>Plasma</option>
-          <option>Cryoprecipitate</option>
-        </select>
-      </div>
-
-
-      <div>
-        <label for="district">District / City</label>
-
-        <input
-          type="text"
-          id="district"
-          placeholder="e.g. Lucknow">
-      </div>
-
-
-      <div>
-        <label for="centreSearch">Blood Centre</label>
-
-        <input
-          type="text"
-          id="centreSearch"
-          placeholder="Search centre name">
-      </div>
-
-    </div>
-
-
-    <div class="buttons">
-
-      <button class="primary" onclick="searchResources()">
-        🔎 Discover Resources
+      <button
+        class="menu-toggle"
+        type="button"
+        aria-label="Open navigation menu"
+      >
+        ☰
       </button>
 
-      <button class="secondary" onclick="useLocation()">
-        📍 Use My Location
-      </button>
 
-      <button class="light" onclick="resetSearch()">
-        Reset
-      </button>
+      <nav>
 
-    </div>
-
-
-    <div id="status"></div>
-
-  </section>
-
-
-  <section>
-
-    <div class="results-header">
-
-      <div>
-        <h2>Available Resources</h2>
-        <p id="resultCount">Search to discover resources.</p>
-      </div>
-
-    </div>
-
-
-    <div id="results">
-
-      <div class="empty">
-        <h3>Start a Resource Search</h3>
-
-        <p>
-          Select blood requirements and location to discover
-          relevant blood-centre resources.
-        </p>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <section class="info-section">
-
-    <div class="info-card">
-      <h3>01 · Discover</h3>
-
-      <p>
-        Search blood-centre resources using blood group,
-        component and location.
-      </p>
-    </div>
-
-
-    <div class="info-card">
-      <h3>02 · Verify</h3>
-
-      <p>
-        Availability shown by external or centre data should
-        always be confirmed with the authorised facility.
-      </p>
-    </div>
-
-
-    <div class="info-card">
-      <h3>03 · Coordinate</h3>
-
-      <p>
-        If a suitable resource is not found, create an
-        emergency request through RaktSathi.
-      </p>
-    </div>
-
-  </section>
-
-
-  <div class="notice">
-
-    <strong>Important Safety Notice:</strong>
-
-    RaktSathi is a coordination and resource-discovery prototype.
-    It does not store, test, transport, release or transfuse blood.
-    Actual blood availability, compatibility, eligibility,
-    collection, testing, storage and transfusion are handled by
-    authorised blood centres and healthcare professionals.
-
-    Availability information should be independently verified
-    before taking any medical or logistical decision.
-
-  </div>
-
-</main>
-
-
-<footer>
-
-  <strong>RaktSathi</strong>
-
-  <br>
-
-  Intelligent Blood Emergency Coordination Network
-
-  <br><br>
-
-  <a href="index.html">Home</a> ·
-  <a href="emergency.html">Emergency Request</a> ·
-  <a href="blood-request.html">Track Request</a>
-
-  <br><br>
-
-  © 2026 RaktSathi · Prototype
-
-</footer>
-
-
-<script>
-
-let centres = [];
-let userLocation = null;
-
-
-/* Load blood-centre data */
-
-async function loadCentres() {
-
-  try {
-
-    const response =
-      await fetch("data/blood-centres.json");
-
-    if (!response.ok) {
-      throw new Error("Data file not found");
-    }
-
-    centres = await response.json();
-
-  } catch (error) {
-
-    console.error(error);
-
-    centres = [];
-
-    showStatus(
-      "Blood-centre data could not be loaded. Please try again.",
-      true
-    );
-  }
-}
-
-
-/* Status message */
-
-function showStatus(message, error = false) {
-
-  const status =
-    document.getElementById("status");
-
-  status.style.display = "block";
-
-  status.textContent = message;
-
-  if (error) {
-    status.style.background = "#fff3f3";
-    status.style.color = "#9b2929";
-  } else {
-    status.style.background = "#eef7f2";
-    status.style.color = "#31594a";
-  }
-}
-
-
-/* Calculate distance */
-
-function calculateDistance(lat1, lon1, lat2, lon2) {
-
-  const R = 6371;
-
-  const dLat =
-    (lat2 - lat1) * Math.PI / 180;
-
-  const dLon =
-    (lon2 - lon1) * Math.PI / 180;
-
-  const a =
-    Math.sin(dLat / 2) ** 2 +
-    Math.cos(lat1 * Math.PI / 180) *
-    Math.cos(lat2 * Math.PI / 180) *
-    Math.sin(dLon / 2) ** 2;
-
-  const c =
-    2 * Math.atan2(
-      Math.sqrt(a),
-      Math.sqrt(1 - a)
-    );
-
-  return R * c;
-}
-
-
-/* Search resources */
-
-function searchResources() {
-
-  const bloodGroup =
-    document
-      .getElementById("bloodGroup")
-      .value
-      .toLowerCase();
-
-  const component =
-    document
-      .getElementById("component")
-      .value
-      .toLowerCase();
-
-  const district =
-    document
-      .getElementById("district")
-      .value
-      .toLowerCase()
-      .trim();
-
-  const centreSearch =
-    document
-      .getElementById("centreSearch")
-      .value
-      .toLowerCase()
-      .trim();
-
-
-  let filtered = centres.filter(centre => {
-
-    const text =
-      JSON.stringify(centre).toLowerCase();
-
-
-    const groupMatch =
-      !bloodGroup ||
-      text.includes(bloodGroup);
-
-
-    const componentMatch =
-      !component ||
-      text.includes(component);
-
-
-    const districtMatch =
-      !district ||
-      text.includes(district);
-
-
-    const centreMatch =
-      !centreSearch ||
-      text.includes(centreSearch);
-
-
-    return (
-      groupMatch &&
-      componentMatch &&
-      districtMatch &&
-      centreMatch
-    );
-
-  });
-
-
-  /* Sort by distance when coordinates are available */
-
-  if (userLocation) {
-
-    filtered.forEach(centre => {
-
-      if (
-        centre.latitude &&
-        centre.longitude
-      ) {
-
-        centre.distance =
-          calculateDistance(
-            userLocation.lat,
-            userLocation.lon,
-            Number(centre.latitude),
-            Number(centre.longitude)
-          );
-
-      } else {
-
-        centre.distance = null;
-
-      }
-
-    });
-
-
-    filtered.sort((a, b) => {
-
-      if (a.distance === null) return 1;
-
-      if (b.distance === null) return -1;
-
-      return a.distance - b.distance;
-
-    });
-
-  }
-
-
-  renderResults(filtered);
-
-  showStatus(
-    `${filtered.length} resource${filtered.length !== 1 ? "s" : ""} discovered. Please verify availability with the authorised centre.`
-  );
-}
-
-
-/* Render results */
-
-function renderResults(list) {
-
-  const results =
-    document.getElementById("results");
-
-  const count =
-    document.getElementById("resultCount");
-
-
-  count.textContent =
-    `${list.length} resource${list.length !== 1 ? "s" : ""} found`;
-
-
-  if (!list.length) {
-
-    results.innerHTML = `
-      <div class="empty">
-
-        <h3>No matching resource found</h3>
-
-        <p>
-          Try another location, blood group or component.
-          You can also create an emergency blood request.
-        </p>
-
-        <br>
-
-        <a
-          class="btn primary"
-          href="emergency.html">
-          Create Emergency Request
+        <a href="index.html">
+          Home
         </a>
 
-      </div>
-    `;
-
-    return;
-  }
-
-
-  results.innerHTML =
-    list.map(centre => {
-
-      const name =
-        centre.name ||
-        centre.centre_name ||
-        "Blood Centre";
-
-
-      const address =
-        centre.address ||
-        centre.location ||
-        centre.city ||
-        "Location information available from centre data";
-
-
-      const district =
-        centre.district ||
-        centre.city ||
-        "";
-
-
-      const mapQuery =
-        encodeURIComponent(
-          `${name} ${address}`
-        );
-
-
-      const distance =
-        centre.distance !== null &&
-        centre.distance !== undefined
-          ? `${centre.distance.toFixed(1)} km away`
-          : "Distance unavailable";
-
-
-      return `
-
-        <article class="centre-card">
-
-          <h3>${name}</h3>
-
-          <div class="location">
-            📍 ${address}
-          </div>
-
-          ${district
-            ? `<span class="tag">${district}</span>`
-            : ""
-          }
-
-          <span class="tag">
-            ${distance}
-          </span>
-
-
-          <div class="verify">
-
-            🔎 <strong>Verification Required</strong><br>
-
-            This result indicates a potential resource.
-            Confirm current availability directly with the
-            authorised blood centre.
-
-          </div>
-
-
-          <div class="card-buttons">
-
-            <a
-              class="btn secondary"
-              target="_blank"
-              href="https://www.google.com/maps/search/?api=1&query=${mapQuery}">
-              📍 View Map
-            </a>
-
-            <a
-              class="btn light"
-              target="_blank"
-              href="https://www.google.com/maps/dir/?api=1&destination=${mapQuery}">
-              🧭 Directions
-            </a>
-
-          </div>
-
-        </article>
-
-      `;
-
-    }).join("");
-
-}
-
-
-/* Get user location */
-
-function useLocation() {
-
-  if (!navigator.geolocation) {
-
-    showStatus(
-      "Location is not supported by this browser.",
-      true
-    );
-
-    return;
-  }
-
-
-  showStatus(
-    "Getting your approximate location..."
-  );
-
-
-  navigator.geolocation.getCurrentPosition(
-
-    position => {
-
-      userLocation = {
-
-        lat: position.coords.latitude,
-
-        lon: position.coords.longitude
-
-      };
-
-
-      showStatus(
-        "Location received. Resources will be sorted by distance when coordinates are available."
-      );
-
-
-      searchResources();
-
-    },
-
-
-    () => {
-
-      showStatus(
-        "Location permission was not available. You can search using district/city instead.",
-        true
-      );
-
-    },
-
-    {
-      enableHighAccuracy: false,
-      timeout: 10000,
-      maximumAge: 300000
-    }
-
-  );
-
-}
-
-
-/* Reset */
-
-function resetSearch() {
-
-  document.getElementById("bloodGroup").value = "";
-
-  document.getElementById("component").value = "";
-
-  document.getElementById("district").value = "";
-
-  document.getElementById("centreSearch").value = "";
-
-  userLocation = null;
-
-  document.getElementById("results").innerHTML = `
-
-    <div class="empty">
-
-      <h3>Start a Resource Search</h3>
-
-      <p>
-        Select blood requirements and location to discover
-        relevant blood-centre resources.
-      </p>
+        <a href="emergency.html">
+          Emergency
+        </a>
+
+        <a href="find-blood.html">
+          Find Blood
+        </a>
+
+        <a href="donor.html">
+          Donor Network
+        </a>
+
+        <a href="camps.html">
+          Camps
+        </a>
+
+        <a href="blood-request.html">
+          Track Request
+        </a>
+
+        <a href="assistant.html">
+          Assistant
+        </a>
+
+      </nav>
 
     </div>
 
-  `;
+  </header>
 
 
-  document.getElementById("resultCount").textContent =
-    "Search to discover resources.";
 
-  document.getElementById("status").style.display =
-    "none";
-}
+  <!-- =====================================================
+       MAIN
+       ===================================================== -->
+
+  <main>
+
+    <!-- HERO -->
+
+    <section class="hero">
+
+      <div class="container">
+
+        <div class="hero-content">
+
+          <div class="hero-badge">
+            SMART RESOURCE DISCOVERY
+          </div>
+
+          <h1>
+            Find Blood
+            <span>Resources.</span>
+          </h1>
+
+          <p>
+            Search potential blood-centre resources by
+            blood group, component and location, then
+            verify the information with the authorized
+            facility.
+          </p>
+
+          <div class="hero-actions">
+
+            <a
+              href="emergency.html"
+              class="btn btn-primary"
+            >
+              🚨 Emergency Request
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
 
 
-/* Initial load */
 
-loadCentres();
+    <!-- ===================================================
+         SEARCH
+         =================================================== -->
 
-</script>
+    <section>
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>
+            Resource Discovery
+          </h2>
+
+          <p>
+            Select your requirements to discover potential
+            blood resources.
+          </p>
+
+        </div>
+
+
+        <div class="card">
+
+          <form
+            id="bloodSearchForm"
+          >
+
+            <div class="form-grid">
+
+
+              <!-- Blood Group -->
+
+              <div class="form-group">
+
+                <label for="bloodGroup">
+                  Blood Group
+                </label>
+
+                <select
+                  id="bloodGroup"
+                  name="bloodGroup"
+                >
+
+                  <option value="">
+                    All Blood Groups
+                  </option>
+
+                  <option value="A+">
+                    A+
+                  </option>
+
+                  <option value="A-">
+                    A-
+                  </option>
+
+                  <option value="B+">
+                    B+
+                  </option>
+
+                  <option value="B-">
+                    B-
+                  </option>
+
+                  <option value="AB+">
+                    AB+
+                  </option>
+
+                  <option value="AB-">
+                    AB-
+                  </option>
+
+                  <option value="O+">
+                    O+
+                  </option>
+
+                  <option value="O-">
+                    O-
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <!-- Component -->
+
+              <div class="form-group">
+
+                <label for="component">
+                  Blood Component
+                </label>
+
+                <select
+                  id="component"
+                  name="component"
+                >
+
+                  <option value="">
+                    All Components
+                  </option>
+
+                  <option value="Whole Blood">
+                    Whole Blood
+                  </option>
+
+                  <option value="Packed Red Cells">
+                    Packed Red Cells
+                  </option>
+
+                  <option value="Fresh Frozen Plasma">
+                    Fresh Frozen Plasma
+                  </option>
+
+                  <option value="Platelets">
+                    Platelets
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <!-- District -->
+
+              <div class="form-group">
+
+                <label for="district">
+                  District / City
+                </label>
+
+                <input
+                  type="text"
+                  id="district"
+                  name="district"
+                  placeholder="e.g. Lucknow"
+                >
+
+              </div>
+
+
+              <!-- Centre -->
+
+              <div class="form-group">
+
+                <label for="centre">
+                  Blood Centre
+                </label>
+
+                <select
+                  id="centre"
+                  name="centre"
+                >
+
+                  <option value="">
+                    All Blood Centres
+                  </option>
+
+                </select>
+
+              </div>
+
+
+              <!-- Buttons -->
+
+              <div class="form-group full">
+
+                <div class="form-actions">
+
+                  <button
+                    type="submit"
+                    class="btn btn-primary"
+                  >
+                    Search Resources
+                  </button>
+
+
+                  <button
+                    type="button"
+                    id="useLocation"
+                    class="btn"
+                    style="
+                      background:#111820;
+                      color:#ffffff;
+                    "
+                  >
+                    📍 Use My Location
+                  </button>
+
+                </div>
+
+              </div>
+
+            </div>
+
+          </form>
+
+
+          <div
+            id="searchMessage"
+            class="search-message"
+            aria-live="polite"
+          ></div>
+
+
+          <div
+            id="locationMessage"
+            class="location-message"
+            aria-live="polite"
+          ></div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         RESULTS
+         =================================================== -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>
+            Potential Blood Resources
+          </h2>
+
+          <p>
+            Results are discovery information only.
+            Current availability must be verified directly
+            with the relevant authorized facility.
+          </p>
+
+        </div>
+
+
+        <div
+          id="bloodResults"
+          class="grid grid-2"
+        >
+
+          <div class="empty-state">
+
+            <h3>
+              Loading resources...
+            </h3>
+
+            <p>
+              Please wait while RaktSathi loads
+              blood-centre information.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         WORKFLOW
+         =================================================== -->
+
+    <section class="dark-section">
+
+      <div class="container">
+
+        <div class="section-heading">
+
+          <h2>
+            Discovery → Verification → Coordination
+          </h2>
+
+          <p>
+            RaktSathi does not treat search results as
+            guaranteed availability.
+          </p>
+
+        </div>
+
+
+        <div class="workflow">
+
+
+          <div class="workflow-step">
+
+            <div class="step-number">
+              1
+            </div>
+
+            <strong>
+              Search
+            </strong>
+
+            <p>
+              Enter blood and location requirements.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-step">
+
+            <div class="step-number">
+              2
+            </div>
+
+            <strong>
+              Discover
+            </strong>
+
+            <p>
+              Identify potential resources.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-step">
+
+            <div class="step-number">
+              3
+            </div>
+
+            <strong>
+              Verify
+            </strong>
+
+            <p>
+              Confirm current information with the facility.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-step">
+
+            <div class="step-number">
+              4
+            </div>
+
+            <strong>
+              Coordinate
+            </strong>
+
+            <p>
+              Start the appropriate coordination workflow.
+            </p>
+
+          </div>
+
+
+          <div class="workflow-step">
+
+            <div class="step-number">
+              5
+            </div>
+
+            <strong>
+              Resolve
+            </strong>
+
+            <p>
+              Continue toward request resolution.
+            </p>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- ===================================================
+         EMERGENCY CTA
+         =================================================== -->
+
+    <section>
+
+      <div class="container">
+
+        <div class="emergency-cta">
+
+          <h2>
+            Can't Find the Required Resource?
+          </h2>
+
+          <p>
+            Create an emergency request and begin the
+            structured RaktSathi coordination workflow.
+          </p>
+
+          <a
+            href="emergency.html"
+            class="btn btn-secondary"
+          >
+            Create Emergency Request →
+          </a>
+
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer>
+
+    <div class="container">
+
+      <div class="footer-grid">
+
+
+        <div>
+
+          <div class="brand">
+
+            <img
+              src="raktsathi-logo.png"
+              alt="RaktSathi Logo"
+            >
+
+            <span>
+              RaktSathi
+            </span>
+
+          </div>
+
+          <br>
+
+          <p>
+            Intelligent Blood Emergency Coordination
+            Network — connecting emergency requirements
+            with potential resources and verification
+            workflows.
+          </p>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Platform
+          </h4>
+
+          <div class="footer-links">
+
+            <a href="emergency.html">
+              Emergency Request
+            </a>
+
+            <a href="find-blood.html">
+              Find Blood
+            </a>
+
+            <a href="donor.html">
+              Donor Network
+            </a>
+
+            <a href="camps.html">
+              Blood Camps
+            </a>
+
+          </div>
+
+        </div>
+
+
+        <div>
+
+          <h4>
+            Support
+          </h4>
+
+          <div class="footer-links">
+
+            <a href="blood-request.html">
+              Track Request
+            </a>
+
+            <a href="assistant.html">
+              Smart Assistant
+            </a>
+
+            <a href="about.html">
+              About
+            </a>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <div class="footer-bottom">
+
+        <p>
+          © 2026 RaktSathi · Team Kryptonite ·
+          Smart India Hackathon Project
+        </p>
+
+        <p>
+          Prototype only. Blood availability and other
+          critical information must be verified with
+          authorized facilities.
+        </p>
+
+      </div>
+
+    </div>
+
+  </footer>
+
+
+
+  <!-- =====================================================
+       JAVASCRIPT
+       ===================================================== -->
+
+  <script src="js/animations.js"></script>
+
+  <script src="js/app.js"></script>
+
+  <script src="js/search.js"></script>
+
+  <script src="js/map.js"></script>
+
+
+  <!-- Service Worker -->
+
+  <script>
+
+    if ("serviceWorker" in navigator) {
+
+      window.addEventListener(
+        "load",
+        () => {
+
+          navigator.serviceWorker
+            .register("sw.js")
+            .then(() => {
+
+              console.log(
+                "RaktSathi Service Worker registered."
+              );
+
+            })
+            .catch(error => {
+
+              console.error(
+                "Service Worker registration failed:",
+                error
+              );
+
+            });
+
+        }
+      );
+
+    }
+
+  </script>
 
 </body>
 </html>
