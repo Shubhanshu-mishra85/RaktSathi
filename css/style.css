@@ -1,41 +1,911 @@
 /* =========================================================
-   RAKTSATHI BLOOD DROP LOADING ANIMATION
-   ONLY LOADER — DO NOT CHANGE OTHER WEBSITE CSS
+   RAKTSATHI — MAIN WEBSITE STYLES
+   Premium Healthcare / Blood Coordination UI
+   ========================================================= */
+
+:root {
+  --primary: #8b0000;
+  --primary-dark: #650000;
+  --primary-light: #fff0f1;
+  --red: #c1121f;
+  --text: #111827;
+  --muted: #667085;
+  --white: #ffffff;
+  --bg: #fffafa;
+  --border: rgba(139, 0, 0, 0.12);
+  --shadow: 0 12px 35px rgba(80, 0, 0, 0.08);
+  --shadow-hover: 0 18px 45px rgba(80, 0, 0, 0.14);
+  --radius: 18px;
+  --container: 1180px;
+}
+
+/* =========================================================
+   RESET
+   ========================================================= */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family:
+    Inter,
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    sans-serif;
+  color: var(--text);
+  background: var(--bg);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+.container {
+  width: min(100% - 40px, var(--container));
+  margin-inline: auto;
+}
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  min-height: 76px;
+
+  background:
+    linear-gradient(
+      90deg,
+      rgba(255, 255, 255, 0.94),
+      rgba(255, 247, 248, 0.88)
+    ),
+    url("../raktsathi-header-bg.png");
+
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+
+  border-bottom: 1px solid rgba(139, 0, 0, 0.12);
+  box-shadow: 0 4px 18px rgba(80, 0, 0, 0.06);
+
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+.site-header .container {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+/* Brand */
+
+.brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.brand-logo {
+  width: 44px;
+  height: 44px;
+  object-fit: contain;
+  filter: drop-shadow(0 4px 10px rgba(139, 0, 0, 0.16));
+}
+
+.brand-text {
+  font-size: 1.35rem;
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  color: #0b0f14;
+}
+
+/* Navigation */
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.main-nav a {
+  position: relative;
+  padding: 9px 13px;
+  border-radius: 10px;
+  color: #3c424b;
+  font-size: 0.94rem;
+  font-weight: 600;
+  transition:
+    color 0.25s ease,
+    background 0.25s ease,
+    transform 0.25s ease;
+}
+
+.main-nav a:hover {
+  color: var(--primary);
+  background: rgba(139, 0, 0, 0.06);
+  transform: translateY(-1px);
+}
+
+.main-nav a.active {
+  color: var(--primary);
+  background: rgba(139, 0, 0, 0.08);
+}
+
+/* =========================================================
+   HERO
+   ========================================================= */
+
+.hero {
+  position: relative;
+  padding: 92px 0 78px;
+  overflow: hidden;
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(193, 18, 31, 0.10),
+      transparent 32%
+    ),
+    linear-gradient(180deg, #ffffff 0%, #fff8f8 100%);
+}
+
+.hero::before {
+  content: "";
+  position: absolute;
+  width: 420px;
+  height: 420px;
+  right: -180px;
+  top: 50px;
+  border-radius: 50%;
+  background: rgba(193, 18, 31, 0.05);
+  filter: blur(10px);
+  pointer-events: none;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 1;
+}
+
+.hero-content {
+  max-width: 820px;
+}
+
+.hero h1 {
+  font-size: clamp(2.35rem, 5vw, 4.6rem);
+  line-height: 1.03;
+  letter-spacing: -0.055em;
+  margin-bottom: 22px;
+  color: #111111;
+}
+
+.hero h1 span {
+  color: var(--primary);
+}
+
+.hero p {
+  max-width: 760px;
+  color: var(--muted);
+  font-size: 1.12rem;
+  line-height: 1.8;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 13px;
+  margin-top: 30px;
+}
+
+/* =========================================================
+   BUTTONS
+   ========================================================= */
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+
+  min-height: 46px;
+  padding: 11px 20px;
+
+  border: 1px solid transparent;
+  border-radius: 12px;
+
+  font-weight: 700;
+  font-size: 0.95rem;
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    background 0.25s ease,
+    border-color 0.25s ease;
+}
+
+.btn:hover {
+  transform: translateY(-2px);
+}
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(135deg, #9d0000, #c1121f);
+  box-shadow: 0 10px 22px rgba(139, 0, 0, 0.20);
+}
+
+.btn-primary:hover {
+  box-shadow: 0 14px 28px rgba(139, 0, 0, 0.28);
+}
+
+.btn-secondary {
+  color: var(--primary);
+  background: white;
+  border-color: rgba(139, 0, 0, 0.20);
+}
+
+.btn-secondary:hover {
+  background: #fff5f5;
+  border-color: rgba(139, 0, 0, 0.35);
+}
+
+.btn-danger {
+  color: white;
+  background: #b00020;
+}
+
+/* =========================================================
+   SECTIONS
+   ========================================================= */
+
+.section {
+  padding: 78px 0;
+}
+
+.section-sm {
+  padding: 52px 0;
+}
+
+.section-header {
+  max-width: 760px;
+  margin-bottom: 38px;
+}
+
+.section-header.center {
+  margin-inline: auto;
+  text-align: center;
+}
+
+.section-kicker {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--primary);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.13em;
+}
+
+.section-title {
+  font-size: clamp(1.8rem, 4vw, 2.8rem);
+  line-height: 1.12;
+  letter-spacing: -0.04em;
+  margin-bottom: 14px;
+}
+
+.section-description {
+  color: var(--muted);
+  font-size: 1rem;
+  line-height: 1.75;
+}
+
+/* =========================================================
+   GRIDS
+   ========================================================= */
+
+.grid {
+  display: grid;
+  gap: 22px;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+/* =========================================================
+   CARDS
+   ========================================================= */
+
+.card {
+  background: rgba(255, 255, 255, 0.96);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 25px;
+  box-shadow: var(--shadow);
+
+  transition:
+    transform 0.28s ease,
+    box-shadow 0.28s ease,
+    border-color 0.28s ease;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-hover);
+  border-color: rgba(139, 0, 0, 0.20);
+}
+
+.card h2,
+.card h3,
+.card h4 {
+  margin-bottom: 9px;
+  line-height: 1.25;
+}
+
+.card p {
+  color: var(--muted);
+}
+
+.card-icon {
+  width: 52px;
+  height: 52px;
+  display: grid;
+  place-items: center;
+  margin-bottom: 17px;
+
+  border-radius: 15px;
+  background: #fff0f1;
+  color: var(--primary);
+
+  font-size: 1.35rem;
+  font-weight: 800;
+}
+
+/* =========================================================
+   STATS
+   ========================================================= */
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 18px;
+}
+
+.stat-card {
+  padding: 24px;
+  text-align: center;
+  border-radius: 16px;
+  background: white;
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+}
+
+.stat-number {
+  display: block;
+  color: var(--primary);
+  font-size: 2rem;
+  font-weight: 850;
+  line-height: 1;
+  margin-bottom: 8px;
+}
+
+.stat-label {
+  color: var(--muted);
+  font-size: 0.92rem;
+  font-weight: 600;
+}
+
+/* =========================================================
+   WORKFLOW
+   ========================================================= */
+
+.workflow {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 15px;
+}
+
+.workflow-step {
+  position: relative;
+  padding: 23px 17px;
+  text-align: center;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+.workflow-number {
+  width: 38px;
+  height: 38px;
+  margin: 0 auto 13px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  color: white;
+  background: var(--primary);
+
+  font-weight: 800;
+}
+
+.workflow-step h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+}
+
+.workflow-step p {
+  color: var(--muted);
+  font-size: 0.86rem;
+}
+
+/* =========================================================
+   FORMS
+   ========================================================= */
+
+.form-card {
+  max-width: 850px;
+  margin-inline: auto;
+  padding: 30px;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  color: #292d34;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  min-height: 46px;
+
+  padding: 11px 13px;
+
+  color: var(--text);
+  background: #fff;
+
+  border: 1px solid #d9dee7;
+  border-radius: 11px;
+  outline: none;
+
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+.form-group textarea {
+  min-height: 120px;
+  resize: vertical;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 4px rgba(139, 0, 0, 0.08);
+}
+
+.form-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 22px;
+}
+
+/* =========================================================
+   FILTERS
+   ========================================================= */
+
+.filter-panel {
+  padding: 22px;
+  margin-bottom: 28px;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+}
+
+.filter-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+/* =========================================================
+   BLOOD RESULTS
+   ========================================================= */
+
+.results-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 20px;
+}
+
+.blood-centre-card {
+  position: relative;
+  padding: 24px;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  box-shadow: var(--shadow);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.blood-centre-card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-hover);
+}
+
+.blood-centre-card h3 {
+  margin-bottom: 8px;
+}
+
+.blood-centre-card p {
+  color: var(--muted);
+  margin-bottom: 6px;
+}
+
+.status-badge {
+  display: inline-flex;
+  align-items: center;
+
+  padding: 5px 10px;
+  margin-bottom: 12px;
+
+  border-radius: 999px;
+
+  background: #fff2f2;
+  color: var(--primary);
+
+  font-size: 0.76rem;
+  font-weight: 800;
+}
+
+.centre-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-top: 18px;
+}
+
+/* =========================================================
+   MESSAGES
+   ========================================================= */
+
+.message {
+  padding: 14px 16px;
+  margin: 15px 0;
+
+  border-radius: 12px;
+  border: 1px solid var(--border);
+
+  background: #fff7f7;
+  color: #5f1b1b;
+
+  font-size: 0.92rem;
+}
+
+.message.success {
+  background: #f1faf4;
+  border-color: #b9e5c7;
+  color: #175b2c;
+}
+
+.message.warning {
+  background: #fff9ed;
+  border-color: #f0d79c;
+  color: #684c0b;
+}
+
+.message.error {
+  background: #fff1f1;
+  border-color: #efb1b1;
+  color: #8a1010;
+}
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.empty-state {
+  padding: 45px 25px;
+  text-align: center;
+
+  background: white;
+  border: 1px dashed rgba(139, 0, 0, 0.22);
+  border-radius: 18px;
+}
+
+.empty-state h3 {
+  margin-bottom: 8px;
+}
+
+.empty-state p {
+  max-width: 600px;
+  margin-inline: auto;
+  color: var(--muted);
+}
+
+/* =========================================================
+   INNOVATION SECTION
+   ========================================================= */
+
+.innovation-section {
+  background: linear-gradient(135deg, #fff0f1, #ffe5e7);
+  border-top: 1px solid rgba(139, 0, 0, 0.08);
+  border-bottom: 1px solid rgba(139, 0, 0, 0.08);
+}
+
+.innovation-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.innovation-card {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(139, 0, 0, 0.10);
+  border-radius: 18px;
+  padding: 25px;
+}
+
+/* =========================================================
+   EMERGENCY CTA
+   ========================================================= */
+
+.emergency-cta {
+  position: relative;
+  overflow: hidden;
+
+  padding: 38px;
+  border-radius: 22px;
+
+  background:
+    radial-gradient(
+      circle at 85% 20%,
+      rgba(255, 255, 255, 0.15),
+      transparent 28%
+    ),
+    linear-gradient(135deg, #760000, #b00020);
+
+  color: white;
+  box-shadow: 0 18px 45px rgba(112, 0, 0, 0.20);
+}
+
+.emergency-cta h2 {
+  font-size: clamp(1.7rem, 3vw, 2.5rem);
+  margin-bottom: 9px;
+}
+
+.emergency-cta p {
+  max-width: 750px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.emergency-cta .btn {
+  margin-top: 20px;
+  background: white;
+  color: var(--primary);
+}
+
+/* =========================================================
+   TABLE
+   ========================================================= */
+
+.table-wrap {
+  width: 100%;
+  overflow-x: auto;
+
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+th,
+td {
+  padding: 14px 16px;
+  text-align: left;
+  border-bottom: 1px solid #eeeeee;
+}
+
+th {
+  background: #fff4f4;
+  color: var(--primary);
+  font-size: 0.86rem;
+}
+
+td {
+  color: #454b55;
+  font-size: 0.9rem;
+}
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.site-footer {
+  padding: 38px 0 22px;
+  background: #fff5f5;
+  border-top: 1px solid rgba(139, 0, 0, 0.1);
+  text-align: center;
+}
+
+.footer-grid {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+  max-width: 900px;
+  margin-inline: auto;
+}
+
+.footer-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  font-weight: 800;
+}
+
+.footer-brand img {
+  width: 36px;
+  height: 36px;
+  object-fit: contain;
+}
+
+.footer-links {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 14px 22px;
+}
+
+.footer-links a {
+  color: #555b65;
+  font-size: 0.9rem;
+  font-weight: 600;
+}
+
+.footer-links a:hover {
+  color: var(--primary);
+}
+
+.footer-copy {
+  color: #777d86;
+  font-size: 0.82rem;
+}
+
+/* =========================================================
+   SCROLL ANIMATION
+   ========================================================= */
+
+.reveal,
+.fade-up,
+.slide-up {
+  opacity: 0;
+  transform: translateY(22px);
+  transition:
+    opacity 0.7s ease,
+    transform 0.7s ease;
+}
+
+.reveal.visible,
+.fade-up.visible,
+.slide-up.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =========================================================
+   RAKTSATHI LOADER
+   Blood Drop → Impact → Splash → Logo Reveal
    ========================================================= */
 
 #raktsathi-loader {
   position: fixed;
   inset: 0;
-  z-index: 999999;
+  z-index: 99999;
 
-  width: 100%;
-  height: 100vh;
-  height: 100dvh;
-
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-  overflow: hidden;
+  display: grid;
+  place-items: center;
 
   background:
     radial-gradient(
       circle at center,
-      #fffafa 0%,
-      #fff5f5 45%,
-      #ffffff 100%
+      #ffffff 0%,
+      #fff7f7 48%,
+      #ffe9eb 100%
     );
+
+  overflow: hidden;
 
   opacity: 1;
   visibility: visible;
 
   transition:
-    opacity 700ms ease,
-    visibility 700ms ease;
+    opacity 0.8s ease,
+    visibility 0.8s ease;
 }
-
-
-/* ================= EXIT ================= */
 
 #raktsathi-loader.rs-loader-exit {
   opacity: 0;
@@ -43,823 +913,677 @@
   pointer-events: none;
 }
 
-
-/* ================= SCENE ================= */
-
 .rs-loader-scene {
   position: relative;
-
-  width: 100%;
-  height: 100%;
+  width: min(90vw, 520px);
+  height: min(90vh, 520px);
 
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
-/* =========================================================
-   FALLING BLOOD DROP
-   ========================================================= */
+/* -------------------------
+   Falling Drop
+   ------------------------- */
 
 .rs-drop-wrapper {
   position: absolute;
-
+  top: 5%;
   left: 50%;
-  top: 12%;
 
-  width: 70px;
-  height: 90px;
+  width: 58px;
+  height: 78px;
 
   transform: translateX(-50%);
-
-  z-index: 20;
-
-  animation:
-    rs-drop-fall
-    1.35s
-    cubic-bezier(.55, .05, .45, .95)
-    forwards;
+  animation: rsDropFall 1.45s cubic-bezier(0.22, 0.7, 0.25, 1) forwards;
 }
-
 
 .rs-drop {
   position: absolute;
-
   left: 50%;
-  top: 0;
+  bottom: 0;
 
-  width: 47px;
-  height: 59px;
+  width: 46px;
+  height: 58px;
 
-  transform:
-    translateX(-50%)
-    rotate(45deg);
+  transform: translateX(-50%) rotate(45deg);
 
-  border-radius:
-    55% 55% 58% 42% /
-    65% 65% 35% 35%;
-
-  background:
-    radial-gradient(
-      circle at 30% 23%,
-      #ff7777 0%,
-      #ed1c24 20%,
-      #bd0009 58%,
-      #780000 100%
-    );
+  border-radius: 55% 45% 60% 40%;
+  background: linear-gradient(
+    145deg,
+    #ff3849,
+    #c1121f 55%,
+    #85000d
+  );
 
   box-shadow:
-    0 14px 30px
-    rgba(139, 0, 0, 0.22);
-
-  animation:
-    rs-drop-shape
-    1.35s
-    ease-in
-    forwards;
+    0 12px 25px rgba(193, 18, 31, 0.28),
+    inset 7px 7px 8px rgba(255, 255, 255, 0.22);
 }
-
-
-/* DROP SHINE */
 
 .rs-drop-shine {
   position: absolute;
-
-  left: 8px;
-  top: 7px;
-
   width: 10px;
-  height: 18px;
+  height: 19px;
+
+  left: 10px;
+  top: 8px;
 
   border-radius: 50%;
-
-  background:
-    rgba(255,255,255,0.72);
-
-  filter: blur(1px);
+  background: rgba(255, 255, 255, 0.55);
 
   transform: rotate(-45deg);
 }
 
-
-/* =========================================================
-   DROP FALL
-   ========================================================= */
-
-@keyframes rs-drop-fall {
-
-  0% {
-    top: 12%;
-    transform:
-      translateX(-50%)
-      scale(0.82);
-  }
-
-  45% {
-    top: 35%;
-    transform:
-      translateX(-50%)
-      scale(0.90);
-  }
-
-  72% {
-    top: 52%;
-    transform:
-      translateX(-50%)
-      scale(1);
-  }
-
-  86% {
-    top: 58%;
-    transform:
-      translateX(-50%)
-      scale(1.08);
-  }
-
-  100% {
-    top: 60%;
-    transform:
-      translateX(-50%)
-      scale(0);
-  }
-}
-
-
-@keyframes rs-drop-shape {
-
-  0% {
-    transform:
-      translateX(-50%)
-      rotate(45deg)
-      scaleY(1);
-  }
-
-  65% {
-    transform:
-      translateX(-50%)
-      rotate(45deg)
-      scaleY(1.08);
-  }
-
-  82% {
-    transform:
-      translateX(-50%)
-      rotate(45deg)
-      scaleY(0.85);
-  }
-
-  100% {
-    transform:
-      translateX(-50%)
-      rotate(45deg)
-      scale(0);
-
-    opacity: 0;
-  }
-}
-
-
-/* =========================================================
-   IMPACT SHADOW
-   ========================================================= */
+/* -------------------------
+   Impact
+   ------------------------- */
 
 .rs-impact-shadow {
   position: absolute;
-
   left: 50%;
-  top: 60%;
+  top: 49%;
 
-  width: 20px;
+  width: 8px;
   height: 8px;
 
-  transform:
-    translate(-50%, -50%);
-
   border-radius: 50%;
+  background: rgba(139, 0, 0, 0.35);
 
-  background:
-    rgba(139, 0, 0, 0.25);
+  transform: translate(-50%, -50%) scale(0);
 
-  filter: blur(6px);
-
-  z-index: 5;
-
-  animation:
-    rs-impact
-    1.1s
-    ease-out
-    1.15s
-    forwards;
+  animation: rsImpact 0.65s ease-out 1.38s forwards;
 }
 
-
-@keyframes rs-impact {
-
-  0% {
-    width: 15px;
-    opacity: 0;
-  }
-
-  55% {
-    width: 35px;
-    opacity: 0.25;
-  }
-
-  75% {
-    width: 100px;
-    opacity: 0.4;
-  }
-
-  100% {
-    width: 135px;
-    opacity: 0;
-  }
-}
-
-
-/* =========================================================
-   BLOOD SPLASH
-   ========================================================= */
+/* -------------------------
+   Splash
+   ------------------------- */
 
 .rs-splash {
   position: absolute;
-
   left: 50%;
-  top: 60%;
+  top: 49%;
 
-  width: 170px;
-  height: 100px;
+  width: 20px;
+  height: 20px;
 
-  transform:
-    translate(-50%, -50%)
-    scale(0);
-
-  z-index: 8;
-
-  animation:
-    rs-splash
-    1s
-    cubic-bezier(.2,.8,.2,1)
-    1.15s
-    forwards;
+  transform: translate(-50%, -50%);
 }
-
-
-/* MAIN SPLASH */
 
 .rs-splash-crown {
   position: absolute;
-
-  left: 50%;
-  bottom: 5px;
-
-  width: 100px;
-  height: 55px;
-
-  transform:
-    translateX(-50%);
-
-  background:
-    radial-gradient(
-      ellipse at center,
-      #ef3037 0%,
-      #bd0009 65%,
-      #7d0000 100%
-    );
-
-  border-radius:
-    50% 50% 45% 45%;
-
-  filter:
-    drop-shadow(
-      0 8px 16px
-      rgba(139,0,0,0.22)
-    );
-}
-
-
-/* SPLASH PEAK */
-
-.rs-splash-crown::before {
-  content: "";
-
-  position: absolute;
-
-  left: 50%;
-  top: -35px;
-
-  width: 27px;
-  height: 48px;
-
-  transform:
-    translateX(-50%)
-    rotate(7deg);
-
-  border-radius:
-    60% 60% 45% 45%;
-
-  background:
-    linear-gradient(
-      180deg,
-      #f0343b,
-      #a90008
-    );
-}
-
-
-/* SPLASH CENTER DROP */
-
-.rs-splash-crown span {
-  position: absolute;
-
-  left: 50%;
-  top: -58px;
-
-  width: 12px;
-  height: 27px;
-
-  transform:
-    translateX(-50%);
+  inset: 3px;
 
   border-radius: 50%;
+  background: #c1121f;
 
-  background: #c9000b;
+  transform: scale(0);
+
+  animation: rsSplashCenter 0.55s ease-out 1.45s forwards;
 }
-
-
-/* =========================================================
-   SMALL BLOOD DROPLETS
-   ========================================================= */
 
 .splash-drop {
   position: absolute;
+  left: 50%;
+  top: 50%;
 
-  width: 11px;
-  height: 17px;
+  width: 9px;
+  height: 18px;
 
-  border-radius:
-    60% 60% 60% 40%;
+  border-radius: 80% 20% 70% 30%;
+  background: #c1121f;
 
-  background:
-    linear-gradient(
-      145deg,
-      #f22c33,
-      #920008
-    );
-
+  transform-origin: center bottom;
   opacity: 0;
 
-  animation:
-    rs-splash-drop
-    850ms
-    ease-out
-    1.2s
-    forwards;
+  animation: rsSplashDrop 0.75s ease-out 1.48s forwards;
 }
 
-
 .splash-1 {
-  left: 10px;
-  top: 38px;
-  transform: rotate(-35deg);
+  --x: -65px;
+  --y: -55px;
+  --r: -35deg;
 }
 
 .splash-2 {
-  left: 30px;
-  top: 15px;
-  transform: rotate(-20deg);
-  animation-delay: 1.25s;
+  --x: 65px;
+  --y: -55px;
+  --r: 35deg;
 }
 
 .splash-3 {
-  left: 65px;
-  top: 0;
-  transform: rotate(4deg);
-  animation-delay: 1.3s;
+  --x: -90px;
+  --y: 5px;
+  --r: -80deg;
 }
 
 .splash-4 {
-  right: 28px;
-  top: 17px;
-  transform: rotate(22deg);
-  animation-delay: 1.34s;
+  --x: 90px;
+  --y: 5px;
+  --r: 80deg;
 }
 
 .splash-5 {
-  right: 7px;
-  top: 40px;
-  transform: rotate(40deg);
-  animation-delay: 1.38s;
+  --x: -45px;
+  --y: 65px;
+  --r: -150deg;
 }
 
 .splash-6 {
-  left: 76px;
-  top: -10px;
-
-  width: 7px;
-  height: 11px;
-
-  animation-delay: 1.42s;
+  --x: 45px;
+  --y: 65px;
+  --r: 150deg;
 }
 
-
-/* SPLASH ANIMATION */
-
-@keyframes rs-splash {
-
-  0% {
-    transform:
-      translate(-50%, -50%)
-      scale(0);
-
-    opacity: 0;
-  }
-
-  30% {
-    transform:
-      translate(-50%, -50%)
-      scale(1.2);
-
-    opacity: 1;
-  }
-
-  60% {
-    transform:
-      translate(-50%, -50%)
-      scale(0.9);
-  }
-
-  100% {
-    transform:
-      translate(-50%, -50%)
-      scale(1);
-
-    opacity: 1;
-  }
-}
-
-
-@keyframes rs-splash-drop {
-
-  0% {
-    opacity: 0;
-
-    transform:
-      translateY(15px)
-      scale(0.2);
-  }
-
-  25% {
-    opacity: 1;
-  }
-
-  100% {
-    opacity: 1;
-
-    transform:
-      translateY(-40px)
-      scale(1);
-  }
-}
-
-
-/* =========================================================
-   RIPPLE
-   ========================================================= */
+/* -------------------------
+   Ripples
+   ------------------------- */
 
 .rs-ripple {
   position: absolute;
-
   left: 50%;
-  top: 60%;
+  top: 49%;
 
-  border:
-    2px solid
-    rgba(190, 0, 10, 0.35);
+  width: 20px;
+  height: 20px;
 
+  border: 2px solid rgba(193, 18, 31, 0.48);
   border-radius: 50%;
 
-  transform:
-    translate(-50%, -50%)
-    scale(0);
-
+  transform: translate(-50%, -50%) scale(0);
   opacity: 0;
-
-  z-index: 4;
 }
-
 
 .ripple-1 {
-  width: 70px;
-  height: 24px;
-
-  animation:
-    rs-ripple
-    1.35s
-    ease-out
-    1.25s
-    forwards;
+  animation: rsRipple 1.1s ease-out 1.52s forwards;
 }
-
 
 .ripple-2 {
-  width: 105px;
-  height: 34px;
-
-  animation:
-    rs-ripple
-    1.45s
-    ease-out
-    1.4s
-    forwards;
+  animation: rsRipple 1.1s ease-out 1.72s forwards;
 }
-
 
 .ripple-3 {
-  width: 140px;
-  height: 45px;
-
-  animation:
-    rs-ripple
-    1.55s
-    ease-out
-    1.55s
-    forwards;
+  animation: rsRipple 1.1s ease-out 1.92s forwards;
 }
 
-
-@keyframes rs-ripple {
-
-  0% {
-    transform:
-      translate(-50%, -50%)
-      scale(0.25);
-
-    opacity: 0;
-  }
-
-  20% {
-    opacity: 0.75;
-  }
-
-  100% {
-    transform:
-      translate(-50%, -50%)
-      scale(2.8);
-
-    opacity: 0;
-  }
-}
-
-
-/* =========================================================
-   RAKTSATHI LOGO REVEAL
-   ========================================================= */
+/* -------------------------
+   Brand Reveal
+   ------------------------- */
 
 .rs-loader-brand {
   position: absolute;
-
   left: 50%;
-  top: 68%;
+  top: 52%;
+
+  width: 300px;
 
   display: flex;
   flex-direction: column;
-
   align-items: center;
 
   text-align: center;
 
-  transform:
-    translate(-50%, 35px)
-    scale(0.82);
-
   opacity: 0;
-
-  z-index: 30;
+  transform: translate(-50%, 25px) scale(0.88);
 
   animation:
-    rs-brand-reveal
-    950ms
-    cubic-bezier(.2,.8,.2,1)
-    2.05s
-    forwards;
+    rsBrandReveal 0.9s cubic-bezier(0.2, 0.8, 0.2, 1)
+    2.15s forwards;
 }
-
-
-/* LOGO */
 
 .rs-logo-circle {
-  width: 74px;
-  height: 74px;
+  width: 82px;
+  height: 82px;
 
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  place-items: center;
 
-  margin-bottom: 11px;
+  margin-bottom: 13px;
 
-  background: #ffffff;
-
-  border-radius: 20px;
-
-  overflow: hidden;
-
-  box-shadow:
-    0 12px 35px
-    rgba(139,0,0,0.14);
-}
-
-
-.rs-logo-circle img {
-  width: 100%;
-  height: 100%;
-
-  object-fit: contain;
-}
-
-
-/* BRAND NAME */
-
-.rs-brand-name {
-  color: #101828;
-
-  font-size: 2rem;
-
-  font-weight: 900;
-
-  line-height: 1;
-
-  letter-spacing: -0.055em;
-}
-
-
-.rs-brand-name span {
-  color: #8b0000;
-}
-
-
-/* TAGLINE */
-
-.rs-loader-tagline {
-  margin-top: 10px;
-
-  color: #667085;
-
-  font-size: 0.9rem;
-
-  font-weight: 500;
-}
-
-
-/* DOTS */
-
-.rs-loader-dots {
-  display: flex;
-
-  gap: 7px;
-
-  margin-top: 14px;
-}
-
-
-.rs-loader-dots i {
-  width: 8px;
-  height: 8px;
-
-  display: block;
+  background: rgba(255, 255, 255, 0.95);
+  border: 5px solid rgba(193, 18, 31, 0.10);
 
   border-radius: 50%;
 
-  background: #8b0000;
-
-  animation:
-    rs-loader-dot
-    1s
-    infinite
-    ease-in-out;
+  box-shadow:
+    0 12px 35px rgba(139, 0, 0, 0.16),
+    0 0 0 9px rgba(193, 18, 31, 0.04);
 }
 
+.rs-logo-circle img {
+  width: 58px;
+  height: 58px;
+  object-fit: contain;
+}
+
+.rs-brand-name {
+  color: #151515;
+
+  font-size: 2.15rem;
+  font-weight: 850;
+  letter-spacing: -0.055em;
+  line-height: 1.05;
+}
+
+.rs-brand-name span {
+  color: var(--primary);
+}
+
+.rs-loader-tagline {
+  margin-top: 7px;
+
+  color: #737983;
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.rs-loader-dots {
+  display: flex;
+  gap: 6px;
+  margin-top: 18px;
+}
+
+.rs-loader-dots i {
+  width: 7px;
+  height: 7px;
+
+  border-radius: 50%;
+  background: var(--primary);
+
+  animation: rsDot 0.9s ease-in-out infinite;
+}
 
 .rs-loader-dots i:nth-child(2) {
   animation-delay: 0.15s;
-  opacity: 0.55;
 }
-
 
 .rs-loader-dots i:nth-child(3) {
-  animation-delay: 0.3s;
-  opacity: 0.3;
+  animation-delay: 0.30s;
 }
-
-
-@keyframes rs-loader-dot {
-
-  0%,
-  70%,
-  100% {
-    transform:
-      translateY(0)
-      scale(1);
-  }
-
-  35% {
-    transform:
-      translateY(-4px)
-      scale(1.15);
-  }
-}
-
 
 /* =========================================================
-   LOGO REVEAL
+   LOADER KEYFRAMES
    ========================================================= */
 
-@keyframes rs-brand-reveal {
-
+@keyframes rsDropFall {
   0% {
+    transform: translate(-50%, -80px);
     opacity: 0;
-
-    transform:
-      translate(-50%, 35px)
-      scale(0.78);
   }
 
-  45% {
+  12% {
     opacity: 1;
+  }
 
+  72% {
+    transform: translate(-50%, 275px);
+  }
+
+  86% {
+    transform: translate(-50%, 260px) scale(1.03);
+  }
+
+  100% {
+    transform: translate(-50%, 275px) scale(0.75);
+    opacity: 0;
+  }
+}
+
+@keyframes rsImpact {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0;
+  }
+
+  30% {
+    transform: translate(-50%, -50%) scale(5);
+    opacity: 1;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(15);
+    opacity: 0;
+  }
+}
+
+@keyframes rsSplashCenter {
+  0% {
+    transform: scale(0);
+  }
+
+  65% {
+    transform: scale(1.7);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes rsSplashDrop {
+  0% {
+    opacity: 0;
     transform:
-      translate(-50%, -5px)
-      scale(1.04);
+      translate(-50%, -50%)
+      translate(0, 0)
+      rotate(0deg)
+      scale(0.3);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translate(-50%, -50%)
+      translate(var(--x), var(--y))
+      rotate(var(--r))
+      scale(1);
+  }
+}
+
+@keyframes rsRipple {
+  0% {
+    transform: translate(-50%, -50%) scale(0);
+    opacity: 0.75;
   }
 
   70% {
-    transform:
-      translate(-50%, 0)
-      scale(1);
+    opacity: 0.25;
+  }
+
+  100% {
+    transform: translate(-50%, -50%) scale(14);
+    opacity: 0;
+  }
+}
+
+@keyframes rsBrandReveal {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, 25px) scale(0.88);
+  }
+
+  60% {
+    opacity: 1;
+    transform: translate(-50%, -4px) scale(1.02);
   }
 
   100% {
     opacity: 1;
-
-    transform:
-      translate(-50%, 0)
-      scale(1);
+    transform: translate(-50%, 0) scale(1);
   }
 }
 
+@keyframes rsDot {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+
+  50% {
+    transform: translateY(-5px);
+    opacity: 1;
+  }
+}
 
 /* =========================================================
-   MOBILE
+   RESPONSIVE — TABLET
    ========================================================= */
 
-@media (max-width: 600px) {
+@media (max-width: 1000px) {
+
+  .main-nav {
+    gap: 2px;
+  }
+
+  .main-nav a {
+    padding: 8px 9px;
+    font-size: 0.86rem;
+  }
+
+  .grid-4,
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .workflow {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .filter-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .innovation-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* =========================================================
+   RESPONSIVE — MOBILE
+   ========================================================= */
+
+@media (max-width: 720px) {
+
+  .container {
+    width: min(100% - 28px, var(--container));
+  }
+
+  .site-header {
+    position: relative;
+  }
+
+  .site-header .container {
+    min-height: auto;
+    padding: 12px 0;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand {
+    justify-content: center;
+  }
+
+  .brand-logo {
+    width: 40px;
+    height: 40px;
+  }
+
+  .brand-text {
+    font-size: 1.25rem;
+  }
+
+  .main-nav {
+    width: 100%;
+    justify-content: center;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+
+    padding-bottom: 2px;
+
+    scrollbar-width: none;
+  }
+
+  .main-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .main-nav a {
+    flex: 0 0 auto;
+    font-size: 0.82rem;
+    padding: 8px 10px;
+  }
+
+  .hero {
+    padding: 60px 0 55px;
+  }
+
+  .hero h1 {
+    font-size: clamp(2rem, 11vw, 3rem);
+  }
+
+  .hero p {
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+  }
+
+  .hero-actions .btn {
+    width: 100%;
+  }
+
+  .section {
+    padding: 55px 0;
+  }
+
+  .section-title {
+    font-size: 1.85rem;
+  }
+
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .stats-grid,
+  .workflow,
+  .innovation-grid,
+  .form-grid,
+  .filter-grid,
+  .results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card {
+    padding: 21px;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .form-group.full {
+    grid-column: auto;
+  }
+
+  .form-actions {
+    flex-direction: column;
+  }
+
+  .form-actions .btn {
+    width: 100%;
+  }
+
+  .emergency-cta {
+    padding: 28px 22px;
+  }
+
+  .centre-actions {
+    flex-direction: column;
+  }
+
+  .centre-actions .btn {
+    width: 100%;
+  }
+
+  /* Loader mobile */
+
+  .rs-loader-scene {
+    width: 100vw;
+    height: 100vh;
+  }
 
   .rs-drop-wrapper {
-    top: 13%;
-  }
-
-  .rs-drop {
-    width: 43px;
-    height: 55px;
-  }
-
-  .rs-splash,
-  .rs-impact-shadow,
-  .rs-ripple {
-    top: 59%;
+    top: 7%;
   }
 
   .rs-loader-brand {
-    top: 67%;
+    width: 280px;
   }
 
   .rs-logo-circle {
-    width: 68px;
-    height: 68px;
+    width: 72px;
+    height: 72px;
+  }
 
-    border-radius: 18px;
+  .rs-logo-circle img {
+    width: 50px;
+    height: 50px;
   }
 
   .rs-brand-name {
-    font-size: 1.8rem;
+    font-size: 1.9rem;
   }
 
   .rs-loader-tagline {
-    font-size: 0.8rem;
+    font-size: 0.82rem;
   }
 }
 
+/* =========================================================
+   VERY SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .container {
+    width: min(100% - 22px, var(--container));
+  }
+
+  .brand-text {
+    font-size: 1.15rem;
+  }
+
+  .main-nav a {
+    font-size: 0.76rem;
+    padding: 7px 8px;
+  }
+
+  .hero h1 {
+    font-size: 2rem;
+  }
+
+  .rs-brand-name {
+    font-size: 1.7rem;
+  }
+
+  .rs-loader-tagline {
+    font-size: 0.76rem;
+  }
+}
 
 /* =========================================================
    REDUCED MOTION
    ========================================================= */
 
+.reduce-motion *,
+.reduce-motion *::before,
+.reduce-motion *::after {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  scroll-behavior: auto !important;
+  transition-duration: 0.01ms !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
 
-  #raktsathi-loader * {
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
   }
-
 }
