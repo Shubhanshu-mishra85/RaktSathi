@@ -1,958 +1,569 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Blood Education & Safety | VitalLoop</title>
+  <title>Blood Education | RaktSathi</title>
 
-<style>
+  <meta name="description"
+        content="Learn about blood groups, components, donation eligibility and safe blood donation through RaktSathi.">
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
-}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, Helvetica, sans-serif;
+    }
 
-html{
-  scroll-behavior:smooth;
-}
+    body {
+      background: #f4fbf7;
+      color: #16352a;
+      line-height: 1.65;
+    }
 
-body{
-  font-family:Arial,sans-serif;
-  background:#fff;
-  color:#172033;
-  line-height:1.65;
-}
+    /* NAVBAR */
+    nav {
+      width: 100%;
+      background: #064e3b;
+      color: white;
+      padding: 16px 6%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 15px rgba(0,0,0,.12);
+    }
 
-header{
-  position:sticky;
-  top:0;
-  z-index:100;
-  background:rgba(255,255,255,.96);
-  backdrop-filter:blur(10px);
-  border-bottom:1px solid #e5e7eb;
-  padding:15px 6%;
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-}
+    .logo {
+      font-size: 25px;
+      font-weight: 800;
+    }
 
-.logo{
-  color:#b91c1c;
-  font-size:22px;
-  font-weight:800;
-}
+    .logo span {
+      color: #ef4444;
+    }
 
-nav{
-  display:flex;
-  gap:20px;
-}
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 20px;
+      font-size: 14px;
+      font-weight: 600;
+    }
 
-nav a{
-  text-decoration:none;
-  color:#475569;
-  font-size:14px;
-  font-weight:600;
-}
+    nav a:hover {
+      color: #86efac;
+    }
 
-nav a:hover{
-  color:#b91c1c;
-}
+    /* HERO */
+    .hero {
+      background: linear-gradient(135deg, #064e3b, #047857);
+      color: white;
+      text-align: center;
+      padding: 65px 6%;
+    }
 
-.hero{
-  padding:75px 6%;
-  background:
-  radial-gradient(circle at 85% 20%,#fee2e2,transparent 30%),
-  linear-gradient(180deg,#fff7f7,#fff);
-}
+    .hero h1 {
+      font-size: clamp(34px, 6vw, 56px);
+      margin-bottom: 12px;
+    }
 
-.hero-inner{
-  max-width:1050px;
-  margin:auto;
-}
+    .hero h1 span {
+      color: #fca5a5;
+    }
 
-.tag{
-  color:#b91c1c;
-  font-size:12px;
-  font-weight:800;
-  letter-spacing:2px;
-}
+    .hero p {
+      max-width: 760px;
+      margin: auto;
+      font-size: 17px;
+      opacity: .95;
+    }
 
-h1{
-  font-size:clamp(40px,6vw,68px);
-  line-height:1.05;
-  letter-spacing:-2px;
-  margin:12px 0 18px;
-}
+    /* CONTAINER */
+    .container {
+      width: 92%;
+      max-width: 1100px;
+      margin: 45px auto;
+    }
 
-.hero p{
-  max-width:760px;
-  color:#64748b;
-  font-size:17px;
-}
+    /* INTRO */
+    .intro {
+      background: white;
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(6,78,59,.09);
+      margin-bottom: 28px;
+    }
 
-.container{
-  max-width:1100px;
-  margin:auto;
-  padding:70px 6%;
-}
+    .intro h2 {
+      color: #065f46;
+      margin-bottom: 12px;
+    }
 
-.section-title{
-  margin-bottom:30px;
-}
+    .intro p {
+      color: #52675f;
+    }
 
-.section-title small{
-  color:#b91c1c;
-  font-weight:800;
-  letter-spacing:2px;
-  font-size:12px;
-}
+    /* CARDS */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 22px;
+    }
 
-.section-title h2{
-  font-size:38px;
-  margin-top:7px;
-  line-height:1.15;
-}
+    .card {
+      background: white;
+      padding: 28px;
+      border-radius: 20px;
+      box-shadow: 0 10px 28px rgba(6,78,59,.09);
+      border-top: 4px solid #10b981;
+    }
 
-.section-title p{
-  color:#64748b;
-  margin-top:10px;
-}
+    .card h2 {
+      color: #064e3b;
+      margin-bottom: 14px;
+    }
 
-.cards{
-  display:grid;
-  grid-template-columns:1fr 1fr;
-  gap:20px;
-}
+    .card h3 {
+      color: #047857;
+      margin: 15px 0 8px;
+    }
 
-.card{
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:20px;
-  padding:28px;
-  box-shadow:0 10px 30px rgba(15,23,42,.06);
-  transition:.25s;
-}
+    .card p {
+      color: #536a61;
+      margin-bottom: 10px;
+    }
 
-.card:hover{
-  transform:translateY(-5px);
-  box-shadow:0 18px 40px rgba(15,23,42,.09);
-}
+    .card ul {
+      padding-left: 20px;
+      color: #536a61;
+    }
 
-.number{
-  display:inline-grid;
-  place-items:center;
-  width:42px;
-  height:42px;
-  border-radius:50%;
-  background:#fee2e2;
-  color:#b91c1c;
-  font-weight:900;
-  margin-bottom:15px;
-}
+    .card li {
+      margin: 7px 0;
+    }
 
-.card h3{
-  font-size:22px;
-  margin-bottom:10px;
-}
+    /* BLOOD GROUP */
+    .blood-groups {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      margin-top: 15px;
+    }
 
-.card p{
-  color:#64748b;
-  font-size:15px;
-}
+    .blood-box {
+      background: #fff1f2;
+      border: 1px solid #fecdd3;
+      border-radius: 12px;
+      padding: 14px;
+      text-align: center;
+      font-weight: 800;
+      color: #be123c;
+    }
 
-.process{
-  margin-top:20px;
-  display:flex;
-  align-items:center;
-  gap:8px;
-  flex-wrap:wrap;
-}
+    /* COMPONENTS */
+    .component {
+      margin-top: 14px;
+      padding: 15px;
+      background: #f0fdf4;
+      border-radius: 12px;
+    }
 
-.process span{
-  padding:9px 12px;
-  border-radius:9px;
-  background:#f8fafc;
-  font-size:12px;
-  font-weight:800;
-}
+    .component strong {
+      display: block;
+      color: #065f46;
+      margin-bottom: 4px;
+    }
 
-.arrow{
-  color:#b91c1c;
-  font-weight:900;
-}
+    /* FAQ */
+    .faq {
+      margin-top: 28px;
+    }
 
-.soft{
-  background:#f8fafc;
-}
+    .faq h2 {
+      color: #065f46;
+      margin-bottom: 18px;
+    }
 
-.full-card{
-  background:white;
-  border:1px solid #e5e7eb;
-  border-radius:20px;
-  padding:30px;
-  box-shadow:0 10px 30px rgba(15,23,42,.05);
-}
+    details {
+      background: white;
+      margin-bottom: 10px;
+      padding: 16px 18px;
+      border-radius: 12px;
+      box-shadow: 0 5px 18px rgba(6,78,59,.06);
+    }
 
-.steps{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:15px;
-  margin-top:25px;
-}
+    summary {
+      cursor: pointer;
+      font-weight: 700;
+      color: #064e3b;
+    }
 
-.step{
-  padding:20px;
-  background:#f8fafc;
-  border-radius:15px;
-  border-top:3px solid #b91c1c;
-}
+    details p {
+      margin-top: 10px;
+      color: #536a61;
+    }
 
-.step strong{
-  display:block;
-  margin-bottom:5px;
-}
+    /* NOTICE */
+    .notice {
+      margin-top: 30px;
+      padding: 20px;
+      background: #fff7ed;
+      border-left: 5px solid #f97316;
+      border-radius: 12px;
+      color: #7c2d12;
+      font-size: 14px;
+    }
 
-.step p{
-  font-size:13px;
-  color:#64748b;
-}
+    /* CTA */
+    .cta {
+      margin-top: 35px;
+      background: linear-gradient(135deg, #065f46, #047857);
+      color: white;
+      text-align: center;
+      padding: 35px 25px;
+      border-radius: 22px;
+    }
 
-.danger{
-  border:1px solid #fecaca;
-  background:#fff7f7;
-}
+    .cta h2 {
+      margin-bottom: 10px;
+    }
 
-.alert{
-  margin-top:20px;
-  padding:18px;
-  background:#7f1d1d;
-  color:white;
-  border-radius:14px;
-}
+    .cta p {
+      opacity: .95;
+      margin-bottom: 20px;
+    }
 
-.alert strong{
-  display:block;
-  margin-bottom:5px;
-}
+    .cta a {
+      display: inline-block;
+      padding: 12px 20px;
+      background: #dc2626;
+      color: white;
+      text-decoration: none;
+      border-radius: 10px;
+      font-weight: 700;
+    }
 
-.safe-list{
-  display:grid;
-  gap:12px;
-  margin-top:20px;
-}
+    .cta a:hover {
+      background: #b91c1c;
+    }
 
-.safe-item{
-  padding:15px;
-  border-radius:12px;
-  background:#f8fafc;
-}
+    /* FOOTER */
+    footer {
+      margin-top: 60px;
+      background: #022c22;
+      color: #d1fae5;
+      text-align: center;
+      padding: 30px 6%;
+      font-size: 14px;
+    }
 
-.safe-item strong{
-  color:#172033;
-}
+    footer strong {
+      color: white;
+    }
 
-.myth-grid{
-  display:grid;
-  grid-template-columns:repeat(3,1fr);
-  gap:18px;
-}
+    /* MOBILE */
+    @media (max-width: 800px) {
 
-.myth{
-  padding:23px;
-  border:1px solid #e5e7eb;
-  border-radius:17px;
-  background:white;
-}
+      nav div:last-child {
+        display: none;
+      }
 
-.myth-label{
-  font-size:11px;
-  font-weight:900;
-  color:#b91c1c;
-  letter-spacing:1px;
-}
+      .grid {
+        grid-template-columns: 1fr;
+      }
 
-.myth h3{
-  margin:8px 0;
-  font-size:18px;
-}
+      .blood-groups {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-.myth p{
-  color:#64748b;
-  font-size:14px;
-}
+      .hero {
+        padding: 50px 6%;
+      }
+    }
 
-.disclaimer{
-  margin-top:25px;
-  padding:18px;
-  border-radius:13px;
-  background:#fff7ed;
-  border:1px solid #fed7aa;
-  color:#9a3412;
-  font-size:13px;
-}
+    @media (max-width: 500px) {
 
-footer{
-  background:#111827;
-  color:#cbd5e1;
-  padding:35px 6%;
-  text-align:center;
-}
+      .blood-groups {
+        grid-template-columns: repeat(2, 1fr);
+      }
 
-footer strong{
-  color:white;
-  font-size:20px;
-}
-
-@media(max-width:800px){
-
-  nav{
-    display:none;
-  }
-
-  .cards{
-    grid-template-columns:1fr;
-  }
-
-  .steps{
-    grid-template-columns:1fr 1fr;
-  }
-
-  .myth-grid{
-    grid-template-columns:1fr;
-  }
-
-}
-
-@media(max-width:520px){
-
-  .hero{
-    padding:55px 5%;
-  }
-
-  .container{
-    padding:50px 5%;
-  }
-
-  h1{
-    font-size:42px;
-  }
-
-  .section-title h2{
-    font-size:30px;
-  }
-
-  .steps{
-    grid-template-columns:1fr;
-  }
-
-}
-
-</style>
+      .card,
+      .intro {
+        padding: 22px;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-<header>
+  <!-- NAVBAR -->
+  <nav>
 
-<div class="logo">
-🩸 VitalLoop
-</div>
+    <div class="logo">
+      Rakt<span>Sathi</span>
+    </div>
 
-<nav>
+    <div>
+      <a href="index.html">Home</a>
+      <a href="find-blood.html">Find Blood</a>
+      <a href="donor.html">Become a Donor</a>
+    </div>
 
-<a href="index.html">Home</a>
+  </nav>
 
-<a href="blood-request.html">
-Need Blood
-</a>
 
-<a href="donor.html">
-Become a Donor
-</a>
+  <!-- HERO -->
+  <section class="hero">
 
-<a href="blood-education.html">
-Education
-</a>
+    <h1>
+      Blood <span>Education</span>
+    </h1>
 
-<a href="camps.html">
-Camps
-</a>
+    <p>
+      Understand blood groups, blood components, donation basics
+      and important safety information.
+    </p>
 
-<a href="about.html">
-About
-</a>
+  </section>
 
-</nav>
 
-</header>
+  <main class="container">
 
+    <!-- INTRO -->
+    <section class="intro">
 
-<!-- HERO -->
+      <h2>Why Blood Awareness Matters</h2>
 
-<section class="hero">
+      <p>
+        Understanding blood groups and donation basics can help people
+        make informed decisions and coordinate with authorised blood
+        centres and healthcare facilities when blood support is needed.
+      </p>
 
-<div class="hero-inner">
+    </section>
 
-<span class="tag">
-BLOOD EDUCATION & SAFETY
-</span>
 
-<h1>
-Understand Blood.<br>
-Donate Safely.
-</h1>
+    <div class="grid">
 
-<p>
-A simple educational guide explaining how blood donation
-works, what happens after collection, how transfusion is
-performed and what to do if a possible reaction is noticed.
-</p>
+      <!-- BLOOD GROUP -->
+      <section class="card">
 
-</div>
+        <h2>🩸 Blood Groups</h2>
 
-</section>
+        <p>
+          The commonly recognised ABO blood groups are A, B, AB and O.
+          Each can also be positive or negative depending on the Rh factor.
+        </p>
 
+        <div class="blood-groups">
 
-<!-- DONATION -->
+          <div class="blood-box">A+</div>
+          <div class="blood-box">A−</div>
+          <div class="blood-box">B+</div>
+          <div class="blood-box">B−</div>
+          <div class="blood-box">AB+</div>
+          <div class="blood-box">AB−</div>
+          <div class="blood-box">O+</div>
+          <div class="blood-box">O−</div>
 
-<section class="container">
+        </div>
 
-<div class="section-title">
+      </section>
 
-<small>01 • BLOOD DONATION</small>
 
-<h2>
-How does blood donation happen?
-</h2>
+      <!-- COMPONENTS -->
+      <section class="card">
 
-<p>
-Blood donation is performed under the supervision of trained
-healthcare professionals at an authorized blood centre.
-</p>
+        <h2>🧬 Blood Components</h2>
 
-</div>
+        <p>
+          Blood can be separated into components, each serving
+          different clinical purposes.
+        </p>
 
+        <div class="component">
+          <strong>Red Blood Cells</strong>
+          Carry oxygen throughout the body.
+        </div>
 
-<div class="cards">
+        <div class="component">
+          <strong>Platelets</strong>
+          Help with blood clotting.
+        </div>
 
+        <div class="component">
+          <strong>Plasma</strong>
+          The liquid part of blood that carries cells and many dissolved substances.
+        </div>
 
-<div class="card">
+        <div class="component">
+          <strong>Cryoprecipitate</strong>
+          A plasma-derived component containing specific clotting proteins.
+        </div>
 
-<div class="number">
-1
-</div>
+      </section>
 
-<h3>
-Donor Screening
-</h3>
 
-<p>
-The blood centre checks the donor's health information and
-performs the required screening to determine whether the
-person is eligible to donate.
-</p>
+      <!-- DONATION -->
+      <section class="card">
 
-</div>
+        <h2>❤️ Blood Donation Basics</h2>
 
+        <p>
+          Blood donation is a voluntary process carried out through
+          authorised blood centres and healthcare facilities.
+        </p>
 
-<div class="card">
+        <h3>Before Donation</h3>
 
-<div class="number">
-2
-</div>
+        <ul>
+          <li>Follow the instructions provided by the authorised centre.</li>
+          <li>Provide accurate health and medical information to staff.</li>
+          <li>Follow any food, hydration or rest guidance given by the centre.</li>
+        </ul>
 
-<h3>
-Blood Collection
-</h3>
+        <h3>After Donation</h3>
 
-<p>
-If the donor is eligible, trained staff collect blood using
-sterile, single-use equipment and follow the centre's
-approved procedures.
-</p>
+        <ul>
+          <li>Follow the post-donation instructions provided by staff.</li>
+          <li>Rest if advised.</li>
+          <li>Contact healthcare professionals if you have concerns.</li>
+        </ul>
 
-</div>
+      </section>
 
 
-<div class="card">
+      <!-- ELIGIBILITY -->
+      <section class="card">
 
-<div class="number">
-3
-</div>
+        <h2>✅ Donor Eligibility</h2>
 
-<h3>
-Post-Donation Care
-</h3>
+        <p>
+          Donation eligibility depends on factors such as age, health,
+          haemoglobin level, medications, recent illness and other
+          requirements set by the authorised blood centre.
+        </p>
 
-<p>
-After donation, the donor is observed and given appropriate
-after-care instructions, including rest and refreshments
-according to the centre's protocol.
-</p>
+        <p>
+          <strong>
+            Always allow qualified healthcare staff to determine
+            whether you are eligible to donate.
+          </strong>
+        </p>
 
-</div>
+      </section>
 
+    </div>
 
-<div class="card">
 
-<div class="number">
-4
-</div>
+    <!-- FAQ -->
+    <section class="faq">
 
-<h3>
-Safe Handling
-</h3>
+      <h2>Frequently Asked Questions</h2>
 
-<p>
-The collected blood is identified and handled by the
-authorized blood centre for required testing, processing
-and storage.
-</p>
+      <details>
+        <summary>What is a blood group?</summary>
 
-</div>
+        <p>
+          A blood group identifies characteristics of blood cells.
+          The ABO system and Rh factor are commonly used to classify blood.
+        </p>
+      </details>
 
-</div>
 
+      <details>
+        <summary>Can anyone donate blood?</summary>
 
-<div class="process">
+        <p>
+          No. Eligibility is determined by authorised blood-centre
+          staff according to applicable medical requirements.
+        </p>
+      </details>
 
-<span>Screening</span>
 
-<b class="arrow">→</b>
+      <details>
+        <summary>Does RaktSathi collect blood?</summary>
 
-<span>Collection</span>
+        <p>
+          No. RaktSathi is a discovery and coordination platform.
+          Blood collection, testing, storage and transfusion are handled
+          by authorised blood centres and healthcare professionals.
+        </p>
+      </details>
 
-<b class="arrow">→</b>
 
-<span>Testing</span>
+      <details>
+        <summary>Does registering as a donor guarantee a donation?</summary>
 
-<b class="arrow">→</b>
+        <p>
+          No. Registration only indicates potential donor interest.
+          Actual availability and eligibility must be confirmed
+          through the appropriate healthcare facility.
+        </p>
+      </details>
 
-<span>Processing</span>
 
-<b class="arrow">→</b>
+      <details>
+        <summary>Where should I verify medical information?</summary>
 
-<span>Storage</span>
+        <p>
+          For personal medical questions or donation eligibility,
+          consult qualified healthcare professionals or an authorised
+          blood centre.
+        </p>
+      </details>
 
-</div>
+    </section>
 
-</section>
 
+    <!-- SAFETY NOTICE -->
+    <div class="notice">
 
-<!-- WHAT HAPPENS TO BLOOD -->
+      <strong>Important Safety Notice:</strong><br>
 
-<section class="soft">
+      This page provides general educational information and is not
+      medical advice. Blood donation eligibility, compatibility,
+      testing, collection, storage and transfusion must be determined
+      by qualified healthcare professionals and authorised facilities.
 
-<div class="container">
+    </div>
 
-<div class="section-title">
 
-<small>02 • AFTER DONATION</small>
+    <!-- CTA -->
+    <section class="cta">
 
-<h2>
-What happens to donated blood?
-</h2>
+      <h2>Ready to Help?</h2>
 
-<p>
-Blood centres follow controlled procedures before blood or
-blood components can be made available for clinical use.
-</p>
+      <p>
+        If you are eligible and willing to donate, register as a
+        potential donor through RaktSathi.
+      </p>
 
-</div>
+      <a href="donor.html">
+        Become a Donor
+      </a>
 
+    </section>
 
-<div class="full-card">
+  </main>
 
-<div class="steps">
 
-<div class="step">
+  <!-- FOOTER -->
+  <footer>
 
-<strong>
-Identification
-</strong>
+    <strong>RaktSathi</strong> — Connecting People. Saving Lives.
 
-<p>
-The donation is properly identified and recorded.
-</p>
+    <br><br>
 
-</div>
+    A smart blood-resource coordination platform.
 
-
-<div class="step">
-
-<strong>
-Testing
-</strong>
-
-<p>
-Required laboratory testing is performed according
-to applicable procedures.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<strong>
-Processing
-</strong>
-
-<p>
-Blood may be prepared into components such as
-red cells, plasma or platelets.
-</p>
-
-</div>
-
-
-<div class="step">
-
-<strong>
-Storage & Issue
-</strong>
-
-<p>
-Components are stored under controlled conditions
-and issued through authorized clinical processes.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="disclaimer">
-
-<strong>
-Important:
-</strong>
-
-VitalLoop does not collect, test, process, store,
-transport or issue blood. These activities are performed
-by authorized blood centres and healthcare professionals.
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- TRANSFUSION -->
-
-<section class="container" id="transfusion">
-
-<div class="section-title">
-
-<small>03 • BLOOD TRANSFUSION</small>
-
-<h2>
-How does a blood transfusion work?
-</h2>
-
-<p>
-The clinical team follows identification, compatibility and
-monitoring procedures before and during transfusion.
-</p>
-
-</div>
-
-
-<div class="cards">
-
-<div class="card">
-
-<div class="number">
-1
-</div>
-
-<h3>
-Patient Identification
-</h3>
-
-<p>
-Healthcare staff verify the patient's identity and the
-transfusion requirement according to hospital procedures.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="number">
-2
-</div>
-
-<h3>
-Compatibility Checks
-</h3>
-
-<p>
-The healthcare team performs the required blood-group and
-compatibility checks before transfusion.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="number">
-3
-</div>
-
-<h3>
-Transfusion
-</h3>
-
-<p>
-The blood component is administered by trained healthcare
-staff according to the patient's clinical requirement.
-</p>
-
-</div>
-
-
-<div class="card">
-
-<div class="number">
-4
-</div>
-
-<h3>
-Monitoring
-</h3>
-
-<p>
-The patient is monitored during and after transfusion for
-any concerning signs or changes in condition.
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- REACTION -->
-
-<section class="soft" id="reaction">
-
-<div class="container">
-
-<div class="section-title">
-
-<small>04 • SAFETY ALERT</small>
-
-<h2>
-What if a possible transfusion reaction occurs?
-</h2>
-
-<p>
-If concerning symptoms appear during or after a transfusion,
-the healthcare team should be informed immediately.
-</p>
-
-</div>
-
-
-<div class="full-card danger">
-
-<div class="safe-list">
-
-<div class="safe-item">
-
-<strong>
-🚨 1. Tell the healthcare staff immediately
-</strong>
-
-<p>
-Inform the nurse, doctor or treating healthcare professional
-about any sudden or concerning change.
-</p>
-
-</div>
-
-
-<div class="safe-item">
-
-<strong>
-⚠️ 2. Do not try to manage it yourself
-</strong>
-
-<p>
-Do not change the blood line, medicines or transfusion
-equipment yourself. Let trained medical staff handle it.
-</p>
-
-</div>
-
-
-<div class="safe-item">
-
-<strong>
-🩺 3. The medical team assesses the patient
-</strong>
-
-<p>
-Healthcare professionals follow their transfusion-reaction
-protocol and decide the appropriate clinical action.
-</p>
-
-</div>
-
-
-<div class="safe-item">
-
-<strong>
-📋 4. Further checks may be required
-</strong>
-
-<p>
-The clinical team may investigate the reaction and coordinate
-with the relevant blood centre as required.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="alert">
-
-<strong>
-🚨 Warning signs can include:
-</strong>
-
-Fever or chills, rash, breathing difficulty, chest discomfort,
-dizziness or a sudden change in the patient's condition.
-
-<br><br>
-
-<strong>
-If this happens during a transfusion, alert healthcare staff
-immediately.
-</strong>
-
-</div>
-
-</div>
-
-</div>
-
-</section>
-
-
-<!-- MYTHS -->
-
-<section class="container">
-
-<div class="section-title">
-
-<small>MYTH VS FACT</small>
-
-<h2>
-Know the difference
-</h2>
-
-</div>
-
-
-<div class="myth-grid">
-
-
-<div class="myth">
-
-<span class="myth-label">
-MYTH
-</span>
-
-<h3>
-Blood can be transferred directly from one person to another.
-</h3>
-
-<p>
-Clinical blood collection, testing, compatibility and
-transfusion must follow authorized medical procedures.
-</p>
-
-</div>
-
-
-<div class="myth">
-
-<span class="myth-label">
-MYTH
-</span>
-
-<h3>
-A matching blood group alone guarantees compatibility.
-</h3>
-
-<p>
-Healthcare professionals perform the required compatibility
-checks before transfusion.
-</p>
-
-</div>
-
-
-<div class="myth">
-
-<span class="myth-label">
-FACT
-</span>
-
-<h3>
-VitalLoop connects people with information and resources.
-</h3>
-
-<p>
-VitalLoop is a discovery and coordination layer and does not
-replace authorized blood centres or medical professionals.
-</p>
-
-</div>
-
-</div>
-
-
-<div class="disclaimer">
-
-<strong>Educational information only:</strong>
-
-This page is for public awareness and the SIH prototype.
-For an actual medical situation, follow the instructions of
-qualified healthcare professionals and the treating hospital.
-
-</div>
-
-</section>
-
-
-<footer>
-
-<strong>
-VitalLoop
-</strong>
-
-<p>
-Your Complete Healthcare Journey
-</p>
-
-<p>
-Healthier People. Brighter Tomorrow.
-</p>
-
-</footer>
-
+  </footer>
 
 </body>
-  </html>
+</html>
