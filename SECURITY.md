@@ -1,102 +1,33 @@
-# Security & Privacy
+# RaktSathi Security & Privacy
 
-## RaktSathi — Intelligent Blood Emergency Coordination Network
+## Intelligent Blood Emergency Coordination Network
 
-RaktSathi is a healthcare technology prototype designed to improve emergency blood-resource discovery, coordination, verification, and request tracking.
+RaktSathi is a student-developed healthcare technology prototype created for demonstration and Smart India Hackathon purposes.
 
-Security, privacy, and responsible handling of healthcare-related information are important parts of the project.
-
----
-
-## 1. Project Status
-
-RaktSathi is currently a prototype/demo system developed for Smart India Hackathon (SIH).
-
-The current prototype may use browser-based storage such as `localStorage` for demonstration purposes.
-
-It is **not a production healthcare system** and should not be treated as a substitute for authorized healthcare facilities, blood centres, emergency services, or professional medical advice.
+The current version is a prototype and should not be treated as a production healthcare system.
 
 ---
 
-## 2. Data Responsibility
+## 1. Purpose
 
-RaktSathi may demonstrate collection of information such as:
+This document describes the security, privacy and responsible-use principles considered during the development of RaktSathi.
 
-- Patient/requester name
-- Contact number
-- Blood group
-- Blood component
-- Required units
-- District/city
-- Healthcare facility
-- Requirement type
-- Required date
-- Additional request information
-- Donor-network information in the prototype
+The platform is designed primarily as a:
 
-Users should provide only the information necessary for the intended coordination workflow.
+- Blood-resource discovery interface
+- Emergency request coordination prototype
+- Potential donor coordination layer
+- Healthcare navigation system
+- Request tracking interface
+- Educational information platform
 
 ---
 
-## 3. Sensitive Information
+## 2. Prototype Status
 
-Healthcare-related information can be sensitive.
+The current RaktSathi implementation uses frontend technologies and demonstration datasets.
 
-The production version of RaktSathi should implement appropriate:
-
-- Authentication
-- Authorization
-- Encryption in transit
-- Encryption at rest
-- Secure database storage
-- Access controls
-- Audit logging
-- Data retention policies
-- Secure API communication
-- Input validation
-- Rate limiting
-- Secure session management
-
-The current prototype does not claim to provide all of these production-level controls.
-
----
-
-## 4. No Medical Decision Making
-
-RaktSathi does not independently:
-
-- Diagnose patients
-- Prescribe medicines
-- Determine blood compatibility
-- Approve blood transfusions
-- Test blood
-- Store blood
-- Transport blood
-- Release blood
-- Perform transfusions
-
-Medical decisions and blood-related clinical processes must remain with qualified healthcare professionals and authorized facilities.
-
----
-
-## 5. Blood Availability Verification
-
-Information displayed by RaktSathi should not be interpreted as a guarantee of blood availability.
-
-Availability, eligibility, compatibility, and final allocation must be confirmed by the relevant authorized blood centre or healthcare facility.
-
-The platform is intended to support discovery and coordination, not to replace official verification.
-
----
-
-## 6. Prototype Storage
-
-Some prototype modules may store demonstration data locally in the user's browser.
-
-For example:
+Some prototype information may be stored locally in the user's browser using:
 
 ```text
-localStorage
-├── Emergency Request
-├── Blood Request
-└── Donor Network Information
+LocalStorage
