@@ -1,1834 +1,1578 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="description"
-    content="VitalLoop Blood Resource Network - Find nearby authorized blood centres."
-  >
-
-  <title>Find Blood | VitalLoop</title>
-
-  <style>
-
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    body {
-      font-family:
-        Inter,
-        Arial,
-        Helvetica,
-        sans-serif;
-
-      background:
-        linear-gradient(
-          135deg,
-          #f4fff8,
-          #ffffff
-        );
-
-      color: #123b28;
-      min-height: 100vh;
-    }
-
-    /* NAVBAR */
-
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 1000;
-
-      background: rgba(255,255,255,0.96);
-
-      border-bottom:
-        1px solid #dcefe3;
-
-      backdrop-filter: blur(12px);
-
-      padding: 14px 5%;
-    }
-
-    .nav-inner {
-      max-width: 1250px;
-      margin: auto;
-
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-
-      gap: 20px;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-
-      text-decoration: none;
-      color: #087f3f;
-
-      font-size: 22px;
-      font-weight: 800;
-    }
-
-    .brand-mark {
-      width: 42px;
-      height: 42px;
-
-      border-radius: 12px;
-
-      background:
-        linear-gradient(
-          135deg,
-          #087f3f,
-          #19a85b
-        );
-
-      color: white;
-
-      display: grid;
-      place-items: center;
-
-      font-size: 22px;
-    }
-
-    .back-btn {
-      text-decoration: none;
-
-      color: #087f3f;
-
-      border: 1px solid #bfe3cd;
-
-      padding: 10px 16px;
-
-      border-radius: 10px;
-
-      font-weight: 700;
-
-      transition: 0.25s;
-    }
-
-    .back-btn:hover {
-      background: #087f3f;
-      color: white;
-    }
-
-
-    /* HERO */
-
-    .hero {
-      max-width: 1250px;
-
-      margin: auto;
-
-      padding:
-        70px 5%
-        40px;
-
-      text-align: center;
-    }
-
-    .eyebrow {
-      display: inline-block;
-
-      color: #087f3f;
-
-      font-size: 13px;
-
-      font-weight: 800;
-
-      letter-spacing: 2px;
-
-      margin-bottom: 14px;
-    }
-
-    .hero h1 {
-      font-size:
-        clamp(34px, 6vw, 64px);
-
-      line-height: 1.05;
-
-      margin-bottom: 18px;
-
-      color: #103c27;
-    }
-
-    .hero h1 span {
-      color: #087f3f;
-    }
-
-    .hero p {
-      max-width: 720px;
-
-      margin: auto;
-
-      color: #607568;
-
-      font-size: 17px;
-
-      line-height: 1.7;
-    }
-
-
-    /* LOCATION AREA */
-
-    .location-box {
-      max-width: 1250px;
-
-      margin: 20px auto 30px;
-
-      padding: 0 5%;
-    }
-
-    .location-panel {
-      background:
-        linear-gradient(
-          135deg,
-          #087f3f,
-          #0ca653
-        );
-
-      color: white;
-
-      border-radius: 24px;
-
-      padding: 30px;
-
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 25px;
-
-      box-shadow:
-        0 20px 45px
-        rgba(8,127,63,0.18);
-    }
-
-    .location-panel h2 {
-      font-size: 25px;
-      margin-bottom: 8px;
-    }
-
-    .location-panel p {
-      opacity: 0.9;
-      line-height: 1.5;
-    }
-
-    .location-button {
-      border: none;
-
-      background: white;
-
-      color: #087f3f;
-
-      padding: 15px 22px;
-
-      border-radius: 12px;
-
-      font-size: 15px;
-
-      font-weight: 800;
-
-      cursor: pointer;
-
-      white-space: nowrap;
-
-      transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-    }
-
-    .location-button:hover {
-      transform: translateY(-2px);
-
-      box-shadow:
-        0 10px 25px
-        rgba(0,0,0,0.15);
-    }
-
-    .location-button:disabled {
-      opacity: 0.7;
-      cursor: wait;
-    }
-
-
-    .location-status {
-      max-width: 1250px;
-
-      margin: 0 auto 25px;
-
-      padding: 0 5%;
-
-      color: #087f3f;
-
-      font-size: 14px;
-
-      font-weight: 700;
-    }
-
-
-    /* SEARCH */
-
-    .search-area {
-      max-width: 1250px;
-
-      margin: 0 auto 35px;
-
-      padding: 0 5%;
-    }
-
-    .search-panel {
-      background: white;
-
-      border:
-        1px solid #dcefe3;
-
-      border-radius: 22px;
-
-      padding: 25px;
-
-      box-shadow:
-        0 12px 35px
-        rgba(10,70,40,0.06);
-    }
-
-    .search-panel h2 {
-      margin-bottom: 20px;
-
-      color: #123b28;
-    }
-
-    .filters {
-      display: grid;
-
-      grid-template-columns:
-        repeat(4, 1fr);
-
-      gap: 15px;
-    }
-
-    .filter-group {
-      display: flex;
-
-      flex-direction: column;
-
-      gap: 7px;
-    }
-
-    .filter-group label {
-      font-size: 13px;
-
-      font-weight: 800;
-
-      color: #416052;
-    }
-
-    .filter-group select,
-    .filter-group input {
-      width: 100%;
-
-      padding: 13px 14px;
-
-      border:
-        1px solid #cfe6d8;
-
-      border-radius: 10px;
-
-      outline: none;
-
-      background: #fbfffc;
-
-      color: #123b28;
-
-      font-size: 14px;
-    }
-
-    .filter-group select:focus,
-    .filter-group input:focus {
-      border-color: #087f3f;
-
-      box-shadow:
-        0 0 0 3px
-        rgba(8,127,63,0.08);
-    }
-
-    .filter-actions {
-      display: flex;
-
-      gap: 10px;
-
-      margin-top: 18px;
-    }
-
-    .primary-btn,
-    .secondary-btn {
-      border: none;
-
-      padding: 12px 20px;
-
-      border-radius: 10px;
-
-      font-weight: 800;
-
-      cursor: pointer;
-    }
-
-    .primary-btn {
-      background: #087f3f;
-      color: white;
-    }
-
-    .secondary-btn {
-      background: #e9f7ef;
-      color: #087f3f;
-    }
-
-
-    /* RESULTS */
-
-    .results-area {
-      max-width: 1250px;
-
-      margin: auto;
-
-      padding: 0 5% 70px;
-    }
-
-    .results-top {
-      display: flex;
-
-      align-items: center;
-
-      justify-content: space-between;
-
-      gap: 15px;
-
-      margin-bottom: 20px;
-    }
-
-    .results-top h2 {
-      color: #123b28;
-    }
-
-    #resultCount {
-      color: #648070;
-
-      font-size: 14px;
-    }
-
-    .blood-results {
-      display: grid;
-
-      grid-template-columns:
-        repeat(
-          auto-fit,
-          minmax(290px, 1fr)
-        );
-
-      gap: 20px;
-    }
-
-
-    /* CARD */
-
-    .blood-card {
-      background: white;
-
-      border:
-        1px solid #dcefe3;
-
-      border-radius: 20px;
-
-      padding: 22px;
-
-      box-shadow:
-        0 12px 32px
-        rgba(10,70,40,0.06);
-
-      transition:
-        transform 0.25s,
-        box-shadow 0.25s;
-
-      animation:
-        cardIn 0.45s ease both;
-    }
-
-    .blood-card:hover {
-      transform:
-        translateY(-5px);
-
-      box-shadow:
-        0 20px 40px
-        rgba(10,70,40,0.10);
-    }
-
-    @keyframes cardIn {
-
-      from {
-        opacity: 0;
-        transform:
-          translateY(15px);
-      }
-
-      to {
-        opacity: 1;
-        transform:
-          translateY(0);
-      }
-
-    }
-
-    .distance {
-      display: inline-block;
-
-      background: #e7f7ed;
-
-      color: #087f3f;
-
-      padding: 7px 10px;
-
-      border-radius: 20px;
-
-      font-size: 12px;
-
-      font-weight: 900;
-
-      margin-bottom: 13px;
-    }
-
-    .blood-card h3 {
-      font-size: 20px;
-
-      line-height: 1.3;
-
-      margin-bottom: 10px;
-
-      color: #123b28;
-    }
-
-    .centre-type {
-      display: inline-block;
-
-      background: #f0faf4;
-
-      border:
-        1px solid #d5eee0;
-
-      color: #087f3f;
-
-      padding: 5px 9px;
-
-      border-radius: 20px;
-
-      font-size: 11px;
-
-      font-weight: 800;
-
-      margin-bottom: 15px;
-    }
-
-    .blood-card p {
-      color: #607568;
-
-      font-size: 14px;
-
-      line-height: 1.6;
-
-      margin-bottom: 7px;
-    }
-
-    .blood-card strong {
-      color: #294f3a;
-    }
-
-    .card-actions {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, 1fr);
-
-      gap: 10px;
-
-      margin-top: 18px;
-    }
-
-    .card-actions a {
-      text-align: center;
-
-      text-decoration: none;
-
-      padding: 11px 10px;
-
-      border-radius: 10px;
-
-      background: #087f3f;
-
-      color: white;
-
-      font-size: 13px;
-
-      font-weight: 800;
-    }
-
-    .card-actions a:nth-child(2) {
-      background: #e8f7ee;
-
-      color: #087f3f;
-    }
-
-    .blood-card small {
-      display: block;
-
-      margin-top: 16px;
-
-      padding-top: 13px;
-
-      border-top:
-        1px solid #edf5ef;
-
-      color: #718379;
-
-      font-size: 11px;
-
-      line-height: 1.5;
-    }
-
-
-    /* EMPTY */
-
-    .empty-state {
-      grid-column: 1 / -1;
-
-      background: white;
-
-      border:
-        1px dashed #b9dcc7;
-
-      border-radius: 20px;
-
-      padding: 55px 25px;
-
-      text-align: center;
-
-      color: #648070;
-    }
-
-    .empty-icon {
-      font-size: 45px;
-
-      margin-bottom: 15px;
-    }
-
-    .empty-state h3 {
-      color: #123b28;
-
-      margin-bottom: 8px;
-    }
-
-
-    /* SAFETY */
-
-    .safety {
-      max-width: 1250px;
-
-      margin: 0 auto 60px;
-
-      padding: 0 5%;
-    }
-
-    .safety-box {
-      background: #fff9e8;
-
-      border:
-        1px solid #f0dfaa;
-
-      border-radius: 18px;
-
-      padding: 20px;
-
-      color: #695b31;
-
-      line-height: 1.6;
-
-      font-size: 13px;
-    }
-
-    .safety-box strong {
-      color: #4f421d;
-    }
-
-
-    /* FOOTER */
-
-    footer {
-      background: #08291a;
-
-      color: #dcefe3;
-
-      padding: 35px 5%;
-
-      text-align: center;
-    }
-
-    footer h3 {
-      color: white;
-
-      margin-bottom: 7px;
-    }
-
-    footer p {
-      font-size: 13px;
-
-      opacity: 0.8;
-    }
-
-
-    /* MOBILE */
-
-    @media (max-width: 900px) {
-
-      .filters {
-        grid-template-columns:
-          repeat(2, 1fr);
-      }
-
-    }
-
-
-    @media (max-width: 700px) {
-
-      .navbar {
-        padding: 12px 4%;
-      }
-
-      .hero {
-        padding:
-          45px 5%
-          25px;
-      }
-
-      .hero p {
-        font-size: 15px;
-      }
-
-      .location-panel {
-        flex-direction: column;
-
-        align-items: stretch;
-
-        padding: 22px;
-      }
-
-      .location-button {
-        width: 100%;
-      }
-
-      .filters {
-        grid-template-columns: 1fr;
-      }
-
-      .filter-actions {
-        flex-direction: column;
-      }
-
-      .primary-btn,
-      .secondary-btn {
-        width: 100%;
-      }
-
-      .results-top {
-        align-items: flex-start;
-
-        flex-direction: column;
-      }
-
-    }
-
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<meta name="theme-color" content="#087443">
+<meta name="description" content="RaktSathi - Find relevant blood resources near you.">
+
+<title>Find Blood Resources | RaktSathi</title>
+
+<style>
+:root{
+  --green:#087443;
+  --green-dark:#04512f;
+  --green-light:#eaf8f1;
+  --red:#c9182b;
+  --red-light:#fff0f2;
+  --dark:#10251c;
+  --text:#26362f;
+  --muted:#68766f;
+  --bg:#f4faf7;
+  --white:#fff;
+  --border:#dcebe3;
+  --shadow:0 15px 45px rgba(0,70,40,.10);
+}
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  font-family:Arial,Helvetica,sans-serif;
+  background:var(--bg);
+  color:var(--text);
+}
+
+/* NAVBAR */
+
+.navbar{
+  position:sticky;
+  top:0;
+  z-index:1000;
+  background:rgba(255,255,255,.95);
+  backdrop-filter:blur(15px);
+  border-bottom:1px solid var(--border);
+}
+
+.nav-inner{
+  max-width:1150px;
+  margin:auto;
+  padding:12px 18px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:9px;
+  text-decoration:none;
+  color:var(--green-dark);
+  font-size:22px;
+  font-weight:900;
+}
+
+.logo-mark{
+  width:38px;
+  height:38px;
+  border-radius:12px;
+  background:linear-gradient(145deg,#c9182b,#f04b5d);
+  display:grid;
+  place-items:center;
+  color:#fff;
+  font-size:20px;
+  box-shadow:0 7px 20px rgba(201,24,43,.22);
+}
+
+.back{
+  text-decoration:none;
+  color:var(--green);
+  font-weight:700;
+  font-size:14px;
+}
+
+/* HERO */
+
+.hero{
+  background:
+    radial-gradient(circle at 80% 20%,rgba(255,255,255,.14),transparent 28%),
+    linear-gradient(135deg,#04351f,#087443,#0b9b5c);
+  color:white;
+  padding:65px 18px 85px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:after{
+  content:"";
+  position:absolute;
+  width:300px;
+  height:300px;
+  border:1px solid rgba(255,255,255,.10);
+  border-radius:50%;
+  right:-80px;
+  top:-100px;
+}
+
+.hero-inner{
+  max-width:900px;
+  margin:auto;
+  position:relative;
+  z-index:2;
+}
+
+.label{
+  display:inline-block;
+  padding:8px 13px;
+  border:1px solid rgba(255,255,255,.25);
+  background:rgba(255,255,255,.10);
+  border-radius:30px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.5px;
+}
+
+.hero h1{
+  font-size:clamp(38px,7vw,62px);
+  line-height:1.05;
+  margin:20px 0 15px;
+  letter-spacing:-2px;
+}
+
+.hero h1 span{
+  color:#ff6675;
+}
+
+.hero p{
+  max-width:690px;
+  color:#e5f5ed;
+  line-height:1.7;
+  font-size:16px;
+}
+
+/* SEARCH */
+
+.search-wrapper{
+  max-width:1050px;
+  margin:-45px auto 0;
+  padding:0 15px;
+  position:relative;
+  z-index:5;
+}
+
+.search-card{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:25px;
+  padding:25px;
+  box-shadow:var(--shadow);
+}
+
+.search-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  margin-bottom:20px;
+}
+
+.search-title-icon{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:var(--green-light);
+  display:grid;
+  place-items:center;
+  font-size:21px;
+}
+
+.search-title h2{
+  font-size:21px;
+  color:var(--dark);
+}
+
+.search-title p{
+  color:var(--muted);
+  font-size:12px;
+  margin-top:3px;
+}
+
+.filters{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:12px;
+}
+
+.field label{
+  display:block;
+  font-size:11px;
+  font-weight:800;
+  color:#53645c;
+  margin-bottom:7px;
+}
+
+.field select,
+.field input{
+  width:100%;
+  height:47px;
+  padding:0 13px;
+  border:1px solid var(--border);
+  border-radius:12px;
+  background:#fbfdfc;
+  color:var(--text);
+  outline:none;
+  font-size:13px;
+}
+
+.field select:focus,
+.field input:focus{
+  border-color:var(--green);
+  box-shadow:0 0 0 3px rgba(8,116,67,.08);
+}
+
+.search-actions{
+  display:flex;
+  gap:10px;
+  margin-top:15px;
+}
+
+.btn{
+  border:0;
+  cursor:pointer;
+  min-height:47px;
+  padding:0 18px;
+  border-radius:13px;
+  font-weight:800;
+  font-size:13px;
+  transition:.25s;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  gap:7px;
+}
+
+.btn:hover{
+  transform:translateY(-2px);
+}
+
+.btn-primary{
+  background:var(--green);
+  color:white;
+}
+
+.btn-location{
+  background:#eaf8f1;
+  color:var(--green-dark);
+}
+
+.btn-reset{
+  background:#f1f4f2;
+  color:#526159;
+}
+
+/* LOCATION STATUS */
+
+.location-status{
+  display:none;
+  margin-top:14px;
+  padding:12px 14px;
+  border-radius:12px;
+  background:var(--green-light);
+  color:var(--green-dark);
+  font-size:12px;
+  font-weight:700;
+}
+
+.location-status.show{
+  display:block;
+}
+
+.location-status.error{
+  background:var(--red-light);
+  color:var(--red-dark);
+}
+
+/* CONTENT */
+
+.content{
+  max-width:1050px;
+  margin:auto;
+  padding:60px 15px 80px;
+}
+
+.result-header{
+  display:flex;
+  align-items:end;
+  justify-content:space-between;
+  gap:15px;
+  margin-bottom:20px;
+}
+
+.result-header h2{
+  font-size:28px;
+  color:var(--dark);
+}
+
+.result-header p{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:5px;
+}
+
+.result-count{
+  background:var(--green-light);
+  color:var(--green-dark);
+  padding:8px 12px;
+  border-radius:20px;
+  font-size:12px;
+  font-weight:800;
+}
+
+/* CARDS */
+
+.results{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:16px;
+}
+
+.centre{
+  background:white;
+  border:1px solid var(--border);
+  border-radius:21px;
+  padding:21px;
+  box-shadow:0 8px 28px rgba(0,70,40,.06);
+  transition:.3s;
+  animation:cardIn .45s ease both;
+}
+
+.centre:hover{
+  transform:translateY(-4px);
+  box-shadow:var(--shadow);
+}
+
+@keyframes cardIn{
+  from{
+    opacity:0;
+    transform:translateY(12px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.centre-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:flex-start;
+  gap:12px;
+}
+
+.centre-name{
+  font-size:17px;
+  line-height:1.35;
+  font-weight:900;
+  color:var(--dark);
+}
+
+.verified{
+  flex-shrink:0;
+  background:#eaf8f1;
+  color:var(--green-dark);
+  padding:6px 9px;
+  border-radius:9px;
+  font-size:10px;
+  font-weight:900;
+}
+
+.type{
+  display:inline-block;
+  margin-top:9px;
+  background:#f2f5f3;
+  color:#53635b;
+  padding:5px 8px;
+  border-radius:7px;
+  font-size:10px;
+  font-weight:800;
+}
+
+.address{
+  display:flex;
+  gap:8px;
+  margin-top:15px;
+  color:var(--muted);
+  font-size:12px;
+  line-height:1.6;
+}
+
+.address-icon{
+  color:var(--red);
+}
+
+.distance{
+  margin-top:14px;
+  padding:10px 12px;
+  background:#f7fbf9;
+  border-radius:11px;
+  color:var(--green-dark);
+  font-size:12px;
+  font-weight:800;
+}
+
+.distance.unavailable{
+  color:#777;
+  background:#f5f5f5;
+  font-weight:600;
+}
+
+.card-actions{
+  display:flex;
+  gap:9px;
+  margin-top:17px;
+}
+
+.card-btn{
+  flex:1;
+  min-height:40px;
+  border-radius:10px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  font-size:11px;
+  font-weight:900;
+}
+
+.map-btn{
+  background:var(--green);
+  color:white;
+}
+
+.request-btn{
+  background:var(--red-light);
+  color:var(--red-dark);
+}
+
+/* EMPTY */
+
+.empty{
+  display:none;
+  text-align:center;
+  background:white;
+  border:1px solid var(--border);
+  border-radius:22px;
+  padding:50px 20px;
+}
+
+.empty-icon{
+  font-size:45px;
+  margin-bottom:12px;
+}
+
+.empty h3{
+  color:var(--dark);
+  margin-bottom:7px;
+}
+
+.empty p{
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* SAFETY */
+
+.notice{
+  margin-top:35px;
+  background:#fff;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:22px;
+  display:flex;
+  gap:15px;
+}
+
+.notice-icon{
+  width:45px;
+  height:45px;
+  border-radius:13px;
+  background:#fff7df;
+  display:grid;
+  place-items:center;
+  flex-shrink:0;
+}
+
+.notice h3{
+  font-size:15px;
+  color:var(--dark);
+  margin-bottom:6px;
+}
+
+.notice p{
+  font-size:12px;
+  color:var(--muted);
+  line-height:1.7;
+}
+
+/* CTA */
+
+.cta{
+  max-width:1050px;
+  margin:0 auto 60px;
+  padding:45px 25px;
+  border-radius:25px;
+  background:linear-gradient(135deg,#063d28,#087443);
+  text-align:center;
+  color:white;
+}
+
+.cta h2{
+  font-size:30px;
+  margin-bottom:9px;
+}
+
+.cta p{
+  color:#d9eee5;
+  font-size:13px;
+  line-height:1.7;
+  max-width:600px;
+  margin:auto auto 20px;
+}
+
+.cta a{
+  display:inline-flex;
+  padding:12px 18px;
+  border-radius:12px;
+  background:white;
+  color:var(--green-dark);
+  font-weight:900;
+  font-size:12px;
+}
+
+/* FOOTER */
+
+footer{
+  background:#071c13;
+  color:#8fa49a;
+  text-align:center;
+  padding:30px 15px;
+}
+
+.footer-brand{
+  color:white;
+  font-size:20px;
+  font-weight:900;
+  margin-bottom:8px;
+}
+
+footer p{
+  font-size:11px;
+  line-height:1.6;
+}
+
+.copyright{
+  margin-top:15px;
+  font-size:10px;
+  color:#6f857b;
+}
+
+/* MOBILE */
+
+@media(max-width:800px){
+
+  .filters{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+  .results{
+    grid-template-columns:1fr;
+  }
+
+}
+
+@media(max-width:600px){
+
+  .nav-inner{
+    padding:10px 14px;
+  }
+
+  .brand{
+    font-size:19px;
+  }
+
+  .logo-mark{
+    width:34px;
+    height:34px;
+  }
+
+  .back{
+    font-size:12px;
+  }
+
+  .hero{
+    padding:50px 17px 75px;
+  }
+
+  .hero h1{
+    font-size:42px;
+  }
+
+  .hero p{
+    font-size:14px;
+  }
+
+  .search-wrapper{
+    padding:0 10px;
+    margin-top:-35px;
+  }
+
+  .search-card{
+    padding:18px 15px;
+    border-radius:20px;
+  }
+
+  .filters{
+    grid-template-columns:1fr;
+  }
+
+  .search-actions{
+    flex-direction:column;
+  }
+
+  .content{
+    padding:50px 12px 60px;
+  }
+
+  .result-header{
+    align-items:flex-start;
+    flex-direction:column;
+  }
+
+  .result-header h2{
+    font-size:25px;
+  }
+
+  .centre{
+    padding:18px;
+  }
+
+  .centre-top{
+    flex-direction:column;
+  }
+
+  .verified{
+    align-self:flex-start;
+  }
+
+  .card-actions{
+    flex-direction:column;
+  }
+
+  .notice{
+    padding:18px;
+  }
+
+  .cta{
+    margin:0 12px 45px;
+    padding:38px 18px;
+  }
+
+  .cta h2{
+    font-size:27px;
+  }
+}
+</style>
 </head>
-
 
 <body>
 
-  <!-- NAVBAR -->
+<!-- NAVBAR -->
 
-  <nav class="navbar">
+<header class="navbar">
 
-    <div class="nav-inner">
+  <div class="nav-inner">
 
-      <a href="index.html" class="brand">
+    <a href="index.html" class="brand">
+      <div class="logo-mark">🩸</div>
+      RaktSathi
+    </a>
 
-        <div class="brand-mark">
-          V+
-        </div>
+    <a href="index.html" class="back">
+      ← Back to Home
+    </a>
 
-        VitalLoop
+  </div>
 
-      </a>
+</header>
 
-      <a
-        href="index.html"
-        class="back-btn"
-      >
-        ← Back to Home
-      </a>
 
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-inner">
+
+    <div class="label">
+      🩸 BLOOD RESOURCE DISCOVERY
     </div>
 
-  </nav>
-
-
-  <!-- HERO -->
-
-  <header class="hero">
-
-    <span class="eyebrow">
-      VITALLOOP BLOOD RESOURCE NETWORK
-    </span>
-
     <h1>
-      Find Blood Centres
-      <span>Near You</span>
+      Find Blood<br>
+      <span>Resources Faster.</span>
     </h1>
 
     <p>
-      Discover licensed blood centres across Uttar Pradesh,
-      search by blood group and district, and calculate
-      the distance from your current location.
+      Search relevant blood centres using blood group,
+      component, district and location. RaktSathi helps
+      users discover and coordinate healthcare resources
+      through a connected digital experience.
     </p>
 
-  </header>
+  </div>
+
+</section>
 
 
-  <!-- LOCATION -->
+<!-- SEARCH -->
 
-  <section class="location-box">
+<div class="search-wrapper">
 
-    <div class="location-panel">
+  <div class="search-card">
+
+    <div class="search-title">
+
+      <div class="search-title-icon">
+        🔎
+      </div>
 
       <div>
+        <h2>Search Blood Resources</h2>
+        <p>Choose your requirements and search the network.</p>
+      </div>
 
-        <h2>
-          📍 Find the Nearest Centre
-        </h2>
+    </div>
 
-        <p>
-          Allow location access to calculate
-          your distance from blood centres.
-        </p>
+
+    <div class="filters">
+
+      <div class="field">
+
+        <label for="bloodGroup">
+          BLOOD GROUP
+        </label>
+
+        <select id="bloodGroup">
+
+          <option value="">Any Blood Group</option>
+          <option value="A+">A+</option>
+          <option value="A-">A−</option>
+          <option value="B+">B+</option>
+          <option value="B-">B−</option>
+          <option value="AB+">AB+</option>
+          <option value="AB-">AB−</option>
+          <option value="O+">O+</option>
+          <option value="O-">O−</option>
+
+        </select>
 
       </div>
 
+
+      <div class="field">
+
+        <label for="component">
+          COMPONENT
+        </label>
+
+        <select id="component">
+
+          <option value="">Any Component</option>
+          <option value="Whole Blood">Whole Blood</option>
+          <option value="Packed Red Cells">Packed Red Cells</option>
+          <option value="Platelets">Platelets</option>
+          <option value="Fresh Frozen Plasma">Fresh Frozen Plasma</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="district">
+          DISTRICT
+        </label>
+
+        <select id="district">
+
+          <option value="">All Districts</option>
+          <option value="Lucknow">Lucknow</option>
+
+        </select>
+
+      </div>
+
+
+      <div class="field">
+
+        <label for="search">
+          SEARCH CENTRE
+        </label>
+
+        <input
+          id="search"
+          type="search"
+          placeholder="Centre or area..."
+        >
+
+      </div>
+
+    </div>
+
+
+    <div class="search-actions">
+
       <button
-        id="locationButton"
-        class="location-button"
+        class="btn btn-primary"
+        onclick="searchCentres()"
+      >
+        🔎 Search Resources
+      </button>
+
+      <button
+        class="btn btn-location"
         onclick="useMyLocation()"
       >
         📍 Use My Location
       </button>
 
+      <button
+        class="btn btn-reset"
+        onclick="resetSearch()"
+      >
+        Reset
+      </button>
+
     </div>
 
-  </section>
+
+    <div id="locationStatus" class="location-status"></div>
+
+  </div>
+
+</div>
 
 
-  <div
-    id="locationStatus"
-    class="location-status"
-  >
-    📍 Location not selected
+<!-- RESULTS -->
+
+<main class="content">
+
+  <div class="result-header">
+
+    <div>
+
+      <h2>
+        Blood Centre Network
+      </h2>
+
+      <p id="resultInfo">
+        Loading verified centre information...
+      </p>
+
+    </div>
+
+    <div class="result-count" id="resultCount">
+      0 Centres
+    </div>
+
   </div>
 
 
-  <!-- SEARCH -->
-
-  <section class="search-area">
-
-    <div class="search-panel">
-
-      <h2>
-        Search Blood Resources
-      </h2>
-
-      <div class="filters">
-
-        <div class="filter-group">
-
-          <label for="bloodGroup">
-            Blood Group
-          </label>
-
-          <select id="bloodGroup">
-
-            <option value="">
-              All Blood Groups
-            </option>
-
-            <option value="A+">A+</option>
-            <option value="A-">A-</option>
-
-            <option value="B+">B+</option>
-            <option value="B-">B-</option>
-
-            <option value="AB+">AB+</option>
-            <option value="AB-">AB-</option>
-
-            <option value="O+">O+</option>
-            <option value="O-">O-</option>
-
-          </select>
-
-        </div>
+  <div id="results" class="results"></div>
 
 
-        <div class="filter-group">
+  <div id="empty" class="empty">
 
-          <label for="component">
-            Component
-          </label>
-
-          <select id="component">
-
-            <option value="">
-              All Components
-            </option>
-
-            <option value="Whole Blood">
-              Whole Blood
-            </option>
-
-            <option value="PRBC">
-              PRBC
-            </option>
-
-            <option value="Platelets">
-              Platelets
-            </option>
-
-            <option value="FFP">
-              FFP
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="filter-group">
-
-          <label for="district">
-            District
-          </label>
-
-          <select id="district">
-
-            <option value="">
-              All Districts
-            </option>
-
-            <option value="Lucknow">
-              Lucknow
-            </option>
-
-            <option value="Agra">
-              Agra
-            </option>
-
-            <option value="Kanpur Nagar">
-              Kanpur Nagar
-            </option>
-
-            <option value="Varanasi">
-              Varanasi
-            </option>
-
-            <option value="Prayagraj">
-              Prayagraj
-            </option>
-
-            <option value="Gorakhpur">
-              Gorakhpur
-            </option>
-
-            <option value="Meerut">
-              Meerut
-            </option>
-
-            <option value="Bareilly">
-              Bareilly
-            </option>
-
-            <option value="Ayodhya">
-              Ayodhya
-            </option>
-
-            <option value="Other">
-              Other
-            </option>
-
-          </select>
-
-        </div>
-
-
-        <div class="filter-group">
-
-          <label for="search">
-            Search Centre
-          </label>
-
-          <input
-            id="search"
-            type="search"
-            placeholder="Centre name..."
-          >
-
-        </div>
-
-      </div>
-
-
-      <div class="filter-actions">
-
-        <button
-          class="primary-btn"
-          onclick="applyFilters()"
-        >
-          Search
-        </button>
-
-        <button
-          class="secondary-btn"
-          onclick="resetFilters()"
-        >
-          Reset
-        </button>
-
-      </div>
-
+    <div class="empty-icon">
+      🔍
     </div>
 
-  </section>
+    <h3>
+      No matching centres found
+    </h3>
 
+    <p>
+      Try changing the blood group, district or search term.
+    </p>
 
-  <!-- RESULTS -->
-
-  <section class="results-area">
-
-    <div class="results-top">
-
-      <h2>
-        Blood Centres
-      </h2>
-
-      <span id="resultCount">
-        Loading centres...
-      </span>
-
-    </div>
-
-
-    <div
-      id="bloodResults"
-      class="blood-results"
-    >
-
-      <div class="empty-state">
-
-        <div class="empty-icon">
-          🩸
-        </div>
-
-        <h3>
-          Loading blood centres...
-        </h3>
-
-        <p>
-          Please wait while VitalLoop loads
-          the blood-centre database.
-        </p>
-
-      </div>
-
-    </div>
-
-  </section>
+  </div>
 
 
   <!-- SAFETY -->
 
-  <section class="safety">
+  <div class="notice">
 
-    <div class="safety-box">
+    <div class="notice-icon">
+      🛡️
+    </div>
 
-      <strong>
-        ⚠️ Important healthcare notice
-      </strong>
+    <div>
 
-      <br>
+      <h3>
+        Important Safety Information
+      </h3>
 
-      VitalLoop is a discovery and coordination
-      platform. It does not store, test, transport,
-      distribute or release blood.
-
-      Authorized blood centres and healthcare
-      facilities remain responsible for medical
-      screening, testing, compatibility, collection,
-      storage and transfusion.
-
-      Blood availability must always be verified
-      directly with the authorized centre.
+      <p>
+        RaktSathi is a discovery and coordination technology
+        prototype. Information shown here should not be treated
+        as a guarantee of current blood availability. Actual
+        blood collection, testing, compatibility assessment,
+        storage and release are handled by authorized blood
+        centres and healthcare facilities according to applicable
+        medical protocols.
+      </p>
 
     </div>
 
-  </section>
+  </div>
+
+</main>
 
 
-  <!-- FOOTER -->
+<!-- CTA -->
 
-  <footer>
+<section class="cta">
 
-    <h3>
-      VitalLoop
-    </h3>
+  <h2>
+    Can't find what you need?
+  </h2>
 
-    <p>
-      Connecting People. Saving Lives. |
-      Your Complete Healthcare Journey
-    </p>
+  <p>
+    Raise a structured blood-resource request so the required
+    information can be shared for coordination.
+  </p>
 
-    <p style="margin-top:10px;">
-      Healthcare technology prototype for
-      Smart India Hackathon
-    </p>
+  <a href="blood-request.html">
+    🩸 Raise Blood Request →
+  </a>
 
-  </footer>
-
-
-  <!-- JAVASCRIPT -->
-
-  <script>
-
-    let BLOOD_CENTRES = [];
-
-    let filteredCentres = [];
-
-    let userLocation = null;
+</section>
 
 
-    /* LOAD JSON */
+<!-- FOOTER -->
 
-    async function loadBloodCentres() {
+<footer>
 
-      const results =
-        document.getElementById(
-          "bloodResults"
-        );
+  <div class="footer-brand">
+    🩸 RaktSathi
+  </div>
 
-      try {
+  <p>
+    Smart Blood Resource Network
+  </p>
 
-        const response =
-          await fetch(
-            "data/blood-centres.json"
-          );
+  <div class="copyright">
+    © 2026 RaktSathi. Healthcare technology prototype.
+  </div>
 
-        if (!response.ok) {
-          throw new Error(
-            "Unable to load database"
-          );
-        }
+</footer>
 
-        BLOOD_CENTRES =
-          await response.json();
 
-        filteredCentres =
-          [...BLOOD_CENTRES];
+<script>
 
-        displayBloodCentres(
-          filteredCentres
-        );
+/* ==========================================
+   RAKTSATHI BLOOD RESOURCE SEARCH
+   ========================================== */
 
-      } catch (error) {
+let centres = [];
+let userLocation = null;
 
-        console.error(error);
 
-        results.innerHTML = `
+/* Load JSON */
 
-          <div class="empty-state">
+async function loadCentres(){
 
-            <div class="empty-icon">
-              ⚠️
-            </div>
+  const info = document.getElementById("resultInfo");
 
-            <h3>
-              Unable to load blood-centre data
-            </h3>
+  try{
 
-            <p>
-              Please check that
-              data/blood-centres.json
-              exists in your GitHub repository.
-            </p>
+    const response = await fetch("data/blood-centres.json");
 
+    if(!response.ok){
+      throw new Error("Unable to load centre data");
+    }
+
+    centres = await response.json();
+
+    renderCentres(centres);
+
+    info.textContent =
+      "Centre information loaded from the RaktSathi data network.";
+
+  }catch(error){
+
+    console.error(error);
+
+    info.textContent =
+      "Unable to load blood centre information.";
+
+    document.getElementById("results").innerHTML = "";
+
+    document.getElementById("empty").style.display = "block";
+
+  }
+
+}
+
+
+/* Search */
+
+function searchCentres(){
+
+  const bloodGroup =
+    document.getElementById("bloodGroup").value
+      .toLowerCase();
+
+  const component =
+    document.getElementById("component").value
+      .toLowerCase();
+
+  const district =
+    document.getElementById("district").value
+      .toLowerCase();
+
+  const search =
+    document.getElementById("search").value
+      .toLowerCase()
+      .trim();
+
+
+  const filtered = centres.filter(function(centre){
+
+    const centreDistrict =
+      String(centre.district || "").toLowerCase();
+
+    const centreName =
+      String(centre.name || "").toLowerCase();
+
+    const address =
+      String(centre.address || "").toLowerCase();
+
+    const bloodGroups =
+      String(centre.bloodGroups || "").toLowerCase();
+
+    const components =
+      String(centre.components || "").toLowerCase();
+
+
+    const groupMatch =
+      !bloodGroup ||
+      bloodGroups.includes(bloodGroup);
+
+
+    const componentMatch =
+      !component ||
+      components.includes(component);
+
+
+    const districtMatch =
+      !district ||
+      centreDistrict === district;
+
+
+    const searchMatch =
+      !search ||
+      centreName.includes(search) ||
+      address.includes(search) ||
+      centreDistrict.includes(search);
+
+
+    return(
+      groupMatch &&
+      componentMatch &&
+      districtMatch &&
+      searchMatch
+    );
+
+  });
+
+
+  renderCentres(filtered);
+
+}
+
+
+/* Render */
+
+function renderCentres(list){
+
+  const container =
+    document.getElementById("results");
+
+  const empty =
+    document.getElementById("empty");
+
+  const count =
+    document.getElementById("resultCount");
+
+
+  container.innerHTML = "";
+
+
+  let sorted = [...list];
+
+
+  /* Sort by distance when coordinates exist */
+
+  if(userLocation){
+
+    sorted.sort(function(a,b){
+
+      const da = getDistance(a);
+      const db = getDistance(b);
+
+      if(da === null && db === null) return 0;
+      if(da === null) return 1;
+      if(db === null) return -1;
+
+      return da - db;
+
+    });
+
+  }
+
+
+  count.textContent =
+    sorted.length +
+    (sorted.length === 1 ? " Centre" : " Centres");
+
+
+  if(sorted.length === 0){
+
+    empty.style.display = "block";
+
+    document.getElementById("resultInfo").textContent =
+      "No centres match your current search.";
+
+    return;
+
+  }
+
+
+  empty.style.display = "none";
+
+
+  document.getElementById("resultInfo").textContent =
+    "Showing " +
+    sorted.length +
+    " relevant centre" +
+    (sorted.length === 1 ? "" : "s") +
+    ".";
+
+
+  sorted.forEach(function(centre,index){
+
+    const card =
+      document.createElement("article");
+
+    card.className = "centre";
+
+    card.style.animationDelay =
+      (index * 0.04) + "s";
+
+
+    const distance =
+      getDistance(centre);
+
+
+    let distanceHTML = "";
+
+
+    if(distance !== null){
+
+      distanceHTML =
+        `<div class="distance">
+          📍 Approximately ${distance.toFixed(1)} km from your location
+        </div>`;
+
+    }else{
+
+      distanceHTML =
+        `<div class="distance unavailable">
+          📍 Distance unavailable — centre coordinates need verification
+        </div>`;
+
+    }
+
+
+    const mapsQuery =
+      encodeURIComponent(
+        (centre.name || "") +
+        ", " +
+        (centre.address || "") +
+        ", Uttar Pradesh, India"
+      );
+
+
+    card.innerHTML = `
+
+      <div class="centre-top">
+
+        <div>
+
+          <div class="centre-name">
+            ${escapeHTML(centre.name || "Blood Centre")}
           </div>
 
-        `;
+          <span class="type">
+            ${escapeHTML(centre.type || "Blood Centre")}
+          </span>
 
-        document.getElementById(
-          "resultCount"
-        ).textContent =
-          "Database error";
+        </div>
 
-      }
-
-    }
-
-
-    /* DISTANCE */
-
-    function calculateDistance(
-      lat1,
-      lon1,
-      lat2,
-      lon2
-    ) {
-
-      const R = 6371;
-
-      const dLat =
-        (lat2 - lat1)
-        * Math.PI / 180;
-
-      const dLon =
-        (lon2 - lon1)
-        * Math.PI / 180;
-
-      const a =
-        Math.sin(dLat / 2) ** 2 +
-        Math.cos(
-          lat1 * Math.PI / 180
-        ) *
-        Math.cos(
-          lat2 * Math.PI / 180
-        ) *
-        Math.sin(dLon / 2) ** 2;
-
-      const c =
-        2 *
-        Math.atan2(
-          Math.sqrt(a),
-          Math.sqrt(1 - a)
-        );
-
-      return R * c;
-
-    }
-
-
-    /* LOCATION */
-
-    function useMyLocation() {
-
-      const button =
-        document.getElementById(
-          "locationButton"
-        );
-
-      const status =
-        document.getElementById(
-          "locationStatus"
-        );
-
-      if (!navigator.geolocation) {
-
-        status.textContent =
-          "❌ Location is not supported by your browser.";
-
-        return;
-
-      }
-
-      button.disabled = true;
-
-      button.textContent =
-        "📍 Getting Location...";
-
-      status.textContent =
-        "📍 Requesting your location permission...";
-
-
-      navigator.geolocation.getCurrentPosition(
-
-        function(position) {
-
-          userLocation = {
-
-            latitude:
-              position.coords.latitude,
-
-            longitude:
-              position.coords.longitude
-
-          };
-
-
-          status.textContent =
-            "✅ Location detected. Finding nearest centres...";
-
-
-          calculateCentreDistances();
-
-
-          button.disabled = false;
-
-          button.textContent =
-            "📍 Location Updated";
-
-
-        },
-
-
-        function(error) {
-
-          console.error(error);
-
-          button.disabled = false;
-
-          button.textContent =
-            "📍 Use My Location";
-
-
-          if (error.code === 1) {
-
-            status.textContent =
-              "❌ Location permission denied. Please allow location access.";
-
-          } else {
-
-            status.textContent =
-              "❌ Unable to get your location. Please try again.";
-
-          }
-
-        },
-
-
-        {
-
-          enableHighAccuracy: true,
-
-          timeout: 15000,
-
-          maximumAge: 60000
-
+        ${
+          centre.verified
+          ?
+          `<span class="verified">✓ VERIFIED SOURCE</span>`
+          :
+          ""
         }
 
-      );
+      </div>
 
-    }
 
+      <div class="address">
 
-    /* CALCULATE DISTANCES */
+        <span class="address-icon">📍</span>
 
-    function calculateCentreDistances() {
+        <span>
+          ${escapeHTML(centre.address || "Address not available")}
+        </span>
 
-      if (!userLocation) return;
+      </div>
 
 
-      BLOOD_CENTRES =
-        BLOOD_CENTRES.map(
-          function(centre) {
+      ${distanceHTML}
 
-            if (
-              centre.latitude === null ||
-              centre.longitude === null ||
-              centre.latitude === undefined ||
-              centre.longitude === undefined
-            ) {
 
-              return {
+      <div class="card-actions">
 
-                ...centre,
+        <a
+          class="card-btn map-btn"
+          href="https://www.google.com/maps/search/?api=1&query=${mapsQuery}"
+          target="_blank"
+          rel="noopener"
+        >
+          🗺️ Directions
+        </a>
 
-                distance: null
+        <a
+          class="card-btn request-btn"
+          href="blood-request.html"
+        >
+          🩸 Request
+        </a>
 
-              };
+      </div>
 
-            }
+    `;
 
 
-            const distance =
-              calculateDistance(
+    container.appendChild(card);
 
-                userLocation.latitude,
+  });
 
-                userLocation.longitude,
+}
 
-                Number(
-                  centre.latitude
-                ),
 
-                Number(
-                  centre.longitude
-                )
+/* ==========================================
+   LOCATION
+   ========================================== */
 
-              );
+function useMyLocation(){
 
+  const status =
+    document.getElementById("locationStatus");
 
-            return {
 
-              ...centre,
+  if(!navigator.geolocation){
 
-              distance: distance
+    showLocationMessage(
+      "Location is not supported by this browser.",
+      true
+    );
 
-            };
+    return;
 
-          }
-        );
+  }
 
 
-      applyFilters();
+  showLocationMessage(
+    "📍 Requesting your location..."
+  );
 
-    }
 
+  navigator.geolocation.getCurrentPosition(
 
-    /* FILTERS */
+    function(position){
 
-    function applyFilters() {
+      userLocation = {
 
-      const group =
-        document.getElementById(
-          "bloodGroup"
-        ).value
-        .toLowerCase();
+        latitude:
+          position.coords.latitude,
 
-      const component =
-        document.getElementById(
-          "component"
-        ).value
-        .toLowerCase();
+        longitude:
+          position.coords.longitude
 
-      const district =
-        document.getElementById(
-          "district"
-        ).value
-        .toLowerCase();
+      };
 
-      const search =
-        document.getElementById(
-          "search"
-        ).value
-        .toLowerCase()
-        .trim();
 
-
-      filteredCentres =
-        BLOOD_CENTRES.filter(
-          function(centre) {
-
-            const text =
-              JSON.stringify(
-                centre
-              ).toLowerCase();
-
-
-            const groupMatch =
-              !group ||
-              text.includes(group);
-
-
-            const componentMatch =
-              !component ||
-              text.includes(component);
-
-
-            const districtMatch =
-              !district ||
-              (
-                centre.district &&
-                centre.district
-                  .toLowerCase()
-                  .includes(district)
-              );
-
-
-            const searchMatch =
-              !search ||
-              text.includes(search);
-
-
-            return (
-              groupMatch &&
-              componentMatch &&
-              districtMatch &&
-              searchMatch
-            );
-
-          }
-        );
-
-
-      if (userLocation) {
-
-        filteredCentres.sort(
-          function(a, b) {
-
-            if (
-              a.distance === null
-            ) return 1;
-
-            if (
-              b.distance === null
-            ) return -1;
-
-            return (
-              a.distance -
-              b.distance
-            );
-
-          }
-        );
-
-      }
-
-
-      displayBloodCentres(
-        filteredCentres
-      );
-
-    }
-
-
-    /* RESET */
-
-    function resetFilters() {
-
-      document.getElementById(
-        "bloodGroup"
-      ).value = "";
-
-      document.getElementById(
-        "component"
-      ).value = "";
-
-      document.getElementById(
-        "district"
-      ).value = "";
-
-      document.getElementById(
-        "search"
-      ).value = "";
-
-
-      applyFilters();
-
-    }
-
-
-    /* DISPLAY */
-
-    function displayBloodCentres(
-      centres
-    ) {
-
-      const container =
-        document.getElementById(
-          "bloodResults"
-        );
-
-      const count =
-        document.getElementById(
-          "resultCount"
-        );
-
-
-      count.textContent =
-        centres.length +
-        " centre" +
-        (
-          centres.length === 1
-            ? ""
-            : "s"
-        );
-
-
-      if (!centres.length) {
-
-        container.innerHTML = `
-
-          <div class="empty-state">
-
-            <div class="empty-icon">
-              🔎
-            </div>
-
-            <h3>
-              No matching blood centre found
-            </h3>
-
-            <p>
-              Try changing your search or filters.
-            </p>
-
-          </div>
-
-        `;
-
-        return;
-
-      }
-
-
-      container.innerHTML =
-        centres.map(
-          function(centre) {
-
-            const distance =
-              centre.distance !== undefined &&
-              centre.distance !== null
-                ? centre.distance
-                    .toFixed(1)
-                    + " km away"
-                : "Distance unavailable";
-
-
-            const query =
-              encodeURIComponent(
-                centre.name +
-                " " +
-                (
-                  centre.address || ""
-                ) +
-                " " +
-                (
-                  centre.district || ""
-                ) +
-                " Uttar Pradesh"
-              );
-
-
-            let mapsLink;
-
-
-            if (
-              centre.latitude !== null &&
-              centre.longitude !== null &&
-              centre.latitude !== undefined &&
-              centre.longitude !== undefined
-            ) {
-
-              mapsLink =
-                "https://www.google.com/maps/dir/?api=1&destination=" +
-                centre.latitude +
-                "," +
-                centre.longitude;
-
-            } else {
-
-              mapsLink =
-                "https://www.google.com/maps/search/?api=1&query=" +
-                query;
-
-            }
-
-
-            return `
-
-              <article class="blood-card">
-
-                <div class="distance">
-                  📍 ${distance}
-                </div>
-
-
-                <h3>
-                  ${escapeHTML(
-                    centre.name || "Blood Centre"
-                  )}
-                </h3>
-
-
-                <span class="centre-type">
-                  ${escapeHTML(
-                    centre.type ||
-                    "Blood Centre"
-                  )}
-                </span>
-
-
-                <p>
-                  <strong>
-                    District:
-                  </strong>
-                  ${escapeHTML(
-                    centre.district || "Uttar Pradesh"
-                  )}
-                </p>
-
-
-                <p>
-                  ${escapeHTML(
-                    centre.address ||
-                    "Address not available"
-                  )}
-                </p>
-
-
-                ${
-                  centre.contactPerson
-                    ? `
-                      <p>
-                        <strong>
-                          Contact:
-                        </strong>
-                        ${escapeHTML(
-                          centre.contactPerson
-                        )}
-                      </p>
-                    `
-                    : ""
-                }
-
-
-                ${
-                  centre.phone
-                    ? `
-                      <p>
-                        <strong>
-                          Phone:
-                        </strong>
-                        ${escapeHTML(
-                          centre.phone
-                        )}
-                      </p>
-                    `
-                    : ""
-                }
-
-
-                <div class="card-actions">
-
-                  ${
-                    centre.phone
-                      ? `
-                        <a
-                          href="tel:${escapeHTML(
-                            centre.phone
-                          )}"
-                        >
-                          📞 Call
-                        </a>
-                      `
-                      : `
-                        <a
-                          href="${mapsLink}"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          🗺️ Map
-                        </a>
-                      `
-                  }
-
-
-                  <a
-                    href="${mapsLink}"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    🗺️ Directions
-                  </a>
-
-                </div>
-
-
-                <small>
-
-                  Source:
-                  ${escapeHTML(
-                    centre.source ||
-                    "SBTC UP"
-                  )}
-
-                  <br>
-
-                  Blood availability must be
-                  verified with the authorized
-                  blood centre.
-
-                </small>
-
-              </article>
-
-            `;
-
-          }
-        ).join("");
-
-    }
-
-
-    /* HTML SAFETY */
-
-    function escapeHTML(value) {
-
-      return String(value)
-        .replace(
-          /&/g,
-          "&amp;"
-        )
-        .replace(
-          /</g,
-          "&lt;"
-        )
-        .replace(
-          />/g,
-          "&gt;"
-        )
-        .replace(
-          /"/g,
-          "&quot;"
-        )
-        .replace(
-          /'/g,
-          "&#039;"
-        );
-
-    }
-
-
-    /* LIVE SEARCH */
-
-    document
-      .getElementById("search")
-      .addEventListener(
-        "input",
-        function() {
-
-          applyFilters();
-
-        }
+      showLocationMessage(
+        "✓ Your location is available. Centres are now sorted by approximate distance."
       );
 
 
-    /* LOAD */
+      renderCentres(
+        getCurrentFilteredCentres()
+      );
 
-    loadBloodCentres();
+    },
 
-  </script>
+    function(error){
+
+      console.error(error);
+
+      showLocationMessage(
+        "Location permission was not available. You can still search centres manually.",
+        true
+      );
+
+    },
+
+    {
+      enableHighAccuracy:false,
+      timeout:10000,
+      maximumAge:300000
+    }
+
+  );
+
+}
+
+
+/* Location message */
+
+function showLocationMessage(message,error=false){
+
+  const status =
+    document.getElementById("locationStatus");
+
+  status.textContent = message;
+
+  status.classList.add("show");
+
+  status.classList.toggle("error",error);
+
+}
+
+
+/* ==========================================
+   DISTANCE
+   ========================================== */
+
+function getDistance(centre){
+
+  if(!userLocation){
+    return null;
+  }
+
+
+  const lat =
+    Number(centre.latitude);
+
+  const lon =
+    Number(centre.longitude);
+
+
+  if(
+    !Number.isFinite(lat) ||
+    !Number.isFinite(lon)
+  ){
+
+    return null;
+
+  }
+
+
+  return haversine(
+
+    userLocation.latitude,
+    userLocation.longitude,
+
+    lat,
+    lon
+
+  );
+
+}
+
+
+function haversine(lat1,lon1,lat2,lon2){
+
+  const R = 6371;
+
+  const dLat =
+    (lat2-lat1) *
+    Math.PI / 180;
+
+  const dLon =
+    (lon2-lon1) *
+    Math.PI / 180;
+
+
+  const a =
+    Math.sin(dLat/2) *
+    Math.sin(dLat/2) +
+
+    Math.cos(lat1*Math.PI/180) *
+    Math.cos(lat2*Math.PI/180) *
+
+    Math.sin(dLon/2) *
+    Math.sin(dLon/2);
+
+
+  const c =
+    2 *
+    Math.atan2(
+      Math.sqrt(a),
+      Math.sqrt(1-a)
+    );
+
+
+  return R*c;
+
+}
+
+
+/* ==========================================
+   FILTERED DATA
+   ========================================== */
+
+function getCurrentFilteredCentres(){
+
+  const bloodGroup =
+    document.getElementById("bloodGroup").value
+      .toLowerCase();
+
+  const component =
+    document.getElementById("component").value
+      .toLowerCase();
+
+  const district =
+    document.getElementById("district").value
+      .toLowerCase();
+
+  const search =
+    document.getElementById("search").value
+      .toLowerCase()
+      .trim();
+
+
+  return centres.filter(function(centre){
+
+    const centreDistrict =
+      String(centre.district || "").toLowerCase();
+
+    const centreName =
+      String(centre.name || "").toLowerCase();
+
+    const address =
+      String(centre.address || "").toLowerCase();
+
+    const bloodGroups =
+      String(centre.bloodGroups || "").toLowerCase();
+
+    const components =
+      String(centre.components || "").toLowerCase();
+
+
+    return(
+
+      (!bloodGroup ||
+       bloodGroups.includes(bloodGroup)) &&
+
+      (!component ||
+       components.includes(component)) &&
+
+      (!district ||
+       centreDistrict === district) &&
+
+      (!search ||
+       centreName.includes(search) ||
+       address.includes(search) ||
+       centreDistrict.includes(search))
+
+    );
+
+  });
+
+}
+
+
+/* ==========================================
+   RESET
+   ========================================== */
+
+function resetSearch(){
+
+  document.getElementById("bloodGroup").value = "";
+
+  document.getElementById("component").value = "";
+
+  document.getElementById("district").value = "";
+
+  document.getElementById("search").value = "";
+
+
+  renderCentres(centres);
+
+}
+
+
+/* ==========================================
+   SAFE HTML
+   ========================================== */
+
+function escapeHTML(value){
+
+  return String(value)
+    .replace(/&/g,"&amp;")
+    .replace(/</g,"&lt;")
+    .replace(/>/g,"&gt;")
+    .replace(/"/g,"&quot;")
+    .replace(/'/g,"&#039;");
+
+}
+
+
+/* ==========================================
+   LIVE SEARCH
+   ========================================== */
+
+document
+  .getElementById("search")
+  .addEventListener(
+    "input",
+    function(){
+
+      searchCentres();
+
+    }
+  );
+
+
+/* Start */
+
+loadCentres();
+
+</script>
 
 </body>
 </html>
